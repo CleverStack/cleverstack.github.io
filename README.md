@@ -1,4 +1,1 @@
-cleverstack.github.io
-=====================
-
-cleverstack.io website auto generated from [cleverstack.io](https://github.com/CleverStack/cleverstack) repository.
+This documentation is auto generated, if you wish to change it please see instructions [here](https://github.com/CleverStack/cleverstack.io).
