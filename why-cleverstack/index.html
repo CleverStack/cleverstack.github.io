@@ -11,7 +11,7 @@
 
 <title>
   
-    About &middot; CleverStack.io
+    Why CleverStack? &middot; CleverStack.io
   
 </title>
 
@@ -72,7 +72,7 @@
         <li>
           <a href="/getting-started">Getting started</a>
         </li>
-        <li>
+        <li class="active">
           <a href="/why-cleverstack">Why cleverstack?</a>
         </li>
 <!--         <li>
@@ -89,7 +89,7 @@
         </li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="active">
+        <li>
           <a href="/about">About</a>
         </li>
       </ul>
@@ -101,8 +101,8 @@
     <!-- Docs page layout -->
     <div class="bs-header" id="content">
       <div class="container">
-        <h1>About</h1>
-        <p>Learn about the history of CleverStack, meet the core team, contribute and check out our Roadmap.</p>
+        <h1>Why CleverStack?</h1>
+        <p>Find out what is special about CleverStack and how it works.</p>
         <div id="carbonads-container"><div class="carbonad"><div id="azcarbon"></div><script>var z = document.createElement("script"); z.async = true; z.src = "http://engine.carbonads.com/z/32341/azcarbon_2_1_0_HORIZ"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script></div></div>
 
       </div>
@@ -127,144 +127,85 @@
             <ul class="nav bs-sidenav">
               
                 <li>
-  <a href="#history">History</a>
+  <a href="#why">Why CleverStack?</a>
+<!--   <ul class="nav">
+    <li><a href="#features-cli">CleverStack CLI</a></li>
+    <li><a href="#features-front-end">CleverStack Front-end</a></li>
+    <li><a href="#features-back-end">CleverStack Back-end</a></li>
+  </ul> -->
 </li>
 <li>
-  <a href="#team">Team</a>
+  <a href="#how">How does CleverStack work?</a>
+<!--   <ul class="nav">
+    <li><a href="#how-npm">Node/NPM</a></li>
+    <li><a href="#how-grunt">Grunt</a></li>
+    <li><a href="#how-bower">Bower</a></li>
+    <li><a href="#how-modularity">Modularity</a></li>
+  </ul> -->
 </li>
-<li>
-  <a href="#community">Community</a>
-</li>
-<li>
-  <a href="#roadmap">Roadmap</a>
-</li>
-<li>
-  <a href="#goals">Goals</a>
-</li>
-<li>
-  <a href="#license">License</a>
-</li>
-
               
             </ul>
           </div>
         </div>
         <div class="col-md-9" role="main">
-          <!-- History
-================================================== -->
-<div class="bs-docs-section">
-  <div class="page-header">
-    <h1 id="history">History</h1>
-  </div>
-  <p class="lead">Clevertech has been developing web applications for over 12 years and with all this experience and a highly skilled developer team we have decided to bring CleverStack to open source.</p>
-  <p>Our aim with CleverStack is to provide the development community with a lean starting point for AngularJS and NodeJS powered web applications. We like to use leading cutting edge technologies to allow for a very automated development workflow. We utilize technologies such as Grunt, Node/NPM & Bower (and many more) to provide rich features out of the box and take care of all the complex configurations for you!</p>
-  <p>CleverStack also features an easy to use Command Line Interface (CLI) which allows you to start & manage new projects soley from your terminal. It's still in early stages but you are able to re-use your code in AMD spefication modules which gives you the freedom and power to enhance your apps with new features literally in seconds via the CLI.</p>
-  <button type="button" class="btn btn-primary" href="http://clevertech.biz">Find out more about Clevertech</button>
-</div>
-
-
-<!-- Team
-================================================== -->
-<div class="bs-docs-section">
-  <div class="page-header">
-    <h1 id="team">Team</h1>
-  </div>
-  <p class="lead">CleverStack is maintained by the <a href="http://clevertech.biz">Clevertech</a> developer team and with the support and involvement of our open source community.</p>
-
-  <h2 id="team-core">Core devs</h2>
-  <div class="list-group bs-team">
-    <div class="list-group-item">
-      <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=durango&amp;type=follow"></iframe>
-      <a class="team-member" href="https://github.com/durango">
-        <img src="http://www.gravatar.com/avatar/edd4ff96a1309aec1baad2860f276833" alt="@durango">
-        <strong>Daniel Durrante</strong> <small>@durango</small>
-      </a>
+            <!-- Why CleverStack
+  ================================================== -->
+  <div class="bs-docs-section">
+    <div class="page-header">
+      <h1 id="why">Why CleverStack?</h1>
     </div>
-    <div class="list-group-item">
-      <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=pilsy&amp;type=follow"></iframe>
-      <a class="team-member" href="https://github.com/pilsy">
-        <img src="http://www.gravatar.com/avatar/7efda298b27c121bd03ecfc019b58989" alt="@pilsy">
-        <strong>Richard Gustin</strong> <small>@pilsy</small>
-      </a>
+    <p class="lead">CleverStack provides you with a cutting edge development workflow for AngularJS, NodeJS and other JavaScript driven web apps.</p>
+    <br/>
+
+    <h2 id="features-cli">CleverStack CLI</h2>
+    <ul>
+        <li><strong>Quick & Easy Install</strong> - Start new projects and install new features directly from your command line. The CleverStack CLI takes care of installation and configuration of all your project dependencies.</li>
+    </ul>
+    <br/>
+
+    <h2 id="features-front-end">CleverStack Front-end</h2>
+    <ul>
+        <li><strong>AngularJS Seed</strong> - We have a fully featured AngularJS seed. You can however use any front-end you wish with CleverStack.</li>
+        <li><strong>AngularJS Modularity</strong> - Features are split into succinct AMD specification modules so they be added or removed from your project as you please.</li>
+        <li><strong>AngularJS & RequireJS</strong> - Our Angular Seed is fully integrated with RequireJS to provide excellent front-end JavaScript dependency management.</li>
+        <li><strong>Automated Unit Testing</strong> - Run automated unit tests using PhantomJS and produce code coverage reports.</li>
+        <li><strong>Automated E2E Testing</strong> - Run automated end-to-end tests using Angular's Protractor.</li>
+    </ul>
+    <br/>
+
+    <h2 id="features-back-end">CleverStack Back-end</h2>
+    <ul>
+        <li><strong>NodeJS Seed</strong> - We have a fully featured NodeJS seed. We recommend you use this for the back-end.</li>
+        <li><strong>NodeJS Modularity</strong> - NodeJS features are split into succinct AMD specification modules so they be added or removed from your project as you please.</li>
+        <li><strong>NodeJS Background Tasks</strong> - Perform CPU intensive activites such as document uploading, PDF creation & virus scanning or run anything really in the background while keeping your app active.</li>
+        <li><strong>Database ORM</strong> - Create your database tables and populate them with seed data specified in JSON.</li>
+        <li><strong>Clever Controller</strong> - Create your own custom actions to request routes dynamically.</li>
+        <li><strong>Automated Unit Testing</strong> - Run automated unit tests using PhantomJS and produce code coverage reports.</li>
+        <li><strong>Automated E2E Testing</strong> - Run automated end-to-end tests using Supertest.</li>
+    </ul>
+</div>
+
+  <!-- How does CleverStack work?
+  ================================================== -->
+  <div class="bs-docs-section">
+    <div class="page-header">
+      <h1 id="how">How does CleverStack work?</h1>
     </div>
-    <div class="list-group-item">
-      <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=danielyoung&amp;type=follow"></iframe>
-      <a class="team-member" href="https://github.com/danielyoung">
-        <img src="http://www.gravatar.com/avatar/ba116dfd1442576756a092efcd79a014" alt="@danielyoung">
-        <strong>Daniel Young</strong> <small>@danielyoung</small>
-      </a>
-    </div>
-    <div class="list-group-item">
-      <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=sdeering&amp;type=follow"></iframe>
-      <a class="team-member" href="https://github.com/sdeering">
-        <img src="http://www.gravatar.com/avatar/547eae5b00053cc6ef97d8bbc43becf2" alt="@sdeering">
-        <strong>Sam Deering</strong> <small>@sdeering</small>
-      </a>
-    </div>
+    <p class="lead">CleverStack uses technologies such as Node/NPM, Grunt & Bower and others to manage packages/dependencies and setup/manage your development workflow.</p>
+
+    <h3 id="how-npm">Node/NPM</h3>
+    <p>CleverStack uses Node Package Manager (NPM) to install project package dependencies specified in package.json.</p>
+
+    <h3 id="how-grunt">Grunt</h3>
+    <p>CleverStack uses Grunt to manage JavaScript tasks such as providing you with a development server with live reload, running of tests or producing a production build of your app.</p>
+
+    <h3 id="how-bower">Bower</h3>
+    <p>CleverStack uses Bower to manage front-end JavaScript dependencies and install them as components for your project.</p>
+
+    <h3 id="how-modularity">Modularity</h3>
+    <p>CleverStack promotes modularity where each module contains everything it needs to function including it's own package.json and it's own unit tests.</p>
+
   </div>
-  <p>*Plus other Clevertech developers not mentioned above.</p>
-  <p>Get involved with CleverStack development by <a href="https://github.com/CleverStack/CleverStack/issues/new">opening an issue</a> or submitting a pull request. Read our <a href="https://github.com/CleverStack/CleverStack/blob/master/CONTRIBUTING.md">contributing guidelines</a> for information on how we develop.</p>
-
-</div>
-
-
-<!-- Community
-================================================== -->
-<div class="bs-docs-section">
-  <div class="page-header">
-    <h1 id="community">Community</h1>
-  </div>
-  <p class="lead">Stay up to date on the development of CleverStack and reach out to the community with these helpful resources.</p>
-  <ul>
-    <li>Read and subscribe to <a href="http://clevertech.biz/devblog/">The CleverTech Dev Blog</a> for CleverStack news and updates.</li>
-    <li>Follow <a href="https://twitter.com/cleverstack">@cleverstack on Twitter</a>.</li>
-  </ul>
-</div>
-
-
-<!-- Roadmap
-================================================== -->
-<div class="bs-docs-section">
-  <div class="page-header">
-    <h1 id="roadmap">Roadmap</h1>
-  </div>
-  <p class="lead">Our main goal is to provide you with a cutting edge starting point for you Angular and Node web apps.</p>
-  <p>CleverStack is still in the early stages of development, issues and feedback much appreciated.</p>
-  <ul>
-    <li>2013 May - CleverStack Angular & Node Seeds start as open source on GitHub.</li>
-    <li>2014 Jan - CleverStack 1.0 planned release of modularity and CLI.</li>
-  </ul>
-</div>
-
-<!-- Goals
-================================================== -->
-<div class="bs-docs-section">
-  <div class="page-header">
-    <h1 id="goals">Goals</h1>
-  </div>
-  <p class="lead">Our main goal is to provide you with a cutting edge starting point for you Angular and Node web apps.</p>
-  <p>Other goals include:</p>
-  <ul>
-    <li>Open source community with CleverStack to help others solve thier issues.</li>
-    <li>Automated unit & e2e testing with AngularJS</li>
-    <li>Reliable RequireJS integration with AngularJS</li>
-    <li>AMD spec modularity of features so you can include what you want and exclude what you dont.</li>
-    <li>Easy command line driven install.</li>
-    <li>NodeJS background tasks.</li>
-    <li>NodeJS database rebase and seeding.</li>
-    <li>Using cutting edge web technologies such as Protractor, Chrome Driver and Selenium Server (Web Driver).</li>
-  </ul>
-</div>
-
-<!-- License
-================================================== -->
-<div class="bs-docs-section">
-  <div class="page-header">
-    <h1 id="license">License</h1>
-  </div>
-  <p class="lead">CleverStack was created by <a href="http://clevertech.biz">Clevertech</a>, a world-wide web development company. It's distributed under the <a href="http://mit-license.org/">MIT license</a>.</p>
-</div>
-
         </div>
       </div>
 
