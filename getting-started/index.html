@@ -244,11 +244,11 @@
 
     <h3 id="frontend-structure">Application Structure</h3>
 
-<div class="highlight"><pre><code class="bash">angular/
+<div class="highlight"><pre><code class="bash">front-end/
 ├── app/              <span class="c"># angular app source files</span>
 │   └── modules/      <span class="c"># cleverstack app front-end modules</span>
 ├── scripts/          <span class="c"># app scripts and binaries</span>
-├── <span class="nb">test</span>/             <span class="c"># app tests</span>
+├── tests/            <span class="c"># app tests</span>
 ├── Gruntfile.js      <span class="c"># app grunt tasks</span>
 ├── bower.json        <span class="c"># app js dependencies</span>
 └── package.json      <span class="c"># app npm dependencies</span>
@@ -309,12 +309,12 @@
           <li>Databases supported: mySQL, Portgres or MongoDB</li>
           <li>Modules for ORM and ODM (SQL & noSQL)</li>
           <li>NodeJS Background Tasks Module</li>
-          <li>Unit & Integration Testing with Mocha</li>
+          <li>Unit & E2E Testing with Mocha</li>
         </ul>
 
         <h3 id="backend-structure">Application Structure</h3>
 
-<div class="highlight"><pre><code class="bash">node/
+<div class="highlight"><pre><code class="bash">back-end/
 ├── config/           <span class="c"># node app configs</span>
 ├── lib/              <span class="c"># node app source files</span>
 ├── modules/          <span class="c"># cleverstack app back-end modules</span>
@@ -387,22 +387,22 @@
     <p>We currently have a handful of important CleverStack modules available which we will add here soon.</p>
 
     <p>Searching for modules you would run:</p>
-<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever search modules <span class="s1">&#39;login&#39;</span>     <span class="c"># search for modules containing &#39;login&#39;</span>
-<span class="nv">$ </span>clever list modules             <span class="c"># list all available modules</span>
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever search <span class="s1">&#39;login&#39;</span>     <span class="c"># search for modules containing &#39;login&#39;</span>
+<span class="nv">$ </span>clever list               <span class="c"># list all available modules</span>
 </code></pre></div>
 
     <h3 id="modules-adding">Adding modules</h3>
     <p>Adding modules from your CleverStack project can be done using the CLI.</p>
 
     <p>To add a module you would run:</p>
-    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever install module login
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever install login
 </code></pre></div>
 
     <h3 id="modules-removing">Removing modules</h3>
     <p>Rremoving modules from your CleverStack project can be done using the CLI.</p>
 
     <p>To remove a module you would run:</p>
-    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever remove module login
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever remove login
 </code></pre></div>
 
     <h3 id="modules-frontend-structure">Front-end Module Directory Structure</h3>
@@ -477,31 +477,19 @@
 <div class="highlight"><pre><code class="bash">example-module/
 ├── bin/                              <span class="c"># module scripts &amp; binaries</span>
 ├── classes/                          <span class="c"># module classes</span>
-│   └── ExampleClass.json
 ├── config/                           <span class="c"># module specific configs and setting overides</span>
-│   └── default.json <span class="o">(</span>or global.json<span class="o">)</span>
 ├── controllers/                      <span class="c"># module controllers</span>
-│   └── ExampleController.js
 ├── exceptions/                       <span class="c"># custom exception handlers</span>
-│   └── ExampleException.js
 ├── models/
 │   └── orm/                          <span class="c"># your mySQL table relationships &amp; data models</span>
-│   │   └── ExampleModel.js
 │   └── odm/                          <span class="c"># your MongoDB table relationships &amp; data models</span>
-│       └── ExampleModel.js
 ├── schema/                           <span class="c"># seed data is used to populate your database tables</span>
-│   └── seedData.json
 ├── services/                         <span class="c"># module services</span>
-│   └── ExampleService.js
 ├── tasks/                            <span class="c"># module background tasks</span>
-│   └── ExampleTask.js
 ├── tests/
-│   └── integration/                  <span class="c"># module end to end tests</span>
-│   │   └── test.api.example.js
+│   └── e2e/                          <span class="c"># module end to end tests</span>
 │   └── unit/                         <span class="c"># module unit tests</span>
-│       └── test.controllers.ExampleController.js
 ├── utils/                            <span class="c"># module utils</span>
-│   └── ExampleUtil.js
 ├── Gruntfile.js                      <span class="c"># module grunt tasks</span>
 ├── module.js                         <span class="c"># main module class</span>
 └── package.json                      <span class="c"># module npm dependencies</span>
@@ -516,7 +504,7 @@
 
             <h4>tests/</h4>
             <ul>
-                <li>Two folders for testing, integration/ and unit/</li>
+                <li>Two folders for testing, e2e/ and unit/</li>
                 <li>This allows each module to define it's own tests for the functionality (code) that is provided within each module.</li>
             </ul>
 
@@ -544,7 +532,7 @@
       <ol>
         <li>
           <p>Run the following command:</p>
-          <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever new module my-module
+          <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever new my-module
 </code></pre></div>
           <p>This will then install and setup a new skeleton module for you.</p>
       </ol>
@@ -561,7 +549,7 @@
 
     <h3 id="testing-unit">Running Unit Tests</h3>
     <p>To run the unit tests for your app and modules, from the front-end/back-end root directory run:</p>
-    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test</span>:unit
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test </span>unit
 </code></pre></div>
     <p>Or simply use the alias:</p>
     <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test</span>
@@ -569,13 +557,13 @@
 
     <h3 id="testing-e2e">Running E2E Tests</h3>
     <p>To run the end-to-end tests for your app and modules, from the front-end/back-end root directory run:</p>
-    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test</span>:e2e
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test </span>e2e
 </code></pre></div>
 
 
     <h3 id="testing-coverage">Code Coverage Reports</h3>
     <p>To generate a code coverage report for your unit tests, from the front-end directory run:</p>
-    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test</span>:coverage
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test </span>coverage
 </code></pre></div>
     <p>Your browser should open the following URL:</p>
     <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>http://localhost:5555
