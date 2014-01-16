@@ -102,7 +102,7 @@
     <div class="bs-header" id="content">
       <div class="container">
         <h1>Getting started</h1>
-        <p>An overview of CleverStack, how to download and use and more.</p>
+        <p>An overview of CleverStack, how to install, configure, use and extend.</p>
         <div id="carbonads-container"><div class="carbonad"><div id="azcarbon"></div><script>var z = document.createElement("script"); z.async = true; z.src = "http://engine.carbonads.com/z/32341/azcarbon_2_1_0_HORIZ"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script></div></div>
 
       </div>
@@ -128,23 +128,35 @@
               
                 <li>
   <a href="#install">Install</a>
+</li>
+<li>
+  <a href="#frontend">Front-end (AngularJS)</a>
   <ul class="nav">
-    <li><a href="#install-prerequisites">Prerequisites</a></li>
-    <li><a href="#install-using-cli">Install Using CLI</a></li>
+    <li><a href="#frontend-overview">Overview</a></li>
+    <li><a href="#frontend-structure">Application Structure</a></li>
+    <li><a href="#frontend-important">Important files and folders</a></li>
   </ul>
 </li>
 <li>
-  <a href="#structure">Directory Structure</a>
+  <a href="#backend">Back-end (NodeJS)</a>
   <ul class="nav">
-    <li><a href="#structure-front-end">Front-end</a></li>
-    <li><a href="#structure-back-end">Back-end</a></li>
+    <li><a href="#backend-overview">Overview</a></li>
+    <li><a href="#backend-structure">Application Structure</a></li>
+    <li><a href="#backend-important">Important files and folders</a></li>
   </ul>
 </li>
 <li>
   <a href="#modules">Modules</a>
   <ul class="nav">
+    <li><a href="#modules-overview">Overview</a></li>
     <li><a href="#modules-list">Modules List</a></li>
-    <li><a href="#modules-adding-and-removing">Adding and removing modules</a></li>
+    <li><a href="#modules-adding">Adding a module</a></li>
+    <li><a href="#modules-removing">Removing a module</a></li>
+    <li><a href="#modules-frontend-structure">Frontend Module Directory Structure</a></li>
+    <li><a href="#modules-frontend-important">Frontend Module Important Files and Folders</a></li>
+    <li><a href="#modules-backend-structure">Backend Module Directory Structure</a></li>
+    <li><a href="#modules-frontend-important">Backend Module Important Files and Folders</a></li>
+    <li><a href="#modules-creating">Creating your own Modules</a></li>
   </ul>
 </li>
 <li>
@@ -152,11 +164,11 @@
   <ul class="nav">
     <li><a href="#testing-unit">Running Unit Tests</a></li>
     <li><a href="#testing-e2e">Running E2E Tests</a></li>
-    <li><a href="#testing-code-coverage">Code Coverage Reports</a></li>
+    <li><a href="#testing-coverage">Code Coverage Reports</a></li>
   </ul>
 </li>
 <li>
-  <a href="#deployment">Deployment</a>
+  <a href="#deployment">Build & Deployment</a>
   <ul class="nav">
     <li><a href="#deployment-build">Production Builds</a></li>
     <li><a href="#deployment-strategies">Deployment Strategies</a></li>
@@ -180,95 +192,182 @@
     <div class="page-header">
       <h1 id="install">Install</h1>
     </div>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commod.</p>
+    <p class="lead">Setup is made easy using our CleverStack Command Line Interface.</p>
 
-    <h3 id="install-prerequisites">Prerequisites</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Use the following commands to get up and running with CleverStack CLI. Before you start, one thing <strong>you will need is NodeJS (with NPM)</strong> - you can get both bundled from <a href="http://nodejs.org/">nodejs.org</a>.</p>
 
-    <h3 id="install-using-cli">Install Using CLI</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>npm install cleverstack
+    <ol>
+      <li>
+        <p>Install the CleverStack CLI globally.</p>
+        <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>npm install -g cleverstack-cli
 </code></pre></div>
-
-    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever new &lt;project-name&gt;
+      </li>
+      <li>
+        <p>Create a new CleverStack project.</p>
+        <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever init my-app
 </code></pre></div>
-
-    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>etc... 
+      </li>
+      <li>
+        <p>Run your development servers:</p>
+        <div class="highlight"><pre><code class="bash"><span class="nv">$ </span><span class="nb">cd </span>my-app
 </code></pre></div>
-
+        <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever serve
+</code></pre></div>
+        <p><strong>Note:</strong> If your in the main project directory this will start the grunt server for both front-end and back-end. If your inside front-end folder it will start the front-end grunt server only. So you could have 2 terminals, 1 running front and 1 running back.</p>
+      </li>
+      <li>
+        <p>In your web browser open:</p>
+        <div class="highlight"><pre><code class="bash">http://localhost:9000
+</code></pre></div>
+      </li>
+    </ol>
   </div>
 
-  <!-- Directory Structure
+  <!-- Front-end (AngularJS)
   ================================================== -->
   <div class="bs-docs-section">
     <div class="page-header">
-      <h1 id="structure">Directory Structure</h1>
+      <h1 id="frontend">Front-end (AngularJS)</h1>
     </div>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commod.</p>
 
-    <h3 id="structure-front-end">Front-end</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p id="frontend-overview" class="lead">CleverStack provides a fully featured AngularJS development workflow.</p>
+    <p>Some highlights:</p>
+    <ul>
+      <li>AngularJS Application Core Integrated with RequireJS</li>
+      <li>Grunt Server with Live Reload, Bootstrap 3, LESS</li>
+      <li>JavaScript Dependency Loading with Bower</li>
+      <li>Modularity NPM Coding Structure</li>
+      <li>Unit Testing with Karma & Code Coverage Reports</li>
+      <li>E2E Testing with Angular Protractor</li>
+      <li>Optimised Production Build Process</li>
+    </ul>
 
-<div class="highlight"><pre><code class="bash">bootstrap/
-├── css/
-│   ├── bootstrap.css
-│   ├── bootstrap.min.css
-│   ├── bootstrap-theme.css
-│   └── bootstrap-theme.min.css
-├── js/
-│   ├── bootstrap.js
-│   └── bootstrap.min.js
-└── fonts/
-    ├── glyphicons-halflings-regular.eot
-    ├── glyphicons-halflings-regular.svg
-    ├── glyphicons-halflings-regular.ttf
-    └── glyphicons-halflings-regular.woff
+    <h3 id="frontend-structure">Application Structure</h3>
+
+<div class="highlight"><pre><code class="bash">angular/
+├── app/              <span class="c"># angular app source files</span>
+│   └── modules/      <span class="c"># cleverstack app front-end modules</span>
+├── scripts/          <span class="c"># app scripts and binaries</span>
+├── <span class="nb">test</span>/             <span class="c"># app tests</span>
+├── Gruntfile.js      <span class="c"># app grunt tasks</span>
+├── bower.json        <span class="c"># app js dependencies</span>
+└── package.json      <span class="c"># app npm dependencies</span>
 </code></pre></div>
 
-    <h3 id="structure-back-end">Back-end</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h3 id="frontend-important">Important files and folders</h3>
 
-<div class="highlight"><pre><code class="bash">bootstrap/
-├── css/
-│   ├── bootstrap.css
-│   ├── bootstrap.min.css
-│   ├── bootstrap-theme.css
-│   └── bootstrap-theme.min.css
-├── js/
-│   ├── bootstrap.js
-│   └── bootstrap.min.js
-└── fonts/
-    ├── glyphicons-halflings-regular.eot
-    ├── glyphicons-halflings-regular.svg
-    ├── glyphicons-halflings-regular.ttf
-    └── glyphicons-halflings-regular.woff
+      <h4>app/</h4>
+      <ul>
+          <li>This folder contains the core of the Cleverstack Angular Seed.</li>
+          <li><strong>modules/</strong> This is where all of the Cleverstack modules will be installed into your application.</li>
+      </ul>
+
+      <h4>scripts/</h4>
+      <ul>
+          <li>This is where all of the Cleverstack modules will be installed into your application.</li>
+          <li>You can also add custom modules inside this folder, or even NPM modules ~ it really is that modular.</li>
+      </ul>
+
+      <h4>scripts/</h4>
+      <ul>
+          <li>This is where you can store your front-end scripts and binaries such as executables, JAR files or such. Examples of these might be browserstack-tunnel.sh, selenum-server.jar, chromedriver.exe, phantomjs.exe etc...</li>
+          <li>Scripts can be defined in package.json and then run with `npm run-script [name]`.</li>
+      </ul>
+
+      <h4>Gruntfile.js</h4>
+      <ul>
+          <li>Defines the Applications global (main) gruntConfig.</li>
+          <li>Registers the Applications included Grunt tasks.</li>
+      </ul>
+
+      <h4>bower.json</h4>
+      <ul>
+          <li>Stores the apps main bower dependencies install during setup with the CLI.</li>
+      </ul>
+
+      <h4>package.json</h4>
+      <ul>
+          <li>Defines the Application and it's NPM dependencies.</li>
+          <li>Defines the modules that are enabled, using the bundledDependencies[] array. (This also let's NPM know that these dependencies are local and not on the NPM Registry)</li>
+      </ul>
+
+  </div>
+
+  <!-- Back-end (NodeJS)
+  ================================================== -->
+  <div class="bs-docs-section">
+    <div class="page-header">
+      <h1 id="backend">Back-end (NodeJS)</h1>
+    </div>
+
+        <p id="backend-overview" class="lead">CleverStack provides a fully featured NodeJS development workflow.</p>
+        <p>Some highlights:</p>
+        <ul>
+          <li>NodeJS Application Core</li>
+          <li>Modularity NPM Coding Structure</li>
+          <li>Grunt Server with Live Restart</li>
+          <li>Databases supported: mySQL, Portgres or MongoDB</li>
+          <li>Modules for ORM and ODM (SQL & noSQL)</li>
+          <li>NodeJS Background Tasks Module</li>
+          <li>Unit & Integration Testing with Mocha</li>
+        </ul>
+
+        <h3 id="backend-structure">Application Structure</h3>
+
+<div class="highlight"><pre><code class="bash">node/
+├── config/           <span class="c"># node app configs</span>
+├── lib/              <span class="c"># node app source files</span>
+├── modules/          <span class="c"># cleverstack app back-end modules</span>
+├── tests/            <span class="c"># app tests</span>
+├── Gruntfile.js      <span class="c"># app grunt tasks</span>
+├── app.js            <span class="c"># node express app</span>
+├── index.js          <span class="c"># node process management</span>
+└── package.json      <span class="c"># app npm dependencies</span>
 </code></pre></div>
 
+        <h3 id="backend-important">Important files and folders</h3>
+
+            <h4>config/</h4>
+            <ul>
+                <li>global.json: This allows you to define the Global (default) application settings for all environments.</li>
+                <li>local.json: This allows you to define the Applications config for the "local" environment. (presuming your NODE_ENV=local, or you have not set it.)</li>
+                <li>$NODE_ENV.json: This allows you to define whatever environment names make sense for your application, which will be merged with the global.json from the application's /config/ directory, the default.json (and/or global.json) from each module and $NODE_ENV.json from each module's config folder.</li>
+            </ul>
+
+            <h4>lib/</h4>
+            <ul>
+                <li>This folder contains the core of the Cleverstack Node Seed.</li>
+                <li>You can place global Classes, Controllers, Utils (etc) in the lib/$resource_name folder and it will be available via require('classes').$resource_name.</li>
+            </ul>
+
+            <h4>modules/</h4>
+            <ul>
+                <li>This is where all of the Cleverstack modules will be installed into your application.</li>
+                <li>You can also add custom modules inside this folder, or even NPM modules ~ it really is that modular.</li>
+            </ul>
+
+            <h4>app.js</h4>
+            <ul>
+                <li>The main entry point of a clustered Application.</li>
+                <li>If the background-tasks module is installed and enabled, this will setup the background task process.</li>
+            </ul>
+
+            <h4>Gruntfile.js</h4>
+            <ul>
+                <li>Defines the Applications global (main) gruntConfig.</li>
+                <li>Registers the Applications included Grunt tasks.</li>
+            </ul>
+
+            <h4>index.js</h4>
+            <ul>
+                <li>Use this script to spawn a single processed Application, useful for debugging with node-inspector. (Note: You will need to manually set your NODE_PATH for this script to work.)</li>
+            </ul>
+
+            <h4>package.json</h4>
+            <ul>
+                <li>Defines the Application and it's NPM dependencies.</li>
+                <li>Defines the modules that are enabled, using the bundledDependencies[] array. (This also let's NPM know that these dependencies are local and not on the NPM Registry)</li>
+            </ul>
   </div>
 
   <!-- Modules
@@ -277,64 +376,212 @@
     <div class="page-header">
       <h1 id="modules">Modules</h1>
     </div>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commod.</p>
+    <p class="lead">At Clevertech we needed to be able to create smarter, smaller, easier to manage, re-usable chunks (modules) of code that was modular as possible without sacrificing code quality, development time or developer sanity.</p>
 
-    <h3 id="modules-list">Modules List</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Our Appliation and Module system's has been designed, architected and implemented from the ground up to be as modular as possible while still being easy and friendly to use, to accomplish all of this we needed all of the functionality, testing, resources and dependencies (etc) to be inside each module.</p>
 
-    <h3 id="modules-adding-and-removing">Adding and removing modules</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>What this mean's is the more you install modules, more and more functionality will be added to your application, as each module defines and loads all of its dependencies using NPM there is no reason to clutter your applications main package.json file with every dependency.</p>
 
+
+    <h3 id="modules-list">CleverStack Modules List</h3>
+    <p>We currently have a handful of important CleverStack modules available which we will add here soon.</p>
+
+    <p>Searching for modules you would run:</p>
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever search modules <span class="s1">&#39;login&#39;</span>     <span class="c"># search for modules containing &#39;login&#39;</span>
+<span class="nv">$ </span>clever list modules             <span class="c"># list all available modules</span>
+</code></pre></div>
+
+    <h3 id="modules-adding">Adding modules</h3>
+    <p>Adding modules from your CleverStack project can be done using the CLI.</p>
+
+    <p>To add a module you would run:</p>
     <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever install module login
 </code></pre></div>
 
+    <h3 id="modules-removing">Removing modules</h3>
+    <p>Rremoving modules from your CleverStack project can be done using the CLI.</p>
+
+    <p>To remove a module you would run:</p>
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever remove module login
+</code></pre></div>
+
+    <h3 id="modules-frontend-structure">Front-end Module Directory Structure</h3>
+    <p>This is a typical front-end (angular) module structure.</p>
+
+<div class="highlight"><pre><code class="bash">example-module/
+├── scripts/                          <span class="c"># module angular scripts</span>
+│   └── controllers/
+│   └── directives/
+│   └── services/
+│   └── resources/
+├── styles/                           <span class="c"># module styles (optional)</span>
+├── img/                              <span class="c"># module images (optional)</span>
+├── fonts/                            <span class="c"># module fonts (optional)</span>
+├── views/                            <span class="c"># module ngTemplates</span>
+├── tests/                            <span class="c"># module tests</span>
+│   └── unit/
+│   └── e2e/
+├── main.js                           <span class="c"># module requirejs scripts</span>
+├── module.js                         <span class="c"># angular main module</span>
+└── bower.json                        <span class="c"># module js dependencies</span>
+├── Gruntfile.js                      <span class="c"># module grunt tasks</span>
+└── package.json                      <span class="c"># module npm dependencies</span>
+</code></pre></div>
+
+    <h3 id="modules-frontend-important">Module's important files and folders</h3>
+      <h4>scripts/</h4>
+      <ul>
+          <li>This folder contains all the scripts required for the module. ie - all the modules angular controllers, directives, services and resources.</li>
+      </ul>
+
+      <h4>views/</h4>
+      <ul>
+          <li>This allows each module to define it's own views for the ngtemplates provided within each module.</li>
+      </ul>
+
+      <h4>tests/</h4>
+      <ul>
+          <li>Two folders for testing, unit/ and e2e/</li>
+          <li>This allows each module to define it's own tests for the functionality (code) that is provided within each module.</li>
+      </ul>
+
+      <h4>main.js</h4>
+      <ul>
+          <li>This is a require.js main.js file, use it to specify all the javascript files you need for your module..</li>
+      </ul>
+
+      <h4>module.js</h4>
+      <ul>
+          <li>Instantiates and configures angular modules for your module.</li>
+      </ul>
+
+      <h4>bower.json</h4>
+      <ul>
+          <li>Defines the modules JS dependencies.</li>
+      </ul>
+
+      <h4>package.json</h4>
+      <ul>
+          <li>Defines the modules NPM dependencies.</li>
+      </ul>
+
+      <h4>Gruntfile.js</h4>
+      <ul>
+          <li>Allow you to deepmerge the modules gruntConfig with the applications gruntConfig.</li>
+          <li>Allow you to register tasks, load grunt tasks and anything else you want.</li>
+      </ul>
+
+
+    <h3 id="modules-backend-structure">Back-end Module Directory Structure</h3>
+    <p>This is a typical back-end (node) module structure.</p>
+<div class="highlight"><pre><code class="bash">example-module/
+├── bin/                              <span class="c"># module scripts &amp; binaries</span>
+├── classes/                          <span class="c"># module classes</span>
+│   └── ExampleClass.json
+├── config/                           <span class="c"># module specific configs and setting overides</span>
+│   └── default.json <span class="o">(</span>or global.json<span class="o">)</span>
+├── controllers/                      <span class="c"># module controllers</span>
+│   └── ExampleController.js
+├── exceptions/                       <span class="c"># custom exception handlers</span>
+│   └── ExampleException.js
+├── models/
+│   └── orm/                          <span class="c"># your mySQL table relationships &amp; data models</span>
+│   │   └── ExampleModel.js
+│   └── odm/                          <span class="c"># your MongoDB table relationships &amp; data models</span>
+│       └── ExampleModel.js
+├── schema/                           <span class="c"># seed data is used to populate your database tables</span>
+│   └── seedData.json
+├── services/                         <span class="c"># module services</span>
+│   └── ExampleService.js
+├── tasks/                            <span class="c"># module background tasks</span>
+│   └── ExampleTask.js
+├── tests/
+│   └── integration/                  <span class="c"># module end to end tests</span>
+│   │   └── test.api.example.js
+│   └── unit/                         <span class="c"># module unit tests</span>
+│       └── test.controllers.ExampleController.js
+├── utils/                            <span class="c"># module utils</span>
+│   └── ExampleUtil.js
+├── Gruntfile.js                      <span class="c"># module grunt tasks</span>
+├── module.js                         <span class="c"># main module class</span>
+└── package.json                      <span class="c"># module npm dependencies</span>
+</code></pre></div>
+
+        <h3 id="modules-backend-important">Module's important files and folders</h3>
+            <h4>config/</h4>
+            <ul>
+                <li>global.json: This allows you to define the Global (default) modules settings for all environments which will be merged in with the config files from your applications /config/ directory.</li>
+                <li>$NODE_ENV.json: This allows you to specify environmentally named json config files inside each module, as well as in the root applications /config/ folder for ultimate flexibility. These environment based configs will be merged in the same way as the main applications environment configuration files.</li>
+            </ul>
+
+            <h4>tests/</h4>
+            <ul>
+                <li>Two folders for testing, integration/ and unit/</li>
+                <li>This allows each module to define it's own tests for the functionality (code) that is provided within each module.</li>
+            </ul>
+
+            <h4>package.json</h4>
+            <ul>
+                <li>Defines the modules NPM dependencies.</li>
+                <li>Modules can actually be an NPM Module.</li>
+            </ul>
+
+            <h4>Gruntfile.js</h4>
+            <ul>
+                <li>Allow you to deepmerge the modules gruntConfig with the applications gruntConfig.</li>
+                <li>Allow you to register tasks, load grunt tasks and anything else you want. </li>
+            </ul>
+
+            <h4>module.js</h4>
+            <ul>
+                <li>Note: This presumes you have { "main": "module.js" } in your modules package.json, otherwise it is named what you want OR if not set at all this file will be called index.js. (As per standard NPM Modules)</li>
+                <li>Exports ModuleClass instance which is imported by the moduleLoader.</li>
+                <li>Has lifecycle hooks for every situation, like loading, routing, shutdown etc.</li>
+            </ul>
+
+    <h3 id="modules-creating">Creating your own Modules</h3>
+      <p>You can develop your own CleverStack modules. Please follow our guidelines below:</p>
+      <ol>
+        <li>
+          <p>Run the following command:</p>
+          <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever new module my-module
+</code></pre></div>
+          <p>This will then install and setup a new skeleton module for you.</p>
+      </ol>
+
   </div>
 
-  <!-- Running Tests
+  <!-- Testing
   ================================================== -->
   <div class="bs-docs-section">
     <div class="page-header">
-      <h1 id="testing">Running Tests</h1>
+      <h1 id="testing">Testing</h1>
     </div>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commod.</p>
+    <p class="lead">At Clevertech we believe in testing our code as we develop, then if something breaks we know exactly where to start looking. Spending more time on developing the features we love.</p>
 
     <h3 id="testing-unit">Running Unit Tests</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>To run the unit tests for your app and modules, from the front-end/back-end root directory run:</p>
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test</span>:unit
+</code></pre></div>
+    <p>Or simply use the alias:</p>
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test</span>
+</code></pre></div>
 
     <h3 id="testing-e2e">Running E2E Tests</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>To run the end-to-end tests for your app and modules, from the front-end/back-end root directory run:</p>
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test</span>:e2e
+</code></pre></div>
 
-    <h3 id="testing-code-coverage">Code Coverage Reports</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <h3 id="testing-coverage">Code Coverage Reports</h3>
+    <p>To generate a code coverage report for your unit tests, from the front-end directory run:</p>
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test</span>:coverage
+</code></pre></div>
+    <p>Your browser should open the following URL:</p>
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>http://localhost:5555
+</code></pre></div>
+    <p>Then select your report from the list.</p>
+
   </div>
 
   <!-- Deployment
@@ -343,25 +590,17 @@
     <div class="page-header">
       <h1 id="deployment">Deployment</h1>
     </div>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commod.</p>
+    <p class="lead">At Clevertech we build lots of MVP's so we like our deployment to be as efficient as possible. We are going to implement some of these strategies for CleverStack.</p>
 
     <h3 id="deployment-build">Production Builds</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>To build a production version of your front-end app, from your front-end root directory run:</p>
+    <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever build
+</code></pre></div>
+    <p>This will build your app, minifying your assets etc and puts everything into the /dist folder ready for deployment.</p>
+    <p>Note: You can view a production version of your app on port 9009.</p>
 
     <h3 id="deployment-strategies">Deployment Strategies</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>NodeJS deployment strategies coming soon. AWS, Heroku and more.</p>
   </div>
 
   <!-- Troubleshooting
@@ -370,9 +609,7 @@
     <div class="page-header">
       <h1 id="troubleshooting">Troubleshooting</h1>
     </div>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commod.</p>
+    <p class="lead">We will document any "gotchas" here along with any important open GitHub issues. Please <a href="https://github.com/CleverStack/cleverstack/issues">open an issue</a> if you see a bug.</p></p>
   </div>
 
   <!-- FAQ
@@ -381,33 +618,9 @@
     <div class="page-header">
       <h1 id="faq">FAQ</h1>
     </div>
-    <p class="lead">Answers to some frequently asked questions about CleverStack. Please <a href="https://github.com/CleverStack/cleverstack/issues">open an issue</a> if you see a bug or requesting a new feature.</p>
+    <p class="lead">Answers to some frequently asked questions about CleverStack. Please <a href="https://github.com/CleverStack/cleverstack/issues">open an issue</a> if you are requesting a new feature.</p>
 
-    <h4>Question: lorem ipsom cleverstack?</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-    <h4>Question: lorem ipsom cleverstack?</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-    <h4>Question: lorem ipsom cleverstack?</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-
+    <p>We will add important FAQ here.</p>
 
         </div>
       </div>
