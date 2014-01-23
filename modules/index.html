@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
+<meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
+<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+
+<title>
+  
+    CleverStack Modules &middot; CleverStack.io
+  
+</title>
+
+<!-- Bootstrap core CSS -->
+<link href="/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+<!-- Application CSS -->
+<link href="/dist/css/application.min.css" rel="stylesheet">
+
+
+<!-- Documentation extras -->
+<link href="/assets/css/docs.css" rel="stylesheet">
+<link href="/assets/css/pygments-manni.css" rel="stylesheet">
+<!--[if lt IE 9]><script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Favicons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+                               <link rel="shortcut icon" href="/assets/ico/favicon.ico">
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-146052-10']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body class="bs-docs-home">
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <div class="github-ribbon">
+       <a href="https://github.com/cleverstack/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+    </div>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">CleverStack.io</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/getting-started">Getting started</a>
+        </li>
+        <li>
+          <a href="/why-cleverstack">Why cleverstack?</a>
+        </li>
+        <li class="active">
+          <a href="/modules">Modules</a>
+        </li>
+<!--         <li>
+          <a href="/css">CSS</a>
+        </li>
+        <li>
+          <a href="/components">Components</a>
+        </li>
+        <li>
+          <a href="/javascript">JavaScript</a>
+        </li>
+        <li>
+          <a href="/customize">Customize</a>
+        </li> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Page content of course! -->
+    <div id="module-page-wrapper" class="container">
+
+
+    <h1>CleverStack Modules</h1>
+    <p>Search below for modules which can be installed to use with CleverStack.</p>
+
+    <section class="main">
+        <div id="loading">
+            <p>Loading modules...</p>
+        </div>
+        <div id="modules" class="row modules"></div>
+    </section>
+
+    <script type="text/template" id="modules-template">
+        <table class="table span12">
+            <caption class="text-left">
+                <input style="display:none" class="search form-control input-medium search-query" type="search" placeholder="Search in <%= modules.length %> modules..." autofocus>
+            </caption>
+            <thead>
+                <tr>
+                    <th class="sort" data-sort="name">Name</th>
+                    <th class="sort" data-sort="description">Description</th>
+                    <th class="sort" data-sort="owner">Owner</th>
+                    <th class="sort desc" data-sort="created">Created</th>
+                    <th class="sort desc" data-sort="updated">Updated</th>
+                    <th class="sort desc" data-sort="forks">Forks</th>
+                    <th class="sort desc" data-sort="stars">Stars</th>
+                </tr>
+            </thead>
+            <tbody class="list">
+                <% _.each(modules, function (el) { %>
+                    <tr>
+                        <td class="name"><a title="<%- el.description %>" href="<%- el.website %>" target="_blank"><%- el.name %></a></td>
+                        <td class="description" title="<%- el.description %>"><p><%- el.description %></p></td>
+                        <td class="owner"><%- el.owner %></td>
+                        <td class="created"><time datetime="<%- el.created %>"><%- el.created %></time></td>
+                        <td class="updated"><time datetime="<%- el.updated %>"><%- el.updated %></time></td>
+                        <td class="forks"><%- el.forks %></td>
+                        <td class="stars"><%- el.stars %></td>
+                        <td class="keywords hidden"><%- _.isArray(el.keywords) ? el.keywords.join(' ') : '' %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <div class="clearfix"></div>
+
+          <ul class="pagination paging">
+            <li><a href="#">«</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">»</a></li>
+          </ul>
+
+        <div class="message hide row" id="search-notfound">No matching modules found.</div>
+    </script>​
+
+</div>
+
+    <footer class="container text-center fixed" role="contentinfo">
+      <p>Cleverstack.io is developed by <a href="http://clevertech.biz">Clevertech</a>. 2014 Cleverstack.io All Rights Reserved.</p>
+    </footer>
+
+    <!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+
+<!-- <script src="/assets/js/holder.js"></script> -->
+<!-- <script src="/dist/js/application.min.js"></script> -->
+<script src="/assets/js/application.js"></script>
+
+
+<!-- <script src="/dist/js/modules.min.js"></script> -->
+<script src="/dist/js/modules.js"></script>
+
+
+
+
+
+<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>
+
+<!-- Analytics
+================================================== -->
+<script>
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+
+  </body>
+</html>
