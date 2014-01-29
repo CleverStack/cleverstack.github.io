@@ -160,7 +160,7 @@
     <li><a href="#modules-frontend-structure">Frontend Module Directory Structure</a></li>
     <li><a href="#modules-frontend-important">Frontend Module Important Files and Folders</a></li>
     <li><a href="#modules-backend-structure">Backend Module Directory Structure</a></li>
-    <li><a href="#modules-frontend-important">Backend Module Important Files and Folders</a></li>
+    <li><a href="#modules-backend-important">Backend Module Important Files and Folders</a></li>
     <li><a href="#modules-creating">Creating your own Modules</a></li>
   </ul>
 </li>
@@ -562,15 +562,32 @@
 </code></pre></div>
 
     <h3 id="testing-e2e">Running E2E Tests</h3>
-    <p>To setup your environment for e2e testing with Protractor run the following command. This will install Selenium Server (WebDriver), ChromeDriver & PhantomJS based on your OS.</p>
+    <p>To setup your environment for e2e testing with Protractor run the following command. This will install Selenium Server (WebDriver), ChromeDriver & PhantomJS based on your OS. If you wish to run selenium server in a seperate terminal then use Webdriver Manager (see below).</p>
 <div class="highlight"><pre><code class="bash"><span class="nv">$ </span><span class="nb">cd </span>frontend
 <span class="nv">$ </span>npm run-script setup-protractor
+</code></pre></div>
+
+    <h2>Using Webdriver Manager</h2>
+    <p>Webdriver Manager comes shipped with protractor and installs selenium server & chrome driver for you. Selenium server can then run in a seperate terminal so when you run your e2e tests it doesn't need to boot up (saving heaps of time when running your e2e tests!). To set this up do the following:</p>
+<div class="highlight"><pre><code class="bash">npm install -g protractor
+webdriver-manager update
+webdriver-manager start
+</code></pre></div>
+
+    <p>Your selenium server should be running in this terminal.</p>
+    <p>Finally update your e2e test config file located: my-app/frontend/test-e2e.conf.js</p>
+<div class="highlight"><pre><code class="bash">// uncomment this line:
+seleniumAddress: <span class="s1">&#39;http://localhost:4444/wd/hub&#39;</span>,
+
+// comment these lines:
+seleniumServerJar: <span class="s1">&#39;&#39;</span>
+seleniumPort: <span class="s1">&#39;&#39;</span>
+chromeDriver: <span class="s1">&#39;&#39;</span>
 </code></pre></div>
 
     <p>To run the end-to-end tests for your app and modules, from the front-end/back-end root directory run:</p>
     <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever <span class="nb">test </span>e2e
 </code></pre></div>
-
 
     <h3 id="testing-coverage">Code Coverage Reports</h3>
     <p>To generate a code coverage report for your unit tests, from the front-end directory run:</p>
