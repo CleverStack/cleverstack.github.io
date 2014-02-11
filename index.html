@@ -1,290 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
   <head>
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Bootstrap, a sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.">
-<meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development">
-<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <!-- Conditional body tag-->
+  <!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+  <!--[if IE 7 ]>    <body class="ie7"> <![endif]-->
+  <!--[if IE 8 ]>    <body class="ie8"> <![endif]-->
+  <!--[if IE 9 ]>    <body class="ie9"> <![endif<]-->
+  <!--[if (gt IE 9)|!(IE)]><!-->  <!--<![endif]-->
+  <meta charset="utf-8">
+  <!-- X-UA-Compatible -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    
+      CleverStack.io - Clever Web Apps &middot; CleverStack.io
+    
+  </title>
 
-<title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+
+  <!-- theme css -->
+  <link href="/dist/css/main_screen.min.css" media="screen, projection" rel="stylesheet"/>
   
-    CleverStack.io - Clever Web Apps &middot; CleverStack.io
+    <link href="/dist/css/main_theme.min.css" media="screen, projection" rel="stylesheet"/>
   
-</title>
 
-<!-- Bootstrap core CSS -->
-<link href="/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- favicon.ico and apple-touch-icon.png  -->
+<link rel="shortcut icon" href="/dist/ico/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/dist/ico/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="/dist/ico/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/dist/ico/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/dist/ico/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/dist/ico/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/dist/ico/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/dist/ico/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/dist/ico/apple-touch-icon-152x152.png" />
 
-<!-- Theme CSS -->
-<link href="/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-
-<!-- Application CSS -->
-<link href="/dist/css/application.min.css" rel="stylesheet">
-
-
-<!-- Documentation extras -->
-<link href="/assets/css/docs.css" rel="stylesheet">
-<link href="/assets/css/pygments-manni.css" rel="stylesheet">
-<!--[if lt IE 9]><script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+</head>
 
-<!-- Favicons -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
-                               <link rel="shortcut icon" href="/assets/ico/favicon.ico">
-
-<script>
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-146052-10']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-
-  </head>
-  <body class="bs-docs-home">
-    <a class="sr-only" href="#content">Skip to main content</a>
-
-    <div class="github-ribbon">
-       <a href="https://github.com/cleverstack/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
-    </div>
-
-    <!-- Docs master nav -->
-    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/" class="navbar-brand">CleverStack.io</a>
-    </div>
-    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="/getting-started">Getting started</a>
-        </li>
-        <li>
-          <a href="/why-cleverstack">Why cleverstack?</a>
-        </li>
-        <li>
-          <a href="/modules">Modules</a>
-        </li>
-<!--         <li>
-          <a href="/css">CSS</a>
-        </li>
-        <li>
-          <a href="/components">Components</a>
-        </li>
-        <li>
-          <a href="/javascript">JavaScript</a>
-        </li>
-        <li>
-          <a href="/customize">Customize</a>
-        </li> -->
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="/about">About</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<body>
 
 
-    <!-- Page content of course! -->
-    <div id="home">
-    <header class="jumbotron subhead" id="content" role="main">
-        <div class="container-fluid text-center">
-            <a class="home" href="/">
-                <img src="/assets/img/logos/cleverstack-logo-clean-inverse.png" alt="Cleverstack.io">
-            </a>
-            <h1 id="about">Cleverstack.io</h1>
-            <p class="lead">A modular way to create your Angular & Node web apps.</p>
+
+  <div class="site-wrapper" id="frontpage">
+    <div class="site-wrapper-inner">
+      <div class="cover-container">
+        <div class="masthead clearfix">
+          <a href="#" id="logo">cleverstack.io</a>
         </div>
-        <div class="cs-docs-social">
-            <div class="container-fluid">
-                <ul class="cs-docs-social-buttons">
-                    <li>
-                        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=clevertech&amp;repo=cleverstack&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
-                    </li>
-                    <li>
-                        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=clevertech&amp;repo=cleverstack&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="98px" height="20px"></iframe>
-                    </li>
-                    <li class="tweet-btn">
-                        <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.1384205748.html#_=1384925249270&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fcleverstack.io&amp;related=olouv&amp;size=m&amp;text=Cleverstack%20-%20Angular%20Node%20for%20Web%20Apps&amp;url=http%3A%2F%2Fcleverstack.io" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 110px; height: 20px"></iframe>
-                    </li>
-                    <li class="follow-btn">
-                        <iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.1352365724.html#_=1353343600175&amp;id=twitter-widget-1&amp;lang=en&amp;screen_name=clevertech&amp;show_count=true&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button" style="width: 225px; height: 20px" title="Twitter Follow Button" data-twttr-rendered="true"></iframe>
-                    </li>
-                    <li>
-                        <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background-position: initial initial; background-repeat: initial initial">
-                            <iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px" tabindex="0" vspace="0" width="100%" id="I0_1384925249293" name="I0_1384925249293" src="https://apis.google.com/u/0/_/+1/fastbutton?usegapi=1&amp;bsv=o&amp;size=medium&amp;origin=http%3A%2F%2Fcleverstack.io&amp;url=http%3A%2F%2Fgithub.com%2Fcleverstack%2F&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en_GB.iH3U55-3Scw.O%2Fm%3D__features__%2Fam%3DEQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAItRSTNcRWKK7GMxrnmk3TnQf1jbIUZvqg#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1384925249293&amp;parent=http%3A%2F%2Fcleverstack.io&amp;pfname=&amp;rpctoken=19715494" data-gapiattached="true" title="+1"></iframe>
-                        </div>
-                    </li>
-                </ul>
+        <div class="inner cover">
+          <header class="projectname">Cleverstack
+            <!--<span class="io-icon"></span>-->
+          </header>
+          <div class="description">A modular way to create your <b>Angular</b> & <b>Node</b> web apps</div>
+          <div class="question">npm install -g cleverstack-cli<br><span>Does this mean anything to you?</span></div>
+          <a href="/developer" class="big-btn">Yes</a>
+          <a href="/business" class="big-btn">No</a>
+
+
+        </div>
+        <div class="mastfoot">
+          <div class="inner">
+            <!-- code was taken ftom the browser ... -->
+            <div class="cs-docs-social">
+              <ul class="cs-docs-social-buttons">
+                <li>
+                  <iframe width="100px" scrolling="0" height="20px" frameborder="0" allowtransparency="true" src="http://ghbtns.com/github-btn.html?user=clevertech&amp;repo=cleverstack&amp;type=watch&amp;count=true" class="github-btn"></iframe>
+                </li>
+                <li>
+                  <iframe width="98px" scrolling="0" height="20px" frameborder="0" allowtransparency="true" src="http://ghbtns.com/github-btn.html?user=clevertech&amp;repo=cleverstack&amp;type=fork&amp;count=true" class="github-btn"></iframe>
+                </li>
+                <li class="tweet-btn">
+                  <iframe scrolling="no" frameborder="0" style="width: 110px; height: 20px" data-twttr-rendered="true" title="Twitter Tweet Button" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" src="http://platform.twitter.com/widgets/tweet_button.1384205748.html#_=1384925249270&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fcleverstack.io&amp;related=olouv&amp;size=m&amp;text=Cleverstack%20-%20Angular%20Node%20for%20Web%20Apps&amp;url=http%3A%2F%2Fcleverstack.io" allowtransparency="true" id="twitter-widget-0"></iframe>
+                </li>
+                <li class="follow-btn">
+                  <iframe scrolling="no" frameborder="0" data-twttr-rendered="true" title="Twitter Follow Button" style="width: 225px; height: 20px" class="twitter-follow-button" src="http://platform.twitter.com/widgets/follow_button.1352365724.html#_=1353343600175&amp;id=twitter-widget-1&amp;lang=en&amp;screen_name=clevertech&amp;show_count=true&amp;show_screen_name=true&amp;size=m" allowtransparency="true"></iframe>
+                </li>
+                <li>
+                  <div style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background-position: initial initial; background-repeat: initial initial" id="___plusone_0">
+                    <iframe width="100%" scrolling="no" frameborder="0" title="+1" data-gapiattached="true" src="https://apis.google.com/u/0/_/+1/fastbutton?usegapi=1&amp;bsv=o&amp;size=medium&amp;origin=http%3A%2F%2Fcleverstack.io&amp;url=http%3A%2F%2Fgithub.com%2Fcleverstack%2F&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en_GB.iH3U55-3Scw.O%2Fm%3D__features__%2Fam%3DEQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAItRSTNcRWKK7GMxrnmk3TnQf1jbIUZvqg#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1384925249293&amp;parent=http%3A%2F%2Fcleverstack.io&amp;pfname=&amp;rpctoken=19715494" name="I0_1384925249293" id="I0_1384925249293" vspace="0" tabindex="0" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px" marginwidth="0" marginheight="0" hspace="0"></iframe>
+                  </div>
+                </li>
+              </ul>
             </div>
-        </div>
-    </header>
-
-    <div class="container text-center">
-
-        <p class="seeds-list">
-            <a href="/angular" id="seed1" class="active"><img src="assets/img/logos/angular-stack-logo.png" alt="angular seed"></a>
-            <a href="/clevertech" id="seed2"><img src="assets/img/logos/clevertech-seed-logo.png" alt="clevertech seed"></a>
-            <a href="/node" id="seed3"><img src="assets/img/logos/node-stack-logo.png" alt="node seed"></a>
-        </p>
-
-        <div class="technologies seed1">
-
-          <a class="seed1" href="http://angularjs.org/" target="_blank">
-            <img src="assets/img/tech/angular.png" alt="angular">
-          </a>
-
-          <a class="seed3" href="http://nodejs.org/" target="_blank">
-            <img src="assets/img/tech/node.png" alt="node">
-          </a>
-
-          <a class="seed1 seed3" href="http://npmjs.org/" target="_blank">
-            <img src="assets/img/tech/npm.png" alt="node">
-          </a>
-
-          <a class="seed1 seed3" href="http://gruntjs.com/" target="_blank">
-            <img src="assets/img/tech/grunt.png" alt="grunt">
-          </a>
-
-          <a class="seed1" href="http://bower.io/" target="_blank">
-            <img src="assets/img/tech/bower.png" alt="bower">
-          </a>
-
-          <a class="seed1" href="http://requirejs.org/" target="_blank">
-            <img src="assets/img/tech/require.png" alt="require">
-          </a>
-
-          <a class="seed2" href="https://github.com/CleverStack/cleverstack-cli" target="_blank">
-            <img src="assets/img/tech/cleverstack-cli.png" alt="less">
-          </a>
-
-          <a class="seed2" href="https://github.com/CleverStack/" target="_blank">
-            <img src="assets/img/tech/cleverstack-modules.png" alt="less">
-          </a>
-
-          <a class="seed2" href="https://github.com/clevertech/clever-controller" target="_blank">
-            <img src="assets/img/tech/clever-controller.png" alt="less">
-          </a>
-
+            <!-- code was taken ftom the browser ... -->
+            <p class="legal">Cleverstack.io is developed by <a href="http://www.clevertech.biz/" target="_blank">Clevertech</a>. 2014 Cleverstack.io All Rights Reserved.</p>
+          </div>
         </div>
 
+      </div>
     </div>
-
-</div>
-
-
-    <footer class="container text-center fixed" role="contentinfo">
-      <p>Cleverstack.io is developed by <a href="http://clevertech.biz">Clevertech</a>. 2014 Cleverstack.io All Rights Reserved.</p>
-    </footer>
-
-<!--     <footer class="container" role="contentinfo">
-
-      <div class="bs-social">
-  <ul class="bs-social-buttons">
-    <li>
-      <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=twbs&amp;repo=bootstrap&amp;type=watch&amp;count=true" width="100" height="20" title="Star on GitHub"></iframe>
-    </li>
-    <li>
-      <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=twbs&amp;repo=bootstrap&amp;type=fork&amp;count=true" width="102" height="20" title="Fork on GitHub"></iframe>
-    </li>
-    <li class="follow-btn">
-      <a href="https://twitter.com/twbootstrap" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @twbootstrap</a>
-    </li>
-    <li class="tweet-btn">
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://getbootstrap.com/" data-count="horizontal" data-via="twbootstrap" data-related="mdo:Creator of Twitter Bootstrap">Tweet</a>
-    </li>
-  </ul>
-</div>
+  </div>
 
 
-      <ul class="bs-masthead-links">
-        <li class="current-version">
-          Currently v3.0.3
-        </li>
-        <li>
-          <a href="/2.3.2/">Bootstrap 2.3.2 docs</a>
-        </li>
-        <li>
-          <a href="https://github.com/twbs/bootstrap" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Jumbotron links', 'GitHub project']);">GitHub project</a>
-        </li>
-        <li>
-          <a href="/getting-started/#examples" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Jumbotron links', 'Examples']);">Examples</a>
-        </li>
-        <li>
-          <a href="http://expo.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Jumbotron links', 'Expo']);">Expo</a>
-        </li>
-        <li>
-          <a href="http://blog.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Jumbotron links', 'Blog']);">Blog</a>
-        </li>
-        <li>
-          <a href="https://github.com/twbs/bootstrap/issues?state=open" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Jumbotron links', 'Issues']);">Issues</a>
-        </li>
-        <li>
-          <a href="https://github.com/twbs/bootstrap/releases" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Jumbotron links', 'Releases']);">Releases</a>
-        </li>
-      </ul>
-    </footer> -->
-
-    <!-- JS and analytics only. -->
-    <!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="/dist/js/bootstrap.min.js"></script>
-
-<!-- <script src="/assets/js/holder.js"></script> -->
-<!-- <script src="/dist/js/application.min.js"></script> -->
-<script src="/assets/js/application.js"></script>
-
-
-
-
-
-
-<script>
-  window.twttr = (function (d,s,id) {
-    var t, js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
-    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
-    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
-  }(document, "script", "twitter-wjs"));
-</script>
-
-<!-- Analytics
-================================================== -->
-<script>
-  var _gauges = _gauges || [];
-  (function() {
-    var t   = document.createElement('script');
-    t.async = true;
-    t.id    = 'gauges-tracker';
-    t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
-    t.src = '//secure.gaug.es/track.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(t, s);
-  })();
-</script>
-
-
-  </body>
+<!--Grab Google CDN's jQuery. fall back to local if necessary
+  https://developers.google.com/speed/libraries/devguide#jquery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>!window.jQuery && document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+  
+  
+</body>
 </html>
