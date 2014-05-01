@@ -411,7 +411,7 @@
 </code></pre></div>
 
     <h3 id="modules-removing">Removing modules</h3>
-    <p>Rremoving modules from your CleverStack project can be done using the CLI.</p>
+    <p>Removing modules from your CleverStack project can be done using the CLI.</p>
 
     <p>To remove a module you would run:</p>
     <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever remove clever-auth
@@ -422,20 +422,20 @@
 
 <div class="highlight"><pre><code class="bash">example-module/
 ├── scripts/                          <span class="c"># module angular scripts</span>
-│   └── controllers/
-│   └── directives/
-│   └── services/
+│   ├── controllers/
+│   ├── directives/
+│   ├── services/
 │   └── resources/
 ├── styles/                           <span class="c"># module styles (optional)</span>
 ├── img/                              <span class="c"># module images (optional)</span>
 ├── fonts/                            <span class="c"># module fonts (optional)</span>
 ├── views/                            <span class="c"># module ngTemplates</span>
 ├── tests/                            <span class="c"># module tests</span>
-│   └── unit/
+│   ├── unit/
 │   └── e2e/
 ├── main.js                           <span class="c"># module requirejs scripts</span>
 ├── module.js                         <span class="c"># angular main module</span>
-└── bower.json                        <span class="c"># module js dependencies</span>
+├── bower.json                        <span class="c"># module js dependencies</span>
 ├── Gruntfile.js                      <span class="c"># module grunt tasks</span>
 └── package.json                      <span class="c"># module npm dependencies</span>
 </code></pre></div>
@@ -493,13 +493,13 @@
 ├── controllers/                      <span class="c"># module controllers</span>
 ├── exceptions/                       <span class="c"># custom exception handlers</span>
 ├── models/
-│   └── orm/                          <span class="c"># your mySQL table relationships &amp; data models</span>
+│   ├── orm/                          <span class="c"># your mySQL table relationships &amp; data models</span>
 │   └── odm/                          <span class="c"># your MongoDB table relationships &amp; data models</span>
 ├── schema/                           <span class="c"># seed data is used to populate your database tables</span>
 ├── services/                         <span class="c"># module services</span>
 ├── tasks/                            <span class="c"># module background tasks</span>
 ├── tests/
-│   └── e2e/                          <span class="c"># module end to end tests</span>
+│   ├── e2e/                          <span class="c"># module end to end tests</span>
 │   └── unit/                         <span class="c"># module unit tests</span>
 ├── utils/                            <span class="c"># module utils</span>
 ├── Gruntfile.js                      <span class="c"># module grunt tasks</span>
@@ -631,7 +631,7 @@ chromeDriver: <span class="s1">&#39;&#39;</span>
     <div class="page-header">
       <h1 id="troubleshooting">Troubleshooting</h1>
     </div>
-    <p class="lead">We will document any "gotchas" here along with any important open GitHub issues. Please <a href="https://github.com/CleverStack/cleverstack/issues">open an issue</a> if you see a bug.</p></p>
+    <p class="lead">We will document any "gotchas" here along with any important open GitHub issues. Please <a href="https://github.com/clevertech/cleverstack/issues">open an issue</a> if you see a bug.</p></p>
   </div>
 
   <!-- FAQ
