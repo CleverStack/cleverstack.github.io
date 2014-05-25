@@ -209,6 +209,7 @@
       <ul class="nav" style="margin-bottom: 0px;">
         <li style="padding-left: 10px;"><a href="#backend-modules-structure">Structure</a></li>
         <li style="padding-left: 10px;"><a href="#backend-modules-configuration">Configuration</a></li>
+        <li style="padding-left: 10px;"><a href="#backend-modules-magic">Magic Modules</a></li>
         <!-- <li style="padding-left: 10px;"><a href="#backend-modules-creating">Creating Modules</a></li>
         <li style="padding-left: 10px;"><a href="#backend-modules-finding">Publishing Modules</a></li> -->
       </ul>
@@ -629,6 +630,9 @@
     <p>These are the most important part of your application, where all your functionality and testing is defined.</p><br>
 
     <div style="padding-left: 20px;">
+
+      <!-- Modules structure
+      ================================================== -->
       <h4 id="backend-modules-structure">Structure</h4>
         <p>This is a typical back-end (node) module structure.</p>
 <div class="highlight"><pre><code class="bash">example-module/
@@ -703,6 +707,8 @@
         </ul>
       </div><br>
 
+      <!-- Modules configuration
+      ================================================== -->
       <h4 id="backend-modules-configuration">Configuration</h4>
       <p>You can easily define the modules configuration with these files</p>
       <h5 id="backend-modules-config-default">config/default.json</h5>
@@ -725,7 +731,31 @@
     <span class="nt">&quot;another&quot;</span><span class="p">:</span> <span class="s2">&quot;as well&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
+</code></pre></div><br>
+
+      <!-- Modules configuration
+      ================================================== -->
+      <h4 id="backend-modules-magic">Magic Modules</h4>
+      <p>Our NodeJS Backend takes advantage of an NPM feature called the Node Path, by using the environment variable NODE_ENV.</p>
+      <div class="highlight"><pre><code class="bash"><span class="nv">$ </span><span class="nb">export </span><span class="nv">NODE_ENV</span><span class="o">=</span>./lib/:./modules/
 </code></pre></div>
+
+      <p>This gives us the ability to load things, like this</p>
+      <div class="highlight"><pre><code class="javascript"><span class="nx">$</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;controllers&#39;</span> <span class="p">).</span><span class="nx">ExampleController</span> 
+</code></pre></div>
+
+      <h5>Here is the complete list of Magic Modules</h5>
+      <ul>
+        <li>classes</li>
+        <li>config</li>
+        <li>controllers</li>
+        <li>exceptions</li>
+        <li>models</li>
+        <li>seedData</li>
+        <li>services</li>
+        <li>tasks</li>
+        <li>utils</li>
+      </ul>
 
       <!-- <h4>Creating Modules</h4>
       <p></p><br>
@@ -856,6 +886,9 @@
     <p>These are the most important part of your application, where all your functionality and testing is defined.</p><br>
 
     <div style="padding-left: 20px;">
+
+      <!-- Modules structure
+      ================================================== -->
       <h4 id="frontend-modules-structure">Structure</h4>
             <p>This is a typical front-end (angular) module structure.</p>
 <div class="highlight"><pre><code class="bash">example-module/
