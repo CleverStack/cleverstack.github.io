@@ -875,24 +875,83 @@
       <!-- Models
       ================================================== -->
       <h4 id="backend-usage-models">Models</h4>
-      <p>Coming soon, we are working hard on this section.</p><br>
+      <p>Models are stored in either the models/orm or models/odm folder depending on what type of model they are, and apart from a function to wrap the definition to take advantage of our DI they are exactly the same as you would define them using either <a href="https://github.com/sequelize/sequelize">SequelizeJS</a> (ORM) or <a href="http://mongoosejs.com/">MongooseJS</a> (ODM).</p>
+<div class="highlight"><pre><code class="javascript"><span class="c1">// models/orm/ExampleModel.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">sequelize</span><span class="p">,</span> <span class="nx">DataTypes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;Example&quot;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="nx">DataTypes</span><span class="p">.</span><span class="nx">INTEGER</span><span class="p">,</span>
+            <span class="nx">primaryKey</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">autoIncrement</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">},</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="nx">DataTypes</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span>
+            <span class="nx">allowNull</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">unique</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="c1">// models/odm/ExampleModel.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">mongoose</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">ModelSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span>
+    <span class="p">});</span>
+ 
+    <span class="k">return</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;ExampleModel&#39;</span><span class="p">,</span> <span class="nx">ModelSchema</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div><br>
+
+      <p><strong>Hint:</strong> Use the grunt db:rebase command to create your database structure</p>
+      <div class="highlight"><pre><code class="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span><span class="o">:</span><span class="nx">rebase</span> 
+</code></pre></div>
+
+      <p><strong>Hint:</strong> Use the grunt db:seed command to insert your seed data into the database</p>
+      <div class="highlight"><pre><code class="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span> 
+</code></pre></div>
+
+      <p><strong>Hint:</strong> Both of the above db commands can be run together using one command</p>
+      <div class="highlight"><pre><code class="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span> 
+</code></pre></div>
+
+      <br>
+
+      <p><strong>Important:</strong> You should not load models using require(), they must be loaded using the injector</p>
+      <p><strong>Note:</strong> Use the SequelizeJS migrations tool to create or run ORM Migrations.</p>
+      <br>
 
       <!-- Services
       ================================================== -->
       <h4 id="backend-usage-services">Services</h4>
-      <p>Coming soon, we are working hard on this section.</p><br>
+      <p>CleverStack's Architecture has been designed to use a Service Layer, we do this so that your Controllers use Services allowing you to swap out the model that is being used behind the service without having to change your Controller code.</p>
+
+      <p>This is also important to being able to test effectively, unit tests are carried out by using the Service directly and integration (e2e) tests are carried out by using HTTP Requests to your controller. This gives you the ability to test at different levels and make finding bugs or errors easier.</p>
+
+      <p>A Service should take advantage of our Dependency Injection and load whatever Model is used to actually store the data, by defining the Model in the Static of the Service Class you are able to enable the Controller to automatically give you CRUD.</p>
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">Q</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+  <span class="p">,</span> <span class="nx">BaseService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;services&#39;</span> <span class="p">).</span><span class="nx">BaseService</span>
+  <span class="p">,</span> <span class="nx">ExampleService</span><span class="p">;</span>
+ 
+<span class="nx">ExampleService</span> <span class="o">=</span> <span class="nx">BaseService</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+ 
+<span class="p">});</span>
+ 
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">sequelize</span><span class="p">,</span> <span class="nx">ORMExampleModel</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">ExampleService</span><span class="p">.</span><span class="nx">instance</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ExampleService</span><span class="p">.</span><span class="nx">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExampleService</span><span class="p">(</span> <span class="nx">sequelize</span> <span class="p">);</span>
+        <span class="nx">ExampleService</span><span class="p">.</span><span class="nx">Model</span> <span class="o">=</span> <span class="nx">ORMExampleModel</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="nx">ExampleService</span><span class="p">.</span><span class="nx">instance</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div><br>
 
     </div>
 
     <!-- Testing
     ================================================== -->
     <h3 id="backend-testing">Testing</h3>
-    <p>Coming soon, we are working hard on this section.</p><br>
-
-    <!-- Deployment
-    ================================================== -->
-    <h3 id="backend-deployment">Deployment</h3>
-    <p>Coming soon, we are working hard on this section.</p><br>
+    <p>Coming soon, we are working hard on this section. For now please take a look at our tests for a look at how to write tests</p><br>
 
     <!-- Troubleshooting
     ================================================== -->
