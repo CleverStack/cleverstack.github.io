@@ -230,7 +230,6 @@
         <li style="padding-left: 10px;"><a href="#backend-usage-controllers">Controllers</a></li>
         <li style="padding-left: 10px;"><a href="#backend-usage-models">Models</a></li>
         <li style="padding-left: 10px;"><a href="#backend-usage-services">Services</a></li>
-        <li style="padding-left: 10px;"><a href="#backend-usage-tasks">Tasks</a></li>
       </ul>
     </li>
     <li><a href="#backend-testing">Testing</a></li>
@@ -661,24 +660,25 @@
       <h4 id="backend-modules-structure">Structure</h4>
         <p>This is a typical back-end (node) module structure.</p>
 <div class="highlight"><pre><code class="bash">example-module/
-├── bin/                              <span class="c"># module scripts &amp; binaries</span>
-├── classes/                          <span class="c"># module classes</span>
-├── config/                           <span class="c"># module specific configs and setting overrides</span>
-├── controllers/                      <span class="c"># module controllers</span>
-├── exceptions/                       <span class="c"># custom exception handlers</span>
+├── bin/                  <span class="c"># module scripts &amp; binaries</span>
+├── classes/              <span class="c"># module classes</span>
+├── config/               <span class="c"># module specific configs and setting overrides</span>
+├── controllers/          <span class="c"># module controllers</span>
+├── exceptions/           <span class="c"># custom exception handlers</span>
 ├── models/
-│   ├── orm/                          <span class="c"># your mySQL table relationships &amp; data models</span>
-│   └── odm/                          <span class="c"># your MongoDB table relationships &amp; data models</span>
-├── schema/                           <span class="c"># seed data is used to populate your database tables</span>
-├── services/                         <span class="c"># module services</span>
-├── tasks/                            <span class="c"># module background tasks (only when module is installed)</span>
+│   ├── orm/              <span class="c"># your mySQL table relationships &amp; data models</span>
+│   └── odm/              <span class="c"># your MongoDB table relationships &amp; data models</span>
+├── schema/               <span class="c"># seed data is used to populate your database tables</span>
+├── services/             <span class="c"># module services</span>
+├── tasks/                <span class="c"># module background tasks (only when module is installed)</span>
 ├── tests/
-│   ├── e2e/                          <span class="c"># module end to end tests</span>
-│   └── unit/                         <span class="c"># module unit tests</span>
-├── utils/                            <span class="c"># module utils</span>
-├── Gruntfile.js                      <span class="c"># module grunt tasks</span>
-├── module.js                         <span class="c"># main module class</span>
-└── package.json                      <span class="c"># module npm dependencies</span>
+│   ├── e2e/              <span class="c"># module end to end tests</span>
+│   └── unit/             <span class="c"># module unit tests</span>
+├── utils/                <span class="c"># module utils</span>
+├── Gruntfile.js          <span class="c"># module grunt tasks</span>
+├── module.js             <span class="c"># main module class</span>
+├── package.json          <span class="c"># module npm dependencies</span>
+└── routes.js             <span class="c"># module routes</span>
 </code></pre></div><br>
       <div style="padding-left: 30px;">
         <h4>Important files and folders</h5>
@@ -729,6 +729,11 @@
             <li><strong>Important:</strong> This presumes you have { "main": "module.js" } in your modules package.json, otherwise it is named what you want OR if not set at all this file will be called index.js. (As per standard NPM Modules)</li>
             <li><strong>Important:</strong> Must export ModuleClass instance which is imported by the moduleLoader.</li>
             <li><strong>Note:</strong> Has lifecycle hooks for every situation, like loading, routing, shutdown etc.</li>
+        </ul>
+
+        <h5>routes.js</h5>
+        <ul>
+            <li>This is where you define what routes your module will handle.</li>
         </ul>
       </div><br>
 
@@ -799,22 +804,73 @@
       <!-- Dependency Injection
       ================================================== -->
       <h4 id="backend-usage-di">Dependency Injection</h4>
-      <p>Coming soon, we are working hard on this section.</p><br>
+      <p>CleverStack Controllers, Services, Routes, Models and Tests are loaded and all of their dependencies are loaded and injected automatically using the <a href="https://github.com/cleverstack/clever-injector">CleverStack Dependency Injection</a> module.</p>
+
+      <p>When resources/files are loaded using the injector will automatically load and inject any of it's dependencies in a recursive manner.</p><br>
 
       <!-- Routing
       ================================================== -->
       <h4 id="backend-usage-routing">Routing</h4>
-      <p>Coming soon, we are working hard on this section.</p><br>
+      <p>Your modules routes.js file is what defines which Controllers are loaded and added into routes, this example shows the default way you should attach your controller</p>
+<div class="highlight"><pre><code class="javascript"><span class="c1">// modules/backend-example-module/routes.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">ExampleController</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span> <span class="s1">&#39;/example/:action/:id?&#39;</span><span class="p">,</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">attach</span><span class="p">()</span> <span class="p">);</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span> <span class="s1">&#39;/example/?:action?&#39;</span><span class="p">,</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">attach</span><span class="p">()</span> <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+      <p><strong>Note:</strong> This will automatically load the ExampleController's dependencies including Services, Models and any other resources.</p>
+      <br>
 
       <!-- Classes
       ================================================== -->
       <h4 id="backend-usage-classes">Classes</h4>
-      <p>Coming soon, we are working hard on this section.</p><br>
+      <p>Every Controller, Service or Model is extended from a <a href="https://github.com/daffl/uberclass">Class</a>, we do this mainly so we can take advantage of <a href="https://developers.google.com/v8/design">V8's Hidden Classes &amp; Optimizing Compiler</a> but also for the ability to <a href="http://en.wikipedia.org/wiki/Currying">curry</a> functions using the proxy() function.</p>
+
+      <p>By taking advantage of curried proxy functions you are able to keep your code easy to read and maintain by using as little nesting as possible, this also enables and encourages code (function) re-use.</p><br>
+
+      <p>Here is an example of creating a class and using the proxy function</p>
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">Class</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;uberclass&#39;</span> <span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">files</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+  <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getFiles</span><span class="p">(</span> <span class="nx">__dirname</span> <span class="p">);</span>
+  <span class="p">},</span>
+
+  <span class="nx">getFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">readdir</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span> <span class="s1">&#39;handleGetFiles&#39;</span><span class="p">,</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="p">},</span>
+
+  <span class="c1">// The dir variable has been curried into this function by getFiles()</span>
+  <span class="nx">handleGetFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">files</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">err</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="nx">files</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span> <span class="nx">err</span> <span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div><br>
+
+
+      <p><strong>Tip:</strong> Read <a href="http://debuggable.com/posts/understanding-hidden-classes-in-v8:4c7e81e4-1330-4398-8bd2-761bcbdd56cb">Understanding Hidden Classes in V8</a> for an indepth look.</p>
+      <p><strong>Tip:</strong> Read <a href="http://en.wikipedia.org/wiki/Currying">Currying</a> on Wikipedia for an in-depth explaination of currying.</p>
+      <p><strong>Tip:</strong> Take a look at our <a href="https://github.com/clevertech/cleverstack-node-seed/blob/master/lib/utils/moduleLoader.js">Module Loader Class</a> for an in-depth look at how to use currying to your advantage.</p><br>
 
       <!-- Controllers
       ================================================== -->
       <h4 id="backend-usage-controllers">Controllers</h4>
-      <p>Coming soon, we are working hard on this section.</p><br>
+      <p>Coming soon, we are working hard on this section.</p>
+<div class="highlight"><pre><code class="javascript"><span class="c1">// modules/backend-example-module/controllers/ExampleController.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">Controller</span><span class="p">,</span> <span class="nx">ExampleService</span><span class="p">,</span> <span class="nx">UserService</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Controller</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div><br>
 
       <!-- Models
       ================================================== -->
@@ -824,11 +880,6 @@
       <!-- Services
       ================================================== -->
       <h4 id="backend-usage-services">Services</h4>
-      <p>Coming soon, we are working hard on this section.</p><br>
-
-      <!-- Tasks
-      ================================================== -->
-      <h4 id="backend-usage-tasks">Tasks</h4>
       <p>Coming soon, we are working hard on this section.</p><br>
 
     </div>
