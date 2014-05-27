@@ -217,21 +217,16 @@
         <li style="padding-left: 10px;"><a href="#backend-modules-structure">Structure</a></li>
         <li style="padding-left: 10px;"><a href="#backend-modules-configuration">Configuration</a></li>
         <li style="padding-left: 10px;"><a href="#backend-modules-magic">Magic Modules</a></li>
+        <li style="padding-left: 10px;"><a href="#backend-modules-di">Dependency Injection</a></li>
         <!-- <li style="padding-left: 10px;"><a href="#backend-modules-creating">Creating Modules</a></li>
         <li style="padding-left: 10px;"><a href="#backend-modules-finding">Publishing Modules</a></li> -->
       </ul>
     </li>
-    <li>
-      <a href="#backend-usage">Usage</a>
-      <ul class="nav" style="margin-bottom: 0px;">
-        <li style="padding-left: 10px;"><a href="#backend-usage-di">Dependency Injection</a></li>
-        <li style="padding-left: 10px;"><a href="#backend-usage-routing">Routing</a></li>
-        <li style="padding-left: 10px;"><a href="#backend-usage-classes">Classes</a></li>
-        <li style="padding-left: 10px;"><a href="#backend-usage-controllers">Controllers</a></li>
-        <li style="padding-left: 10px;"><a href="#backend-usage-models">Models</a></li>
-        <li style="padding-left: 10px;"><a href="#backend-usage-services">Services</a></li>
-      </ul>
-    </li>
+    <li><a href="#backend-routing">Routing</a></li>
+    <li><a href="#backend-classes">Classes</a></li>
+    <li><a href="#backend-controllers">Controllers</a></li>
+    <li><a href="#backend-models">Models</a></li>
+    <li><a href="#backend-services">Services</a></li>
     <li><a href="#backend-testing">Testing</a></li>
     <li><a href="#backend-troubleshooting">Troubleshooting</a></li>
     <li><a href="#backend-contributing">Contributing</a></li>
@@ -785,97 +780,155 @@
         <li>services</li>
         <li>tasks</li>
         <li>utils</li>
-      </ul>
+      </ul><br>
 
+      <!-- Modules Dependency Injection
+      ================================================== -->
+      <h4 id="backend-modules-di">Dependency Injection</h4>
+      <p>CleverStack Controllers, Services, Routes, Models and Tests are loaded and all of their dependencies are loaded and injected automatically using the <a href="https://github.com/cleverstack/clever-injector">CleverStack Dependency Injection</a> module.</p>
+
+      <p>When resources/files are loaded using the injector it will automatically load and inject any of it's dependencies in a recursive manner.</p>
+
+      <p>Simply put the name of the dependency you need in the function exported by the file and it will be loaded and injected for you automatically.</p>
+<div class="highlight"><pre><code class="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">SomeDependency</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// SomeDependency is loaded and injected into this function for you</span>
+<span class="p">}</span>
+</code></pre></div>
       <!-- <h4>Creating Modules</h4>
       <p></p><br>
 
       <h4>Publishing Modules</h4>
       <p></p><br> -->
-    </div>
+    </div><br>
 
-    <!-- Usage
+    <!-- Routing
     ================================================== -->
-    <h3 id="backend-usage">Usage</h3>
-    <p>This is a guide to creating all the key components you will need in your modules.</p><br>
-
-    <div style="padding-left: 20px;">
-
-      <!-- Dependency Injection
-      ================================================== -->
-      <h4 id="backend-usage-di">Dependency Injection</h4>
-      <p>CleverStack Controllers, Services, Routes, Models and Tests are loaded and all of their dependencies are loaded and injected automatically using the <a href="https://github.com/cleverstack/clever-injector">CleverStack Dependency Injection</a> module.</p>
-
-      <p>When resources/files are loaded using the injector will automatically load and inject any of it's dependencies in a recursive manner.</p><br>
-
-      <!-- Routing
-      ================================================== -->
-      <h4 id="backend-usage-routing">Routing</h4>
-      <p>Your modules routes.js file is what defines which Controllers are loaded and added into routes, this example shows the default way you should attach your controller</p>
+    <h3 id="backend-routing">Routing</h3>
+    <p>Your modules routes.js file is what defines which Controllers are loaded and added into routes, this example shows the default way you should attach your controller</p>
 <div class="highlight"><pre><code class="javascript"><span class="c1">// modules/backend-example-module/routes.js</span>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">ExampleController</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="nx">app</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span> <span class="s1">&#39;/example/:action/:id?&#39;</span><span class="p">,</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">attach</span><span class="p">()</span> <span class="p">);</span>
-    <span class="nx">app</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span> <span class="s1">&#39;/example/?:action?&#39;</span><span class="p">,</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">attach</span><span class="p">()</span> <span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span> <span class="s1">&#39;/example/:action/:id?&#39;</span><span class="p">,</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">attach</span><span class="p">()</span> <span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span> <span class="s1">&#39;/example/?:action?&#39;</span><span class="p">,</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">attach</span><span class="p">()</span> <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-      <p><strong>Note:</strong> This will automatically load the ExampleController's dependencies including Services, Models and any other resources.</p>
-      <br>
+    <p><strong>Note:</strong> This will automatically load the ExampleController's dependencies including Services, Models and any other resources.</p>
+    <br>
 
-      <!-- Classes
-      ================================================== -->
-      <h4 id="backend-usage-classes">Classes</h4>
-      <p>Every Controller, Service or Model is extended from a <a href="https://github.com/daffl/uberclass">Class</a>, we do this mainly so we can take advantage of <a href="https://developers.google.com/v8/design">V8's Hidden Classes &amp; Optimizing Compiler</a> but also for the ability to <a href="http://en.wikipedia.org/wiki/Currying">curry</a> functions using the proxy() function.</p>
+    <!-- Classes
+    ================================================== -->
+    <h3 id="backend-classes">Classes</h3>
+    <p>Every Controller, Service or Model is extended from a <a href="https://github.com/daffl/uberclass">Class</a>, we do this mainly so we can take advantage of <a href="https://developers.google.com/v8/design">V8's Hidden Classes &amp; Optimizing Compiler</a> but also for the ability to <a href="http://en.wikipedia.org/wiki/Currying">curry</a> functions using the proxy() function.</p>
 
-      <p>By taking advantage of curried proxy functions you are able to keep your code easy to read and maintain by using as little nesting as possible, this also enables and encourages code (function) re-use.</p><br>
+    <p>By taking advantage of curried proxy functions you are able to keep your code easy to read and maintain by using as little nesting as possible, this also enables and encourages code (function) re-use.</p><br>
 
-      <p>Here is an example of creating a class and using the proxy function</p>
+    <p>Here is an example of creating a class and using the proxy function</p>
 <div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">Class</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;uberclass&#39;</span> <span class="p">);</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-  <span class="nx">files</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+<span class="nx">files</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
 
-  <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">getFiles</span><span class="p">(</span> <span class="nx">__dirname</span> <span class="p">);</span>
-  <span class="p">},</span>
+<span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">getFiles</span><span class="p">(</span> <span class="nx">__dirname</span> <span class="p">);</span>
+<span class="p">},</span>
 
-  <span class="nx">getFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="nx">fs</span><span class="p">.</span><span class="nx">readdir</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span> <span class="s1">&#39;handleGetFiles&#39;</span><span class="p">,</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">);</span>
-  <span class="p">},</span>
+<span class="nx">getFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">fs</span><span class="p">.</span><span class="nx">readdir</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span> <span class="s1">&#39;handleGetFiles&#39;</span><span class="p">,</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">);</span>
+<span class="p">},</span>
 
-  <span class="c1">// The dir variable has been curried into this function by getFiles()</span>
-  <span class="nx">handleGetFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">files</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">err</span> <span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="nx">files</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span> <span class="nx">err</span> <span class="p">);</span>
-    <span class="p">}</span>
+<span class="c1">// The dir variable has been curried into this function by getFiles()</span>
+<span class="nx">handleGetFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">files</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">err</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="nx">files</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span> <span class="nx">err</span> <span class="p">);</span>
   <span class="p">}</span>
+<span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div><br>
 
 
-      <p><strong>Tip:</strong> Read <a href="http://debuggable.com/posts/understanding-hidden-classes-in-v8:4c7e81e4-1330-4398-8bd2-761bcbdd56cb">Understanding Hidden Classes in V8</a> for an indepth look.</p>
-      <p><strong>Tip:</strong> Read <a href="http://en.wikipedia.org/wiki/Currying">Currying</a> on Wikipedia for an in-depth explaination of currying.</p>
-      <p><strong>Tip:</strong> Take a look at our <a href="https://github.com/clevertech/cleverstack-node-seed/blob/master/lib/utils/moduleLoader.js">Module Loader Class</a> for an in-depth look at how to use currying to your advantage.</p><br>
+    <p><strong>Tip:</strong> Read <a href="http://debuggable.com/posts/understanding-hidden-classes-in-v8:4c7e81e4-1330-4398-8bd2-761bcbdd56cb">Understanding Hidden Classes in V8</a> for an indepth look.</p>
+    <p><strong>Tip:</strong> Read <a href="http://en.wikipedia.org/wiki/Currying">Currying</a> on Wikipedia for an in-depth explaination of currying.</p>
+    <p><strong>Tip:</strong> Take a look at our <a href="https://github.com/clevertech/cleverstack-node-seed/blob/master/lib/utils/moduleLoader.js">Module Loader Class</a> for an in-depth look at how to use currying to your advantage.</p><br>
 
-      <!-- Controllers
-      ================================================== -->
-      <h4 id="backend-usage-controllers">Controllers</h4>
-      <p>Coming soon, we are working hard on this section.</p>
+    <!-- Controllers
+    ================================================== -->
+    <h3 id="backend-controllers">Controllers</h3>
+    <p>Controllers are the thing that directly responds to each HTTP Request that comes into your application, as such each web request will result in (if routed) a new instance of a Controller.</p>
+
+    <p>Because of Hidden Classes and the Optimizing Compiler in NodeJS this mean's that this is blisteringly fast and allows you access to this.req (Request) and this.res (Response) rather than passing around req &amp; res variables like other solutions.</p>
+
+    <p>To create an action and expose it to the web all you need to do is add "Action" to the end of your function name, we do this so that NOT all of your methods inside your Controller are exposed to the web, only the ones you intend to!</p><br>
+
+    <p>Here is an example that covers all of the many features of Controller</p>
 <div class="highlight"><pre><code class="javascript"><span class="c1">// modules/backend-example-module/controllers/ExampleController.js</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">Controller</span><span class="p">,</span> <span class="nx">ExampleService</span><span class="p">,</span> <span class="nx">UserService</span> <span class="p">)</span> <span class="p">{</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">ExampleController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">Controller</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+    <span class="cm">/** Static **/</span>
     <span class="p">{</span>
-        <span class="c1">// ...</span>
+      <span class="c1">// Controller allows you to define middleware in the Static section of your controller,</span>
+      <span class="c1">// as this is Static and not an instance, req, res and next are passed in as arguments</span>
+      <span class="nx">someMiddleware</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span> <span class="p">)</span> <span class="p">{</span>
+          <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+              <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hi from middleware!&#39;</span>
+          <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="cm">/** Prototype **/</span>
+    <span class="p">{</span>
+        <span class="c1">// Restful action for POST &#39;/example&#39;</span>
+        <span class="nx">postAction</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+                <span class="nx">status</span><span class="o">:</span> <span class="s1">&#39;Created record!&#39;</span><span class="p">,</span>
+                <span class="nx">youPosted</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span>
+            <span class="p">});</span>
+        <span class="p">},</span>
+
+        <span class="c1">// Restful action for GET &#39;/example&#39; when no id is specified</span>
+        <span class="nx">listAction</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+                <span class="nx">status</span><span class="o">:</span> <span class="s1">&#39;Sending you the list of examples.&#39;</span><span class="p">,</span>
+                <span class="nx">query</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">req</span><span class="p">.</span><span class="nx">query</span>
+            <span class="p">});</span>
+        <span class="p">},</span>
+
+        <span class="c1">// Restful action for GET &#39;/example/1&#39; where 1 is the id of the example you want to get</span>
+        <span class="nx">getAction</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+                <span class="nx">status</span><span class="o">:</span> <span class="s1">&#39;sending you record with id of &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span>
+            <span class="p">});</span>
+        <span class="p">},</span>
+
+        <span class="c1">// Restful action for PUT &#39;/example/1&#39; where 1 is the id of the example your updating</span>
+        <span class="nx">putAction</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+                <span class="nx">status</span><span class="o">:</span> <span class="s1">&#39;updated record with id &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+                <span class="nx">youPosted</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span>
+            <span class="p">});</span>
+        <span class="p">},</span>
+
+        <span class="c1">// Restful action for DELETE &#39;/example/1&#39; where 1 is the id of the example you want to delete</span>
+        <span class="nx">deleteAction</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+                <span class="nx">status</span><span class="o">:</span> <span class="s1">&#39;deleted record with id &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span>
+            <span class="p">});</span>
+        <span class="p">},</span>
+
+        <span class="c1">// Action that returns JSON, available from route &#39;/example/hello&#39;</span>
+        <span class="nx">helloAction</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+                <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hi there&#39;</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
     <span class="p">});</span>
 <span class="p">};</span>
 </code></pre></div><br>
 
-      <!-- Models
-      ================================================== -->
-      <h4 id="backend-usage-models">Models</h4>
-      <p>Models are stored in either the models/orm or models/odm folder depending on what type of model they are, and apart from a function to wrap the definition to take advantage of our DI they are exactly the same as you would define them using either <a href="https://github.com/sequelize/sequelize">SequelizeJS</a> (ORM) or <a href="http://mongoosejs.com/">MongooseJS</a> (ODM).</p>
+    <!-- Models
+    ================================================== -->
+    <h3 id="backend-models">Models</h3>
+    <p>Models are stored in either the models/orm or models/odm folder depending on what type of model they are, and apart from a function to wrap the definition to take advantage of our DI they are exactly the same as you would define them using either <a href="https://github.com/sequelize/sequelize">SequelizeJS</a> (ORM) or <a href="http://mongoosejs.com/">MongooseJS</a> (ODM).</p>
 <div class="highlight"><pre><code class="javascript"><span class="c1">// models/orm/ExampleModel.js</span>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">sequelize</span><span class="p">,</span> <span class="nx">DataTypes</span> <span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;Example&quot;</span><span class="p">,</span> <span class="p">{</span>
@@ -902,32 +955,32 @@
 <span class="p">};</span>
 </code></pre></div><br>
 
-      <p><strong>Hint:</strong> Use the grunt db:rebase command to create your database structure</p>
-      <div class="highlight"><pre><code class="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span><span class="o">:</span><span class="nx">rebase</span> 
+    <p><strong>Hint:</strong> Use the grunt db:rebase command to create your database structure</p>
+    <div class="highlight"><pre><code class="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span><span class="o">:</span><span class="nx">rebase</span> 
 </code></pre></div>
 
-      <p><strong>Hint:</strong> Use the grunt db:seed command to insert your seed data into the database</p>
-      <div class="highlight"><pre><code class="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span> 
+    <p><strong>Hint:</strong> Use the grunt db:seed command to insert your seed data into the database</p>
+    <div class="highlight"><pre><code class="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span> 
 </code></pre></div>
 
-      <p><strong>Hint:</strong> Both of the above db commands can be run together using one command</p>
-      <div class="highlight"><pre><code class="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span> 
+    <p><strong>Hint:</strong> Both of the above db commands can be run together using one command</p>
+    <div class="highlight"><pre><code class="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span> 
 </code></pre></div>
 
-      <br>
+    <br>
 
-      <p><strong>Important:</strong> You should not load models using require(), they must be loaded using the injector</p>
-      <p><strong>Note:</strong> Use the SequelizeJS migrations tool to create or run ORM Migrations.</p>
-      <br>
+    <p><strong>Important:</strong> You should not load models using require(), they must be loaded using the injector</p>
+    <p><strong>Note:</strong> Use the SequelizeJS migrations tool to create or run ORM Migrations.</p>
+    <br>
 
-      <!-- Services
-      ================================================== -->
-      <h4 id="backend-usage-services">Services</h4>
-      <p>CleverStack's Architecture has been designed to use a Service Layer, we do this so that your Controllers use Services allowing you to swap out the model that is being used behind the service without having to change your Controller code.</p>
+    <!-- Services
+    ================================================== -->
+    <h3 id="backend-services">Services</h3>
+    <p>CleverStack's Architecture has been designed to use a Service Layer, we do this so that your Controllers use Services allowing you to swap out the model that is being used behind the service without having to change your Controller code.</p>
 
-      <p>This is also important to being able to test effectively, unit tests are carried out by using the Service directly and integration (e2e) tests are carried out by using HTTP Requests to your controller. This gives you the ability to test at different levels and make finding bugs or errors easier.</p>
+    <p>This is also important to being able to test effectively, unit tests are carried out by using the Service directly and integration (e2e) tests are carried out by using HTTP Requests to your controller. This gives you the ability to test at different levels and make finding bugs or errors easier.</p>
 
-      <p>A Service should take advantage of our Dependency Injection and load whatever Model is used to actually store the data, by defining the Model in the Static of the Service Class you are able to enable the Controller to automatically give you CRUD.</p>
+    <p>A Service should take advantage of our Dependency Injection and load whatever Model is used to actually store the data, by defining the Model in the Static of the Service Class you are able to enable the Controller to automatically give you CRUD.</p>
 <div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">Q</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
   <span class="p">,</span> <span class="nx">BaseService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;services&#39;</span> <span class="p">).</span><span class="nx">BaseService</span>
   <span class="p">,</span> <span class="nx">ExampleService</span><span class="p">;</span>
@@ -946,12 +999,108 @@
 <span class="p">};</span>
 </code></pre></div><br>
 
-    </div>
-
     <!-- Testing
     ================================================== -->
-    <h3 id="backend-testing">Testing</h3>
-    <p>Coming soon, we are working hard on this section. For now please take a look at our tests for a look at how to write tests</p><br>
+    <h3 id="backend-testing">Testing</h3><br>
+
+    <h4>Unit Tests</h4>
+    <p>The only required code you need to place in your file is</p>
+    <div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">testEnv</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span> <span class="s1">&#39;utils&#39;</span> <span class="p">).</span><span class="nx">testEnv</span><span class="p">();</span>
+</code></pre></div>
+
+    <p>An example</p>
+<div class="highlight"><pre><code class="javascript"><span class="c1">// Bootstrap the testing environmen</span>
+<span class="kd">var</span> <span class="nx">testEnv</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span> <span class="s1">&#39;utils&#39;</span> <span class="p">).</span><span class="nx">testEnv</span><span class="p">();</span>
+ 
+<span class="kd">var</span> <span class="nx">expect</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span> <span class="s1">&#39;chai&#39;</span> <span class="p">).</span><span class="nx">expect</span>
+  <span class="p">,</span> <span class="nx">Service</span><span class="p">;</span>
+ 
+<span class="nx">describe</span><span class="p">(</span> <span class="s1">&#39;controllers.ExampleController&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">ctrl</span><span class="p">;</span>
+ 
+    <span class="nx">beforeEach</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">testEnv</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">ExampleController</span><span class="p">,</span> <span class="nx">ExampleService</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nx">params</span><span class="o">:</span> <span class="p">{</span> <span class="nx">action</span><span class="o">:</span> <span class="s1">&#39;fakeAction&#39;</span> <span class="p">},</span>
+                <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                <span class="nx">query</span><span class="o">:</span> <span class="p">{}</span>
+            <span class="p">};</span>
+            <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nx">json</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
+            <span class="p">};</span>
+            <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+            <span class="nx">ctrl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExampleController</span><span class="p">(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span> <span class="p">);</span>
+ 
+            <span class="nx">Service</span> <span class="o">=</span> <span class="nx">ExampleService</span><span class="p">;</span>
+            <span class="nx">Service</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+                <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Example 1&#39;</span>
+            <span class="p">})</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">examples</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">done</span><span class="p">();</span>
+            <span class="p">})</span>
+            <span class="p">.</span><span class="nx">fail</span><span class="p">(</span> <span class="nx">done</span> <span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+ 
+ 
+    <span class="nx">describe</span><span class="p">(</span> <span class="s1">&#39;.postAction()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;should call .send() with valid status&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">ctrl</span><span class="p">.</span><span class="nx">send</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">data</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">Service</span><span class="p">.</span><span class="nx">findAll</span><span class="p">()</span>
+                    <span class="p">.</span><span class="nx">then</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">examples</span> <span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">examples</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">length</span><span class="p">(</span> <span class="mi">2</span> <span class="p">);</span>
+                        <span class="nx">examples</span><span class="p">[</span> <span class="mi">1</span> <span class="p">].</span><span class="nx">name</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="s1">&#39;Example 2&#39;</span> <span class="p">);</span>
+                        <span class="nx">done</span><span class="p">();</span>
+                    <span class="p">})</span>
+                    <span class="p">.</span><span class="nx">fail</span><span class="p">(</span> <span class="nx">done</span> <span class="p">);</span>
+            <span class="p">};</span>
+            <span class="nx">ctrl</span><span class="p">.</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Example 2&#39;</span>
+            <span class="p">};</span>
+            <span class="nx">ctrl</span><span class="p">.</span><span class="nx">postAction</span><span class="p">();</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+
+    <span class="nx">describe</span><span class="p">(</span> <span class="s1">&#39;.getAction()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;should call .send() with valid status&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">ctrl</span><span class="p">.</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="nx">ctrl</span><span class="p">.</span><span class="nx">send</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">data</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">data</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="mi">1</span> <span class="p">);</span>
+                <span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="s1">&#39;Example 1&#39;</span> <span class="p">);</span>
+                <span class="nx">done</span><span class="p">();</span>
+            <span class="p">};</span>
+            <span class="nx">ctrl</span><span class="p">.</span><span class="nx">getAction</span><span class="p">();</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div><br>
+
+    <h4>Integration / e2e Tests</h4>
+
+    <p>There is no required code, all you need to do is use request to make http requests to your controllers. Here is an example</p>
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">expect</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span> <span class="s1">&#39;chai&#39;</span> <span class="p">).</span><span class="nx">expect</span>
+  <span class="p">,</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span> <span class="s1">&#39;supertest&#39;</span> <span class="p">)</span>
+  <span class="p">,</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;path&#39;</span> <span class="p">)</span>
+  <span class="p">,</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/../../../../&#39;</span> <span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/index.js&#39;</span> <span class="p">);</span>
+
+<span class="nx">describe</span><span class="p">(</span> <span class="s1">&#39;/example&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">describe</span><span class="p">(</span> <span class="s1">&#39;GET /example/custom&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;should return valid status&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">request</span><span class="p">(</span> <span class="nx">app</span> <span class="p">)</span>
+                <span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="s1">&#39;/example/custom&#39;</span> <span class="p">)</span>
+                <span class="p">.</span><span class="nx">expect</span><span class="p">(</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="sr">/json/</span> <span class="p">)</span>
+                <span class="p">.</span><span class="nx">expect</span><span class="p">(</span> <span class="mi">200</span> <span class="p">)</span>
+                <span class="p">.</span><span class="nx">end</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">res</span> <span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span> <span class="nx">err</span> <span class="p">)</span> <span class="k">return</span> <span class="nx">done</span><span class="p">(</span> <span class="nx">err</span> <span class="p">);</span>
+                    <span class="nx">expect</span><span class="p">(</span> <span class="nx">res</span><span class="p">.</span><span class="nx">body</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span> <span class="p">(</span> <span class="p">{</span>
+                        <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hello from customAction inside ExampleController&#39;</span>
+                    <span class="p">});</span>
+                    <span class="nx">done</span><span class="p">();</span>
+                <span class="p">});</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
 
     <!-- Troubleshooting
     ================================================== -->
