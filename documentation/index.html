@@ -732,18 +732,18 @@
         <h5>module.js</h5>
         <ul>
 <div class="highlight"><pre><code class="javascript"><span class="c1">// Example module.js</span>
-<span class="kd">var</span> <span class="nx">Module</span> <span class="o">=</span> <span class="nx">ModuleClass</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<span class="kd">var</span> <span class="nx">Module</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;classes&#39;</span> <span class="p">).</span><span class="nx">Module</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">preSetup</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s1">&#39;Hello, this module is about to be setup by the moduleLoader&#39;</span> <span class="p">)</span>
     <span class="p">}</span>
 <span class="p">});</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Module</span><span class="p">(</span> <span class="s1">&#39;&lt;moduleName&gt;&#39;</span><span class="p">,</span> <span class="nx">injector</span> <span class="p">);</span>
 </code></pre></div>
             <li><strong>Important:</strong> This presumes you have { "main": "module.js" } in your modules <a href="https://github.com/CleverStack/backend-example-module/blob/master/package.json#L22">package.json</a>, otherwise it is named what you want OR if not set at all this file will be called index.js. (As per standard NPM Modules)</li>
-            <li><strong>Important:</strong> Must export ModuleClass instance which is imported by the moduleLoader.</li>
+            <li><strong>Important:</strong> Must export a Module Class which will be imported by the moduleLoader.</li>
             <br>
-            <li><strong>Note:</strong> Has lifecycle hooks for every situation, like loading, routing, shutdown etc.</li>
+            <li><strong>Note:</strong> Has lifecycle <a href="#backend-modules-hooks">hooks</a> for every situation, like loading, routing, shutdown etc.</li>
         </ul>
 
         <h5>routes.js</h5>
@@ -759,7 +759,9 @@
       <p>Your 'module.js' file has some lifecycle hooks that you can use to perform operations at certain times during the applications lifecycle, the hooks are fired in the order they are listed here on each module.</p><br>
 
       <p>Example of using a hook:<p>
-<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">Module</span> <span class="o">=</span> <span class="nx">ModuleClass</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">Module</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;classes&#39;</span> <span class="p">).</span><span class="nx">Module</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">preInit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s1">&#39;preInit hook, init is about to be called&#39;</span> <span class="p">);</span>
     <span class="p">}</span>
@@ -787,11 +789,15 @@
       <h5 id="backend-modules-hooks-configure-app">configureApp</h5>
       <ul>
         <li>This hook allows you to modify the express app from within a module, without the need to make those changes in the index.js file located at backend/index.js</li><br>
+        <li><strong>Important:</strong> you must emit "appConfigured", until you do the moduleLoader will wait.</li>
         <li><strong>Important:</strong> this function is injected with app &amp; express as arguments in the constructors setup() function.</li>
       </ul>
-<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">Module</span> <span class="o">=</span> <span class="nx">ModuleClass</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">Module</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;classes&#39;</span> <span class="p">).</span><span class="nx">Module</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">configureApp</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">express</span> <span class="p">)</span> <span class="p">{</span>
         <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span> <span class="nx">express</span><span class="p">.</span><span class="nx">cookieParser</span><span class="p">()</span> <span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span> <span class="s1">&#39;appConfigured&#39;</span> <span class="p">);</span>
     <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -799,11 +805,13 @@
       <h5 id="backend-modules-hooks-preresources">preResources</h5>
       <ul>
         <li>This hook is fired just before the main setup() constructor function calls loadResources().</li>
+        <li><strong>Important:</strong> you must emit "resourcesReady", until you do the moduleLoader will wait.</li>
       </ul>
 
       <h5 id="backend-modules-hooks-modulesloaded">modulesLoaded</h5>
       <ul>
         <li>This hook is fired after all modules are loaded (for each module).</li>
+        <li><strong>Important:</strong> you must emit "ready", until you do the moduleLoader will wait.</li>
       </ul>
 
       <h5 id="backend-modules-hooks-preroute">preRoute</h5>
@@ -835,7 +843,7 @@
 
       <p><strong>Important:</strong> Each of these JSON config files must contain (if they exist on disk) an object that has all configuration objects nested in an object under one key which needs to be named the same as your &lt;module&gt;.</p>
 <div class="highlight"><pre><code class="json"><span class="p">{</span>
-  <span class="nt">&quot;moduleName&quot;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nt">&quot;module-name&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;config&quot;</span><span class="p">:</span> <span class="s2">&quot;here&quot;</span><span class="p">,</span>
     <span class="nt">&quot;another&quot;</span><span class="p">:</span> <span class="s2">&quot;as well&quot;</span>
   <span class="p">}</span>
@@ -855,6 +863,7 @@
 
       <h5>Here is the complete list of Magic Modules, you can require() any of these anywhere in your application.</h5>
       <ul>
+        <li>injector</li>
         <li>classes</li>
         <li>config</li>
         <li>controllers</li>
@@ -884,7 +893,7 @@
       <!-- Routing
       ================================================== -->
       <h4 id="backend-modules-routing">Routing</h4>
-      <p>Your modules routes.js file is what defines which Controllers are loaded and added into routes, this example shows the default way you should attach your controller</p>
+      <p>Your modules routes.js file is what defines which Controllers are loaded and added into routes, this example shows the default way you can attach your controller. (Except for Controllers which have autoRoute enabled, those controllers have these routes automatically attached)</p>
 <div class="highlight"><pre><code class="javascript"><span class="c1">// modules/backend-example-module/routes.js</span>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">ExampleController</span> <span class="p">)</span> <span class="p">{</span>
 
@@ -910,29 +919,32 @@
 
       <p>By taking advantage of curried proxy functions you are able to keep your code easy to read and maintain by using as little nesting as possible, this also enables and encourages code (function) re-use.</p><br>
 
-      <p>Here is an example of creating a class and using the proxy function</p>
-<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">Class</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;uberclass&#39;</span> <span class="p">);</span>
+      <p><strong>Note:</strong> Every Class including Model, Service &amp; Controller is an EventEmitter automatically.</p>
+
+      <p>Here is an example of creating a class and using the proxy function as well as emitting events.</p>
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">Class</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;classes&#39;</span> <span class="p">).</span><span class="nx">Class</span><span class="p">;</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-<span class="nx">files</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nx">files</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
 
-<span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="p">[];</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">getFiles</span><span class="p">(</span> <span class="nx">__dirname</span> <span class="p">);</span>
-<span class="p">},</span>
+  <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getFiles</span><span class="p">(</span> <span class="nx">__dirname</span> <span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span> <span class="s1">&#39;init&#39;</span> <span class="p">);</span>
+  <span class="p">},</span>
 
-<span class="nx">getFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="nx">fs</span><span class="p">.</span><span class="nx">readdir</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span> <span class="s1">&#39;handleGetFiles&#39;</span><span class="p">,</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">);</span>
-<span class="p">},</span>
+  <span class="nx">getFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">readdir</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span> <span class="s1">&#39;handleGetFiles&#39;</span><span class="p">,</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="p">},</span>
 
-<span class="c1">// The dir variable has been curried into this function by getFiles()</span>
-<span class="nx">handleGetFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">files</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">err</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="nx">files</span><span class="p">;</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span> <span class="nx">err</span> <span class="p">);</span>
+  <span class="c1">// The dir variable has been curried into this function by getFiles()</span>
+  <span class="nx">handleGetFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">files</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">err</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="nx">files</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span> <span class="nx">err</span> <span class="p">);</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div><br>
 
@@ -952,10 +964,17 @@
 
       <p>Here is an example that covers all of the many features of Controller</p>
 <div class="highlight"><pre><code class="javascript"><span class="c1">// modules/backend-example-module/controllers/ExampleController.js</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">ExampleController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">ExampleController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">ExampleService</span> <span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">Controller</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
     <span class="cm">/** Static **/</span>
     <span class="p">{</span>
+      <span class="c1">// Autorouting can either be &quot;false&quot;, &quot;true&quot; (default) or an array containing the names of</span>
+      <span class="c1">// middleware that you want to be run before entering your controller</span>
+      <span class="nx">autoRouting</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;someMiddleware&#39;</span> <span class="p">],</span>
+
+      <span class="c1">// Service can be set to any Service Class to allow for automatic CRUD</span>
+      <span class="nx">service</span><span class="o">:</span> <span class="nx">ExampleService</span><span class="p">,</span>
+
       <span class="c1">// Controller allows you to define middleware in the Static section of your controller,</span>
       <span class="c1">// as this is Static and not an instance, req, res and next are passed in as arguments</span>
       <span class="nx">someMiddleware</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span> <span class="p">)</span> <span class="p">{</span>
@@ -1017,30 +1036,33 @@
       <!-- Models
       ================================================== -->
       <h4 id="backend-modules-models">Models</h4>
-      <p>Models are stored in either the models/orm or models/odm folder depending on what type of model they are, and apart from a function to wrap the definition to take advantage of our DI they are exactly the same as you would define them using either <a href="https://github.com/sequelize/sequelize">SequelizeJS</a> (ORM) or <a href="http://mongoosejs.com/">MongooseJS</a> (ODM).</p>
-<div class="highlight"><pre><code class="javascript"><span class="c1">// models/orm/ExampleModel.js</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">sequelize</span><span class="p">,</span> <span class="nx">DataTypes</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;Example&quot;</span><span class="p">,</span> <span class="p">{</span>
+      <p>To make life easy and our modules as flexible as possible we have written our own Model Schema definition system, this allows you to write a Single model that will work with both ORM and ODM with a single line change!</p>
+<div class="highlight"><pre><code class="javascript"><span class="c1">// models/ExampleModel.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">Model</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="nx">timeStampable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">softDeletable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;ORM&#39;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
         <span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">type</span><span class="o">:</span> <span class="nx">DataTypes</span><span class="p">.</span><span class="nx">INTEGER</span><span class="p">,</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
             <span class="nx">primaryKey</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
             <span class="nx">autoIncrement</span><span class="o">:</span> <span class="kc">true</span>
         <span class="p">},</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">type</span><span class="o">:</span> <span class="nx">DataTypes</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span>
-            <span class="nx">allowNull</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-            <span class="nx">unique</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+        <span class="nx">someDate</span><span class="o">:</span> <span class="nb">Date</span><span class="p">,</span>
+        <span class="nx">someFloat</span><span class="o">:</span> <span class="nx">Float</span><span class="p">,</span>
+        <span class="nx">uniqueAndRequiredEmail</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">unique</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">validate</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">email</span><span class="o">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">});</span>
-<span class="p">};</span>
-
-<span class="c1">// models/odm/ExampleModel.js</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">mongoose</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">ModelSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span>
-    <span class="p">});</span>
- 
-    <span class="k">return</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;ExampleModel&#39;</span><span class="p">,</span> <span class="nx">ModelSchema</span><span class="p">);</span>
 <span class="p">};</span>
 </code></pre></div><br>
 
@@ -1070,21 +1092,10 @@
       <p>This is also important to being able to test effectively, unit tests are carried out by using the Service directly and integration (e2e) tests are carried out by using HTTP Requests to your controller. This gives you the ability to test at different levels and make finding bugs or errors easier.</p>
 
       <p>A Service should take advantage of our Dependency Injection and load whatever Model is used to actually store the data, by defining the Model in the Static of the Service Class you are able to enable the Controller to automatically give you CRUD.</p>
-<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">Q</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
-  <span class="p">,</span> <span class="nx">BaseService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;services&#39;</span> <span class="p">).</span><span class="nx">BaseService</span>
-  <span class="p">,</span> <span class="nx">ExampleService</span><span class="p">;</span>
- 
-<span class="nx">ExampleService</span> <span class="o">=</span> <span class="nx">BaseService</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
- 
-<span class="p">});</span>
- 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">sequelize</span><span class="p">,</span> <span class="nx">ORMExampleModel</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">ExampleService</span><span class="p">.</span><span class="nx">instance</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="nx">ExampleService</span><span class="p">.</span><span class="nx">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExampleService</span><span class="p">(</span> <span class="nx">sequelize</span> <span class="p">);</span>
-        <span class="nx">ExampleService</span><span class="p">.</span><span class="nx">Model</span> <span class="o">=</span> <span class="nx">ORMExampleModel</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="k">return</span> <span class="nx">ExampleService</span><span class="p">.</span><span class="nx">instance</span><span class="p">;</span>
+<div class="highlight"><pre><code class="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">Service</span><span class="p">,</span> <span class="nx">ExampleModel</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Service</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+        <span class="nx">model</span><span class="o">:</span> <span class="nx">ExampleModel</span>
+    <span class="p">});</span>
 <span class="p">};</span>
 </code></pre></div><br>
 
@@ -1094,55 +1105,182 @@
       <p>Modules contain their testing resources, here are the two types you can use</p><br>
 
       <h5>Unit Tests</h5>
-      <p>To get the application setup you will need this code in your file to get things going</p>
-      <div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">testEnv</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span> <span class="s1">&#39;utils&#39;</span> <span class="p">).</span><span class="nx">testEnv</span><span class="p">();</span>
-</code></pre></div><br>
 
       <p>Here is an in-depth example of how to write a unit test</p>
-<div class="highlight"><pre><code class="javascript"><span class="c1">// Bootstrap the testing environmen</span>
-<span class="kd">var</span> <span class="nx">testEnv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;utils&#39;</span> <span class="p">).</span><span class="nx">testEnv</span><span class="p">();</span>
- 
-<span class="kd">var</span> <span class="nx">expect</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;chai&#39;</span> <span class="p">).</span><span class="nx">expect</span>
-  <span class="p">,</span> <span class="nx">Service</span><span class="p">;</span>
- 
-<span class="nx">describe</span><span class="p">(</span> <span class="s1">&#39;controllers.ExampleController&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">ctrl</span><span class="p">;</span>
- 
-    <span class="nx">beforeEach</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="nx">testEnv</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">ExampleController</span><span class="p">,</span> <span class="nx">ExampleService</span> <span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="nx">params</span><span class="o">:</span> <span class="p">{</span> <span class="nx">action</span><span class="o">:</span> <span class="s1">&#39;fakeAction&#39;</span> <span class="p">},</span>
-                <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-                <span class="nx">query</span><span class="o">:</span> <span class="p">{}</span>
-            <span class="p">};</span>
-            <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="nx">json</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
-            <span class="p">};</span>
-            <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
-            <span class="nx">ctrl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExampleController</span><span class="p">(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span> <span class="p">);</span>
- 
-            <span class="nx">Service</span> <span class="o">=</span> <span class="nx">ExampleService</span><span class="p">;</span>
-            <span class="nx">Service</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
-                <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Example 1&#39;</span>
-            <span class="p">})</span>
-            <span class="p">.</span><span class="nx">then</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">examples</span> <span class="p">)</span> <span class="p">{</span>
-                <span class="nx">done</span><span class="p">();</span>
-            <span class="p">})</span>
-            <span class="p">.</span><span class="nx">fail</span><span class="p">(</span> <span class="nx">done</span> <span class="p">);</span>
-        <span class="p">});</span>
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">expect</span>      <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;chai&#39;</span> <span class="p">).</span><span class="nx">expect</span>
+  <span class="p">,</span> <span class="nx">async</span>       <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;async&#39;</span> <span class="p">)</span>
+  <span class="p">,</span> <span class="nx">sinon</span>       <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;sinon&#39;</span> <span class="p">)</span>
+  <span class="p">,</span> <span class="nx">underscore</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;underscore&#39;</span> <span class="p">)</span>
+  <span class="p">,</span> <span class="nx">path</span>        <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;path&#39;</span> <span class="p">)</span>
+  <span class="p">,</span> <span class="nx">util</span>        <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;util&#39;</span> <span class="p">)</span>
+  <span class="p">,</span> <span class="nx">injector</span>    <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;injector&#39;</span> <span class="p">)</span>
+  <span class="p">,</span> <span class="nx">models</span>      <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Example 1&#39;</span> <span class="p">}</span> <span class="p">]</span>
+  <span class="p">,</span> <span class="nx">ExampleController</span><span class="p">;</span>
+
+<span class="nx">describe</span> <span class="p">(</span> <span class="s1">&#39;ExampleController&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">before</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ExampleController</span> <span class="o">=</span> <span class="nx">injector</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(</span> <span class="s1">&#39;backendExampleModule&#39;</span> <span class="p">).</span><span class="nx">controllers</span><span class="p">.</span><span class="nx">ExampleController</span><span class="p">;</span>
+        <span class="nx">done</span><span class="p">();</span>
     <span class="p">});</span>
 
-    <span class="nx">describe</span><span class="p">(</span> <span class="s1">&#39;.getAction()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;should call .send() with valid status&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
-            <span class="nx">ctrl</span><span class="p">.</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-            <span class="nx">ctrl</span><span class="p">.</span><span class="nx">send</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">data</span> <span class="p">)</span> <span class="p">{</span>
-                <span class="nx">data</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="mi">1</span> <span class="p">);</span>
-                <span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="s1">&#39;Example 1&#39;</span> <span class="p">);</span>
-                <span class="nx">done</span><span class="p">();</span>
-            <span class="p">};</span>
-            <span class="nx">ctrl</span><span class="p">.</span><span class="nx">getAction</span><span class="p">();</span>
+    <span class="kd">function</span> <span class="nx">fakeRequest</span><span class="p">(</span> <span class="nx">req</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">method</span>  <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">method</span> <span class="o">||</span> <span class="s1">&#39;GET&#39;</span><span class="p">;</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">uri</span>     <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">uri</span> <span class="o">||</span> <span class="s1">&#39;/example&#39;</span><span class="p">;</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">query</span>   <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span> <span class="o">||</span> <span class="p">{};</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">body</span>    <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span> <span class="o">||</span> <span class="p">{};</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">params</span>  <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span> <span class="o">||</span> <span class="p">{};</span>
+
+        <span class="k">return</span> <span class="nx">req</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="kd">function</span> <span class="nx">fakeResponse</span><span class="p">(</span> <span class="nx">cb</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="nx">json</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">message</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">setTimeout</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">cb</span><span class="p">(</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span> <span class="nx">message</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span>                    
+                <span class="p">},</span> <span class="mi">10</span> <span class="p">);</span>
+            <span class="p">},</span>
+
+            <span class="nx">send</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">message</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">setTimeout</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">cb</span><span class="p">(</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">message</span> <span class="p">)</span>
+                <span class="p">},</span> <span class="mi">10</span> <span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+    <span class="p">};</span>
+
+    <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;Should create a new example model instance and save it in the database&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">ctrl</span> <span class="o">=</span> <span class="kc">null</span>
+          <span class="p">,</span> <span class="nx">model</span> <span class="o">=</span> <span class="nx">models</span><span class="p">[</span> <span class="mi">0</span> <span class="p">];</span>
+
+        <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">fakeRequest</span><span class="p">({</span>
+            <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+            <span class="nx">body</span><span class="o">:</span> <span class="nx">underscore</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span> <span class="p">{},</span> <span class="nx">model</span> <span class="p">)</span>
         <span class="p">});</span>
+
+        <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">fakeResponse</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">result</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">code</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="mi">200</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">an</span><span class="p">(</span> <span class="s1">&#39;object&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">ctrl</span><span class="p">.</span><span class="nx">action</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="s1">&#39;postAction&#39;</span> <span class="p">);</span>
+
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span> <span class="s1">&#39;id&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">model</span><span class="p">.</span><span class="nx">name</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span> <span class="s1">&#39;createdAt&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span> <span class="s1">&#39;updatedAt&#39;</span> <span class="p">);</span>
+            
+            <span class="nx">model</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+            <span class="nx">model</span><span class="p">.</span><span class="nx">createdAt</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">createdAt</span><span class="p">;</span>
+            <span class="nx">model</span><span class="p">.</span><span class="nx">updatedAt</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">updatedAt</span><span class="p">;</span>
+            <span class="nx">model</span><span class="p">.</span><span class="nx">deletedAt</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+            <span class="nx">done</span><span class="p">();</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">timeout</span><span class="p">(</span> <span class="mi">10000</span> <span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">ctrl</span> <span class="o">=</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">callback</span><span class="p">(</span> <span class="s1">&#39;newInstance&#39;</span> <span class="p">)(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span> <span class="p">);</span>
     <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;Should list the example model instances&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">ctrl</span>  <span class="o">=</span> <span class="kc">null</span>
+          <span class="p">,</span> <span class="nx">model</span> <span class="o">=</span> <span class="nx">models</span><span class="p">[</span> <span class="mi">0</span> <span class="p">];</span>
+
+        <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">fakeRequest</span><span class="p">({});</span>
+        <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">fakeResponse</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">result</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">code</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="mi">200</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">an</span><span class="p">(</span> <span class="s1">&#39;array&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">ctrl</span><span class="p">.</span><span class="nx">action</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="s1">&#39;listAction&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span><span class="p">.</span><span class="nx">length</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">not</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="mi">0</span> <span class="p">);</span>
+
+            <span class="kd">var</span> <span class="nx">lastModel</span> <span class="o">=</span> <span class="nx">result</span><span class="p">[</span> <span class="nx">result</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">];</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">lastModel</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span> <span class="s1">&#39;id&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">lastModel</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span> <span class="s1">&#39;name&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">lastModel</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span> <span class="s1">&#39;createdAt&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">lastModel</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span> <span class="s1">&#39;updatedAt&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">lastModel</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span> <span class="s1">&#39;deletedAt&#39;</span> <span class="p">);</span>
+
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">lastModel</span><span class="p">.</span><span class="nx">name</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span> <span class="nx">model</span><span class="p">.</span><span class="nx">name</span> <span class="p">);</span>
+
+            <span class="nx">done</span><span class="p">();</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">timeout</span><span class="p">(</span> <span class="mi">10000</span> <span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">ctrl</span> <span class="o">=</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">callback</span><span class="p">(</span> <span class="s1">&#39;newInstance&#39;</span> <span class="p">)(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span> <span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;Should be able to list an example by id&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">ctrl</span>  <span class="o">=</span> <span class="kc">null</span>
+          <span class="p">,</span> <span class="nx">model</span> <span class="o">=</span> <span class="nx">models</span><span class="p">[</span> <span class="mi">0</span> <span class="p">];</span>
+
+        <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">fakeRequest</span><span class="p">({</span>
+            <span class="nx">uri</span><span class="o">:</span> <span class="s1">&#39;/example&#39;</span><span class="p">,</span>
+            <span class="nx">params</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">id</span><span class="o">:</span> <span class="nx">model</span><span class="p">.</span><span class="nx">id</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+        <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">fakeResponse</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">result</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">code</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="mi">200</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">an</span><span class="p">(</span> <span class="s1">&#39;object&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">ctrl</span><span class="p">.</span><span class="nx">action</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="s1">&#39;getAction&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span> <span class="nx">model</span> <span class="p">);</span>
+
+            <span class="nx">done</span><span class="p">();</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">timeout</span><span class="p">(</span> <span class="mi">10000</span> <span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">ctrl</span> <span class="o">=</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">callback</span><span class="p">(</span> <span class="s1">&#39;newInstance&#39;</span> <span class="p">)(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span> <span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;Should be able to update an example model instance&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">ctrl</span> <span class="o">=</span> <span class="kc">null</span>
+          <span class="p">,</span> <span class="nx">model</span> <span class="o">=</span> <span class="nx">models</span><span class="p">[</span> <span class="mi">0</span> <span class="p">];</span>
+
+        <span class="nx">model</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Example 1 Updated&#39;</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">fakeRequest</span><span class="p">({</span>
+            <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+            <span class="nx">body</span><span class="o">:</span> <span class="nx">underscore</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span> <span class="p">{},</span> <span class="nx">model</span> <span class="p">)</span>
+        <span class="p">});</span>
+
+        <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">fakeResponse</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">result</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">code</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="mi">200</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">an</span><span class="p">(</span> <span class="s1">&#39;object&#39;</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">ctrl</span><span class="p">.</span><span class="nx">action</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="s1">&#39;putAction&#39;</span> <span class="p">);</span>
+
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span><span class="p">(</span> <span class="s1">&#39;updatedAt&#39;</span> <span class="p">);</span>
+            <span class="nx">model</span><span class="p">.</span><span class="nx">updatedAt</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">updatedAt</span><span class="p">;</span>
+
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span> <span class="nx">model</span> <span class="p">);</span>
+
+            <span class="nx">done</span><span class="p">();</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">timeout</span><span class="p">(</span> <span class="mi">10000</span> <span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">ctrl</span> <span class="o">=</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">callback</span><span class="p">(</span> <span class="s1">&#39;newInstance&#39;</span> <span class="p">)(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span> <span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;Should be able to delete an example model instance&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">done</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">ctrl</span>  <span class="o">=</span> <span class="kc">null</span>
+          <span class="p">,</span> <span class="nx">model</span> <span class="o">=</span> <span class="nx">models</span><span class="p">[</span> <span class="mi">0</span> <span class="p">];</span>
+
+        <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">fakeRequest</span><span class="p">({</span>
+            <span class="nx">uri</span><span class="o">:</span> <span class="s1">&#39;/example/&#39;</span> <span class="o">+</span> <span class="nx">model</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+            <span class="nx">params</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">id</span><span class="o">:</span> <span class="nx">model</span><span class="p">.</span><span class="nx">id</span>
+            <span class="p">},</span>
+            <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;DELETE&#39;</span>
+        <span class="p">});</span>
+        <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">fakeResponse</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">code</span><span class="p">,</span> <span class="nx">result</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">code</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span> <span class="mi">200</span> <span class="p">);</span>
+            <span class="nx">expect</span><span class="p">(</span> <span class="nx">result</span> <span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">({});</span>
+
+            <span class="nx">done</span><span class="p">();</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">timeout</span><span class="p">(</span> <span class="mi">10000</span> <span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">ctrl</span> <span class="o">=</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">callback</span><span class="p">(</span> <span class="s1">&#39;newInstance&#39;</span> <span class="p">)(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span> <span class="p">);</span>
+    <span class="p">});</span>
+
 <span class="p">});</span>
 </code></pre></div><br>
 
