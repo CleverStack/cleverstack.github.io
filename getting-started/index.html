@@ -162,12 +162,24 @@
     </div>
 
     <p class="lead">Setup is made easy using our CleverStack Command Line Interface (CLI).</p>
-      <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>npm install -g cleverstack-cli
+      <div class="highlight"><pre><code class="bash">npm install -g cleverstack-cli
 </code></pre></div>
 
-    <p><strong>Important:</strong> Linux or Mac users may need to run this command using "sudo"</p>
-      <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>sudo npm install -g cleverstack-cli
+    <div class="bs-callout bs-callout-info">
+      <h4>Windows users</h4>
+      <p>
+        You should run this command (and others like it) in the windows command (cmd) prompt, and in some cases you will need to run your cmd prompt as Administrator
+      </p>
+    </div>
+
+    <div class="bs-callout bs-callout-danger">
+      <h4>Linux/Mac Users</h4>
+      <p>
+        You may need to run this command using "sudo", but you should note if you need to use sudo then something is wrong with your file/folder permissions
+        <div class="highlight"><pre><code class="bash">sudo npm install -g cleverstack-cli
 </code></pre></div>
+      </p>
+    </div>
 
   </div>
 
@@ -179,10 +191,15 @@
     </div>
 
     <p class="lead">To create a new project using the CleverStack CLI.</p>
-      <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever init my-app
+      <div class="highlight"><pre><code class="bash">clever init my-app
 </code></pre></div>
 
-    <p><strong>Note:</strong> This command may take awhile depending on your internet connection and computer specifications.</p>
+    <div class="bs-callout bs-callout-warning">
+      <h4>Init running time</h4>
+      <p>
+        This command may take awhile depending on your internet connection and computer specifications.
+      </p>
+    </div>
   </div>
 
   <!-- Start serving
@@ -193,9 +210,9 @@
     </div>
 
     <p class="lead">To start your development servers using the CleverStack CLI.</p>
-      <div class="highlight"><pre><code class="bash"><span class="nv">$ </span><span class="nb">cd </span>my-app
+      <div class="highlight"><pre><code class="bash"><span class="nb">cd </span>my-app
 </code></pre></div>
-      <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>clever serve
+      <div class="highlight"><pre><code class="bash">clever serve
 </code></pre></div>
 
     <p>You are now <strong>serving</strong> http requests, open your web browser:</p>
