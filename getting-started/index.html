@@ -162,8 +162,7 @@
     </div>
 
     <p class="lead">Setup is made easy using our CleverStack Command Line Interface (CLI).</p>
-      <div class="highlight"><pre><code class="bash">npm install -g cleverstack-cli
-</code></pre></div>
+      <div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install -g cleverstack-cli</code></pre></div>
 
     <div class="bs-callout bs-callout-info">
       <h4>Windows users</h4>
@@ -176,8 +175,7 @@
       <h4>Linux/Mac Users</h4>
       <p>
         You may need to run this command using "sudo", but you should note if you need to use sudo then something is wrong with your file/folder permissions
-        <div class="highlight"><pre><code class="bash">sudo npm install -g cleverstack-cli
-</code></pre></div>
+        <div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo npm install -g cleverstack-cli</code></pre></div>
       </p>
     </div>
 
@@ -191,8 +189,14 @@
     </div>
 
     <p class="lead">To create a new project using the CleverStack CLI.</p>
-      <div class="highlight"><pre><code class="bash">clever init my-app
-</code></pre></div>
+      <div class="highlight"><pre><code class="language-bash" data-lang="bash">clever init my-app</code></pre></div>
+
+    <div class="bs-callout bs-callout-danger">
+      <h4>Database creation</h4>
+      <p>
+        If you are using MySQL then you will need to manually run the <code>CREATE DATABASE</code> command to create your database, the underlying library we use does not support this functionality.
+      </p>
+    </div>
 
     <div class="bs-callout bs-callout-warning">
       <h4>Init running time</h4>
@@ -210,14 +214,11 @@
     </div>
 
     <p class="lead">To start your development servers using the CleverStack CLI.</p>
-      <div class="highlight"><pre><code class="bash"><span class="nb">cd </span>my-app
-</code></pre></div>
-      <div class="highlight"><pre><code class="bash">clever serve
-</code></pre></div>
+      <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>my-app</code></pre></div>
+      <div class="highlight"><pre><code class="language-bash" data-lang="bash">clever serve</code></pre></div>
 
     <p>You are now <strong>serving</strong> http requests, open your web browser:</p>
-      <div class="highlight"><pre><code class="bash">http://localhost:9000
-</code></pre></div>
+      <div class="highlight"><pre><code class="language-bash" data-lang="bash">http://localhost:9000</code></pre></div>
 
     <p>From here we recommend visiting our <a href="/documentation">Documentation</a></p>
   </div>
