@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CleverStack, the Enterprise-grade, Open-Source Full-Stack JavaScript Framework built on NodeJS and Angular, MEAN and so much more!">
+<meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development, node.js, express, mongoose, mongodb, angularjs, swig, sequelize, sequelizejs, orm, odm, cli">
+<meta name="author" content="Richard Gustin and contributors to the CleverStack Repositories">
+
+<title>
+  
+    Backend Modules &middot; CleverStack.io
+  
+</title>
+
+<!-- Bootstrap core CSS -->
+<link href="/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+<!-- Application CSS -->
+<link href="/dist/css/application.min.css" rel="stylesheet">
+
+
+<!-- Documentation extras -->
+<link href="/assets/css/docs.css" rel="stylesheet">
+<link href="/assets/css/pygments-manni.css" rel="stylesheet">
+<!--[if lt IE 9]><script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="/assets/ico/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-touch-icon-152x152.png" />
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+  var tag = document.createElement('script');  tag.src = "http://www.youtube.com/player_api";  var firstScriptTag = document.getElementsByTagName('script')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  </script>
+
+  </head>
+  <body>
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <div class="github-ribbon">
+       <a href="https://github.com/cleverstack/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+    </div>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">CleverStack.io</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/getting-started">Getting started</a>
+        </li>
+        <li>
+          <a href="/why-cleverstack">Why cleverstack?</a>
+        </li>
+        <li>
+          <a href="/modules">Modules</a>
+        </li>
+        <li>
+          <a href="/documentation">Documentation</a>
+        </li>
+<!--         <li>
+          <a href="/css">CSS</a>
+        </li>
+        <li>
+          <a href="/components">Components</a>
+        </li>
+        <li>
+          <a href="/javascript">JavaScript</a>
+        </li>
+        <li>
+          <a href="/customize">Customize</a>
+        </li> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Docs page layout -->
+    <div class="bs-header" id="content">
+      <div class="container">
+        <h1>Backend Modules</h1>
+        <p>An Indepth guides of the CleverStack NodeJS Backend, covering installation, configuration, usage, extending, testing and much more.</p>
+      </div>
+    </div>
+
+    <!-- Callout for the old docs link -->
+    <!-- <div class="bs-old-docs">
+  <div class="container">
+    <strong>
+      <a href="/2.3.2/">Looking for Bootstrap 2.3.2 docs?</a>
+    </strong>
+    We've moved it to a new home while we push forward with Bootstrap 3. <a href="http://blog.getbootstrap.com/">Read the blog</a> for details.
+  </div>
+</div>
+ -->
+
+    <div class="container bs-docs-container">
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-sidenav">
+              
+                <li><a href="/documentation/backend" style="padding-left: 10px !important;color: #563d7c;"><strong>Backend</strong> <br/><small>(viewing Modules)</small></a></li>
+<li><a href="#structure">Structure</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#events">Events</a>
+  <ul class="nav nav-nest">
+    <li><a href="#events-presetup">preSetup</a></li>
+    <li><a href="#events-preinit">preInit</a></li>
+    <li><a href="#events-init">init</a></li>
+    <li><a href="#events-configure-app">configureApp</a></li>
+    <li><a href="#events-preresources">preResources</a></li>
+    <li><a href="#events-modulesloaded">modulesLoaded</a></li>
+    <li><a href="#events-preroute">preRoute</a></li>
+    <li><a href="#events-preshutdown">preShutdown</a></li>
+  </ul>
+</li>
+              
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9" role="main">
+          	<div class="bs-docs-section">
+  <div class="section-page"><h1 id="overview" class="page-header">
+  Modules<br/>
+  <small>Cleverstacks's Architecture has been designed to be simple and intiutive to use and extend.</small>
+</h1>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li class="active">Modules</li>
+</ol>
+
+<p class="lead">These are the most important part of your application, where all your functionality, dependencies and testing are defined.</p></div>
+  <div class="section-page"><h3 id="structure" class="page-header">
+  Structure <a class="permalink" href="#structure" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/modules">Modules</a></li>
+  <li class="active">Structure</li>
+</ol>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">example-module/
+├── bin/                  <span class="c"># module scripts &amp; binaries</span>
+├── classes/              <span class="c"># module classes</span>
+├── config/               <span class="c"># module specific configs and setting overrides</span>
+├── controllers/          <span class="c"># module controllers</span>
+├── exceptions/           <span class="c"># module custom exceptions</span>
+├── models/               <span class="c"># module models</span>
+├── schema/               <span class="c"># your schema is stored in here</span>
+│   └── seedData.json/    <span class="c"># seed data is used to populate your database tables</span>
+├── services/             <span class="c"># module services</span>
+├── tests/
+│   ├── e2e/              <span class="c"># module end to end tests</span>
+│   └── unit/             <span class="c"># module unit tests</span>
+├── utils/                <span class="c"># module utils</span>
+├── Gruntfile.js          <span class="c"># module grunt tasks</span>
+├── module.js             <span class="c"># main module class</span>
+├── package.json          <span class="c"># module npm dependencies</span>
+└── routes.js             <span class="c"># module routes</span></code></pre></div><br>
+<div style="padding-left: 30px;">
+  <h4>Important files and folders</h5>
+
+  <h5 id="backend-modules-config-default">config/</h5>
+  <ul>
+    <li>Like the applications config folder this module config folder allows you to provide configuration on a per module basis.</li>
+    <li><a href="#backend-modules-config-default">&lt;module&gt;/config/default.json</a></li>
+    <li><a href="#backend-modules-config-global">&lt;module&gt;/config/global.json</a></li><br>
+    <li><span class="label label-danger">Important</span> Every module's json config files must contain (if they exist on disk) an object that has all configuration objects nested in an object under one key which needs to be named the same as your &lt;module&gt;.</li>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+<span class="nt">&quot;moduleName&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="nt">&quot;config&quot;</span><span class="p">:</span> <span class="s2">&quot;here&quot;</span><span class="p">,</span>
+<span class="nt">&quot;another&quot;</span><span class="p">:</span> <span class="s2">&quot;as well&quot;</span>
+<span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+  </ul>
+
+  <h5>tests/</h5>
+  <ul>
+      <li>Two folders for testing, e2e/ and unit/</li>
+      <li>This allows each module to define it's own tests for the functionality (code) that is provided within each module.</li>
+  </ul>
+
+  <h5>package.json</h5>
+  <ul>
+      <li>Defines the modules basic information including name, version and scripts.</li>
+      <li>Defines the modules NPM dependencies.</li>
+  </ul>
+
+  <h5>Gruntfile.js</h5>
+  <ul>
+      <li>A specially formatted Gruntfile which can be used to modify the applications gruntConfig and register grunt tasks.</li>
+  </ul>
+
+  <h5>module.js</h5>
+  <ul>
+      <li>Must export a Module Class which will be imported by the moduleLoader.</li>
+  </ul>
+  <div class="bs-callout bs-callout-info">
+    <h4>Lifecycle Hooks</h4>
+    <p>Modules have lifecycle <a href="#backend-modules-hooks">hooks</a> for every situation, like loading, routing, shutdown etc.</p>
+  </div>
+  <div class="bs-callout bs-callout-danger">
+    <h4>File name may change per module</h4>
+    <p>This presumes you have { "main": "module.js" } in your modules <a href="https://github.com/CleverStack/backend-example-module/blob/master/package.json#L22">package.json</a>, otherwise it is named what you want OR if not set at all this file will be called index.js. (As per standard NPM Modules)</p>
+  </div>
+  <p>Here is an example of a module.js file</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Example module.js</span>
+<span class="kd">var</span> <span class="nx">Module</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;classes&#39;</span> <span class="p">).</span><span class="nx">Module</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<span class="nx">preSetup</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s1">&#39;Hello, this module is about to be setup by the moduleLoader&#39;</span> <span class="p">)</span>
+<span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+  <h5>routes.js</h5>
+  <ul>
+      <li>This is where you define what routes your module will handle.</li>
+  </ul>
+</div></div>
+  <div class="section-page"><h3 id="configuration" class="page-header">
+  Configuration <a class="permalink" href="#configuration" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/modules">Modules</a></li>
+  <li class="active">Configuration</li>
+</ol>
+
+<p>You can easily define the modules configuration with these files</p>
+<h5 id="backend-modules-config-default">config/default.json</h5>
+<ul>
+<li><span class="label label-info">Note</span> This file is used mainly to define the basic structure of configuration for each module, primarily used to "prevent cannot access variable of undefined" errors where code relies on the structure of the configuration object.</li>
+<li><strong>This file is not required.</strong></li>
+</ul>
+
+<h5 id="backend-modules-config-global">config/global.json</h5>
+<ul>
+<li>This file is used to define the GLOBAL settings for this module</li><br>
+<li><span class="label label-info">Note</span> this configuration file is used to provide the default GLOBAL config for each module.</li>
+<li><strong>This file is not required.</strong></li>
+</ul><br>
+
+<p><span class="label label-danger">Important</span> Each of these JSON config files must contain (if they exist on disk) an object that has all configuration objects nested in an object under one key which needs to be named the same as your &lt;module&gt;.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;module-name&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;config&quot;</span><span class="p">:</span> <span class="s2">&quot;here&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;another&quot;</span><span class="p">:</span> <span class="s2">&quot;as well&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div></div>
+  <div class="section-page"><h3 id="options" class="page-header">
+  Options <a class="permalink" href="#options" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/modules">Modules</a></li>
+  <li class="active">Options</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="definition" class="page-header">
+  Definition <a class="permalink" href="#definition" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/modules">Modules</a></li>
+  <li class="active">Definition</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="events" class="page-header">
+  Events <a class="permalink" href="#events" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/modules">Modules</a></li>
+  <li class="active">Events</li>
+</ol>
+
+<p>Your 'module.js' file has some lifecycle hooks that you can use to perform operations at certain times during the applications lifecycle, the hooks are fired in the order they are listed here on each module.</p><br>
+
+<p>Example of using a hook:<p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Module</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;classes&#39;</span> <span class="p">).</span><span class="nx">Module</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<span class="nx">preInit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s1">&#39;preInit hook, init is about to be called&#39;</span> <span class="p">);</span>
+<span class="p">}</span>
+<span class="p">});</span></code></pre></div><br>
+<div class="bs-callout bs-callout-danger">
+  <h4>Hook firing order</h4>
+  <p>Modules hooks are applied to each module in the order you have them listed in your package.json <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a>.</p>
+</div>
+
+<h5 id="backend-modules-hooks-presetup">preSetup</h5>
+<ul>
+  <li>This hook is fired inside the main constructor function setup() how it is called before any setup has actually taken place.</li>
+</ul>
+
+<h5 id="backend-modules-hooks-preinit">preInit</h5>
+<ul>
+  <li>This hook is fired just before init() is called, while init() is not a hook but a method you can override without having to call this._super().</li>
+  <li><span class="label label-danger">Important</span> This is the last place to hook into until after init.</li>
+</ul>
+
+<h5 id="backend-modules-hooks-init">init</h5>
+<ul>
+  <li>While this is not a hook, you are able to implement this function which forms the final step in the constructor, meaning it can take advantage of the Optimizing Compiler.</li>
+</ul>
+
+<h5 id="backend-modules-hooks-configure-app">configureApp</h5>
+<ul>
+  <li>This hook allows you to modify the express app from within a module, without the need to make those changes in the index.js file located at backend/index.js</li><br>
+  <li><span class="label label-danger">Important</span> you must emit "appConfigured", until you do the moduleLoader will wait.</li>
+  <li><span class="label label-danger">Important</span> this function is injected with app &amp; express as arguments in the constructors setup() function.</li>
+</ul>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Module</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;classes&#39;</span> <span class="p">).</span><span class="nx">Module</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<span class="nx">configureApp</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">express</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span> <span class="nx">express</span><span class="p">.</span><span class="nx">cookieParser</span><span class="p">()</span> <span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span> <span class="s1">&#39;appConfigured&#39;</span> <span class="p">);</span>
+<span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+<h5 id="backend-modules-hooks-preresources">preResources</h5>
+<ul>
+  <li>This hook is fired just before the main setup() constructor function calls loadResources().</li>
+  <li><span class="label label-danger">Important</span> you must emit "resourcesReady", until you do the moduleLoader will wait.</li>
+</ul>
+
+<h5 id="backend-modules-hooks-modulesloaded">modulesLoaded</h5>
+<ul>
+  <li>This hook is fired after all modules are loaded (for each module).</li>
+  <li><span class="label label-danger">Important</span> you must emit "ready", until you do the moduleLoader will wait.</li>
+  </ul>
+
+  <h5 id="backend-modules-hooks-preroute">preRoute</h5>
+  <ul>
+    <li>This hook is fired just before your routes are attached.</li>
+  </ul>
+
+  <h5 id="backend-modules-hooks-preshutdown">preShutdown</h5>
+  <ul>
+    <li>This hook is fired just before the application shuts down, allowing you to perform any cleanup related tasks.</li>
+  </ul></div>
+</div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="container text-center padtop" role="contentinfo">
+      <p class="legal">Cleverstack.io is developed and maintained by <a href="http://au.linkedin.com/in/richardgustin" target="_blank">Richard Gustin</a> (<a href="https://github.com/pilsy" target="_blank">@pilsy</a>),<br/>our core developers, our open source community and <a href="http://www.clevertech.biz/" target="_blank">Clevertech</a>.<br/>2015 Cleverstack.io All Rights Reserved.</p>
+    </footer>
+
+    <!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+
+<!-- <script src="/assets/js/holder.js"></script> -->
+<!-- <script src="/dist/js/application.min.js"></script> -->
+<script src="/assets/js/application.js"></script>
+
+
+
+
+
+
+<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>
+
+<!-- Analytics
+================================================== -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+
+  // var _gauges = _gauges || [];
+  // (function() {
+  //   var t   = document.createElement('script');
+  //   t.async = true;
+  //   t.id    = 'gauges-tracker';
+  //   t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+  //   t.src = '//secure.gaug.es/track.js';
+  //   var s = document.getElementsByTagName('script')[0];
+  //   s.parentNode.insertBefore(t, s);
+  // })();
+</script>
+
+
+  </body>
+</html>

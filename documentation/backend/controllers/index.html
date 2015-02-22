@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CleverStack, the Enterprise-grade, Open-Source Full-Stack JavaScript Framework built on NodeJS and Angular, MEAN and so much more!">
+<meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development, node.js, express, mongoose, mongodb, angularjs, swig, sequelize, sequelizejs, orm, odm, cli">
+<meta name="author" content="Richard Gustin and contributors to the CleverStack Repositories">
+
+<title>
+  
+    Backend Controllers &middot; CleverStack.io
+  
+</title>
+
+<!-- Bootstrap core CSS -->
+<link href="/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+<!-- Application CSS -->
+<link href="/dist/css/application.min.css" rel="stylesheet">
+
+
+<!-- Documentation extras -->
+<link href="/assets/css/docs.css" rel="stylesheet">
+<link href="/assets/css/pygments-manni.css" rel="stylesheet">
+<!--[if lt IE 9]><script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="/assets/ico/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-touch-icon-152x152.png" />
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+  var tag = document.createElement('script');  tag.src = "http://www.youtube.com/player_api";  var firstScriptTag = document.getElementsByTagName('script')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  </script>
+
+  </head>
+  <body>
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <div class="github-ribbon">
+       <a href="https://github.com/cleverstack/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+    </div>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">CleverStack.io</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/getting-started">Getting started</a>
+        </li>
+        <li>
+          <a href="/why-cleverstack">Why cleverstack?</a>
+        </li>
+        <li>
+          <a href="/modules">Modules</a>
+        </li>
+        <li>
+          <a href="/documentation">Documentation</a>
+        </li>
+<!--         <li>
+          <a href="/css">CSS</a>
+        </li>
+        <li>
+          <a href="/components">Components</a>
+        </li>
+        <li>
+          <a href="/javascript">JavaScript</a>
+        </li>
+        <li>
+          <a href="/customize">Customize</a>
+        </li> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Docs page layout -->
+    <div class="bs-header" id="content">
+      <div class="container">
+        <h1>Backend Controllers</h1>
+        <p>An Indepth guides of the CleverStack NodeJS Backend, covering installation, configuration, usage, extending, testing and much more.</p>
+      </div>
+    </div>
+
+    <!-- Callout for the old docs link -->
+    <!-- <div class="bs-old-docs">
+  <div class="container">
+    <strong>
+      <a href="/2.3.2/">Looking for Bootstrap 2.3.2 docs?</a>
+    </strong>
+    We've moved it to a new home while we push forward with Bootstrap 3. <a href="http://blog.getbootstrap.com/">Read the blog</a> for details.
+  </div>
+</div>
+ -->
+
+    <div class="container bs-docs-container">
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-sidenav">
+              
+                <li><a href="/documentation/backend" style="padding-left: 10px !important;color: #563d7c;"><strong>Backend</strong> <br/><small>(viewing Controllers)</small></a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#actions">Actions</a></li>
+<li><a href="#middleware">Middleware</a></li>
+<li><a href="#routing">Routing</a></li>
+<!--li><a href="#examples">Examples</a></li>
+<li><a href="#testing">Testing</a></li-->
+              
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9" role="main">
+          	<div class="bs-docs-section">
+  <div class="section-page"><h1 id="overview" class="page-header">
+  Controllers<br/>
+  <small>Lightning-fast and flexible controller prototype</small>
+</h1>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li class="active">Controllers</li>
+</ol>
+
+<p class="lead sub">The main aim of the controller is to help simplify the most common tasks that you need to do when setting up routes and functions/classes to handle them.</p>
+
+<p>Controllers are the thing that directly responds to each HTTP Request that comes into your application, as such each web request will result in (if routed) a new instance of a Controller (Class).</p>
+<p>Avoid callback soup/hell and promise slowdown by using this.proxy() or this.callback() in the Static section of the Controller, this keeps code nesting to a minimum and brings code re-use up. Instead of passing around req and res as arguments like other less organized solutions, in CleverStack they are exposed as this.req and this.res</p>
+
+<h5 class="page-header">Highlights</h5>
+<ul>
+  <li>Lightning fast</li>
+  <li>V8's Hidden Classes &amp; Inline Caches</li>
+  <li>V8's Optimizing Compiler which generates efficient machine code to run in place of your javascript</li>
+  <li>Clean, Efficient and Optimized code</li>
+  <li>Super methods</li>
+  <li>Static inheritance</li>
+  <li>Prototypal inheritance</li>
+  <li>Setup and initialization methods for both Static and Prototype</li>
+  <li>Easy-to-use method proxys with currying ( Static.callback() and Prototype.proxy() )</li>
+  <li>Internet Addressable functions, simply add 'Action' to the end of your controllers method() name and it will be Internet Addressable (as long as a route points to that controller).</li>
+  <li>Private functions, any function without 'Action' on the end of its name is NOT Internet Addressable</li>
+  <li>Easy accessors for Request and Response, available as this.req and this.res.</li>
+</ul></div>
+  <div class="section-page"><h3 id="options" class="page-header">
+  Options <a class="permalink" href="#options" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/controllers">Controllers</a></li>
+  <li class="active">Options</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div>
+
+<p>You define any options along with the Class/Static section of your Controller.extend() call</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Controller</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+<span class="cm">/* @Class */</span>
+<span class="p">{</span>
+  <span class="c1">// Options &amp; Middleware are defined here</span>
+<span class="p">},</span>
+<span class="cm">/* @Prototype */</span>
+<span class="p">{</span>
+  <span class="c1">// Actions here</span>
+<span class="p">})</span></code></pre></div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+      <th style="width: 100px;">Property</th>
+      <th style="width: 150px;">Type/s</th>
+      <th style="width: 50px;">Default</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <td>route</td>
+      <td>boolean | string | array</td>
+      <td>Dynamic</td>
+      <td>Sets the route/s for the controllers actions, if this is not set it will be automatically determined based off the Controllers name (usually the filename less "Controller", eg User /user/...)</td>
+  </tr>
+  <tr>
+      <td>autoRouting</td>
+      <td>boolean | array</td>
+      <td>true</td>
+      <td>Turns automatic routing (binding of routes to the router) on or off, additionally you can provide an array of middleware to attach</td>
+  </tr>
+  <tr>
+      <td>restfulRouting</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Turns RESTFul routing to actions on or off.</td>
+  </tr>
+  <tr>
+      <td>actionRouting</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Turns Action Based routing on or off.</td>
+  </tr>
+  <tr>
+      <td>service</td>
+      <td>boolean | Model</td>
+      <td>false</td>
+      <td>If set to a CleverStack Model it will provide automatic CRUD routing using restfulActions and/or actionRouting</td>
+  </tr>
+  </tbody>
+</table></div>
+  <div class="section-page"><h3 id="definition" class="page-header">
+  Definition <a class="permalink" href="#definition" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/controllers">Controllers</a></li>
+  <li class="active">Definition</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">ExampleController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Controller</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="c1">// example that returns JSON, available from route &#39;/example/hello&#39;</span>
+        <span class="nx">helloAction</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+                <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hi there&#39;</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">};</span></code></pre></div></div>
+  <div class="section-page"><h3 id="actions" class="page-header">
+  Actions <a class="permalink" href="#actions" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/controllers">Controllers</a></li>
+  <li class="active">Actions</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div>
+
+<p>
+  When doing a GET /example it will route to either listAction first OR getAction if listAction is not defined.<br>
+  If neither are defined, express's .next() function will be called allowing it to fall through the controller and move onto any other middleware you may have configured.<br>
+  If you want /example/hello as a route, you can simply implement helloAction in your controller and it will be automatically routed to it.
+</p>
+<div class="bs-callout bs-callout-info">
+  <h4>Standard for defining actions</h4>
+  <p>This is the default way to setup a controller to use actions. By default you can also visit /example/12 and it will route to the getAction function in your controller (if it's defined) with this.req.params.id set for you to use (the same applies for all HTTP methods, eg PUT/DELETE/POST/et cetera)</p>
+</div></div>
+  <div class="section-page"><h3 id="middleware" class="page-header">
+  Middleware <a class="permalink" href="#middleware" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/controllers">Controllers</a></li>
+  <li class="active">Middleware</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">ExampleController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Controller</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="nx">someMiddleware</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+                <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hi from middleware!&#39;</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="c1">// example that returns JSON, available from route &#39;/example/hello&#39;</span>
+        <span class="nx">helloAction</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+                <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hi there&#39;</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">};</span></code></pre></div></div>
+  <div class="section-page"><h3 id="routing" class="page-header">
+  Routing <a class="permalink" href="#routing" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/controllers">Controllers</a></li>
+  <li class="active">Routing</li>
+</ol>
+
+<p>Your modules routes.js file is what defines which Controllers are loaded and added into routes, this example shows the default way you can attach your controller. (Except for Controllers which have autoRoute enabled, those controllers have these routes automatically attached)</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// modules/backend-example-module/routes.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">ExampleController</span> <span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1">// Restful and Action based routing</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span> <span class="s1">&#39;/example/:action/:id?&#39;</span><span class="p">,</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">attach</span><span class="p">()</span> <span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span> <span class="s1">&#39;/example/?:action?&#39;</span><span class="p">,</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">attach</span><span class="p">()</span> <span class="p">);</span>
+
+  <span class="c1">// Middleware routing</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span> <span class="nx">ExampleController</span><span class="p">.</span><span class="nx">someMiddleware</span> <span class="p">);</span>
+
+<span class="p">}</span></code></pre></div>
+<p><span class="label label-info">Note</span> This will automatically load the ExampleController's dependencies including Services, Models and any other resources.</p>
+<p><span class="label label-info">Note</span> We use ExpressJS as our main web service, so be sure to checkout how to use <a href="http://expressjs.com/api.html#app.VERB">ExpressJS Routes</a></p><br/>
+
+<h5>Automatic Routing ( Class.autoRouting )</h5>
+<ul>
+  <li>Ability to turn on or off autoRouting (true or array for ON, false for OFF)</li>
+  <li>Array notation allows (Connect or any other) Middleware to be attached to the routes that are autoRouted</li>
+  <li>Route naming: Ability to either define your own route (name), or have it automatically generated based on the filename of your controller! (ExampleController would have a route name of /example and /examples in a RESTful fashion )</li>
+</ul>
+
+Examples:
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="nx">autoRouting</span><span class="o">:</span> <span class="p">[</span>
+        <span class="c1">// As a String (only available for methods on the controllers Class, either inherited or defined)</span>
+        <span class="s1">&#39;middlewareFromThisController&#39;</span><span class="p">,</span>
+
+        <span class="c1">// Any function</span>
+        <span class="kd">function</span> <span class="nx">definedFunction</span><span class="p">(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// any function (from any file) that takes these three arguments can be attached</span>
+        <span class="p">},</span>
+
+        <span class="c1">// CleverStack example</span>
+        <span class="nx">PermissionController</span><span class="p">.</span><span class="nx">requiresPermission</span><span class="p">({</span>
+            <span class="nx">all</span><span class="o">:</span> <span class="s1">&#39;Example.$action&#39;</span><span class="p">,</span> <span class="c1">// optional: ability to define rules based on action (Example.post for POST, etc)</span>
+            <span class="nx">postAction</span><span class="o">:</span> <span class="kc">false</span>       <span class="c1">// optional: ability to define overrides per action (Overrides must include &#39;Action&#39;)</span>
+        <span class="p">})</span>
+    <span class="p">],</span>
+
+    <span class="nx">middlewareFromThisController</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Attached inside of autoRouting array</span>
+        <span class="nx">next</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span></code></pre></div></div>
+</div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="container text-center padtop" role="contentinfo">
+      <p class="legal">Cleverstack.io is developed and maintained by <a href="http://au.linkedin.com/in/richardgustin" target="_blank">Richard Gustin</a> (<a href="https://github.com/pilsy" target="_blank">@pilsy</a>),<br/>our core developers, our open source community and <a href="http://www.clevertech.biz/" target="_blank">Clevertech</a>.<br/>2015 Cleverstack.io All Rights Reserved.</p>
+    </footer>
+
+    <!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+
+<!-- <script src="/assets/js/holder.js"></script> -->
+<!-- <script src="/dist/js/application.min.js"></script> -->
+<script src="/assets/js/application.js"></script>
+
+
+
+
+
+
+<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>
+
+<!-- Analytics
+================================================== -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+
+  // var _gauges = _gauges || [];
+  // (function() {
+  //   var t   = document.createElement('script');
+  //   t.async = true;
+  //   t.id    = 'gauges-tracker';
+  //   t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+  //   t.src = '//secure.gaug.es/track.js';
+  //   var s = document.getElementsByTagName('script')[0];
+  //   s.parentNode.insertBefore(t, s);
+  // })();
+</script>
+
+
+  </body>
+</html>

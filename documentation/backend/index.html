@@ -11,7 +11,7 @@
 
 <title>
   
-    Documentation &middot; CleverStack.io
+    Backend Documenation &middot; CleverStack.io
   
 </title>
 
@@ -88,7 +88,7 @@
         <li>
           <a href="/modules">Modules</a>
         </li>
-        <li class="active">
+        <li>
           <a href="/documentation">Documentation</a>
         </li>
 <!--         <li>
@@ -117,8 +117,8 @@
     <!-- Docs page layout -->
     <div class="bs-header" id="content">
       <div class="container">
-        <h1>Documentation</h1>
-        <p>Indepth guides to CleverStack covering installation, configuration, usage and extending.</p>
+        <h1>Backend Documenation</h1>
+        <p>Indepth guides for CleverStack's Backend covering installation, configuration, usage and extending.</p>
       </div>
     </div>
 
@@ -140,107 +140,23 @@
           <div class="bs-sidebar hidden-print" role="complementary">
             <ul class="nav bs-sidenav">
               
-                <li>
-  <a href="#overview">Overview</a>
-</li>
-<li>
-  <a href="#cli">CLI</a>
-  <ul class="nav">
-    <li><a href="#cli-overview">Overview</a></li>
-    <li>
-      <a href="#cli-prerequisites">Prerequisites</a>
-      <ul class="nav nav-nest-1">
-        <li><a href="#cli-prerequisites-node">NodeJS &amp; NPM</a></li>
-        <li><a href="#cli-prerequisites-bower">Bower</a></li>
-        <li><a href="#cli-prerequisites-grunt">Grunt</a></li>
-      </ul>
-    </li>
-    <li><a href="#cli-installation">Installation</a></li>
-    <li>
-      <a href="#cli-commands">Commands</a>
-      <ul class="nav nav-nest-1">
-        <li><a href="#cli-commands-build">Build</a></li>
-        <li><a href="#cli-commands-downgrade">Downgrade</a></li>
-        <li><a href="#cli-commands-init">Init</a></li>
-        <li><a href="#cli-commands-install">Install</a></li>
-        <li><a href="#cli-commands-generate">Generate</a></li>
-        <li><a href="#cli-commands-list">List</a></li>
-        <li><a href="#cli-commands-new">New</a></li>
-        <li><a href="#cli-commands-remove">Remove</a></li>
-        <li><a href="#cli-commands-repl">Repl</a></li>
-        <li><a href="#cli-commands-routes">Routes</a></li>
-        <li><a href="#cli-commands-scaffold">Scaffold</a></li>
-        <li><a href="#cli-commands-search">Seach</a></li>
-        <li><a href="#cli-commands-setup">Setup</a></li>
-        <li><a href="#cli-commands-server">Server</a></li>
-        <li><a href="#cli-commands-test">Test</a></li>
-        <li><a href="#cli-commands-upgrade">Upgrade</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#cli-modules">Modules</a>
-      <ul class="nav nav-nest-1">
-        <li><a href="#cli-modules-official">Official modules</a>
-          <ul class="nav nav-nest-2" style="margin-bottom: 0px;">
-            <li><a href="#cli-modules-official-orm">ORM (SQL)</a></li>
-            <li><a href="#cli-modules-official-odm">ODM (NoSQL)</a></li>
-            <li><a href="#cli-modules-official-background-tasks">Background Tasks</a></li>
-            <li><a href="#cli-modules-official-auth">Authentication</a></li>
-          </ul>
-        </li>
-        <li><a href="#cli-modules-core">Core modules</a>
-          <ul class="nav nav-nest-2">
-            <li><a href="#cli-modules-core-controller">Controller</a></li>
-            <li><a href="#cli-modules-core-di">Dependency Injector</a></li>
-          </ul>
-        </li>
-        <li><a href="#cli-modules-using">Using modules</a></li>
-        <li><a href="#cli-modules-finding">Finding modules</a></li>
-        <li><a href="#cli-modules-creating">Creating modules</a></li>
-      </ul>
-    </li>
-    <li><a href="#cli-troubleshooting">Troubleshooting</a></li>
-    <li><a href="#cli-contributing">Contributing</a></li>
+                <li><a href="#backend-introduction">Introduction</a></li>
+<li><a href="#backend-installation">Installation</a></li>
+<li><a href="#backend-configuration">Configuration</a></li>
+<li><a href="#backend-project-structure">Structure</a></li>
+<li><a href="#backend-core-components">Core Components</a>
+  <ul class="nav nav-nest">
+    <li><a href="/documentation/backend/classes">Classes</a></li>
+    <li><a href="/documentation/backend/modules">Modules</a>
+    <li><a href="/documentation/backend/controllers">Controllers</a>
+    <li><a href="/documentation/backend/services">Services</a>
+    <li><a href="/documentation/backend/models">Models</a>
   </ul>
 </li>
-<li><a href="/documentation/backend">Backend</a></li>
-<li>
-  <a href="#frontend">Frontend</a>
-  <ul class="nav">
-    <li><a href="#frontend-introduction">Introduction</a></li>
-    <li><a href="#frontend-structure">Structure</a>
-      <ul class="nav nav-nest-1">
-        <li><a href="#frontend-structure-folder">Folder Structure</a></li>
-        <li><a href="#frontend-structure-folder">Important Files &amp; Folders</a></li>
-        <li><a href="#frontend-structure-modules">Modules</a></li>
-      </ul>
-    </li>
-    <li><a href="#frontend-configuration">Configuration</a></li>
-    <li>
-      <a href="#frontend-modules">Modules</a>
-      <ul class="nav nav-nest-1">
-        <li><a href="#frontend-modules-structure">Structure</a></li>
-        <li><a href="#frontend-modules-configuration">Configuration</a></li>
-        <li><a href="#frontend-modules-creating">Creating Modules</a></li>
-        <li><a href="#frontend-modules-finding">Publishing Modules</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#frontend-usage">Usage</a>
-      <ul class="nav" style="margin-bottom: 0px;">
-        <li style="padding-left: 10px;"><a href="#frontend-usage-structure">Controllers</a></li>
-        <li style="padding-left: 10px;"><a href="#frontend-usage-finding">Routing</a></li>
-        <li style="padding-left: 10px;"><a href="#frontend-usage-configuration">Models</a></li>
-        <li style="padding-left: 10px;"><a href="#frontend-usage-creating">Views</a></li>
-      </ul>
-    </li>
-    <li><a href="#frontend-testing">Testing</a></li>
-    <li><a href="#frontend-troubleshooting">Troubleshooting</a></li>
-    <li><a href="#frontend-contributing">Contributing</a></li>
-  </ul>
-</li>
-<li>
-  <a href="#testing">Running Tests</a>
+<li><a href="#backend-magic-modules">Magic Modules</a></li>
+<li><a href="#backend-di">Dependency Injection</a></li>
+<li><a href="#backend-troubleshooting">Troubleshooting</a></li>
+<li><a href="#testing">Running Tests</a>
   <ul class="nav">
     <li><a href="#testing-unit">Running Unit Tests</a></li>
     <li><a href="#testing-e2e">Running E2E Tests</a></li>
@@ -254,265 +170,14 @@
     <li><a href="#deployment-strategies">Deployment Strategies</a></li>
   </ul>
 </li>
-<li>
-  <a href="#troubleshooting">Troubleshooting</a>
-</li>
-<!-- <li>
-  <a href="#faq">FAQ</a>
-</li>
- -->
-
               
             </ul>
           </div>
         </div>
         <div class="col-md-9" role="main">
-            <!-- Overview
+            <!-- Back-end (NodeJS)
   ================================================== -->
   <div class="bs-docs-section">
-    <div class="page-header">
-      <h1 id="overview">Overview</h1>
-    </div>
-    <p class="lead">Developers all over the world for years have been striving to be able to create smarter, smaller, easier to manage, faster to develop, re-usable chunks of code that are as modular as possible without sacrificing code quality or developer sanity.</p>
-
-    <p>CleverStack set out to accomplish this and create the worlds first Modular Full Stack JS Framework, with the Architecture designed by <a href="https://github.com/pilsy">Richard Gustin</a> and his role as Lead working with a <a href="/about/#team">group of highly skilled developers</a> we believe that we accomplished this task.</p>
-
-    <p>What this mean's for you is, you are able to create smaller, more specific modules that are extremely powerful, completely self contained and can be used between many projects. If you believe your module is useful you can publish your module to the CleverStack EcoSystem through NPM (Backend) or Bower (Frontend).</p>
-  </div>
-
-  <div class="bs-docs-section">
-    <!-- CLI
-================================================== -->
-<div class="page-header">
-  <h1 id="cli">CleverStack CLI</h1>
-</div>
-<p class="lead">CleverStack provides a fully featured Command Line Interface that does everything you will need in your Software Development Lifecycle</p>
-
-<!-- Overview
-================================================== -->
-<h3 class="page-header" id="cli-overview">Overview</h3>
-<p>Our Command Line Interface (CLI) was designed to be as modular as possible, so that applications could take advantage of modules that are created and published to our Open Source EcoSystem by anyone, as well as our Official Modules.</p>
-
-<!-- Prerequisites
-================================================== -->
-<h3  class="page-header" id="cli-prerequisites">Prerequisites</h3>
-<p>The CLI has a few packages it depends on that cannot be defined inside of it's package.json, you have to install these before you can install or use the Command Line Interface.</p><br>
-
-<dl class="dl-horizontal">
-  <dt><a id="cli-prerequisites-node" href="http://nodejs.org">NodeJS &amp; NPM</a></dt>
-  <dd>is a platform built on <a href="https://code.google.com/p/v8/">Chrome's JavaScript runtime</a> for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices. <a href="http://nodejs.org/download/">Download now</a></dd>
-
-  <br>
-
-  <dt><a id="cli-prerequisites-bower" href="http://bower.io/">Bower</a></dt>
-  <dd>is a package manager for the web made by Twitter. It offers a generic, unopinionated solution to the problem of front-end package management, while exposing the package dependency model via an API that can be consumed by a more opinionated build stack. There are no system wide dependencies, no dependencies are shared between different Applications, and the dependency tree is flat.<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install -g bower</code></pre></div></dd>
-
-  <br>
-
-  <dt><a id="cli-prerequisites-grunt" href="http://gruntjs.com/">Grunt</a></dt>
-  <dd>is a Task Runner for <a href="http://nodejs.org">Node.js</a>, with literally hundreds of plugins to choose from, you can use Grunt to automate just about anything with a minimum of effort. If someone hasn't already built what you need, authoring and publishing your own Grunt plugin to npm is a breeze.<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install -g grunt-cli</code></pre></div></dd>
-</dl>
-
-<!-- Installation
-================================================== -->
-<h3 class="page-header" id="cli-installation">Installation</h3>
-<p>Installation is made easy using NPM, to install the CleverStack Command Line Interface (CLI) please run the following.</p>
-  <div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install -g cleverstack-cli</code></pre></div>
-
-<div class="bs-callout bs-callout-info">
-  <h4>Windows users</h4>
-  <p>
-    You should run this command (and others like it) in the windows command (cmd) prompt, and in some cases you will need to run your cmd prompt as Administrator
-  </p>
-</div>
-
-<div class="bs-callout bs-callout-danger">
-  <h4>Linux/Mac Users</h4>
-  <p>
-    You may need to run this command using "sudo", but you should note if you need to use sudo then something is wrong with your file/folder permissions
-    <div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo npm install -g cleverstack-cli</code></pre></div>
-  </p>
-</div>
-
-<!-- Commands
-================================================== -->
-<h3 class="page-header" id="cli-commands">Commands</h3>
-<p>Here is a list of all commands available using our Command Line Interface (CLI).</p><br>
-
-<h4 id="cli-commands-build" class="page-header">Build</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-downgrade" class="page-header">Downgrade</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-init" class="page-header">Init</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-install" class="page-header">Install</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-generate" class="page-header">Generate</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-list" class="page-header">List</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-new" class="page-header">New</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-remove" class="page-header">Remove</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-repl" class="page-header">Repl</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-routes" class="page-header">Routes</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-scaffold" class="page-header">Scaffold</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-search" class="page-header">Search</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-setup" class="page-header">Setup</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-server" class="page-header">Server</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-test" class="page-header">Test</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<h4 id="cli-commands-upgrade" class="page-header">Upgrade</h4>
-<p>Coming soon, we are working hard on the section!</p>
-
-<!-- Modules
-================================================== -->
-<h3 class="page-header" id="cli-modules">Modules</h3>
-<p>All functionality except what is in the CleverStack Core must be defined inside of modules, because we take advantage of NPM &amp; Bower for our package management it mean's that you can use the thousands of already available packages as Modules for your CleverStack powered Applications.</p>
-
-<div style="padding-left: 20px;">
-
-  <!-- Official Modules
-  ================================================== -->
-  <h4 class="page-header" id="cli-modules-official">Official Modules</h4>
-  <p>We currently have a handful of important Official CleverStack modules available which we list here and update as frequently as possible, however we recommend visiting our <a href="/modules/?frontend=on&backend=on">Modules</a> page to get the full and upto date list of modules.</p><br>
-
-  <div style="padding-left: 30px;">
-    <h5 id="cli-modules-official-orm"><a href="https://github.com/CleverStack/clever-orm">Object Relational Mapper (ORM)</a></h5>
-    <p>This module deeply integrates <a href="https://github.com/sequelize/sequelize">SequelizeJS</a> into CleverStack, to provide an out of the box <a href="http://en.wikipedia.org/wiki/Object-relational_mapping">Object Relational Mapper</a> which is widely accepted, widely used, full featured and mature SQL Solution for CleverStack.</p>
-    <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">clever</span> <span class="nx">install</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">orm</span></code></pre></div><br>
-
-    <h5 id="cli-modules-official-odm"><a href="https://github.com/CleverStack/clever-odm">Object Document Mapper (ODM)</a></h5>
-    <p>This module deeply integrates <a href="http://mongoosejs.com/">MongooseJS</a> into CleverStack, to provide an out of the box Object Document Mapper, which is a primarily MongoDB based <a href="http://en.wikipedia.org/wiki/NoSQL">NoSQL</a> solution to storing data.</p>
-    <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">clever</span> <span class="nx">install</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">odm</span></code></pre></div><br>
-
-    <h5 id="cli-modules-official-background-tasks"><a href="https://github.com/CleverStack/clever-background-tasks">Background Tasks</a></h5>
-    <p>This module allows you to define tasks that will be run in the background a separate dedicated process, by providing master-slave locking this module also allows you to never have to use CRON files ever again; Simply define your task as masterOnly and it will only run on the Master server ensuring its execution does not overlap (even in an elastic cloud configuration with hundreds of servers).</p>
-
-    <p>While NodeJS is designed around being non blocking it is still very possible for any line of code to block any other code running until that line has finished executing, this means that processing CPU intensive operations cannot be done inside any of the Processes that are responding to HTTP Requests (otherwise the user will get no response, because its busy doing some CPU Intensive Operation).</p>
-    <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">clever</span> <span class="nx">install</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">background</span><span class="o">-</span><span class="nx">tasks</span></code></pre></div><br>
-
-    <h5 id="cli-modules-official-auth"><a href="https://github.com/CleverStack/clever-auth">Authentication</a></h5>
-    <p>This module provides you with a user model, service, migrations and all the code you need to provide a registration, login/logout, forgotten password as well as Google, LinkedIn, Twitter and Facebook social signup &amp; signin. (Both the Frontend and Backend have this module available for installation).</p>
-    <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">clever</span> <span class="nx">install</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">auth</span></code></pre></div>
-  </div>
-
-  <!-- Core Modules
-  ================================================== -->
-  <h4 class="page-header" id="cli-modules-core">Core Modules</h4>
-  <p>This is a list of modules that are used in the Core of CleverStack, you do not need to install these (as they are by default). However these modules are designed to work with anything, so if you want to use these components in something other than CleverStack you have that option.</p><br>
-
-  <div style="padding-left: 30px;">
-    <h5 id="cli-modules-core-controller"><a href="https://github.com/clevertech/clever-controller">Controller</a></h5>
-    <p>This module provides Lightning-fast flexible Controller's for CleverStack, the main aim of the controller is to help simplify the most common tasks that you need to do when setting up routes and functions/classes to handle them.</p><br>
-
-    <h5 id="cli-modules-core-di"><a href="https://github.com/CleverStack/clever-injector">Dependency Injector (DI)</a></h5>
-    <p>This module provides Dependency Injection for CleverStack, it is non blocking, Lightning-fast, easy to use and flexible.</p>
-  </div>
-
-  <!-- Using Modules
-  ================================================== -->
-  <h4 class="page-header" id="cli-modules-using">Using Modules</h4>
-  <p>Adding, Removing, Upgrading or Downgrading modules is the same with both the Frontend or Backend seeds. Here is some examples of working with the clever-auth module.</p>
-
-  <h5 id="cli-modules-adding">Adding</h5>
-  <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever install clever-auth</code></pre></div>
-
-  <h5 id="cli-modules-removing">Removing</h5>
-  <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever remove clever-auth</code></pre></div>
-
-  <h5 id="cli-modules-upgrading">Upgrading</h5>
-  <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever upgrade clever-auth</code></pre></div>
-
-  <h5 id="cli-modules-downgrading">Downgrading</h5>
-  <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever downgrade clever-auth</code></pre></div>
-
-  <p><span class="label label-info">Note</span> You can specify multiple modules in each install, remove, upgrade or downgrade command separated by spaces.</p>
-
-  <!-- Finding Modules
-  ================================================== -->
-  <h4 class="page-header" id="cli-modules-finding">Finding Modules</h4>
-  <p>Finding modules is easy, here are some of the ways available</p>
-
-  <ul>
-    <li>The <a href="/modules/?frontend=on&backend=on">CleverStack Modules</a> Page.</li>
-    <li>The <a href="https://www.npmjs.org/search?q=cleverstack-module">NPM Packages</a> Page, using the keyword "cleverstack-module".</li>
-    <li>The <a href="http://bower.io/search/?q=cleverstack-module">Bower Packages</a> Page, using the keyword "cleverstack-module".</li>
-    <li>The Command Line
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Using the CleverStack CLI</span>
-<span class="nv">$ </span>clever search cleverstack-module
-
-<span class="c"># Using NPM (using the keyword &quot;cleverstack-module&quot;)</span>
-<span class="nv">$ </span>npm search cleverstack-module
-
-<span class="c"># Using Bower (using the keyword &quot;cleverstack-module&quot;)</span>
-<span class="nv">$ </span>bower search cleverstack-module</code></pre></div>
-    </li>
-  </ul>
-
-  <!-- Creating Modules
-  ================================================== -->
-  <h4 class="page-header" id="cli-modules-creating">Creating your own Modules</h4>
-  <p>You can develop your own CleverStack modules, here's how you create a module using the CleverStack CLI.</p>
-  <ol>
-    <li>
-      <p>Run the following command:</p>
-      <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever new &lt;my-module&gt;</code></pre></div>
-      <p>This will install and setup a new skeleton module for you.</p>
-    </li>
-  </ol><br>
-  <!-- @TODO change this over to point at each respective area in the documentation -->
-  <h5>Example modules:</h5>
-  <ul>
-    <li><a href="https://github.com/CleverStack/frontend-example-module">Frontend Example Module</a></li>
-    <li><a href="https://github.com/CleverStack/backend-example-module">Backend Example Module</a></li>
-  </ul>
-
-</div>
-
-<!-- Troubleshooting
-================================================== -->
-<h3 class="page-header" id="cli-troubleshooting">Troubleshooting</h3>
-<p>If you have any problems (including errors, exceptions and even general usage) with the CleverStack CLI.</p>
-<ul>
-  <li>Check the Github <a href="https://github.com/cleverstack/cleverstack-cli/issues">issues page</a>.</li>
-  <li>Log into the public access <a href="https://www.hipchat.com/gwM43u4Mw">HipChat Room</a> and ask for help.</li>
-  <li>Get some help from the Cleverstack <a href="https://groups.google.com/forum/#!forum/clever-stack">Google Group</a></li>
-  <li>If your still having problems, please <a href="https://github.com/CleverStack/cleverstack-cli/issues/new">raise an issue</a>.</li>
-</ul>
-
-<!-- Contributing
-================================================== -->
-<h3 class="page-header" id="cli-contributing">Contributing</h3>
-<p>Firstly please read our <a href="https://github.com/CleverStack/cleverstack-cli/blob/master/CONTRIBUTING.md">guidelines for contributing</a>, Then fork the <a href="https://github.com/CleverStack/cleverstack-cli">CleverStack CLI</a> github repo, once you are ready please submit a "Pull Request" for review.</p>
-
-  </div>
-
-  <!-- Back-end (NodeJS)
-  ================================================== -->
-  <<!-- div class="bs-docs-section">
     <h1 id="backend" class="page-header">
   CleverStack NodeJS Backend <a class="permalink" href="/documentation/backend" title="Permalink"><small>¶</small></a>
 </h1>
@@ -915,244 +580,7 @@ Starting server on port <span class="m">8080</span> in LOCAL mode</code></pre></
 ================================================== -->
 <h3 class="page-header" id="backend-contributing">Contributing</h3>
 <p>Firstly please read our <a href="https://github.com/CleverStack/Node-Seed/blob/master/CONTRIBUTING.md">guidelines for contributing</a>, Then fork the <a href="https://github.com/CleverStack/Node-Seed">CleverStack Node Seed</a> github repo, once you are ready please submit a "Pull Request" for review.</p>
-  </div> -->
-
-  <!-- Front-end (NodeJS)
-  ================================================== -->
-  <div class="bs-docs-section">
-    <!-- Front-end (AngularJS)
-================================================== -->
-<h1 id="frontend" class="page-header">CleverStack Frontend</h1>
-
-<!-- Introduction
-================================================== -->
-<!-- Overview
-================================================== -->
-<h3 id="frontend-introduction" class="page-header">
-  Introduction <a class="permalink" href="#frontend-introduction" title="Permalink"><small>¶</small></a><br/>
-  <small>MEAN and so much more!</small>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="#overview">Documentation</a></li>
-  <li><a href="#backend">Frontend</a></li>
-  <li class="active">Introduction</li>
-</ol>
-
-<p class="lead sub">CleverStack's Frontend (Angular Seed) has been designed to provide you with a super fast test driven front-end development lifecycle. Everything you need should be just one command away, if it's not please open an issue or fork the repo on github and submit a pull request.</p>
-
-<h5 class="page-header">Highlights</h5>
-<ul>
-  <ul>
-  <li>AngularJS Application Core Integrated with RequireJS</li>
-  <li>Grunt Server with Live Reload, Bootstrap 3, LESS</li>
-  <li>JavaScript Dependency Loading with Bower</li>
-  <li>Modular NPM Based Coding Structure</li>
-  <li>Unit Testing with Karma &amp; Code Coverage Reports</li>
-  <li>E2E Testing with Angular Protractor and Grunt</li>
-  <li>Optimized Production Build Process</li>
-</ul><br/><br/>
-
-<!-- Structure
-================================================== -->
-<h3 id="frontend-structure" class="page-header">
-  Structure <a class="permalink" href="#frontend-structure" title="Permalink"><small>¶</small></a><br/>
-  <small>Cleverstacks's Architecture has been designed to be simple and intiutive to use and extend.</small><br/>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="#overview">Documentation</a></li>
-  <li><a href="#frontend">Frontend</a></li>
-  <li class="active">Structure</li>
-</ol>
-<!-- <p class="lead sub">Cleverstack provides a clear and simple structure that will make writing even the most (seemingly) complex applications trivial.</p> -->
-
-<blockquote>
-  <h6>Complexity kills. It sucks the life out of developers, it makes products difficult to plan, build and test, it introduces security challenges and it causes end-user and administrator frustration.</h6>
-  <footer style="font-size: 12px;">Ray Ozzie</footer>
-</blockquote>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">front-end/
-├── app/              <span class="c"># angular app specific source files</span>
-│   └── modules/      <span class="c"># cleverstack front-end modules</span>
-├── scripts/          <span class="c"># app scripts and binaries</span>
-├── tests/            <span class="c"># app tests, both unit &amp;amp; integration</span>
-├── Gruntfile.js      <span class="c"># app grunt file for modifying configuration and adding tasks</span>
-├── bower.json        <span class="c"># app js dependencies</span>
-└── package.json      <span class="c"># app npm dependencies</span></code></pre></div><br>
-
-<!-- Important files and folders
-================================================== -->
-<div style="padding-left: 20px;">
-  <h4>Important files and folders</h4>
-  <p>Here is a list of things you need to know about the structure of the CleverStack AngularJS Frontend</p><br>
-
-  <h5>app/</h5>
-  <ul>
-    <li>This folder contains the core of the Cleverstack Angular Seed.</li>
-  </ul>
-
-  <h5>app/modules/</h5>
-  <ul>
-    <li>This is where all of the Cleverstack modules will be installed into your application by our CLI.</li>
-    <li>NPM Modules that have been made to work with Cleverstack will also be placed here.</li>
-    <li>You also add custom modules inside this folder, either by creating it manually (See https://github.com/CleverStack/frontend-example-module for an example of how to create your own modules) or using the CleverStack CLI's install, generate or scaffold commands.</li>
-  </ul>
-
-  <h5>scripts/</h5>
-  <ul>
-    <li>This is where you can store your front-end scripts and binaries such as executables, JAR files or such. Examples of these might be browserstack-tunnel.sh, selenum-server.jar, chromedriver.exe, phantomjs.exe etc...</li>
-    <li>Scripts can be defined in package.json and then run with `npm run-script [name]`.</li>
-  </ul>
-
-  <h5>Gruntfile.js</h5>
-  <ul>
-    <li>Defines the Applications global (main) gruntConfig.</li>
-    <li>Registers the Applications included Grunt tasks.</li>
-    <li><span class="label label-info">Note</span> Each module's Gruntfile.js config is deep merged into this files main grunt config before registering any tasks with grunt.</li>
-  </ul>
-
-  <h5>bower.json</h5>
-  <ul>
-    <li>Stores the apps main bower dependencies install during setup with the CLI.</li>
-  </ul>
-
-  <h5>package.json</h5>
-  <ul>
-    <li>Defines the Application information, scripts and it's NPM dependencies like any normal NPM Module.</li>
-    <li>Defines the modules that are enabled, using the <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array. (This also let's NPM know that these dependencies are local and not on the NPM Registry)</li>
-  </ul>
-</div><br/><br/>
-
-<!-- Configuration
-================================================== -->
-<!-- Configuration
-================================================== -->
-<h3 id="frontend-configuration">Configuration</h3>
-<p>Coming soon, we are working hard on this section.</p><br><br/><br/>
-
-<!-- Modules
-================================================== -->
-<!-- Modules
-================================================== -->
-<h3 id="frontend-modules">Modules</h3>
-<p>These are the most important part of your application, where all your functionality and testing is defined.</p><br>
-
-<div style="padding-left: 20px;">
-
-  <!-- Modules structure
-  ================================================== -->
-  <h4 id="frontend-modules-structure">Structure</h4>
-        <p>This is a typical front-end (angular) module structure.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">example-module/
-├── scripts/                          <span class="c"># module angular scripts</span>
-│   ├── controllers/
-│   ├── directives/
-│   ├── services/
-│   └── resources/
-├── styles/                           <span class="c"># module styles (optional)</span>
-├── img/                              <span class="c"># module images (optional)</span>
-├── fonts/                            <span class="c"># module fonts (optional)</span>
-├── views/                            <span class="c"># module ngTemplates</span>
-├── tests/                            <span class="c"># module tests</span>
-│   ├── unit/
-│   └── e2e/
-├── main.js                           <span class="c"># module requirejs scripts</span>
-├── module.js                         <span class="c"># angular main module</span>
-├── bower.json                        <span class="c"># module js dependencies</span>
-├── Gruntfile.js                      <span class="c"># module grunt tasks</span>
-└── package.json                      <span class="c"># module npm dependencies</span></code></pre></div><br>
-
-  <div style="padding-left: 30px;">
-    <h4>Important files and folders</h5>
-
-    <h5>scripts/</h5>
-    <ul>
-        <li>This folder contains all the scripts required for the module. ie - all the modules angular controllers, directives, services and resources.</li>
-    </ul>
-
-    <h5>views/</h5>
-    <ul>
-        <li>This allows each module to define it's own views for the ngtemplates provided within each module.</li>
-    </ul>
-
-    <h5>tests/</h5>
-    <ul>
-        <li>Two folders for testing, unit/ and e2e/</li>
-        <li>This allows each module to define it's own tests for the functionality (code) that is provided within each module.</li>
-    </ul>
-
-    <h5>main.js</h5>
-    <ul>
-        <li>This is the requirejs main file, use it to specify all the javascript files you need for your module..</li>
-    </ul>
-
-    <h5>module.js</h5>
-    <ul>
-        <li>Instantiates and configures angular modules for your module.</li>
-    </ul>
-
-    <h5>bower.json</h5>
-    <ul>
-        <li>Defines the modules JavaScript dependencies.</li>
-    </ul>
-
-    <h5>package.json</h5>
-    <ul>
-        <li>Defines the Application and it's information, scripts and NPM dependencies just like every other NPM Module.</li><br>
-        <li><span class="label label-danger">Important</span> This is where you define which Modules are enabled, using the <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array.</li>
-        <li><span class="label label-info">Note</span> By adding modules into the <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array, you are also letting NPM know that these dependencies are local and not on the NPM Registry, meaning NPM will never search or download those modules from the internet.</li>
-        <li><span class="label label-info">Note</span> The order in which you place modules inside your <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array will be the loading order of the modules.</li>
-    </ul>
-
-    <h5>Gruntfile.js</h5>
-    <ul>
-        <li>Defines the Applications global (main) gruntConfig.</li>
-        <li>Registers the Applications included Grunt tasks.</li><br>
-        <li><span class="label label-info">Note</span> Each module's Gruntfile.js config is deep merged into this files main grunt config before registering any tasks with grunt, which gives you the power to both add grunt tasks and modify the gruntConfig inside each module.</li>
-    </ul>
-  </div><br>
-
-  <!-- <h4>Creating Modules</h4>
-  <p></p><br>
-
-  <h4>Publishing Modules</h4>
-  <p></p><br> -->
-</div><br/><br/>
-
-<!-- Usage
-================================================== -->
-<!-- Usage
-================================================== -->
-<h3 id="frontend-usage">Usage</h3>
-<p>Coming soon, we are working hard on this section.</p><br><br/><br/>
-
-<!-- Testing
-================================================== -->
-<!-- Testing
-================================================== -->
-<h3 id="frontend-testing">Testing</h3>
-<p>Coming soon, we are working hard on this section.</p><br><br/><br/>
-
-<!-- Troubleshooting
-================================================== -->
-<!-- Troubleshooting
-================================================== -->
-<h3 id="frontend-troubleshooting">Troubleshooting</h3>
-<p>If you have any problems (including errors, exceptions and even general usage) with the AngularJS Frontend which is called the Angular Seed.</p>
-<ul>
-  <li>Check the Github <a href="https://github.com/CleverStack/Angular-Seed/issues">issues page</a>.</li>
-  <li>Log into the public access <a href="https://www.hipchat.com/gwM43u4Mw">HipChat Room</a> and ask for help.</li>
-  <li>Get some help from the Cleverstack <a href="https://groups.google.com/forum/#!forum/clever-stack">Google Group</a></li>
-  <li>If your still having problems, please <a href="https://github.com/CleverStack/Angular-Seed/issues/new">raise an issue</a>.</li>
-</ul><br/><br/>
-
-<!-- Contributing
-================================================== -->
-<!-- Contributing
-================================================== -->
-<h3 id="frontend-contributing">Contributing</h3>
-<p>Firstly please read our <a href="https://github.com/CleverStack/Angular-Seed/blob/master/CONTRIBUTING.md">guidelines for contributing</a>, Then fork the <a href="https://github.com/CleverStack/Angular-Seed">CleverStack Node Seed</a> github repo, once you are ready please submit a "Pull Request" for review.</p><br/><br/>
   </div>
-  
 
   <!-- Testing
   ================================================== -->

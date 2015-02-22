@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CleverStack, the Enterprise-grade, Open-Source Full-Stack JavaScript Framework built on NodeJS and Angular, MEAN and so much more!">
+<meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development, node.js, express, mongoose, mongodb, angularjs, swig, sequelize, sequelizejs, orm, odm, cli">
+<meta name="author" content="Richard Gustin and contributors to the CleverStack Repositories">
+
+<title>
+  
+    Backend Models &middot; CleverStack.io
+  
+</title>
+
+<!-- Bootstrap core CSS -->
+<link href="/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+<!-- Application CSS -->
+<link href="/dist/css/application.min.css" rel="stylesheet">
+
+
+<!-- Documentation extras -->
+<link href="/assets/css/docs.css" rel="stylesheet">
+<link href="/assets/css/pygments-manni.css" rel="stylesheet">
+<!--[if lt IE 9]><script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="/assets/ico/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-touch-icon-152x152.png" />
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+  var tag = document.createElement('script');  tag.src = "http://www.youtube.com/player_api";  var firstScriptTag = document.getElementsByTagName('script')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  </script>
+
+  </head>
+  <body>
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <div class="github-ribbon">
+       <a href="https://github.com/cleverstack/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+    </div>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">CleverStack.io</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/getting-started">Getting started</a>
+        </li>
+        <li>
+          <a href="/why-cleverstack">Why cleverstack?</a>
+        </li>
+        <li>
+          <a href="/modules">Modules</a>
+        </li>
+        <li>
+          <a href="/documentation">Documentation</a>
+        </li>
+<!--         <li>
+          <a href="/css">CSS</a>
+        </li>
+        <li>
+          <a href="/components">Components</a>
+        </li>
+        <li>
+          <a href="/javascript">JavaScript</a>
+        </li>
+        <li>
+          <a href="/customize">Customize</a>
+        </li> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Docs page layout -->
+    <div class="bs-header" id="content">
+      <div class="container">
+        <h1>Backend Models</h1>
+        <p>An Indepth guides of the CleverStack NodeJS Backend, covering installation, configuration, usage, extending, testing and much more.</p>
+      </div>
+    </div>
+
+    <!-- Callout for the old docs link -->
+    <!-- <div class="bs-old-docs">
+  <div class="container">
+    <strong>
+      <a href="/2.3.2/">Looking for Bootstrap 2.3.2 docs?</a>
+    </strong>
+    We've moved it to a new home while we push forward with Bootstrap 3. <a href="http://blog.getbootstrap.com/">Read the blog</a> for details.
+  </div>
+</div>
+ -->
+
+    <div class="container bs-docs-container">
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-sidenav">
+              
+                <li><a href="/documentation/backend" style="padding-left: 10px !important;color: #563d7c;"><strong>Backend</strong> <br/><small>(viewing Models)</small></a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#databases">Database Support</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#field-types">Field Types</a></li>
+<li><a href="#field-definition">Field Definition</a></li>
+<li><a href="#validation">Field Validation</a></li>
+<li><a href="#creating-instances">Creating instances</a></li>
+<li><a href="#updating-or-saving-instances">Updating/saving instances</a></li>
+<li><a href="#destroying-instances">Destroying/deleting instances</a></li>
+<li><a href="#finders">Finders/Methods</a>
+  <ul class="nav nav-nest">
+    <li><a href="#static-finders">Base Finders/Methods</a>
+      <ul class="nav nav-nest">
+        <li><a href="#finders-find">find()</a></li>
+        <li><a href="#finders-findAll">findAll()</a></li>
+        <li><a href="#methods-find-or-create">findOrCreate()</a></li>
+      </ul>
+    </li>
+    <li><a href="#dynamic-finders">Dynamic Finders</a></li>
+    <li><a href="#finders-find-options-where">Where Criteria</a></li>
+    <li><a href="#finders-query-options">Query Options</a></li>
+    <li><a href="#finders-find-options-limit">Limiting Records</a></li>
+    <li><a href="#finders-find-options-offset">Paginating</a></li>
+    <li><a href="#finders-find-options-order">Ordering</a></li>
+    <li><a href="#finders-find-options-include">Eager Loading</a></li>
+    <li><a href="#finders-find-options-include">Ordering Eager Loaded Associations</a></li>
+    <li><a href="#finders-find-options-include">Nested Eager Loading</a></li>
+    <li><a href="#methods-raw-query">Raw/Native Queries</a></li>
+  </ul>
+</li>
+<li><a href="#events">Events</a>
+  <ul class="nav nav-nest">
+  <li><a href="#templated-event-handlers">Templated Event Handlers</a></li>
+  <li><a href="#events-beforeAllFindersOptions">beforeAllFindersOptions</a></li>
+  <li><a href="#events-beforeFindAllOptions">beforeFindAllOptions</a></li>
+  <li><a href="#events-beforeFindAll">beforeFindAll</a></li>
+  <li><a href="#events-beforeFindOptions">beforeFindOptions</a></li>
+  <li><a href="#events-beforeFind">beforeFind</a></li>
+  <li><a href="#events-afterFindAll">afterFindAll</a></li>
+  <li><a href="#events-afterFind">afterFind</a></li>
+  <li><a href="#events-beforeDestroy">beforeValidate</a></li>
+  <li><a href="#events-beforeCreate">beforeCreate</a></li>
+  <li><a href="#events-afterCreate">afterCreate</a></li>
+  <li><a href="#events-afterDestroy">afterValidate</a></li>
+  <li><a href="#events-beforeDestroy">beforeDestroy</a></li>
+  <li><a href="#events-afterDestroy">afterDestroy</a></li>
+  </ul>
+</li>
+<li><a href="#instance-methods">Instance Methods</a></li>
+<li><a href="#getters-and-setters">Instance Getters/Setters</a>
+<li><a href="#associations">Relations/Associations</a>
+  <ul class="nav nav-nest">
+  <li><a href="#associations-one-to-one">One to One</a></li>
+  <li><a href="#associations-one-to-many">One to Many</a></li>
+  <li><a href="#associations-many-to-many">Many to Many</a></li>
+  <li><a href="#associations-bi-directional">Bi Directional</a></li>
+  <li><a href="#associations-uni-directional">Uni Directional</a></li>
+  </ul>
+</li>
+<li><a href="#transactions">Transactions</a></li>
+<li><a href="#seed-data">Seed Data</a></li>
+<li><a href="#caching">Caching</a></li>
+<li><a href="#errors">Errors</a></li>
+<li><a href="#toolbelt">Toolbelt</a></li>
+              
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9" role="main">
+          	<div class="bs-docs-section">
+  <div class="section-page"><h1 id="overview" class="page-header">
+  Models<br/>
+  <small>Robust &amp; Flexible Database Agnostic ORM &amp; ODM.</small>
+</h1>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li class="active">Models</li>
+</ol>
+
+<p class="lead">CleverStack comes with a robust and enterprise grade flexible ORM &amp; ODM, that provides database agnostic models that greatly simplifies interaction with one or more databases/servers. That mean's you're focused on your data structures and their relationships, instead of worrying about vendor specific code and implementation details.
+</p>
+
+<blockquote>
+  <h6>I will, in fact, claim that the difference between a bad programmer and a good one is whether he considers his code or his data structures more important. Bad programmers worry about the code. Good programmers worry about data structures and their relationships.</h6>
+  <footer style="font-size: 12px;">Linus Torvolds, creator of Linux</footer>
+</blockquote>
+<br/>
+
+<p class="sub">No matter what database your communicating with you can Create, Query, and Manipulate your data without writing any vendor/database specific integration code; The syntax for Querying, Creating, Updating or Destroying models is exactly the same. That mean's you can switch any of your app's model's from MySQL, to Mongo, to PostgreSQL, to MSSQL and back again - <strong><i>without changing any code</i></strong>.</p>
+
+<p class="sub">To encourage and support <strong><i>Rapid Application Development</i></strong>, CleverStack is designed to be <strong><i>Convention over Configuration</i></strong>, so we use <strong><i>sane</i></strong>, <strong><i>best practice</i></strong>, <i>conventions</i>, that are <strong><i>fleixble</i></strong> enough to allow you to <strong><i>configure every option</i></strong> if you need to, meaning there are no drawbacks or limitations imposed, just benefits.</p>
+
+<p class="sub"></p>And for those times when you need low-level, database-specific functionality, CleverStack provides a query interface that allow's you to talk directly to your model's underlying database server through the use of raw and native queries.</p>
+
+<p class="sub">Because we use SequelizeJS &amp; MongooseJS for the eventual persistence of data, that gives us the features, support and stability that comes from these mature NodeJS Packages. Our Abstraction Layer manages the internal usage of these npm packages to allow you to define a single model definition regardless of what database (or Databases) you choose to use (or change at any time). That mean's your models are flexible and pain free to write, maintain, and use.</p>
+
+<p class="sub">To make querying/searching your data as simple as possible, <a href="#finders-dynamic">Dynamic Finders</a> are automatically generated for every <a href="#field-definition">Field</a> based on their name. For example if we had a field named <code>firstName</code> on the <code>UserModel</code>, one of the dynamic finders for this field will be <code>UserModel.findByFirstName</code> - please see <a href="#finders-dynamic">Dynamic Finders</a> for more information.</p>
+
+<p class="sub">To find information about defining models please see <a href="#definition">Model Definition</a>, <a href="#field-definition">Field Definition</a> and <a href="#field-types">Field Types</a>.</p></div>
+  <div class="section-page"><h3 id="databases" class="page-header">
+  DataBases <a class="permalink" href="#databases" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">DataBases</li>
+</ol>
+
+<h5>Supported DataBases:</h5>
+<ul>
+  <li>MySQL</li>
+  <li>MariaDB</li>
+  <li>PostgreSQL</li>
+  <li>MSSQL</li>
+  <li>MongoDB</li>
+  <li>SQLite</li>
+</ul>
+<br/>
+
+<h5>Coming Soon:</h5>
+<ul>
+  <li>DynamoDB</li>
+  <li>SimpleDB</li>
+  <li>Redis</li>
+</ul></div>
+  <div class="section-page"><h3 id="installation" class="page-header">
+  Installation <a class="permalink" href="#installation" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Installation</li>
+</ol>
+
+<p class="lead sub">Installation is made simple by using the CleverStack CLI's install command with the name of the module you want to install, clever-orm for the Object Relational Mapper, or clever-odm for the Object Document Mapper.</p>
+
+<h5>Object Relational Mapper (ORM)</h5>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">clever install clever-orm</code></pre></div>
+
+<h5>Object Document Mapper (ODM)</h5>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">clever install clever-odm</code></pre></div>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Before installing the ORM or ODM</h4>
+  <p>
+    <ol>
+        <li>
+            You must have a <i>valid backend</i> project and <i>change directory</i> to inside the <i>backend folder</i>, assuming that your project is called <b><i>my-project</i></b>, the command you need to run should look something like this
+            <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>my-project/backend/</code></pre></div>
+        </li>
+        <li>
+            You also need to <b><i>Create the database</i></b> you want to use before installing clever-orm, clever-odm, assuming that you want to name your database <b><i>nodeseed</i></b>, then the command you need to run should look something like this
+            <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="o">`</span><span class="n">nodeseed</span><span class="o">`</span></code></pre></div>
+        </li>
+</p>
+</div>
+
+<div class="bs-callout bs-callout-warning">
+  <h4>Command Failed Errors</h4>
+  <p>If you see a command failed error in your terminal/console after installing a module and seeing a message that states it's about to rebase or seed your database, it is highly likely that something is wrong with your configuration that you need to fix.<br/>
+  See <a href="#configuration">Configuration</a> and <a href="#seed-data">Seed Data</a> for information.</p>
+</div>
+<br/>
+
+<p class="sub">After running this command you may be prompted to configure the module/s your installing, see <a href="#configuration">Configuration</a> for more information. Additionally you may be prompted to setup the seed data for the module/s your installing, see <a href="#seed-data">Seed Data</a> for more information.</p>
+
+<img src="/assets/img/screenshots/clever-orm-installation.png" width="100%"></div>
+  <div class="section-page"><h3 id="configuration" class="page-header">
+  Configuration <a class="permalink" href="#configuration" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Configuration</li>
+</ol>
+
+<p class="sub">Following the CleverStack Backend Configuration convention/system, you define your configuration for the ORM and ODM inside of the <code>backend/config/global.json</code> (for global defaults), and environment name based <code>backend/config/local.json</code> (local is for use on your development machine, then <code>dev.json</code>, <code>stag.json</code> and <code>prod.json</code> are used for their respective environments.)</p>
+<br/>
+
+<h5 class="sub">Let's take a look at the structure of the json structure of the configuration,</h5>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="lineno"> 1</span> <span class="p">{</span>
+<span class="lineno"> 2</span>   <span class="nt">&quot;clever-orm&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="lineno"> 3</span>     <span class="nt">&quot;db&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="lineno"> 4</span>       <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span>
+<span class="lineno"> 5</span>       <span class="nt">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="lineno"> 6</span>       <span class="nt">&quot;database&quot;</span><span class="p">:</span> <span class="s2">&quot;nodeseed&quot;</span><span class="p">,</span>
+<span class="lineno"> 7</span>       <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="lineno"> 8</span>         <span class="nt">&quot;dialect&quot;</span><span class="p">:</span> <span class="s2">&quot;mysql&quot;</span><span class="p">,</span>
+<span class="lineno"> 9</span>         <span class="nt">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+<span class="lineno">10</span>         <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="mi">3306</span>
+<span class="lineno">11</span>       <span class="p">}</span>
+<span class="lineno">12</span>     <span class="p">},</span>
+<span class="lineno">13</span>     <span class="nt">&quot;modelAssociations&quot;</span><span class="p">:</span> <span class="p">{}</span>
+<span class="lineno">14</span>   <span class="p">},</span>
+<span class="lineno">15</span>   <span class="nt">&quot;clever-odm&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="lineno">16</span>     <span class="nt">&quot;uri&quot;</span><span class="p">:</span> <span class="s2">&quot;mongodb://localhost/nodeseed&quot;</span><span class="p">,</span>
+<span class="lineno">17</span>     <span class="nt">&quot;mongoose&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="lineno">18</span>       <span class="nt">&quot;debug&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="lineno">19</span>     <span class="p">}</span>
+<span class="lineno">20</span>   <span class="p">}</span>
+<span class="lineno">21</span> <span class="p">}</span></code></pre></div>
+<br/>
+
+<h5 class="sub">Grunt Tasks</h5>
+<p class="sub">We wanted configuration to be as simple as possible to define, so in addition to manually editing JSON configuration files we provided some helpful and handy grunt tasks using prompts for information. These prompts will be run automatically upon installation of any CleverStack Module, but can be run at any time to help manage your configuration.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">grunt</span> <span class="nx">prompt</span><span class="o">:</span><span class="nx">cleverOrmConfig</span>
+<span class="c1">// and</span>
+<span class="nx">grunt</span> <span class="nx">prompt</span><span class="o">:</span><span class="nx">cleverOdmConfig</span></code></pre></div>
+
+<img src="/assets/img/screenshots/clever-orm-config-prompt.png" width="100%"></div>
+  <div class="section-page"><h3 id="definition" class="page-header">
+  Definition <a class="permalink" href="#definition" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Definition</li>
+</ol>
+<br/>
+
+<p class="sub">To define mappings between a model and a table/collection, you use the <code>Model.extend()</code> method. There are 3 arguments that you can supply when calling extend.</p>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th style="width: 80px;">Name</th>
+      <th style="width: 95px;">Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <td>tableName<br>
+        <span class="label label-warning">Optional</span>
+      </td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">String</span></code></pre></div></td>
+      <td>Optionally as the <strong><i>First Argument</i></strong> , Set the tableName of the Model (table/collection name), <br/>
+        If you do not call extend with this argument the name of the file (less "Model") will be used, for example if the filename is <code>UserModel.js</code>, then the name will be set to <code>User</code>.</td>
+  </tr>
+  <tr>
+      <td>Class<br>
+        <span class="label label-warning">Optional</span>
+      </td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Object</span></code></pre></div></td>
+      <td>Optionally as the <strong><i>Second Argument</i></strong>, Define <b><i><a href="#options">Options</a></i></b>, <b><i><a href="#finders">Methods/Finders</a></i></b> and <b><i><a href="#events-templated-handlers">Templated Event Handlers</a></i></b> in this Object.</td>
+  </tr>
+  <tr>
+      <td>Prototype<br>
+        <span class="label label-danger">Required</span>
+      </td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Object</span></code></pre></div></td>
+      <td>After all other optional arguments, the third (or first if you don't provide any optional arguments), <br/>
+        Define <b><i><a href="#field-definition">Field Definition</a></i></b>, <b><i><a href="#instance-methods">Instance Methods</a></i></b>, <b><i><a href="#getters-and-setters">Getters/Setters</a></i></b> and <b><i><a href="#events-templated-handlers">Templated Event Handlers</a></i></b> in this Object.</td>
+  </tr>
+  </tbody>
+</table>
+<br/>
+
+<h5 class="sub" id="definition-example">Let's take a look at a quick example of how to define a Model</h5>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span>
+<span class="lineno"> 2</span> <span class="cm">/* @Class */</span>
+<span class="lineno"> 3</span> <span class="p">{</span>
+<span class="lineno"> 4</span>   <span class="nx">timeStampable</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="lineno"> 5</span>   <span class="nx">createdAt</span>     <span class="o">:</span> <span class="s1">&#39;signUpDate&#39;</span><span class="p">,</span>
+<span class="lineno"> 6</span> <span class="p">},</span>
+<span class="lineno"> 7</span> <span class="cm">/* @Instance */</span>
+<span class="lineno"> 8</span> <span class="p">{</span>
+<span class="lineno"> 9</span>   <span class="nx">firstName</span>       <span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+<span class="lineno">10</span>   <span class="nx">lastName</span>        <span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+<span class="lineno">11</span>   <span class="nx">password</span><span class="o">:</span> <span class="p">{</span>
+<span class="lineno">12</span>     <span class="nx">type</span>          <span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+<span class="lineno">13</span>     <span class="nx">required</span>      <span class="o">:</span> <span class="kc">true</span>
+<span class="lineno">14</span>   <span class="p">},</span>
+<span class="lineno">15</span>   <span class="nx">email</span><span class="o">:</span> <span class="p">{</span>
+<span class="lineno">16</span>     <span class="nx">type</span>          <span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+<span class="lineno">17</span>     <span class="nx">required</span>      <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="lineno">18</span>     <span class="nx">unique</span>        <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="lineno">19</span>     <span class="nx">validate</span><span class="o">:</span> <span class="p">{</span>
+<span class="lineno">20</span>       <span class="nx">email</span>       <span class="o">:</span> <span class="kc">true</span>
+<span class="lineno">21</span>     <span class="p">}</span>
+<span class="lineno">22</span>   <span class="p">},</span>
+<span class="lineno">23</span>   <span class="nx">setPassword</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">password</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">24</span>     <span class="k">this</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">hashPassword</span><span class="p">(</span><span class="nx">password</span><span class="p">);</span>
+<span class="lineno">25</span>   <span class="p">},</span>
+<span class="lineno">26</span>   <span class="nx">getFullName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno">27</span>     <span class="k">return</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">firstname</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastname</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="lineno">28</span>   <span class="p">},</span>
+<span class="lineno">29</span>   <span class="nx">isSuperAdmin</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno">30</span>     <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">===</span> <span class="s1">&#39;Richard&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">31</span>       <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="lineno">32</span>     <span class="p">}</span>
+<span class="lineno">33</span>     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="lineno">34</span>   <span class="p">}</span>
+<span class="lineno">35</span> <span class="p">});</span></code></pre></div>
+<br/>
+
+<p class="sub">In this example we defined a model called <code>User</code>, that has a <code>firstName</code> and <code>lastName</code>, a <code>password</code> that is <strong><i>required</i></strong>, and an <code>email</code> that is <b><i>required</i></b> and must <i><b>validate as an email</b></i>, and because we did not specify any field's as the primary key, it will also have an <code>id</code> as the <i>primary key</i> that is <i>automatically incrementing</i>. Additionally because we provided the <a href="#options-timeStampable"><strong><i>timeStampable</i></strong></a> and <a href="#options-createdAt"><strong><i>createdAt</i></strong></a> options in the model definition, it will have two additional read-only field's that automatically set their values when you create or update the model, <code>signUpDate</code> and <code>updatedAt</code>.</p>
+
+<p class="sub">Because we want to hash the users <code>password</code> before saving it in the database, we provided a custom <strong><i><a href="#getters-and-setters">Setter</a></i></strong> called <code>setPassword</code>, that will be used to set any users password. Additionally because we want our model it output a virtual field (named <code>fullName</code>, we added a <strong><i><a href="#getters-and-setters">Getter</a></i></strong> called <code>getFullName</code> - this will be used whenever you get <code>user.fullName</code> and will also be in the JSON when you serialize the object using <code>JSON.stringify()</code></p>
+
+<p class="sub">To demonstrate how to define and use <a href="#instance-methods">Instance Methods</a> we have added a function called <code>isSuperAdmin()</code>, and in the next example we will show an example of how to use this function.</p>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Automatic <code>id</code> Field's</h4>
+  <p>If no primary key is specified in your model definition (like the above example), then an auto incrementing id field is added automatically.</p>
+</div>
+<div class="bs-callout bs-callout-info">
+  <h4>Options</h4>
+  <p>For help defining options like <code>timeStampable</code> or to find a list of all the options available, please see <a href="#options">Options</a>.</p>
+</div>
+<div class="bs-callout bs-callout-info">
+  <h4>Model Field's</h4>
+  <p>For help defining Model Field's like <b><i>firstName</i></b>, <b><i>lastName</i></b> or <b><i>email</i></b> please see <a href="#field-definition">Field Definition</a>.<br/>
+  Additionally please see <a href="#field-types">Field Types</a> for help with any Field's <code>type</code> Option.</p>
+</div>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Known Issue: Using the underscored and freezeDbName Option's together</h4>
+  <p>If you use <code>underscored: true</code> and <code>freezeDbName: true</code> as options, either globally or for a single extend call, you will need to set the option <code>dbName</code> to the underscored_table_name.</p>
+</div>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Known Issue: Field's named <code>name</code></h4>
+  <p>Because our Classes export a constructor Function which has a name of <code>Class</code>, and JavaScript function's automatically get a non-configurable name that is read-only, you <i>may</i> experience some strange behaviour. We plan to fix this in a coming release. </p>
+</div></div>
+  <div class="section-page"><h3 id="options" class="page-header">
+  Options <a class="permalink" href="#options" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Options</li>
+</ol>
+<p>Model options can be defined inside the Models Static object when using Model.extend( StaticObject, PrototypeObject ) to create a model.</p>
+<br/>
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+      <th style="width: 100px;">Property</th>
+      <th style="width: 115px;">Type/s</th>
+      <th style="width: 135px;">Default</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr id="options-type">
+      <td>type</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">String</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;ORM&#39;</span></code></pre></div></td>
+      <td><code>'ORM'</code> or <code>'ODM'</code>, for data persistence with clever-orm and clever-odm modules respectively.</td>
+  </tr>
+  <tr id="options-dbName">
+      <td>dbName</td>
+      <td>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span>
+<span class="nb">String</span></code></pre></div>
+      </td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>Optionally define the database table name for a model.</td>
+  </tr>
+  <tr id="options-freezeDbName">
+      <td>freezeDbName</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>By default table (ORM) and collection (ODM) names are pluralized, if you don't want this behaviour set freezeDbName to <code>true</code></td>
+  </tr>
+  <tr id="options-underscored">
+      <td>underscored</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>By default column names are camelCasedLikeThis, if you prefer underscores set this to <code>true</code></td>
+  </tr>
+  <tr id="options-engine">
+      <td>engine</td>
+      <td>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span>
+<span class="nb">String</span></code></pre></div>
+      </td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>Allows you to specifically override the database storage engine for a model. <br>
+        <span class="label label-danger">ORM ONLY</span>
+      </td>
+  </tr>
+  <tr id="options-charset">
+      <td>charset</td>
+      <td>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span>
+<span class="nb">String</span></code></pre></div>
+      </td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>Allows you to specifically override the database storage charset for a model. <br>
+        <span class="label label-danger">ORM ONLY</span>
+      </td>
+  </tr>
+  <tr id="options-comment">
+      <td>comment</td>
+      <td>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span>
+<span class="nb">String</span></code></pre></div>
+      </td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>Allows you to specifically override the database table comment for a model. <br>
+        <span class="label label-danger">ORM ONLY</span>
+      </td>
+  </tr>
+  <tr id="options-collate">
+      <td>collate</td>
+      <td>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span>
+<span class="nb">String</span></code></pre></div>
+      </td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>Allows you to specifically set the database table collation for a model. <br>
+        <span class="label label-danger">ORM ONLY</span>
+      </td>
+  </tr>
+  <tr id="options-softDeleteable">
+      <td>softDeleteable</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>Allows you to specifically set the database table collation for a model. <br>
+        <span class="label label-info">Behaviour</span>
+      </td>
+  </tr>
+  <tr id="options-deletedAt">
+      <td>deletedAt</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">String</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;createdAt&#39;</span></code></pre></div></td>
+      <td>Allows you to set the column name to be used with the softDeleteable behaviour and deletion of models.</td>
+  </tr>
+  <tr id="options-timeStampable">
+      <td>timeStampable</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">true</span></code></pre></div></td>
+      <td>Enables timestamping of models on persistence (creating, updating) <br>
+        <span class="label label-info">Behaviour</span>
+      </td>
+  </tr>
+  <tr id="options-createdAt">
+      <td>createdAt</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">String</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;createdAt&#39;</span></code></pre></div></td>
+      <td>Allows you to set the column name to be used with the timeStampable behaviour and creation of models.</td>
+  </tr>
+  <tr id="options-updatedAt">
+      <td>updatedAt</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">String</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;updatedAt&#39;</span></code></pre></div></td>
+      <td>Allows you to set the column name to be used with the timeStampable behaviour and updating models.</td>
+  </tr>
+  </tbody>
+</table>
+<br/></div>
+  <div class="section-page"><h3 id="field-types" class="page-header">
+  Field Types <a class="permalink" href="#field-types" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Field Types</li>
+</ol>
+
+<p class="lead sub">In contrast to other ORM's/ODM's like Sails/Waterline, Sequelize, and many others, We believe that keeping things simple not only speeds up development time, but makes maintaining models much easier, so whenever possible, we use native JavaScript Types.</p>
+
+<p class="sub">The JavaScript Types we are talking about are, <code>String</code>, <code>Number</code>, <code>Boolean</code>, <code>Buffer</code>, <code>Date</code> and <code>Array</code>. <br/>
+  Additionally, there is <code>Model.Types.TINYINT</code>, <code>Model.Types.FLOAT</code>, <code>Model.Types.DECIMAL</code>, <code>Model.Types.BIGINT</code>, <code>Model.Types.TEXT</code> and <code>Model.Types.ENUM</code>.
+
+<p class="sub">Any <strong><i>Field Type</i></strong> defined in <code>Model.Types</code>, can be called as a function when you define a <strong><i>Field</i></strong> using the <strong><i>Field Type</i></strong> style of <strong><i>Field Definition</i></strong>, That allow's you to define your fields using a shorter syntax (providing you don't need to set options for the <strong><i>Field</i></strong>)</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="c1">// ...</span>
+  <span class="nx">tinyIntField</span><span class="o">:</span> <span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">TINYINT</span><span class="p">(</span><span class="nx">length</span><span class="p">),</span>
+  <span class="nx">floatField</span><span class="o">:</span>   <span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">FLOAT</span><span class="p">(</span><span class="nx">length</span><span class="p">,</span> <span class="nx">decimals</span><span class="p">),</span>
+  <span class="nx">decimalField</span><span class="o">:</span> <span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">DECIMAL</span><span class="p">(</span><span class="nx">precision</span><span class="p">,</span> <span class="nx">scale</span><span class="p">),</span>
+  <span class="nx">bigIntField</span><span class="o">:</span>  <span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">BIGINT</span><span class="p">(</span><span class="nx">length</span><span class="p">),</span>
+  <span class="nx">enumField</span><span class="o">:</span>    <span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ENUM</span><span class="p">(</span><span class="nx">values</span><span class="o">*</span><span class="p">),</span> <span class="c1">// &#39;firstValue&#39;, &#39;secondValue&#39; ... etc</span>
+  <span class="nx">textField</span><span class="o">:</span>    <span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">TEXT</span><span class="p">()</span> <span class="c1">// No arguments</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span></code></pre></div>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Warning</h4>
+  <p>You should not call the functions available at <code>Model.Types</code> when using the <strong><i>Field Options</i></strong> style of <strong><i>Field Definition</i></strong></p>
+</div></div>
+  <div class="section-page"><h3 id="field-definition" class="page-header">
+  Field Definition <a class="permalink" href="#field-definition" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Field Definition</li>
+</ol>
+
+<p class="sub">There are two different ways of defining a <i>Field</i> for a <i>Model</i>, firstly, to help make <i>field definition</i> quick and easy to define, or for when you only need to define the <code>type</code> of the <i>Field</i>, You can use the <strong><i>Field Type</i></strong>, for example <code>String</code>.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="c1">// ...</span>
+  <span class="nx">firstName</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span></code></pre></div>
+
+<p class="sub">Additionally, you can set the value to an <code>Object</code> containing the Option's for the Field, this is useful for when you need to supply other options, like <code>required</code></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="c1">// ...</span>
+  <span class="nx">firstName</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="p">},</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span></code></pre></div>
+
+<h5 id="field-definition-options">Field Definition Properties</h5>
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+      <th style="width: 100px;">Property</th>
+      <th style="width: 200px;">Type/s</th>
+      <th style="width: 90px;">Default</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <td>type<br><span class="label label-danger">Required</span></td>
+      <td>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">String</span>
+<span class="nb">Number</span>
+<span class="nb">Boolean</span>
+<span class="nb">Date</span>
+<span class="nb">Array</span>
+<span class="nx">Buffer</span>
+<span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ENUM</span>
+<span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">BIGINT</span>
+<span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">FLOAT</span>
+<span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">DECIMAL</span>
+<span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">TEXT</span>
+<span class="nx">Model</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">TINYINT</span></code></pre></div>
+
+      </td>
+      <td></td>
+      <td>Can be a native JavaScript Type like <code>String</code> and <code>Number</code>, or a <i>Field Type</i> available from Model.Types</td>
+  </tr>
+  <tr>
+      <td>primaryKey</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>Set this field as a primary key</td>
+  </tr>
+  <tr>
+      <td>autoIncrement</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>auto increment this field, only works with Number or Int Model.Types.*</td>
+  </tr>
+  <tr>
+      <td>columnName</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">String</span></code></pre></div></td>
+      <td></td>
+      <td>Specifys that this Field is an alias for a specific column to use in a table (ORM) or collection (ODM).</td>
+  </tr>
+  <tr>
+      <td>default</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Mixed</span></code></pre></div></td>
+      <td></td>
+      <td>Specify a default value to use when none is provided when creating/updating.</td>
+  </tr>
+  <tr>
+      <td>allowNull</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">true</span></code></pre></div></td>
+      <td>Allow this field to be set as <code>null</code>.</td>
+  </tr>
+  <tr>
+      <td>required</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>Make a model field required.</td>
+  </tr>
+  <tr>
+      <td>unique</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>Make a model field unique in the database.</td>
+  </tr>
+  <tr>
+      <td>comment</td>
+      <td>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Boolean</span>
+<span class="nb">String</span></code></pre></div>
+      </td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kc">false</span></code></pre></div></td>
+      <td>Add a comment to this field in the database.</td>
+  </tr>
+  <tr>
+      <td id="field-definition-options-validate">validate</td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Object</span></code></pre></div></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{}</span></code></pre></div></td>
+      <td>Supply an object of validators that will be used to validate the field before saving, see <a href="#validation">Validation</a> for more information.</td>
+  </tr>
+</table></div>
+  <div class="section-page"><h3 id="validation" class="page-header">
+  Validation <a class="permalink" href="#validation" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Validation</li>
+</ol>
+
+<p class="lead sub">The <strong><i>Reliability</i></strong> of your application is critial, and <strong><i>Validation</i></strong> is one of the most important things you need to do to ensure you're data is stored correctly, this help's your application to be secure, free from bug's and be highly available/reliable.</p>
+<br/>
+
+<p class="sub">CleverStack allows you to validate any <i>Field</i> that is defined on any <i>Model</i>, simply by defining the <a href="#field-definition-options-validate"><code>validate</code></a> <a href="#field-definition-options">Field Option</a> in the <a href="#field-definition">Field Definition</a>.</p><br/>
+
+<h4>Let's take a look at an example,</h4>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span> <span class="cm">/* @Prototype */</span>
+  <span class="c1">// ...</span>
+  <span class="nx">field</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">validate</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">is</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;^[a-z]+$&quot;</span><span class="p">,</span><span class="s1">&#39;i&#39;</span><span class="p">],</span>     <span class="c1">// will only allow letters</span>
+      <span class="nx">is</span><span class="o">:</span> <span class="sr">/^[a-z]+$/i</span><span class="p">,</span>          <span class="c1">// same as the previous example using real RegExp</span>
+      <span class="nx">not</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;[a-z]&quot;</span><span class="p">,</span><span class="s1">&#39;i&#39;</span><span class="p">],</span>       <span class="c1">// will not allow letters</span>
+      <span class="nx">isEmail</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>            <span class="c1">// checks for email format (foo@bar.com)</span>
+      <span class="nx">isUrl</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>              <span class="c1">// checks for url format (http://foo.com)</span>
+      <span class="nx">isIP</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>               <span class="c1">// checks for IPv4 (129.89.23.1) or IPv6 format</span>
+      <span class="nx">isIPv4</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>             <span class="c1">// checks for IPv4 (129.89.23.1)</span>
+      <span class="nx">isIPv6</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>             <span class="c1">// checks for IPv6 format</span>
+      <span class="nx">isAlpha</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>            <span class="c1">// will only allow letters</span>
+      <span class="nx">isAlphanumeric</span><span class="o">:</span> <span class="kc">true</span>      <span class="c1">// will only allow alphanumeric characters, so &quot;_abc&quot; will fail</span>
+      <span class="nx">isNumeric</span><span class="o">:</span> <span class="kc">true</span>           <span class="c1">// will only allow numbers</span>
+      <span class="nx">isInt</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>              <span class="c1">// checks for valid integers</span>
+      <span class="nx">isFloat</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>            <span class="c1">// checks for valid floating point numbers</span>
+      <span class="nx">isDecimal</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>          <span class="c1">// checks for any numbers</span>
+      <span class="nx">isLowercase</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>        <span class="c1">// checks for lowercase</span>
+      <span class="nx">isUppercase</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>        <span class="c1">// checks for uppercase</span>
+      <span class="nx">notNull</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>            <span class="c1">// won&#39;t allow null</span>
+      <span class="nx">isNull</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>             <span class="c1">// only allows null</span>
+      <span class="nx">notEmpty</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>           <span class="c1">// don&#39;t allow empty strings</span>
+      <span class="nx">equals</span><span class="o">:</span> <span class="s1">&#39;specific value&#39;</span><span class="p">,</span> <span class="c1">// only allow a specific value</span>
+      <span class="nx">contains</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span>          <span class="c1">// force specific substrings</span>
+      <span class="nx">notIn</span><span class="o">:</span> <span class="p">[[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">]],</span>  <span class="c1">// check the value is not one of these</span>
+      <span class="nx">isIn</span><span class="o">:</span> <span class="p">[[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">]],</span>   <span class="c1">// check the value is one of these</span>
+      <span class="nx">notContains</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>       <span class="c1">// don&#39;t allow specific substrings</span>
+      <span class="nx">len</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span>              <span class="c1">// only allow values with length between 2 and 10</span>
+      <span class="nx">isUUID</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>                <span class="c1">// only allow uuids</span>
+      <span class="nx">isDate</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>             <span class="c1">// only allow date strings</span>
+      <span class="nx">isAfter</span><span class="o">:</span> <span class="s2">&quot;2011-11-05&quot;</span><span class="p">,</span>    <span class="c1">// only allow date strings after a specific date</span>
+      <span class="nx">isBefore</span><span class="o">:</span> <span class="s2">&quot;2011-11-05&quot;</span><span class="p">,</span>   <span class="c1">// only allow date strings before a specific date</span>
+      <span class="nx">max</span><span class="o">:</span> <span class="mi">23</span><span class="p">,</span>                  <span class="c1">// only allow values</span>
+      <span class="nx">min</span><span class="o">:</span> <span class="mi">23</span><span class="p">,</span>                  <span class="c1">// only allow values &gt;= 23</span>
+      <span class="nx">isArray</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>            <span class="c1">// only allow arrays</span>
+      <span class="nx">isCreditCard</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>       <span class="c1">// check for valid credit card numbers</span>
+
+      <span class="c1">// custom validations are also possible:</span>
+      <span class="nx">isEven</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Only even values are allowed!&#39;</span><span class="p">)</span>
+        <span class="c1">// we also are in the model&#39;s context here, so this.otherField</span>
+        <span class="c1">// would get the value of otherField if it existed</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+  <span class="p">}</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span></code></pre></div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Validator functions provided by the <code>validator</code> NPM Module</h4>
+  <p>includes all available validators provided by CleverStack, for a list of other validators available see the <a href="https://www.npmjs.com/package/validator#validators">Validation Functions</a> provided by the <a href="https://www.npmjs.com/package/validator"><code>validator</code></a> NPM Module.</p>
+</div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Protip</h4>
+  <p>Keep thing's simple in your <strong><i>Controllers</i></strong> and <strong><i>Services</i></strong>, unless the controller or service in question is not backed by a model. Don't do extra validation inside your <strong><i>Controllers</i></strong> or <strong><i>Services</i></strong>. Restrict your validation efforts to validating field's on your <strong><i>Models</i></strong> as much as possible!</p>
+</div></div>
+  <div class="section-page"><h3 class="page-header" id="finders">Finders</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Finders</li>
+</ol>
+<p class="lead sub">Models in CleverStack provide easy to use finders as well as methods to find, create, update and delete model instances.</p>
+<br/>
+
+<!-- find
+================================================== -->
+<h3 class="page-header" id="finders-find" style="color: #2980b9; font-size: 125%; font-weight: 500;">find - Search for one specific element in the database<br/></h3>
+<h5>Basic example with AND</h5>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span>
+  <span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">attr1</span><span class="o">:</span> <span class="s1">&#39;Richard&#39;</span><span class="p">,</span>
+    <span class="nx">attr2</span><span class="o">:</span> <span class="mi">28</span>
+  <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+<h6>SQL Generated</h6>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">WHERE</span> <span class="n">attr1</span> <span class="o">=</span> <span class="s1">&#39;Richard&#39;</span> <span class="k">AND</span> <span class="n">attr2</span> <span class="o">=</span> <span class="mi">28</span></code></pre></div>
+
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span>
+  <span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">attr1</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">gt</span><span class="o">:</span> <span class="mi">50</span>
+    <span class="p">},</span>
+    <span class="nx">attr2</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">lte</span><span class="o">:</span> <span class="mi">45</span>
+    <span class="p">},</span>
+    <span class="nx">attr3</span><span class="o">:</span> <span class="p">{</span>
+      <span class="k">in</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nx">attr4</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">ne</span><span class="o">:</span> <span class="mi">5</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">})</span></code></pre></div>
+
+
+<!-- findAll
+================================================== -->
+<h4 class="page-header" id="finders-findAll" style="color: #2980b9; font-size: 125%; font-weight: 500;">findAll - Search for multiple elements in the database<br/></h4>
+
+
+<!-- create
+================================================== -->
+<h4 class="page-header" id="methods-create" style="color: #2980b9; font-size: 125%; font-weight: 500;">create( modelData, queryOptions )<br/>
+<small>Create a new Model Instance using the provided <code>modelData</code></small></h4>
+
+
+<!-- findOrCreate
+================================================== -->
+<h4 class="page-header" id="methods-find-or-create" style="color: #2980b9; font-size: 125%; font-weight: 500;">findOrCreate - Search for a specific element or create it if not available<br/></h4>
+
+<!-- rawQuery
+================================================== -->
+<h4 class="page-header" id="methods-raw-query" style="color: #2980b9; font-size: 125%; font-weight: 500;">rawQuery( sql, queryOptions )<br/>
+<small>Run a RAW Query using native methods for the database of the model</small></h4>
+
+
+<!-- Dynamic Finders
+================================================== -->
+<div class="section-page">
+  <h4 id="dynamic-finders">Dynamic Finders</h4>
+  <p class="sub">To make finding model instances as simple as possible, every Field will have two Dynamic Finders automatically generated, <code>Model.findByFieldName()</code> which can be used to find multiple Model Instances, and <code>Model.findAllByFieldName()</code> to find a single Model Instance. Behind the scenes Dynamic Finders simply create the <code>where</code> object to find by any fields name, and calls the find() and findAll() methods.</p>
+
+  <p>For a Field called Username, these will be the default Dynamic Finders Generated for <strong><i>findBy, findAllBy</i></strong> and <strong><i>countBy</i></strong></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">findByName</span>
+<span class="nx">findByNameIn</span>
+<span class="nx">findByNameLike</span>
+<span class="nx">findByNameNotLike</span>
+<span class="nx">findByNameILike</span>
+<span class="nx">findByNameNotILike</span>
+<span class="nx">findByNameStartsWith</span>
+<span class="nx">findByNameEndsWith</span>
+<span class="nx">findByNameNot</span>
+<span class="nx">findByNameNotEqual</span>
+<span class="nx">findByNameBetween</span>
+<span class="nx">findByNameNotBetween</span>
+<span class="nx">findByNameGreaterThan</span>
+<span class="nx">findByNameLessThan</span>
+<span class="nx">findByNameGreaterThanOrEqualTo</span>
+<span class="nx">findByNameLessThanOrEqualTo</span>
+<span class="nx">findByNameContains</span>
+<span class="nx">findByNameDoesNotContain</span>
+<span class="nx">findByNameContained</span>
+<span class="nx">findByNameOverlap</span>
+
+<span class="c1">// You will also have the same style of finders for, findAllBy* and countAllBy*.</span>
+<span class="nx">findAllByUsername</span><span class="p">(</span><span class="s1">&#39;richard&#39;</span><span class="p">)</span>
+<span class="nx">countAllByUsername</span><span class="p">(</span><span class="s1">&#39;richard&#39;</span><span class="p">)</span></code></pre></div>
+</div>
+
+<!-- FindOptions
+================================================== -->
+<h4 id="finders-find-options">findOptions Definition and usage</h4>
+<p class="sub">Used in finders or methods that retrieve/select data.</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+      <th style="width: 100px;">Property</th>
+      <th style="width: 95px;">Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <td id="finders-find-options-where">where<br>
+        <span class="label label-danger">Required</span>
+      </td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Object</span></code></pre></div></td>
+      <td>Define the <i>Field</i>'s and their values that you want to filter results by. For a detail look at using the <code>where</code> criteria
+      </td>
+  </tr>
+  <tr>
+      <td id="finders-find-options-limit">limit<br/><span class="label label-warning">Optional</span></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Number</span></code></pre></div></td>
+      <td>Specify the <i>Maximum</i> number of records you want to retrieve from the database.<br>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span> <span class="nx">limit</span><span class="o">:</span> <span class="mi">10</span> <span class="p">}</span></code></pre></div>
+      </td>
+  </tr>
+  <tr>
+      <td id="finders-find-options-offset">offset<br/><span class="label label-warning">Optional</span></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Number</span></code></pre></div></td>
+      <td>Specify the <i>Page Number</i> (offset) that you want to retrieve from the database, this is used with the <code>limit</code> findOption to provide Pagination for your Query Results.<br>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span> <span class="nx">offset</span><span class="o">:</span> <span class="mi">10</span> <span class="p">}</span></code></pre></div>
+      </td>
+  </tr>
+  <tr>
+      <td id="finders-find-options-order">order<br/><span class="label label-warning">Optional</span></td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Array</span></code></pre></div></td>
+      <td></h4>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">order</span><span class="o">:</span> <span class="p">[</span>
+  <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+  <span class="c1">// will return `name`</span>
+  <span class="s1">&#39;username DESC&#39;</span><span class="p">,</span>
+  <span class="c1">// will return `username DESC` -- i.e. don&#39;t do it!</span>
+  <span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;DESC&#39;</span><span class="p">],</span>
+  <span class="c1">// will return `username` DESC</span>
+  <span class="nx">Model</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="nx">Model</span><span class="p">.</span><span class="nx">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)),</span>
+  <span class="c1">// will return max(`age`)</span>
+  <span class="p">[</span><span class="nx">Model</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="nx">Model</span><span class="p">.</span><span class="nx">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)),</span> <span class="s1">&#39;DESC&#39;</span><span class="p">],</span>
+  <span class="c1">// will return max(`age`) DESC</span>
+  <span class="p">[</span><span class="nx">Model</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="s1">&#39;otherfunction&#39;</span><span class="p">,</span> <span class="nx">Model</span><span class="p">.</span><span class="nx">col</span><span class="p">(</span><span class="s1">&#39;col1&#39;</span><span class="p">),</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;lalala&#39;</span><span class="p">),</span> <span class="s1">&#39;DESC&#39;</span><span class="p">],</span>
+  <span class="c1">// will return otherfunction(`col1`, 12, &#39;lalala&#39;) DESC</span>
+  <span class="p">[</span><span class="nx">Model</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="s1">&#39;otherfunction&#39;</span><span class="p">,</span> <span class="nx">Model</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="s1">&#39;awesomefunction&#39;</span><span class="p">,</span> <span class="nx">Model</span><span class="p">.</span><span class="nx">col</span><span class="p">(</span><span class="s1">&#39;col&#39;</span><span class="p">))),</span> <span class="s1">&#39;DESC&#39;</span><span class="p">]</span>
+  <span class="c1">// will return otherfunction(awesomefunction(`col`)) DESC, This nesting is potentially infinite!</span>
+  <span class="p">[{</span> <span class="nx">raw</span><span class="o">:</span> <span class="s1">&#39;otherfunction(awesomefunction(`col`))&#39;</span> <span class="p">},</span> <span class="s1">&#39;DESC&#39;</span><span class="p">]</span>
+  <span class="c1">// This won&#39;t be quoted, but direction will be added</span>
+<span class="p">]</span></code></pre></div>
+      </td>
+  </tr>
+  <tr>
+      <td id="finders-find-options-include">include<br>
+        <span class="label label-warning">Optional</span>
+      </td>
+      <td><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">Array</span></code></pre></div></td>
+      <td>Eager Load (nested infinitely) Assocations/Relations.<br>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">include</span><span class="o">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="c1">// Required, the model you want to eager load</span>
+    <span class="nx">model</span><span class="o">:</span> <span class="nx">UserModel</span><span class="p">,</span> 
+
+    <span class="c1">// Required if the assocation is aliased &#39;as&#39;</span>
+    <span class="nx">as</span><span class="o">:</span> <span class="s1">&#39;users&#39;</span><span class="p">,</span> 
+
+    <span class="c1">// Optional, smart where for the query</span>
+    <span class="nx">where</span><span class="o">:</span> <span class="p">{},</span>
+
+    <span class="c1">// Optional, require assocation in results</span>
+    <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+    <span class="c1">// Optional, set the foreignKey&#39;s name</span>
+    <span class="nx">foreignKey</span><span class="o">:</span> <span class="s1">&#39;UserId&#39;</span><span class="p">,</span>
+
+    <span class="c1">// Optional, eager load nested assocations</span>
+    <span class="nx">include</span><span class="o">:</span> <span class="p">[</span> 
+    <span class="c1">// Recursive structure for include[]</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">]</span></code></pre></div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- QueryOptions
+================================================== -->
+<h4 id="finders-query-options">queryOptions Definition and usage</h4>
+<p class="sub">Used for every query that is executed on the database, this is where transaction information is held.</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+      <th style="width: 100px;">Name</th>
+      <th style="width: 70px;">Type/s</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <td>transaction<br>
+        <span class="label label-warning">Optional</span>
+      </td>
+      <td>Object</td>
+      <td>Any current transaction to be used with the database query</td>
+  </tr>
+  </tbody>
+</table></div>
+  <div class="section-page"><h3 id="events" class="page-header">
+  Events <a class="permalink" href="#events" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Events</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="instance-methods" class="page-header">
+  Instance Methods <a class="permalink" href="#instance-methods" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Instance Methods</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="getters-and-setters" class="page-header">
+  Getters &amp; Setters <a class="permalink" href="#getters-and-setters" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Getters &amp; Setters</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="associations" class="page-header">
+  Associations/Relations <a class="permalink" href="#associations" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Associations/Relations</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="eager-loading" class="page-header">
+  Eager Loading <a class="permalink" href="#eager-loading" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Eager Loading</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="transactions" class="page-header">
+  Transactions <a class="permalink" href="#transactions" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Transactions</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="seed-data" class="page-header">
+  Seed Data <a class="permalink" href="#seed-data" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Seed Data</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="caching" class="page-header">
+  Caching <a class="permalink" href="#caching" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Caching</li>
+</ol>
+
+<p class="lead sub">CleverStack provides enterprise ready event based caching of query results, so your application is lightning-fast to use and develop.</p>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="errors" class="page-header">
+  Errors <a class="permalink" href="#errors" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Errors</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="toolbelt" class="page-header">
+  Toolbelt <a class="permalink" href="#toolbelt" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Toolbelt</li>
+</ol>
+
+<p><span class="label label-info">Hint</span> Use the grunt db:rebase command to create your database structure</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span><span class="o">:</span><span class="nx">rebase</span></code></pre></div>
+
+<p><span class="label label-info">Hint</span> Use the grunt db:seed command to insert your seed data into the database</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span></code></pre></div>
+
+<p><span class="label label-info">Hint</span> Both of the above db commands can be run together using one command</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span></code></pre></div>
+
+<p><span class="label label-danger">Important</span> You should not load models using require(), they must be loaded using the injector</p>
+<p><span class="label label-danger">Important</span> Use the SequelizeJS migrations tool to create or run ORM Migrations.</p>
+<br></div>
+</div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="container text-center padtop" role="contentinfo">
+      <p class="legal">Cleverstack.io is developed and maintained by <a href="http://au.linkedin.com/in/richardgustin" target="_blank">Richard Gustin</a> (<a href="https://github.com/pilsy" target="_blank">@pilsy</a>),<br/>our core developers, our open source community and <a href="http://www.clevertech.biz/" target="_blank">Clevertech</a>.<br/>2015 Cleverstack.io All Rights Reserved.</p>
+    </footer>
+
+    <!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+
+<!-- <script src="/assets/js/holder.js"></script> -->
+<!-- <script src="/dist/js/application.min.js"></script> -->
+<script src="/assets/js/application.js"></script>
+
+
+
+
+
+
+<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>
+
+<!-- Analytics
+================================================== -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+
+  // var _gauges = _gauges || [];
+  // (function() {
+  //   var t   = document.createElement('script');
+  //   t.async = true;
+  //   t.id    = 'gauges-tracker';
+  //   t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+  //   t.src = '//secure.gaug.es/track.js';
+  //   var s = document.getElementsByTagName('script')[0];
+  //   s.parentNode.insertBefore(t, s);
+  // })();
+</script>
+
+
+  </body>
+</html>

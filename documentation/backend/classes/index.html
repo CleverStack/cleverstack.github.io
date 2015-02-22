@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CleverStack, the Enterprise-grade, Open-Source Full-Stack JavaScript Framework built on NodeJS and Angular, MEAN and so much more!">
+<meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development, node.js, express, mongoose, mongodb, angularjs, swig, sequelize, sequelizejs, orm, odm, cli">
+<meta name="author" content="Richard Gustin and contributors to the CleverStack Repositories">
+
+<title>
+  
+    Backend Classes &middot; CleverStack.io
+  
+</title>
+
+<!-- Bootstrap core CSS -->
+<link href="/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+<!-- Application CSS -->
+<link href="/dist/css/application.min.css" rel="stylesheet">
+
+
+<!-- Documentation extras -->
+<link href="/assets/css/docs.css" rel="stylesheet">
+<link href="/assets/css/pygments-manni.css" rel="stylesheet">
+<!--[if lt IE 9]><script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="/assets/ico/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-touch-icon-152x152.png" />
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+  var tag = document.createElement('script');  tag.src = "http://www.youtube.com/player_api";  var firstScriptTag = document.getElementsByTagName('script')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  </script>
+
+  </head>
+  <body>
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <div class="github-ribbon">
+       <a href="https://github.com/cleverstack/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+    </div>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">CleverStack.io</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/getting-started">Getting started</a>
+        </li>
+        <li>
+          <a href="/why-cleverstack">Why cleverstack?</a>
+        </li>
+        <li>
+          <a href="/modules">Modules</a>
+        </li>
+        <li>
+          <a href="/documentation">Documentation</a>
+        </li>
+<!--         <li>
+          <a href="/css">CSS</a>
+        </li>
+        <li>
+          <a href="/components">Components</a>
+        </li>
+        <li>
+          <a href="/javascript">JavaScript</a>
+        </li>
+        <li>
+          <a href="/customize">Customize</a>
+        </li> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Docs page layout -->
+    <div class="bs-header" id="content">
+      <div class="container">
+        <h1>Backend Classes</h1>
+        <p>An Indepth guides of the CleverStack NodeJS Backend, covering installation, configuration, usage, extending, testing and much more.</p>
+      </div>
+    </div>
+
+    <!-- Callout for the old docs link -->
+    <!-- <div class="bs-old-docs">
+  <div class="container">
+    <strong>
+      <a href="/2.3.2/">Looking for Bootstrap 2.3.2 docs?</a>
+    </strong>
+    We've moved it to a new home while we push forward with Bootstrap 3. <a href="http://blog.getbootstrap.com/">Read the blog</a> for details.
+  </div>
+</div>
+ -->
+
+    <div class="container bs-docs-container">
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-sidenav">
+              
+                <li><a href="/documentation/backend" style="padding-left: 10px !important;color: #563d7c;"><strong>Backend</strong> <br/><small>(viewing Classes)</small></a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#extending">Extending</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#inheritance">Inheritance</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#proxy-methods">Proxy Methods</a></li>
+              
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9" role="main">
+          	<div class="bs-docs-section">
+  <div class="section-page"><h1 id="overview" class="page-header">
+  Classes<br/>
+  <small>Lightning-fast and flexible OOP Style Classes</small>
+</h1>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li class="active">Classes</li>
+</ol>
+
+<p class="lead sub">Each Module, Controller, Service or Model is extended from a <a href="https://github.com/daffl/uberclass">Class</a>, we do this for many reasons but none as important as taking advantage of <a href="https://developers.google.com/v8/design">V8's Hidden Classes, Inline Caches &amp; Optimizing Compiler</a> to allow V8 to generate efficient and performant machine code so your application is as fast as humanly possible and then some.</p>
+
+<blockquote>
+  <h6>Beauty is more important in computing than anywhere else in technology because software is so complicated. Beauty is the ultimate defence against complexity.</h6>
+  <footer style="font-size: 12px;">David Gelernter</footer>
+</blockquote>
+
+<h5 class="page-header">Highlights</h5>
+<ul>
+  <li>Prototypal inheritance</li>
+  <li>Static inheritance</li>
+  <li>Setup and initialization methods</li>
+  <li>Easy callback (proxying/currying) creation</li>
+  <li>Lightning fast performance
+    <ol>
+      <li>Takes advantage of V8's Hidden Classes &amp; Inline Caches</li>
+      <li>Takes advantage of V8's Optimizing Compiler which generates efficient machine code to run in place of your javascript
+Clean, Efficient and Optimized code</li>
+    </ol>
+  </li>
+  <li>All Classes can emit and listen to events using EventEmitter</li>
+</ul>
+<br/>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Proxy Functions</h4>
+  <p>We strongly encourage the use of curried proxy functions, by doing so you are able to keep your code easy to read and maintain by using as little nesting as possible, this also means your code (function/s) is/are re-usable.</p>
+</div>
+<div class="bs-callout bs-callout-warning">
+  <h4>Example Usage</h4>
+  <p>Take a look at our <a href="https://github.com/CleverStack/Node-Seed/blob/master/lib/utils/moduleLoader.js">Module Loader Class</a> for an in-depth look at how to use currying to your advantage.</p>
+</div>
+<div class="bs-callout bs-callout-info">
+  <h4>Currying (proxy methods)</h4>
+  <p>Read <a href="http://en.wikipedia.org/wiki/Currying">Currying</a> on Wikipedia for an in-depth explaination of currying.</p>
+</div>
+<div class="bs-callout bs-callout-info">
+  <h4>Hidden Classes</h4>
+  <p>Read <a href="http://debuggable.com/posts/understanding-hidden-classes-in-v8:4c7e81e4-1330-4398-8bd2-761bcbdd56cb">Understanding Hidden Classes in V8</a> for an indepth look at what Hidden Classes are and how they work in V8.</p>
+</div></div>
+  <div class="section-page"><h3 id="definition" class="page-header">
+  Definition <a class="permalink" href="#definition" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/classes">Classes</a></li>
+  <li class="active">Definition</li>
+</ol>
+<br/>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// This example file exports a function that will have &quot;Class&quot; injected into it via the clever-injector</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">Class</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+  <span class="cm">/* @Class */</span>
+  <span class="p">{</span>
+    <span class="c1">// Static attributes or methods</span>
+  <span class="p">},</span>
+  <span class="cm">/* @Prototype */</span>
+  <span class="p">{</span>
+    <span class="c1">// Instance attributes or methods</span>
+  <span class="p">});</span>
+<span class="p">};</span></code></pre></div>
+<div class="bs-callout bs-callout-info">
+  <h4>Extend's arguments</h4>
+  <p>You can call .extend() with only the Static/Class object instead of defining both</p>
+</div></div>
+  <div class="section-page"><h3 id="extending" class="page-header">
+  Extending <a class="permalink" href="#extending" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/classes">Classes</a></li>
+  <li class="active">Extending</li>
+</ol>
+<br/>
+
+<p>Every Class will provide an extend function that can be used to extend the functionality of a Class with some new functionality as provided in the Static and Prototype of the extend call.</p>
+
+<p>A good example of class extension is the Controller class (in lib folder), it extends from Class and every module/s controller/s extend from Controller.</p>
+
+<p>When you overload a method from a parent class, you can call the parents method by using <code>this._super()</code></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Monster</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
+<span class="cm">/* @Class */</span>
+<span class="p">{</span>
+  <span class="nx">count</span><span class="o">:</span> <span class="mi">0</span>
+<span class="p">},</span>
+<span class="cm">/* @Prototype */</span>
+<span class="p">{</span>
+  <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">name</span> <span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// saves name on the monster instance</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+
+    <span class="c1">// sets the health</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">health</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+    <span class="c1">// increments count</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">Class</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">eat</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">smallChildren</span> <span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">health</span> <span class="o">+=</span> <span class="nx">smallChildren</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">fight</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">health</span> <span class="o">-=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">hydra</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Monster</span><span class="p">(</span><span class="s1">&#39;hydra&#39;</span><span class="p">);</span>
+<span class="nx">dragon</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Monster</span><span class="p">(</span><span class="s1">&#39;dragon&#39;</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hydra</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>     <span class="c1">// -&gt; hydra</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Monster</span><span class="p">.</span><span class="nx">count</span><span class="p">)</span>  <span class="c1">// -&gt; 2</span>
+
+<span class="nx">hydra</span><span class="p">.</span><span class="nx">eat</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hydra</span><span class="p">.</span><span class="nx">health</span><span class="p">);</span>  <span class="c1">// health = 12</span>
+
+<span class="nx">dragon</span><span class="p">.</span><span class="nx">fight</span><span class="p">();</span>    
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dragon</span><span class="p">.</span><span class="nx">health</span><span class="p">);</span> <span class="c1">// health = 8</span>
+
+<span class="kd">var</span> <span class="nx">SeaMonster</span> <span class="o">=</span> <span class="nx">Monster</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">eat</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">smallChildren</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="nx">smallChildren</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">fight</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">health</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">lochNess</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SeaMonster</span><span class="p">(</span><span class="s1">&#39;Loch Ness&#39;</span><span class="p">);</span>
+
+<span class="nx">lochNess</span><span class="p">.</span><span class="nx">eat</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Loch Ness ate. Health: &quot;</span> <span class="o">+</span> <span class="nx">lochNess</span><span class="p">.</span><span class="nx">health</span><span class="p">);</span> <span class="c1">// -&gt; 12</span>
+
+<span class="nx">lochNess</span><span class="p">.</span><span class="nx">fight</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Loch Ness fought. Health: &quot;</span> <span class="o">+</span> <span class="nx">lochNess</span><span class="p">.</span><span class="nx">health</span><span class="p">);</span> <span class="c1">// -&gt; 11</span></code></pre></div></div>
+  <div class="section-page"><h3 id="examples" class="page-header">
+  Examples <a class="permalink" href="#examples" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/classes">Classes</a></li>
+  <li class="active">Examples</li>
+</ol>
+
+<p>Here is an example of creating a class and using the proxy function as well as emitting events.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Class</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;classes&#39;</span> <span class="p">).</span><span class="nx">Class</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">files</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+  <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getFiles</span><span class="p">(</span> <span class="nx">__dirname</span> <span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span> <span class="s1">&#39;init&#39;</span> <span class="p">);</span>
+  <span class="p">},</span>
+
+  <span class="nx">getFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">readdir</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span> <span class="s1">&#39;handleGetFiles&#39;</span><span class="p">,</span> <span class="nx">dir</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="p">},</span>
+
+  <span class="c1">// The dir variable has been curried into this function by getFiles()</span>
+  <span class="nx">handleGetFiles</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">dir</span><span class="p">,</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">files</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">err</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">files</span> <span class="o">=</span> <span class="nx">files</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span> <span class="nx">err</span> <span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span></code></pre></div></div>
+  <div class="section-page"><h3 id="inheritance" class="page-header">
+  Inheritance <a class="permalink" href="#inheritance" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/classes">Classes</a></li>
+  <li class="active">Inheritance</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="events" class="page-header">
+  Events <a class="permalink" href="#events" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/classes">Classes</a></li>
+  <li class="active">Events</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div></div>
+  <div class="section-page"><h3 id="proxy-methods" class="page-header">
+  Proxy Methods <a class="permalink" href="#proxy-methods" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/classes">Classes</a></li>
+  <li class="active">Proxy Methods</li>
+</ol>
+
+<p>Proxies are a helpful way of flattening your code, you don't need to nest or repeat yourself - structure it out into something more modular and re-usable.</p><br>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Handler</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">init</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span> <span class="nx">headers</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_headers</span> <span class="o">=</span> <span class="nx">headers</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_content</span> <span class="o">=</span> <span class="nx">content</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/* Prototype */</span>
+    <span class="nx">writeHead</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_headers</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">handle</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_content</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">handler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Handler</span><span class="p">(</span><span class="s1">&#39;Hello World from ResponseHandler\n&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;text/plain&#39;</span> <span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">handler</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="s1">&#39;handle&#39;</span><span class="p">)).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">1337</span><span class="p">,</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">);</span></code></pre></div></div>
+</div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="container text-center padtop" role="contentinfo">
+      <p class="legal">Cleverstack.io is developed and maintained by <a href="http://au.linkedin.com/in/richardgustin" target="_blank">Richard Gustin</a> (<a href="https://github.com/pilsy" target="_blank">@pilsy</a>),<br/>our core developers, our open source community and <a href="http://www.clevertech.biz/" target="_blank">Clevertech</a>.<br/>2015 Cleverstack.io All Rights Reserved.</p>
+    </footer>
+
+    <!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+
+<!-- <script src="/assets/js/holder.js"></script> -->
+<!-- <script src="/dist/js/application.min.js"></script> -->
+<script src="/assets/js/application.js"></script>
+
+
+
+
+
+
+<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>
+
+<!-- Analytics
+================================================== -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+
+  // var _gauges = _gauges || [];
+  // (function() {
+  //   var t   = document.createElement('script');
+  //   t.async = true;
+  //   t.id    = 'gauges-tracker';
+  //   t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+  //   t.src = '//secure.gaug.es/track.js';
+  //   var s = document.getElementsByTagName('script')[0];
+  //   s.parentNode.insertBefore(t, s);
+  // })();
+</script>
+
+
+  </body>
+</html>
