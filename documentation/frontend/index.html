@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CleverStack, the Enterprise-grade, Open-Source Full-Stack JavaScript Framework built on NodeJS and Angular, MEAN and so much more!">
+<meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development, node.js, express, mongoose, mongodb, angularjs, swig, sequelize, sequelizejs, orm, odm, cli">
+<meta name="author" content="Richard Gustin and contributors to the CleverStack Repositories">
+
+<title>
+  
+    Frontend Documenation &middot; CleverStack.io
+  
+</title>
+
+<!-- Bootstrap core CSS -->
+<link href="/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+<!-- Application CSS -->
+<link href="/dist/css/application.min.css" rel="stylesheet">
+
+
+<!-- Documentation extras -->
+<link href="/assets/css/docs.css" rel="stylesheet">
+<link href="/assets/css/pygments-manni.css" rel="stylesheet">
+<!--[if lt IE 9]><script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="/assets/ico/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-touch-icon-152x152.png" />
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+  var tag = document.createElement('script');  tag.src = "http://www.youtube.com/player_api";  var firstScriptTag = document.getElementsByTagName('script')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  </script>
+
+  </head>
+  <body>
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <div class="github-ribbon">
+       <a href="https://github.com/cleverstack/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+    </div>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">CleverStack.io</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/getting-started">Getting started</a>
+        </li>
+        <li>
+          <a href="/why-cleverstack">Why cleverstack?</a>
+        </li>
+        <li>
+          <a href="/modules">Modules</a>
+        </li>
+        <li>
+          <a href="/documentation">Documentation</a>
+        </li>
+<!--         <li>
+          <a href="/css">CSS</a>
+        </li>
+        <li>
+          <a href="/components">Components</a>
+        </li>
+        <li>
+          <a href="/javascript">JavaScript</a>
+        </li>
+        <li>
+          <a href="/customize">Customize</a>
+        </li> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Docs page layout -->
+    <div class="bs-header" id="content">
+      <div class="container">
+        <h1>Frontend Documenation</h1>
+        <p>Indepth guides for CleverStack's Frontend covering installation, configuration, usage and extending.</p>
+      </div>
+    </div>
+
+    <!-- Callout for the old docs link -->
+    <!-- <div class="bs-old-docs">
+  <div class="container">
+    <strong>
+      <a href="/2.3.2/">Looking for Bootstrap 2.3.2 docs?</a>
+    </strong>
+    We've moved it to a new home while we push forward with Bootstrap 3. <a href="http://blog.getbootstrap.com/">Read the blog</a> for details.
+  </div>
+</div>
+ -->
+
+    <div class="container bs-docs-container">
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-sidenav">
+              
+                <li><a href="/documentation" style="padding-left: 10px !important;color: #563d7c;"><strong>Documentation</strong> <br/><small>(viewing Frontend)</small></a></li>
+<li><a href="#frontend-introduction">Introduction</a></li>
+<li><a href="#frontend-structure">Structure</a>
+  <ul class="nav nav-nest-1">
+    <li><a href="#frontend-structure-folder">Folder Structure</a></li>
+    <li><a href="#frontend-structure-folder">Important Files &amp; Folders</a></li>
+    <li><a href="#frontend-structure-modules">Modules</a></li>
+  </ul>
+</li>
+<li><a href="#frontend-configuration">Configuration</a></li>
+<li>
+  <a href="#frontend-modules">Modules</a>
+  <ul class="nav nav-nest-1">
+    <li><a href="#frontend-modules-structure">Structure</a></li>
+    <li><a href="#frontend-modules-configuration">Configuration</a></li>
+    <li><a href="#frontend-modules-creating">Creating Modules</a></li>
+    <li><a href="#frontend-modules-finding">Publishing Modules</a></li>
+  </ul>
+</li>
+<li>
+  <a href="#frontend-usage">Usage</a>
+  <ul class="nav" style="margin-bottom: 0px;">
+    <li style="padding-left: 10px;"><a href="#frontend-usage-structure">Controllers</a></li>
+    <li style="padding-left: 10px;"><a href="#frontend-usage-finding">Routing</a></li>
+    <li style="padding-left: 10px;"><a href="#frontend-usage-configuration">Models</a></li>
+    <li style="padding-left: 10px;"><a href="#frontend-usage-creating">Views</a></li>
+  </ul>
+</li>
+<li><a href="#frontend-testing">Testing</a></li>
+<li><a href="#frontend-troubleshooting">Troubleshooting</a></li>
+<li><a href="#frontend-contributing">Contributing</a></li>
+              
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9" role="main">
+            <div class="bs-docs-section">
+    <!-- Front-end (AngularJS)
+================================================== -->
+<h1 id="frontend" class="page-header">CleverStack Frontend</h1>
+
+<!-- Introduction
+================================================== -->
+<!-- Overview
+================================================== -->
+<h3 id="frontend-introduction" class="page-header">
+  Introduction <a class="permalink" href="#frontend-introduction" title="Permalink"><small>¶</small></a><br/>
+  <small>MEAN and so much more!</small>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="#overview">Documentation</a></li>
+  <li><a href="#backend">Frontend</a></li>
+  <li class="active">Introduction</li>
+</ol>
+
+<p class="lead sub">CleverStack's Frontend (Angular Seed) has been designed to provide you with a super fast test driven front-end development lifecycle. Everything you need should be just one command away, if it's not please open an issue or fork the repo on github and submit a pull request.</p>
+
+<h5 class="page-header">Highlights</h5>
+<ul>
+  <ul>
+  <li>AngularJS Application Core Integrated with RequireJS</li>
+  <li>Grunt Server with Live Reload, Bootstrap 3, LESS</li>
+  <li>JavaScript Dependency Loading with Bower</li>
+  <li>Modular NPM Based Coding Structure</li>
+  <li>Unit Testing with Karma &amp; Code Coverage Reports</li>
+  <li>E2E Testing with Angular Protractor and Grunt</li>
+  <li>Optimized Production Build Process</li>
+</ul><br/><br/>
+
+<!-- Structure
+================================================== -->
+<h3 id="frontend-structure" class="page-header">
+  Structure <a class="permalink" href="#frontend-structure" title="Permalink"><small>¶</small></a><br/>
+  <small>Cleverstacks's Architecture has been designed to be simple and intiutive to use and extend.</small><br/>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="#overview">Documentation</a></li>
+  <li><a href="#frontend">Frontend</a></li>
+  <li class="active">Structure</li>
+</ol>
+<!-- <p class="lead sub">Cleverstack provides a clear and simple structure that will make writing even the most (seemingly) complex applications trivial.</p> -->
+
+<blockquote>
+  <h6>Complexity kills. It sucks the life out of developers, it makes products difficult to plan, build and test, it introduces security challenges and it causes end-user and administrator frustration.</h6>
+  <footer style="font-size: 12px;">Ray Ozzie</footer>
+</blockquote>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">front-end/
+├── app/              <span class="c"># angular app specific source files</span>
+│   └── modules/      <span class="c"># cleverstack front-end modules</span>
+├── scripts/          <span class="c"># app scripts and binaries</span>
+├── tests/            <span class="c"># app tests, both unit &amp;amp; integration</span>
+├── Gruntfile.js      <span class="c"># app grunt file for modifying configuration and adding tasks</span>
+├── bower.json        <span class="c"># app js dependencies</span>
+└── package.json      <span class="c"># app npm dependencies</span></code></pre></div><br>
+
+<!-- Important files and folders
+================================================== -->
+<div style="padding-left: 20px;">
+  <h4>Important files and folders</h4>
+  <p>Here is a list of things you need to know about the structure of the CleverStack AngularJS Frontend</p><br>
+
+  <h5>app/</h5>
+  <ul>
+    <li>This folder contains the core of the Cleverstack Angular Seed.</li>
+  </ul>
+
+  <h5>app/modules/</h5>
+  <ul>
+    <li>This is where all of the Cleverstack modules will be installed into your application by our CLI.</li>
+    <li>NPM Modules that have been made to work with Cleverstack will also be placed here.</li>
+    <li>You also add custom modules inside this folder, either by creating it manually (See https://github.com/CleverStack/frontend-example-module for an example of how to create your own modules) or using the CleverStack CLI's install, generate or scaffold commands.</li>
+  </ul>
+
+  <h5>scripts/</h5>
+  <ul>
+    <li>This is where you can store your front-end scripts and binaries such as executables, JAR files or such. Examples of these might be browserstack-tunnel.sh, selenum-server.jar, chromedriver.exe, phantomjs.exe etc...</li>
+    <li>Scripts can be defined in package.json and then run with `npm run-script [name]`.</li>
+  </ul>
+
+  <h5>Gruntfile.js</h5>
+  <ul>
+    <li>Defines the Applications global (main) gruntConfig.</li>
+    <li>Registers the Applications included Grunt tasks.</li>
+    <li><span class="label label-info">Note</span> Each module's Gruntfile.js config is deep merged into this files main grunt config before registering any tasks with grunt.</li>
+  </ul>
+
+  <h5>bower.json</h5>
+  <ul>
+    <li>Stores the apps main bower dependencies install during setup with the CLI.</li>
+  </ul>
+
+  <h5>package.json</h5>
+  <ul>
+    <li>Defines the Application information, scripts and it's NPM dependencies like any normal NPM Module.</li>
+    <li>Defines the modules that are enabled, using the <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array. (This also let's NPM know that these dependencies are local and not on the NPM Registry)</li>
+  </ul>
+</div><br/><br/>
+
+<!-- Configuration
+================================================== -->
+<!-- Configuration
+================================================== -->
+<h3 id="frontend-configuration">Configuration</h3>
+<p>Coming soon, we are working hard on this section.</p><br><br/><br/>
+
+<!-- Modules
+================================================== -->
+<!-- Modules
+================================================== -->
+<h3 id="frontend-modules">Modules</h3>
+<p>These are the most important part of your application, where all your functionality and testing is defined.</p><br>
+
+<div style="padding-left: 20px;">
+
+  <!-- Modules structure
+  ================================================== -->
+  <h4 id="frontend-modules-structure">Structure</h4>
+        <p>This is a typical front-end (angular) module structure.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">example-module/
+├── scripts/                          <span class="c"># module angular scripts</span>
+│   ├── controllers/
+│   ├── directives/
+│   ├── services/
+│   └── resources/
+├── styles/                           <span class="c"># module styles (optional)</span>
+├── img/                              <span class="c"># module images (optional)</span>
+├── fonts/                            <span class="c"># module fonts (optional)</span>
+├── views/                            <span class="c"># module ngTemplates</span>
+├── tests/                            <span class="c"># module tests</span>
+│   ├── unit/
+│   └── e2e/
+├── main.js                           <span class="c"># module requirejs scripts</span>
+├── module.js                         <span class="c"># angular main module</span>
+├── bower.json                        <span class="c"># module js dependencies</span>
+├── Gruntfile.js                      <span class="c"># module grunt tasks</span>
+└── package.json                      <span class="c"># module npm dependencies</span></code></pre></div><br>
+
+  <div style="padding-left: 30px;">
+    <h4>Important files and folders</h5>
+
+    <h5>scripts/</h5>
+    <ul>
+        <li>This folder contains all the scripts required for the module. ie - all the modules angular controllers, directives, services and resources.</li>
+    </ul>
+
+    <h5>views/</h5>
+    <ul>
+        <li>This allows each module to define it's own views for the ngtemplates provided within each module.</li>
+    </ul>
+
+    <h5>tests/</h5>
+    <ul>
+        <li>Two folders for testing, unit/ and e2e/</li>
+        <li>This allows each module to define it's own tests for the functionality (code) that is provided within each module.</li>
+    </ul>
+
+    <h5>main.js</h5>
+    <ul>
+        <li>This is the requirejs main file, use it to specify all the javascript files you need for your module..</li>
+    </ul>
+
+    <h5>module.js</h5>
+    <ul>
+        <li>Instantiates and configures angular modules for your module.</li>
+    </ul>
+
+    <h5>bower.json</h5>
+    <ul>
+        <li>Defines the modules JavaScript dependencies.</li>
+    </ul>
+
+    <h5>package.json</h5>
+    <ul>
+        <li>Defines the Application and it's information, scripts and NPM dependencies just like every other NPM Module.</li><br>
+        <li><span class="label label-danger">Important</span> This is where you define which Modules are enabled, using the <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array.</li>
+        <li><span class="label label-info">Note</span> By adding modules into the <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array, you are also letting NPM know that these dependencies are local and not on the NPM Registry, meaning NPM will never search or download those modules from the internet.</li>
+        <li><span class="label label-info">Note</span> The order in which you place modules inside your <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array will be the loading order of the modules.</li>
+    </ul>
+
+    <h5>Gruntfile.js</h5>
+    <ul>
+        <li>Defines the Applications global (main) gruntConfig.</li>
+        <li>Registers the Applications included Grunt tasks.</li><br>
+        <li><span class="label label-info">Note</span> Each module's Gruntfile.js config is deep merged into this files main grunt config before registering any tasks with grunt, which gives you the power to both add grunt tasks and modify the gruntConfig inside each module.</li>
+    </ul>
+  </div><br>
+
+  <!-- <h4>Creating Modules</h4>
+  <p></p><br>
+
+  <h4>Publishing Modules</h4>
+  <p></p><br> -->
+</div><br/><br/>
+
+<!-- Usage
+================================================== -->
+<!-- Usage
+================================================== -->
+<h3 id="frontend-usage">Usage</h3>
+<p>Coming soon, we are working hard on this section.</p><br><br/><br/>
+
+<!-- Testing
+================================================== -->
+<!-- Testing
+================================================== -->
+<h3 id="frontend-testing">Testing</h3>
+<p>Coming soon, we are working hard on this section.</p><br><br/><br/>
+
+<!-- Troubleshooting
+================================================== -->
+<!-- Troubleshooting
+================================================== -->
+<h3 id="frontend-troubleshooting">Troubleshooting</h3>
+<p>If you have any problems (including errors, exceptions and even general usage) with the AngularJS Frontend which is called the Angular Seed.</p>
+<ul>
+  <li>Check the Github <a href="https://github.com/CleverStack/Angular-Seed/issues">issues page</a>.</li>
+  <li>Log into the public access <a href="https://www.hipchat.com/gwM43u4Mw">HipChat Room</a> and ask for help.</li>
+  <li>Get some help from the Cleverstack <a href="https://groups.google.com/forum/#!forum/clever-stack">Google Group</a></li>
+  <li>If your still having problems, please <a href="https://github.com/CleverStack/Angular-Seed/issues/new">raise an issue</a>.</li>
+</ul><br/><br/>
+
+<!-- Contributing
+================================================== -->
+<!-- Contributing
+================================================== -->
+<h3 id="frontend-contributing">Contributing</h3>
+<p>Firstly please read our <a href="https://github.com/CleverStack/Angular-Seed/blob/master/CONTRIBUTING.md">guidelines for contributing</a>, Then fork the <a href="https://github.com/CleverStack/Angular-Seed">CleverStack Node Seed</a> github repo, once you are ready please submit a "Pull Request" for review.</p><br/><br/>
+  </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="container text-center padtop" role="contentinfo">
+      <p class="legal">Cleverstack.io is developed and maintained by <a href="http://au.linkedin.com/in/richardgustin" target="_blank">Richard Gustin</a> (<a href="https://github.com/pilsy" target="_blank">@pilsy</a>),<br/>our core developers, our open source community and <a href="http://www.clevertech.biz/" target="_blank">Clevertech</a>.<br/>2015 Cleverstack.io All Rights Reserved.</p>
+    </footer>
+
+    <!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+
+<!-- <script src="/assets/js/holder.js"></script> -->
+<!-- <script src="/dist/js/application.min.js"></script> -->
+<script src="/assets/js/application.js"></script>
+
+
+
+
+
+
+<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>
+
+<!-- Analytics
+================================================== -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+
+  // var _gauges = _gauges || [];
+  // (function() {
+  //   var t   = document.createElement('script');
+  //   t.async = true;
+  //   t.id    = 'gauges-tracker';
+  //   t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+  //   t.src = '//secure.gaug.es/track.js';
+  //   var s = document.getElementsByTagName('script')[0];
+  //   s.parentNode.insertBefore(t, s);
+  // })();
+</script>
+
+
+  </body>
+</html>
