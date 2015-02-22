@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CleverStack, the Enterprise-grade, Open-Source Full-Stack JavaScript Framework built on NodeJS and Angular, MEAN and so much more!">
+<meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, bootstrap, front-end, frontend, web development, node.js, express, mongoose, mongodb, angularjs, swig, sequelize, sequelizejs, orm, odm, cli">
+<meta name="author" content="Richard Gustin and contributors to the CleverStack Repositories">
+
+<title>
+  
+    CLI Documenation &middot; CleverStack.io
+  
+</title>
+
+<!-- Bootstrap core CSS -->
+<link href="/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+<!-- Application CSS -->
+<link href="/dist/css/application.min.css" rel="stylesheet">
+
+
+<!-- Documentation extras -->
+<link href="/assets/css/docs.css" rel="stylesheet">
+<link href="/assets/css/pygments-manni.css" rel="stylesheet">
+<!--[if lt IE 9]><script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="/assets/ico/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-touch-icon-152x152.png" />
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+  var tag = document.createElement('script');  tag.src = "http://www.youtube.com/player_api";  var firstScriptTag = document.getElementsByTagName('script')[0];  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  </script>
+
+  </head>
+  <body>
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <div class="github-ribbon">
+       <a href="https://github.com/cleverstack/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+    </div>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">CleverStack.io</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/getting-started">Getting started</a>
+        </li>
+        <li>
+          <a href="/why-cleverstack">Why cleverstack?</a>
+        </li>
+        <li>
+          <a href="/modules">Modules</a>
+        </li>
+        <li>
+          <a href="/documentation">Documentation</a>
+        </li>
+<!--         <li>
+          <a href="/css">CSS</a>
+        </li>
+        <li>
+          <a href="/components">Components</a>
+        </li>
+        <li>
+          <a href="/javascript">JavaScript</a>
+        </li>
+        <li>
+          <a href="/customize">Customize</a>
+        </li> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Docs page layout -->
+    <div class="bs-header" id="content">
+      <div class="container">
+        <h1>CLI Documenation</h1>
+        <p>Indepth guides for CleverStack's CLI covering installation, configuration, usage and extending.</p>
+      </div>
+    </div>
+
+    <!-- Callout for the old docs link -->
+    <!-- <div class="bs-old-docs">
+  <div class="container">
+    <strong>
+      <a href="/2.3.2/">Looking for Bootstrap 2.3.2 docs?</a>
+    </strong>
+    We've moved it to a new home while we push forward with Bootstrap 3. <a href="http://blog.getbootstrap.com/">Read the blog</a> for details.
+  </div>
+</div>
+ -->
+
+    <div class="container bs-docs-container">
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-sidenav">
+              
+                <li><a href="/documentation" style="padding-left: 10px !important;color: #563d7c;"><strong>Documentation</strong> <br/><small>(viewing CLI)</small></a></li>
+<li><a href="#cli-overview">Overview</a></li>
+<li>
+  <a href="#cli-prerequisites">Prerequisites</a>
+  <ul class="nav nav-nest-1">
+    <li><a href="#cli-prerequisites-node">NodeJS &amp; NPM</a></li>
+    <li><a href="#cli-prerequisites-bower">Bower</a></li>
+    <li><a href="#cli-prerequisites-grunt">Grunt</a></li>
+  </ul>
+</li>
+<li><a href="#cli-installation">Installation</a></li>
+<li>
+  <a href="#cli-commands">Commands</a>
+  <ul class="nav nav-nest-1">
+    <li><a href="#cli-commands-build">Build</a></li>
+    <li><a href="#cli-commands-downgrade">Downgrade</a></li>
+    <li><a href="#cli-commands-init">Init</a></li>
+    <li><a href="#cli-commands-install">Install</a></li>
+    <li><a href="#cli-commands-generate">Generate</a></li>
+    <li><a href="#cli-commands-list">List</a></li>
+    <li><a href="#cli-commands-new">New</a></li>
+    <li><a href="#cli-commands-remove">Remove</a></li>
+    <li><a href="#cli-commands-repl">Repl</a></li>
+    <li><a href="#cli-commands-routes">Routes</a></li>
+    <li><a href="#cli-commands-scaffold">Scaffold</a></li>
+    <li><a href="#cli-commands-search">Seach</a></li>
+    <li><a href="#cli-commands-setup">Setup</a></li>
+    <li><a href="#cli-commands-server">Server</a></li>
+    <li><a href="#cli-commands-test">Test</a></li>
+    <li><a href="#cli-commands-upgrade">Upgrade</a></li>
+  </ul>
+</li>
+<li>
+  <a href="#cli-modules">Modules</a>
+  <ul class="nav nav-nest-1">
+    <li><a href="#cli-modules-official">Official modules</a>
+      <ul class="nav nav-nest-2" style="margin-bottom: 0px;">
+        <li><a href="#cli-modules-official-orm">ORM (SQL)</a></li>
+        <li><a href="#cli-modules-official-odm">ODM (NoSQL)</a></li>
+        <li><a href="#cli-modules-official-background-tasks">Background Tasks</a></li>
+        <li><a href="#cli-modules-official-auth">Authentication</a></li>
+      </ul>
+    </li>
+    <li><a href="#cli-modules-core">Core modules</a>
+      <ul class="nav nav-nest-2">
+        <li><a href="#cli-modules-core-controller">Controller</a></li>
+        <li><a href="#cli-modules-core-di">Dependency Injector</a></li>
+      </ul>
+    </li>
+    <li><a href="#cli-modules-using">Using modules</a></li>
+    <li><a href="#cli-modules-finding">Finding modules</a></li>
+    <li><a href="#cli-modules-creating">Creating modules</a></li>
+  </ul>
+</li>
+<li><a href="#cli-troubleshooting">Troubleshooting</a></li>
+<li><a href="#cli-contributing">Contributing</a></li>
+<li>
+  <a href="#testing">Running Tests</a>
+  <ul class="nav">
+    <li><a href="#testing-unit">Running Unit Tests</a></li>
+    <li><a href="#testing-e2e">Running E2E Tests</a></li>
+    <li><a href="#testing-coverage">Code Coverage Reports</a></li>
+  </ul>
+</li>
+<li>
+  <a href="#deployment">Build &amp; Deployment</a>
+  <ul class="nav">
+    <li><a href="#deployment-build">Production Builds</a></li>
+    <li><a href="#deployment-strategies">Deployment Strategies</a></li>
+  </ul>
+</li>
+<li>
+  <a href="#troubleshooting">Troubleshooting</a>
+</li>
+<li>
+  <a href="#faq">FAQ</a>
+</li>
+              
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9" role="main">
+            <div class="bs-docs-section">
+    <!-- CLI
+================================================== -->
+<div class="page-header">
+  <h1 id="cli">CleverStack CLI</h1>
+</div>
+<p class="lead">CleverStack provides a fully featured Command Line Interface that does everything you will need in your Software Development Lifecycle</p>
+
+<!-- Overview
+================================================== -->
+<h3 class="page-header" id="cli-overview">Overview</h3>
+<p>Our Command Line Interface (CLI) was designed to be as modular as possible, so that applications could take advantage of modules that are created and published to our Open Source EcoSystem by anyone, as well as our Official Modules.</p>
+
+<!-- Prerequisites
+================================================== -->
+<h3  class="page-header" id="cli-prerequisites">Prerequisites</h3>
+<p>The CLI has a few packages it depends on that cannot be defined inside of it's package.json, you have to install these before you can install or use the Command Line Interface.</p><br>
+
+<dl class="dl-horizontal">
+  <dt><a id="cli-prerequisites-node" href="http://nodejs.org">NodeJS &amp; NPM</a></dt>
+  <dd>is a platform built on <a href="https://code.google.com/p/v8/">Chrome's JavaScript runtime</a> for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices. <a href="http://nodejs.org/download/">Download now</a></dd>
+
+  <br>
+
+  <dt><a id="cli-prerequisites-bower" href="http://bower.io/">Bower</a></dt>
+  <dd>is a package manager for the web made by Twitter. It offers a generic, unopinionated solution to the problem of front-end package management, while exposing the package dependency model via an API that can be consumed by a more opinionated build stack. There are no system wide dependencies, no dependencies are shared between different Applications, and the dependency tree is flat.<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install -g bower</code></pre></div></dd>
+
+  <br>
+
+  <dt><a id="cli-prerequisites-grunt" href="http://gruntjs.com/">Grunt</a></dt>
+  <dd>is a Task Runner for <a href="http://nodejs.org">Node.js</a>, with literally hundreds of plugins to choose from, you can use Grunt to automate just about anything with a minimum of effort. If someone hasn't already built what you need, authoring and publishing your own Grunt plugin to npm is a breeze.<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install -g grunt-cli</code></pre></div></dd>
+</dl>
+
+<!-- Installation
+================================================== -->
+<h3 class="page-header" id="cli-installation">Installation</h3>
+<p>Installation is made easy using NPM, to install the CleverStack Command Line Interface (CLI) please run the following.</p>
+  <div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install -g cleverstack-cli</code></pre></div>
+
+<div class="bs-callout bs-callout-info">
+  <h4>Windows users</h4>
+  <p>
+    You should run this command (and others like it) in the windows command (cmd) prompt, and in some cases you will need to run your cmd prompt as Administrator
+  </p>
+</div>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Linux/Mac Users</h4>
+  <p>
+    You may need to run this command using "sudo", but you should note if you need to use sudo then something is wrong with your file/folder permissions
+    <div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo npm install -g cleverstack-cli</code></pre></div>
+  </p>
+</div>
+
+<!-- Commands
+================================================== -->
+<h3 class="page-header" id="cli-commands">Commands</h3>
+<p>Here is a list of all commands available using our Command Line Interface (CLI).</p><br>
+
+<h4 id="cli-commands-build" class="page-header">Build</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-downgrade" class="page-header">Downgrade</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-init" class="page-header">Init</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-install" class="page-header">Install</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-generate" class="page-header">Generate</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-list" class="page-header">List</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-new" class="page-header">New</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-remove" class="page-header">Remove</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-repl" class="page-header">Repl</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-routes" class="page-header">Routes</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-scaffold" class="page-header">Scaffold</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-search" class="page-header">Search</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-setup" class="page-header">Setup</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-server" class="page-header">Server</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-test" class="page-header">Test</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<h4 id="cli-commands-upgrade" class="page-header">Upgrade</h4>
+<p>Coming soon, we are working hard on the section!</p>
+
+<!-- Modules
+================================================== -->
+<h3 class="page-header" id="cli-modules">Modules</h3>
+<p>All functionality except what is in the CleverStack Core must be defined inside of modules, because we take advantage of NPM &amp; Bower for our package management it mean's that you can use the thousands of already available packages as Modules for your CleverStack powered Applications.</p>
+
+<div style="padding-left: 20px;">
+
+  <!-- Official Modules
+  ================================================== -->
+  <h4 class="page-header" id="cli-modules-official">Official Modules</h4>
+  <p>We currently have a handful of important Official CleverStack modules available which we list here and update as frequently as possible, however we recommend visiting our <a href="/modules/?frontend=on&backend=on">Modules</a> page to get the full and upto date list of modules.</p><br>
+
+  <div style="padding-left: 30px;">
+    <h5 id="cli-modules-official-orm"><a href="https://github.com/CleverStack/clever-orm">Object Relational Mapper (ORM)</a></h5>
+    <p>This module deeply integrates <a href="https://github.com/sequelize/sequelize">SequelizeJS</a> into CleverStack, to provide an out of the box <a href="http://en.wikipedia.org/wiki/Object-relational_mapping">Object Relational Mapper</a> which is widely accepted, widely used, full featured and mature SQL Solution for CleverStack.</p>
+    <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">clever</span> <span class="nx">install</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">orm</span></code></pre></div><br>
+
+    <h5 id="cli-modules-official-odm"><a href="https://github.com/CleverStack/clever-odm">Object Document Mapper (ODM)</a></h5>
+    <p>This module deeply integrates <a href="http://mongoosejs.com/">MongooseJS</a> into CleverStack, to provide an out of the box Object Document Mapper, which is a primarily MongoDB based <a href="http://en.wikipedia.org/wiki/NoSQL">NoSQL</a> solution to storing data.</p>
+    <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">clever</span> <span class="nx">install</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">odm</span></code></pre></div><br>
+
+    <h5 id="cli-modules-official-background-tasks"><a href="https://github.com/CleverStack/clever-background-tasks">Background Tasks</a></h5>
+    <p>This module allows you to define tasks that will be run in the background a separate dedicated process, by providing master-slave locking this module also allows you to never have to use CRON files ever again; Simply define your task as masterOnly and it will only run on the Master server ensuring its execution does not overlap (even in an elastic cloud configuration with hundreds of servers).</p>
+
+    <p>While NodeJS is designed around being non blocking it is still very possible for any line of code to block any other code running until that line has finished executing, this means that processing CPU intensive operations cannot be done inside any of the Processes that are responding to HTTP Requests (otherwise the user will get no response, because its busy doing some CPU Intensive Operation).</p>
+    <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">clever</span> <span class="nx">install</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">background</span><span class="o">-</span><span class="nx">tasks</span></code></pre></div><br>
+
+    <h5 id="cli-modules-official-auth"><a href="https://github.com/CleverStack/clever-auth">Authentication</a></h5>
+    <p>This module provides you with a user model, service, migrations and all the code you need to provide a registration, login/logout, forgotten password as well as Google, LinkedIn, Twitter and Facebook social signup &amp; signin. (Both the Frontend and Backend have this module available for installation).</p>
+    <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">clever</span> <span class="nx">install</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">auth</span></code></pre></div>
+  </div>
+
+  <!-- Core Modules
+  ================================================== -->
+  <h4 class="page-header" id="cli-modules-core">Core Modules</h4>
+  <p>This is a list of modules that are used in the Core of CleverStack, you do not need to install these (as they are by default). However these modules are designed to work with anything, so if you want to use these components in something other than CleverStack you have that option.</p><br>
+
+  <div style="padding-left: 30px;">
+    <h5 id="cli-modules-core-controller"><a href="https://github.com/clevertech/clever-controller">Controller</a></h5>
+    <p>This module provides Lightning-fast flexible Controller's for CleverStack, the main aim of the controller is to help simplify the most common tasks that you need to do when setting up routes and functions/classes to handle them.</p><br>
+
+    <h5 id="cli-modules-core-di"><a href="https://github.com/CleverStack/clever-injector">Dependency Injector (DI)</a></h5>
+    <p>This module provides Dependency Injection for CleverStack, it is non blocking, Lightning-fast, easy to use and flexible.</p>
+  </div>
+
+  <!-- Using Modules
+  ================================================== -->
+  <h4 class="page-header" id="cli-modules-using">Using Modules</h4>
+  <p>Adding, Removing, Upgrading or Downgrading modules is the same with both the Frontend or Backend seeds. Here is some examples of working with the clever-auth module.</p>
+
+  <h5 id="cli-modules-adding">Adding</h5>
+  <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever install clever-auth</code></pre></div>
+
+  <h5 id="cli-modules-removing">Removing</h5>
+  <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever remove clever-auth</code></pre></div>
+
+  <h5 id="cli-modules-upgrading">Upgrading</h5>
+  <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever upgrade clever-auth</code></pre></div>
+
+  <h5 id="cli-modules-downgrading">Downgrading</h5>
+  <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever downgrade clever-auth</code></pre></div>
+
+  <p><span class="label label-info">Note</span> You can specify multiple modules in each install, remove, upgrade or downgrade command separated by spaces.</p>
+
+  <!-- Finding Modules
+  ================================================== -->
+  <h4 class="page-header" id="cli-modules-finding">Finding Modules</h4>
+  <p>Finding modules is easy, here are some of the ways available</p>
+
+  <ul>
+    <li>The <a href="/modules/?frontend=on&backend=on">CleverStack Modules</a> Page.</li>
+    <li>The <a href="https://www.npmjs.org/search?q=cleverstack-module">NPM Packages</a> Page, using the keyword "cleverstack-module".</li>
+    <li>The <a href="http://bower.io/search/?q=cleverstack-module">Bower Packages</a> Page, using the keyword "cleverstack-module".</li>
+    <li>The Command Line
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Using the CleverStack CLI</span>
+<span class="nv">$ </span>clever search cleverstack-module
+
+<span class="c"># Using NPM (using the keyword &quot;cleverstack-module&quot;)</span>
+<span class="nv">$ </span>npm search cleverstack-module
+
+<span class="c"># Using Bower (using the keyword &quot;cleverstack-module&quot;)</span>
+<span class="nv">$ </span>bower search cleverstack-module</code></pre></div>
+    </li>
+  </ul>
+
+  <!-- Creating Modules
+  ================================================== -->
+  <h4 class="page-header" id="cli-modules-creating">Creating your own Modules</h4>
+  <p>You can develop your own CleverStack modules, here's how you create a module using the CleverStack CLI.</p>
+  <ol>
+    <li>
+      <p>Run the following command:</p>
+      <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever new &lt;my-module&gt;</code></pre></div>
+      <p>This will install and setup a new skeleton module for you.</p>
+    </li>
+  </ol><br>
+  <!-- @TODO change this over to point at each respective area in the documentation -->
+  <h5>Example modules:</h5>
+  <ul>
+    <li><a href="https://github.com/CleverStack/frontend-example-module">Frontend Example Module</a></li>
+    <li><a href="https://github.com/CleverStack/backend-example-module">Backend Example Module</a></li>
+  </ul>
+
+</div>
+
+<!-- Troubleshooting
+================================================== -->
+<h3 class="page-header" id="cli-troubleshooting">Troubleshooting</h3>
+<p>If you have any problems (including errors, exceptions and even general usage) with the CleverStack CLI.</p>
+<ul>
+  <li>Check the Github <a href="https://github.com/cleverstack/cleverstack-cli/issues">issues page</a>.</li>
+  <li>Log into the public access <a href="https://www.hipchat.com/gwM43u4Mw">HipChat Room</a> and ask for help.</li>
+  <li>Get some help from the Cleverstack <a href="https://groups.google.com/forum/#!forum/clever-stack">Google Group</a></li>
+  <li>If your still having problems, please <a href="https://github.com/CleverStack/cleverstack-cli/issues/new">raise an issue</a>.</li>
+</ul>
+
+<!-- Contributing
+================================================== -->
+<h3 class="page-header" id="cli-contributing">Contributing</h3>
+<p>Firstly please read our <a href="https://github.com/CleverStack/cleverstack-cli/blob/master/CONTRIBUTING.md">guidelines for contributing</a>, Then fork the <a href="https://github.com/CleverStack/cleverstack-cli">CleverStack CLI</a> github repo, once you are ready please submit a "Pull Request" for review.</p>
+
+  </div>
+
+  <!-- Testing
+  ================================================== -->
+  <div class="bs-docs-section">
+    <div class="page-header">
+      <h1 id="testing">Testing</h1>
+    </div>
+    <p class="lead">At Clevertech we believe in testing our code as we develop, then if something breaks we know exactly where to start looking. Spending more time on developing the features we love.</p>
+
+    <h3 id="testing-unit">Running Unit Tests</h3>
+    <p>To run the unit tests for your app and modules, from the front-end/back-end root directory run:</p>
+    <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever <span class="nb">test </span>unit</code></pre></div>
+    <p>Or simply use the alias:</p>
+    <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever <span class="nb">test</span></code></pre></div>
+
+    <h3 id="testing-e2e">Running E2E Tests</h3>
+    <p>To setup your environment for e2e testing with Protractor run the following command. This will install Selenium Server (WebDriver), ChromeDriver & PhantomJS based on your OS. If you wish to run selenium server in a separate terminal then use Webdriver Manager (see below).</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">cd </span>Frontend
+<span class="nv">$ </span>npm run-script setup-protractor</code></pre></div>
+
+    <h3>Using Webdriver Manager</h3>
+    <p>Webdriver Manager comes shipped with protractor and installs selenium server & chrome driver for you. Selenium server can then run in a separate terminal so when you run your e2e tests it doesn't need to boot up (saving heaps of time when running your e2e tests!). To set this up do the following:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install -g protractor
+webdriver-manager update
+webdriver-manager start</code></pre></div>
+
+    <p>Your selenium server should be running in this terminal.</p>
+    <p>Finally update your e2e test config file located: my-app/Frontend/test-e2e.conf.js</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">// uncomment this line:
+seleniumAddress: <span class="s1">&#39;http://localhost:4444/wd/hub&#39;</span>,
+
+// comment these lines:
+seleniumServerJar: <span class="s1">&#39;&#39;</span>
+seleniumPort: <span class="s1">&#39;&#39;</span>
+chromeDriver: <span class="s1">&#39;&#39;</span></code></pre></div>
+
+    <p>To run the end-to-end tests for your app and modules, from the front-end/back-end root directory run:</p>
+    <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever <span class="nb">test </span>e2e</code></pre></div>
+
+    <h3 id="testing-coverage">Code Coverage Reports</h3>
+    <p>To generate a code coverage report for your unit tests, from the front-end directory run:</p>
+    <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever <span class="nb">test </span>coverage</code></pre></div>
+    <p>Your browser should open the following URL:</p>
+    <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>http://localhost:5555</code></pre></div>
+    <p>Then select your report from the list.</p>
+
+  </div>
+
+  <!-- Deployment
+  ================================================== -->
+  <div class="bs-docs-section">
+    <div class="page-header">
+      <h1 id="deployment">Deployment</h1>
+    </div>
+    <p class="lead">At Clevertech we build lots of MVP's so we like our deployment to be as efficient as possible. We are going to implement some of these strategies for CleverStack.</p>
+
+    <h3 id="deployment-build">Production Builds</h3>
+    <p>To build a production version of your front-end app, from your front-end root directory run:</p>
+    <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever build</code></pre></div>
+    <p>This will build your app, minifying your assets etc and puts everything into the /dist folder ready for deployment.</p>
+    <p>Note: You can view a production version of your app on port 9009.</p>
+
+    <h3 id="deployment-strategies">Deployment Strategies</h3>
+    <p>Stay Tuned!! NodeJS deployment strategies coming soon. AWS, Heroku and more.</p>
+  </div>
+
+  <!-- Troubleshooting
+  ================================================== -->
+  <div class="bs-docs-section">
+    <div class="page-header">
+      <h1 id="troubleshooting">Troubleshooting</h1>
+    </div>
+    <h4><a href="#cli-troubleshooting">Troubleshooting CleverStack CLI.</a></h4>
+    <h4><a href="#backend-troubleshooting">Troubleshooting Backend (NodeJS).</a></h4>
+    <h4><a href="#frontend-troubleshooting">Troubleshooting Frontend (AngularJS).</a></h4><br>
+    <h4><a href="https://groups.google.com/forum/#!forum/clever-stack">Get some help from the Google Group</a></h4><br>
+
+    <p class="lead">We will document any "gotchas" here along with any important open GitHub issues. Please <a href="https://github.com/CleverStack/cleverstack/issues">open an issue</a> if you see a bug.</p></p>
+    <ul>
+      <li>EMFILE error on Mac: By default some macs have a ulimit of 256 which limits the number of open files each process can have, when using "clever init my-app" you will need to raise your ulimit by running "ulimit -n 1024" in your console. You will need to run that in your console before running the init command unless you define that setting globally in your mac.</li>
+    </ul>
+  </div>
+
+  <!-- FAQ
+  ================================================== -->
+  <div class="bs-docs-section">
+    <div class="page-header">
+      <h1 id="faq">FAQ</h1>
+    </div>
+    <p class="lead">Answers to some frequently asked questions about CleverStack. Please <a href="https://github.com/CleverStack/cleverstack/issues">open an issue</a> if you are requesting a new feature.</p>
+
+    <p>We will add important FAQ here.</p>
+  </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="container text-center padtop" role="contentinfo">
+      <p class="legal">Cleverstack.io is developed and maintained by <a href="http://au.linkedin.com/in/richardgustin" target="_blank">Richard Gustin</a> (<a href="https://github.com/pilsy" target="_blank">@pilsy</a>),<br/>our core developers, our open source community and <a href="http://www.clevertech.biz/" target="_blank">Clevertech</a>.<br/>2015 Cleverstack.io All Rights Reserved.</p>
+    </footer>
+
+    <!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+
+<!-- <script src="/assets/js/holder.js"></script> -->
+<!-- <script src="/dist/js/application.min.js"></script> -->
+<script src="/assets/js/application.js"></script>
+
+
+
+
+
+
+<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>
+
+<!-- Analytics
+================================================== -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48107165-1', 'cleverstack.io');
+  ga('send', 'pageview');
+
+  // var _gauges = _gauges || [];
+  // (function() {
+  //   var t   = document.createElement('script');
+  //   t.async = true;
+  //   t.id    = 'gauges-tracker';
+  //   t.setAttribute('data-site-id', '4f0dc9fef5a1f55508000013');
+  //   t.src = '//secure.gaug.es/track.js';
+  //   var s = document.getElementsByTagName('script')[0];
+  //   s.parentNode.insertBefore(t, s);
+  // })();
+</script>
+
+
+  </body>
+</html>
