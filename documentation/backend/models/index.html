@@ -195,18 +195,18 @@
 <li><a href="#instance-methods">Instance Methods</a></li>
 <li><a href="#getters-and-setters">Instance Getters/Setters</a>
 <li><a href="#associations">Relations/Associations</a>
-  <ul class="nav nav-nest">
+  <!--ul class="nav nav-nest">
   <li><a href="#associations-one-to-one">One to One</a></li>
   <li><a href="#associations-one-to-many">One to Many</a></li>
   <li><a href="#associations-many-to-many">Many to Many</a></li>
   <li><a href="#associations-bi-directional">Bi Directional</a></li>
   <li><a href="#associations-uni-directional">Uni Directional</a></li>
-  </ul>
+  </ul-->
 </li>
 <li><a href="#transactions">Transactions</a></li>
 <li><a href="#seed-data">Seed Data</a></li>
-<li><a href="#caching">Caching</a></li>
-<li><a href="#errors">Errors</a></li>
+<!--li><a href="#caching">Caching</a></li>
+<li><a href="#errors">Errors</a></li-->
 <li><a href="#toolbelt">Toolbelt</a></li>
               
             </ul>
@@ -1578,11 +1578,19 @@
   <li><a href="/documentation/backend/models">Models</a></li>
   <li class="active">Instance Methods</li>
 </ol>
+<p class="lead">For when you need helper methods for an individual instance of a model, define instance methods easily in your Models Prototype/Instance section.</p>
 
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
-</div></div>
+<p>In this example we provide an instance method <code>hashPassword</code> which we will use to hash a users password before setting it.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span>
+<span class="p">{</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;ORM&#39;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="nx">hashPassword</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">password</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">&#39;Hashing users password&#39;</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="s1">&#39;sha1&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">password</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span></code></pre></div></div>
   <div class="section-page"><h3 id="getters-and-setters" class="page-header">
   Getters &amp; Setters <a class="permalink" href="#getters-and-setters" title="Permalink"><small>¶</small></a>
 </h3>
@@ -1611,8 +1619,7 @@
   <span class="nx">getFirstName</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
   <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-</div>
+<span class="p">}</span></code></pre></div></div>
   <div class="section-page"><h3 id="associations" class="page-header">
   Associations/Relations <a class="permalink" href="#associations" title="Permalink"><small>¶</small></a>
 </h3>
@@ -1622,20 +1629,59 @@
   <li><a href="/documentation/backend/models">Models</a></li>
   <li class="active">Associations/Relations</li>
 </ol>
+<p class="lead">Defining associations in CleverStack is easy, you do so by modifying the <code>modelAssociations</code> key inside the configuration for either the entire project, or any individual module. These configurations are then deep merged into a single modelAssociations Object and then applied to your Models.</p>
 
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
-</div></div>
-  <div class="section-page"><h3 id="eager-loading" class="page-header">
-  Eager Loading <a class="permalink" href="#eager-loading" title="Permalink"><small>¶</small></a>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="/documentation">Documentation</a></li>
-  <li><a href="/documentation/backend">Backend</a></li>
-  <li><a href="/documentation/backend/models">Models</a></li>
-  <li class="active">Eager Loading</li>
-</ol>
+<p>Configuration Example:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="lineno"> 1</span> <span class="p">{</span>
+<span class="lineno"> 2</span>   <span class="nt">&quot;modelAssociations&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="lineno"> 3</span>     <span class="nt">&quot;Account&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="lineno"> 4</span>       <span class="nt">&quot;hasMany&quot;</span>   <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Role&quot;</span><span class="p">,</span> <span class="s2">&quot;Permission&quot;</span><span class="p">,</span> <span class="s2">&quot;User&quot;</span><span class="p">]</span>
+<span class="lineno"> 5</span>     <span class="p">},</span>
+<span class="lineno"> 6</span>     <span class="nt">&quot;Role&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="lineno"> 7</span>       <span class="nt">&quot;belongsTo&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Account&quot;</span><span class="p">],</span>
+<span class="lineno"> 8</span>       <span class="nt">&quot;hasMany&quot;</span>   <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Permission&quot;</span><span class="p">]</span>
+<span class="lineno"> 9</span>     <span class="p">},</span>
+<span class="lineno">10</span>     <span class="nt">&quot;Permission&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="lineno">11</span>       <span class="nt">&quot;belongsTo&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Account&quot;</span><span class="p">],</span>
+<span class="lineno">12</span>       <span class="nt">&quot;hasMany&quot;</span>   <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Role&quot;</span><span class="p">]</span>
+<span class="lineno">13</span>     <span class="p">},</span>
+<span class="lineno">14</span>     <span class="nt">&quot;User&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="lineno">15</span>       <span class="nt">&quot;belongsTo&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Account&quot;</span><span class="p">],</span>
+<span class="lineno">16</span>       <span class="nt">&quot;hasOne&quot;</span>    <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Role&quot;</span><span class="p">]</span>
+<span class="lineno">17</span>     <span class="p">}</span>
+<span class="lineno">18</span>   <span class="p">}</span>
+<span class="lineno">19</span> <span class="p">}</span></code></pre></div>
+<p>In this example we have created the basic Role Based Authentication Control system as provided by clever-auth, clever-accounts, clever-users and clever-roles.</p>
+
+<p>To go into detail
+  <ul>
+    <li>Every <code>Account</code> has many <code>User</code>'s, <code>Role</code>'s and <code>Permission</code>'s.</li>
+    <li>Every <code>Role</code> is owned by an <code>Account</code> and has many <code>Permission</code>'s assigned to it.</li>
+    <li>Every <code>Permission</code> is owned by an <code>Account</code> and can be assigned to many <code>Role</code>'s.</li>
+    <li>Every <code>User</code> is owned by an <code>Account</code> and can be assigned one <code>Role</code>.</li>
+  </ul>
+</p>
+<br/>
+
+<!--h5 id="associations-one-to-one" class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
+  One to One Associations
+</h5>
+
+<h5 id="associations-one-to-many" class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
+  One to Many Associations
+</h5>
+
+<h5 id="associations-many-to-many" class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
+  Many to Many Associations
+</h5>
+
+<h5 id="associations-bi-directional" class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
+  Bi-directional Associations
+</h5>
+
+<h5 id="associations-uni-directional" class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
+  Uni-directional Associations
+</h5-->
 
 <div class="bs-callout bs-callout-danger">
   <h4>Needs more information</h4>
@@ -1651,10 +1697,33 @@
   <li class="active">Transactions</li>
 </ol>
 
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
-</div></div>
+<p class="lead">Starting a transaction is as easy as calling <code>Model.transaction()</code> before calling any model methods that perform queries, additionally you must pass the queryOptions to all methods if you want that query to be performed within the scope of the current transaction ~ once your done either call transaction.commit() or transaction.rollback()</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="c1">// ...</span>
+<span class="lineno"> 2</span>   <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">values</span><span class="p">,</span> <span class="nx">queryOptions</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 3</span>     <span class="kd">var</span> <span class="nx">create</span>  <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">;</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span>     <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 6</span>       <span class="nx">queryOptions</span> <span class="o">=</span> <span class="nx">queryOptions</span> <span class="o">||</span> <span class="p">{};</span>
+<span class="lineno"> 7</span>       
+<span class="lineno"> 8</span>       <span class="k">this</span>
+<span class="lineno"> 9</span>       <span class="p">.</span><span class="nx">transaction</span><span class="p">(</span><span class="nx">queryOptions</span><span class="p">)</span>
+<span class="lineno">10</span>       <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno">11</span>         <span class="nx">values</span><span class="p">.</span><span class="nx">password</span>   <span class="o">=</span> <span class="nx">values</span><span class="p">.</span><span class="nx">password</span> <span class="o">||</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">().</span><span class="nx">toString</span><span class="p">(</span><span class="mi">36</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">14</span><span class="p">);</span>
+<span class="lineno">12</span>         <span class="nx">values</span><span class="p">.</span><span class="nx">password</span>   <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="s1">&#39;sha1&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">values</span><span class="p">.</span><span class="nx">password</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">);</span>
+<span class="lineno">13</span> 
+<span class="lineno">14</span>         <span class="k">return</span> <span class="nx">create</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="nx">values</span><span class="p">,</span> <span class="nx">queryOptions</span><span class="p">]);</span>
+<span class="lineno">15</span>       <span class="p">}))</span>
+<span class="lineno">16</span>       <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">17</span>         <span class="k">return</span> <span class="nx">queryOptions</span><span class="p">.</span><span class="nx">transaction</span><span class="p">.</span><span class="nx">commit</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">resolve</span><span class="p">);</span>
+<span class="lineno">18</span>       <span class="p">})</span>
+<span class="lineno">19</span>       <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">20</span>         <span class="k">return</span> <span class="nx">queryOptions</span><span class="p">.</span><span class="nx">transaction</span><span class="p">.</span><span class="nx">rollback</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">reject</span><span class="p">);</span>
+<span class="lineno">21</span>       <span class="p">});</span>
+<span class="lineno">22</span>     <span class="p">}</span>
+<span class="lineno">23</span>     <span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+<span class="lineno">24</span>   <span class="p">}</span>
+<span class="lineno">25</span> <span class="c1">// ...</span></code></pre></div></div>
   <div class="section-page"><h3 id="seed-data" class="page-header">
   Seed Data <a class="permalink" href="#seed-data" title="Permalink"><small>¶</small></a>
 </h3>
@@ -1664,12 +1733,60 @@
   <li><a href="/documentation/backend/models">Models</a></li>
   <li class="active">Seed Data</li>
 </ol>
+<p class="lead">To make application development as rapid as possible, CleverStack allows you to define seed data for each module as well as the overall backend project. Each of the modules seedData.json files is deepMerged one by one in the order you specify in bundledDependencies[], then finally it is merged into the projects main seedData.json file.</p>
 
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
-</div></div>
-  <div class="section-page"><h3 id="caching" class="page-header">
+<p>Imagine this was in your <code>backend/schema/seedData.json</code> file:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;UserModel&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;firstName&quot;</span><span class="p">:</span> <span class="s2">&quot;Clever&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;lastName&quot;</span> <span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;email&quot;</span>    <span class="p">:</span> <span class="s2">&quot;default@cleverstack.io&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;password&quot;</span> <span class="p">:</span> <span class="s2">&quot;a31a61e94f3799a9385dab9966c4c22c9f5790c4&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;associations&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;AccountModel&quot;</span><span class="p">:</span> <span class="p">[{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Default Account&quot;</span> <span class="p">}]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<p>And that this was in your <code>backend/modules/clever-accounts/schema/seedData.json</code> file:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;AccountModel&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span>      <span class="p">:</span> <span class="s2">&quot;Default Account&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;email&quot;</span>     <span class="p">:</span> <span class="s2">&quot;default@cleverstack.io&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;subDomain&quot;</span> <span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;active&quot;</span>    <span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Then your <strong>Fully merged and final seedData.json</strong> would look like:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;AccountModel&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span>      <span class="p">:</span> <span class="s2">&quot;Default Account&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;email&quot;</span>     <span class="p">:</span> <span class="s2">&quot;default@cleverstack.io&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;subDomain&quot;</span> <span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;active&quot;</span>    <span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;UserModel&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;firstName&quot;</span><span class="p">:</span> <span class="s2">&quot;Clever&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;lastName&quot;</span> <span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;email&quot;</span>    <span class="p">:</span> <span class="s2">&quot;default@cleverstack.io&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;password&quot;</span> <span class="p">:</span> <span class="s2">&quot;a31a61e94f3799a9385dab9966c4c22c9f5790c4&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;associations&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;AccountModel&quot;</span><span class="p">:</span> <span class="p">[{</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Default Account&quot;</span> <span class="p">}]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Which would create an Account, then a User, after the User has been created it would automatically call User.setAccount() to create the relation between instances in the database.</p></div>
+  <!-- <div class="section-page"><h3 id="caching" class="page-header">
   Caching <a class="permalink" href="#caching" title="Permalink"><small>¶</small></a>
 </h3>
 <ol class="breadcrumb">
@@ -1684,8 +1801,8 @@
 <div class="bs-callout bs-callout-danger">
   <h4>Needs more information</h4>
   <p>This section of the documentation is either incomplete, please ask for help in github or hipchat if you need more information.</p>
-</div></div>
-  <div class="section-page"><h3 id="errors" class="page-header">
+</div></div> -->
+  <!-- <div class="section-page"><h3 id="errors" class="page-header">
   Errors <a class="permalink" href="#errors" title="Permalink"><small>¶</small></a>
 </h3>
 <ol class="breadcrumb">
@@ -1698,7 +1815,7 @@
 <div class="bs-callout bs-callout-danger">
   <h4>Needs more information</h4>
   <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
-</div></div>
+</div></div> -->
   <div class="section-page"><h3 id="toolbelt" class="page-header">
   Toolbelt <a class="permalink" href="#toolbelt" title="Permalink"><small>¶</small></a>
 </h3>
@@ -1717,6 +1834,9 @@
 
 <p><span class="label label-info">Hint</span> Both of the above db commands can be run together using one command</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">db</span></code></pre></div>
+
+<p><span class="label label-info">Hint</span> To re-run the configuration prompt</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">grunt</span> <span class="nx">prompt</span><span class="o">:</span><span class="nx">cleverOrmConfig</span></code></pre></div>
 
 <p><span class="label label-danger">Important</span> You should not load models using require(), they must be loaded using the injector</p>
 <p><span class="label label-danger">Important</span> Use the SequelizeJS migrations tool to create or run ORM Migrations.</p>
