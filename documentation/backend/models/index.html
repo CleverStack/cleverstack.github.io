@@ -151,10 +151,11 @@
 <li><a href="#field-definition">Field Definition</a></li>
 <li><a href="#validation">Field Validation</a></li>
 <li><a href="#creating-instances">Creating instances</a></li>
-<li><a href="#updating-or-saving-instances">Updating/saving instances</a></li>
+<li><a href="#updating-instances">Updating/saving instances</a></li>
 <li><a href="#destroying-instances">Destroying/deleting instances</a></li>
 <li><a href="#finders">Finders/Methods</a>
   <ul class="nav nav-nest">
+    <li><a href="#finders-where-criteria">Where Criteria</a></li>
     <li><a href="#static-finders">Base Finders/Methods</a>
       <ul class="nav nav-nest">
         <li><a href="#finders-find">find()</a></li>
@@ -163,7 +164,6 @@
       </ul>
     </li>
     <li><a href="#dynamic-finders">Dynamic Finders</a></li>
-    <li><a href="#finders-find-options-where">Where Criteria</a></li>
     <li><a href="#finders-query-options">Query Options</a></li>
     <li><a href="#finders-find-options-limit">Limiting Records</a></li>
     <li><a href="#finders-find-options-offset">Paginating</a></li>
@@ -243,6 +243,7 @@
 
 <p class="sub">To make querying/searching your data as simple as possible, <a href="#finders-dynamic">Dynamic Finders</a> are automatically generated for every <a href="#field-definition">Field</a> based on their name. For example if we had a field named <code>firstName</code> on the <code>UserModel</code>, one of the dynamic finders for this field will be <code>UserModel.findByFirstName</code> - please see <a href="#finders-dynamic">Dynamic Finders</a> for more information.</p>
 
+<br/>
 <p class="sub">To find information about defining models please see <a href="#definition">Model Definition</a>, <a href="#field-definition">Field Definition</a> and <a href="#field-types">Field Types</a>.</p></div>
   <div class="section-page"><h3 id="databases" class="page-header">
   DataBases <a class="permalink" href="#databases" title="Permalink"><small>¶</small></a>
@@ -253,6 +254,7 @@
   <li><a href="/documentation/backend/models">Models</a></li>
   <li class="active">DataBases</li>
 </ol>
+<p class="lead">CleverStack supports a number of databases out of the box</p>
 
 <h5>Supported DataBases:</h5>
 <ul>
@@ -281,7 +283,7 @@
   <li class="active">Installation</li>
 </ol>
 
-<p class="lead sub">Installation is made simple by using the CleverStack CLI's install command with the name of the module you want to install, clever-orm for the Object Relational Mapper, or clever-odm for the Object Document Mapper.</p>
+<p class="lead">Installation is made simple by using the CleverStack CLI's install command with the name of the module you want to install, clever-orm for the Object Relational Mapper, or clever-odm for the Object Document Mapper.</p>
 
 <h5>Object Relational Mapper (ORM)</h5>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">clever install clever-orm</code></pre></div>
@@ -614,10 +616,10 @@
   <li class="active">Field Types</li>
 </ol>
 
-<p class="lead sub">In contrast to other ORM's/ODM's like Sails/Waterline, Sequelize, and many others, We believe that keeping things simple not only speeds up development time, but makes maintaining models much easier, so whenever possible, we use native JavaScript Types.</p>
+<p class="lead">In contrast to other ORM's/ODM's like Sails/Waterline, Sequelize, and many others, We believe that keeping things simple not only speeds up development time, but makes maintaining models much easier, so whenever possible, we use native JavaScript Types.</p>
 
 <p class="sub">The JavaScript Types we are talking about are, <code>String</code>, <code>Number</code>, <code>Boolean</code>, <code>Buffer</code>, <code>Date</code> and <code>Array</code>. <br/>
-  Additionally, there is <code>Model.Types.TINYINT</code>, <code>Model.Types.FLOAT</code>, <code>Model.Types.DECIMAL</code>, <code>Model.Types.BIGINT</code>, <code>Model.Types.TEXT</code> and <code>Model.Types.ENUM</code>.
+  Additionally, there is <code>Model.Types.TINYINT</code>, <code>Model.Types.FLOAT</code>, <code>Model.Types.DECIMAL</code>, <code>Model.Types.BIGINT</code>, <code>Model.Types.TEXT</code> and <code>Model.Types.ENUM</code><br/>
 
 <p class="sub">Any <strong><i>Field Type</i></strong> defined in <code>Model.Types</code>, can be called as a function when you define a <strong><i>Field</i></strong> using the <strong><i>Field Type</i></strong> style of <strong><i>Field Definition</i></strong>, That allow's you to define your fields using a shorter syntax (providing you don't need to set options for the <strong><i>Field</i></strong>)</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
@@ -762,7 +764,7 @@
   <li class="active">Validation</li>
 </ol>
 
-<p class="lead sub">The <strong><i>Reliability</i></strong> of your application is critial, and <strong><i>Validation</i></strong> is one of the most important things you need to do to ensure you're data is stored correctly, this help's your application to be secure, free from bug's and be highly available/reliable.</p>
+<p class="lead">The <strong><i>Reliability</i></strong> of your application is critial, and <strong><i>Validation</i></strong> is one of the most important things you need to do to ensure you're data is stored correctly, this help's your application to be secure, free from bug's and be highly available/reliable.</p>
 <br/>
 
 <p class="sub">CleverStack allows you to validate any <i>Field</i> that is defined on any <i>Model</i>, simply by defining the <a href="#field-definition-options-validate"><code>validate</code></a> <a href="#field-definition-options">Field Option</a> in the <a href="#field-definition">Field Definition</a>.</p><br/>
@@ -828,6 +830,130 @@
   <h4>Protip</h4>
   <p>Keep thing's simple in your <strong><i>Controllers</i></strong> and <strong><i>Services</i></strong>, unless the controller or service in question is not backed by a model. Don't do extra validation inside your <strong><i>Controllers</i></strong> or <strong><i>Services</i></strong>. Restrict your validation efforts to validating field's on your <strong><i>Models</i></strong> as much as possible!</p>
 </div></div>
+  <div class="section-page"><h3 id="creating-instances" class="page-header">
+  Creating Instances <a class="permalink" href="#creating-instances" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Creating Instances</li>
+</ol>
+
+<!-- Non-persistent instances
+================================================== -->
+<h5 id="creating-non-persistent-instances" class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
+  Creating non-persistent instances<br/>
+  <small>Creating a new model without saving it to the database</small>
+</h5>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UserModel</span><span class="p">({</span>
+  <span class="nx">firstName</span> <span class="o">:</span> <span class="s1">&#39;Richard&#39;</span><span class="p">,</span>
+  <span class="nx">lastName</span>  <span class="o">:</span> <span class="s1">&#39;Gustin&#39;</span>
+<span class="p">});</span></code></pre></div>
+
+<p class="sub">And later, if you want to save the instance (persist) to the database:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// To persist the instance to the database (the same result as calling create like below)</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">save</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/*</span>
+<span class="cm">    {</span>
+<span class="cm">      id: 1,</span>
+<span class="cm">      firstName: &#39;Richard&#39;,</span>
+<span class="cm">      lastName: &#39;Gustin&#39;</span>
+<span class="cm">    }</span>
+<span class="cm">  */</span>
+<span class="p">});</span></code></pre></div>
+
+<!-- Persistent instances
+================================================== -->
+<h5 id="creating-non-persistent-instances" class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
+  Creating persistent instances<br/>
+  <small>Creating a new model and persist it to the database</small>
+</h5>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">UserModel</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="nx">firstName</span> <span class="o">:</span> <span class="s1">&#39;Richard&#39;</span><span class="p">,</span>
+  <span class="nx">lastName</span>  <span class="o">:</span> <span class="s1">&#39;Gustin&#39;</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/*</span>
+<span class="cm">    {</span>
+<span class="cm">      id: 1,</span>
+<span class="cm">      firstName: &#39;Richard&#39;,</span>
+<span class="cm">      lastName: &#39;Gustin&#39;</span>
+<span class="cm">    }</span>
+<span class="cm">  */</span>
+<span class="p">})</span></code></pre></div></div>
+  <div class="section-page"><h3 id="updating-instances" class="page-header">
+  Updating/saving instances <a class="permalink" href="#updating-instances" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Updating/saving instances</li>
+</ol>
+
+<p class="lead sub">There are a few ways to update the data stored in your database, lets take a look:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 1) Updating an instance directly</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="s1">&#39;Richo&#39;</span><span class="p">;</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">save</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/*</span>
+<span class="cm">    {</span>
+<span class="cm">      id: 1,</span>
+<span class="cm">      firstName: &#39;Richo&#39;,</span>
+<span class="cm">      lastName: &#39;Gustin&#39;</span>
+<span class="cm">    }</span>
+<span class="cm">  */</span>
+<span class="p">});</span>
+
+<span class="c1">// 2) Using Model.update()</span>
+<span class="nx">UserModel</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Richo&#39;</span><span class="p">},</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/*</span>
+<span class="cm">    {</span>
+<span class="cm">      id: 1,</span>
+<span class="cm">      firstName: &#39;Richo&#39;</span>
+<span class="cm">    }</span>
+<span class="cm">  */</span>
+<span class="p">});</span></code></pre></div>
+<p>SQL Generated by the both ways in the above code:</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">UPDATE</span> <span class="o">`</span><span class="n">Users</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">firstName</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;Richo&#39;</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></div>
+<div class="bs-callout bs-callout-warning">
+  <h4>Data Returned from Model.update()</h4>
+  <p>It's important to note that Model.update() does not perform any SELECT's, meaning that after your UPDATE has completed you will only get back model field's that you updated or used as WHERE criteria.</p>
+</div>
+
+<p class="lead sub">If you want to have all of the records data returned (as apposed to Model.update), simply use the findAndUpdate method.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">UserModel</span><span class="p">.</span><span class="nx">findAndUpdate</span><span class="p">({</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Richo&#39;</span><span class="p">},</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// user will only contain all the data, because this method first</span>
+  <span class="c1">// performs a SELECT before updating the record.</span>
+<span class="p">});</span></code></pre></div>
+<p>SQL Generated by Model.findAndUpdate()</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">Users</span><span class="o">`</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">UPDATE</span> <span class="o">`</span><span class="n">Users</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">firstName</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;Richo&#39;</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></div></div>
+  <div class="section-page"><h3 id="destroying-instances" class="page-header">
+  Destroying/deleting instances <a class="permalink" href="#destroying-instances" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Destroying/deleting instances</li>
+</ol>
+
+<p class="lead sub">There are a couple of ways to delete instances stored in your database, lets take a look:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 1) Destroying/deleting an instance directly</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">destroy</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// DELETED</span>
+<span class="p">});</span>
+
+<span class="c1">// 2) Using Model.destroy()</span>
+<span class="nx">UserModel</span><span class="p">.</span><span class="nx">destroy</span><span class="p">({</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Richo&#39;</span><span class="p">},</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// DELETED</span>
+<span class="p">});</span></code></pre></div>
+<p>SQL Generated by the both ways in the above code:</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">DELETE</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">Users</span><span class="o">`</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></div></div>
   <div class="section-page"><h3 class="page-header" id="finders">Finders</h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
@@ -835,60 +961,193 @@
   <li><a href="/documentation/backend/models">Models</a></li>
   <li class="active">Finders</li>
 </ol>
-<p class="lead sub">Models in CleverStack provide easy to use finders as well as methods to find, create, update and delete model instances.</p>
+<p class="lead sub">Models in Finder/Methods are designed to get data from the database. The returned data isn't just a plain object, but instances of one of the defined classes, CleverStack provides easy to use finders as well as methods to find, create, update and delete model instances. 
+</p>
 <br/>
+
+<!-- Where Criteria
+================================================== -->
+<div class="section-page">
+  <h4 id="finders-where-criteria" class="page-header">
+    Where Criteria (DQL)<a class="permalink" href="#finders-where-criteria" title="Permalink"><small>¶</small></a>
+  </h4>
+  <ol class="breadcrumb">
+    <li><a href="/documentation">Documentation</a></li>
+    <li><a href="/documentation/backend">Backend</a></li>
+    <li><a href="/documentation/backend/models">Models</a></li>
+    <li class="active">Where Criteria</li>
+  </ol>
+
+  <p class="lead sub">CleverStack provides a powerful query interface for finding your model instances quick and painfree, from simple queries to complex queries with multiple nested AND and OR conditions CleverStack is here to do the heavy lifting.</p>
+
+
+
+ <h5 class="page-header" id="finders-where-criteria-complex" style="color: #2980b9; font-size: 125%; font-weight: 500;">Simple filtering of fields<br/>
+  <small>The most basic usage of finding instances by the models fields</small></h5>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">UserModel</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span>
+  <span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">status</span><span class="o">:</span> <span class="s1">&#39;Active&#39;</span>
+  <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+  <h5 class="page-header" id="finders-where-criteria-complex" style="color: #2980b9; font-size: 125%; font-weight: 500;">Complex filtering of fields<br/>
+  <small>It's possible to write complex where queries very simply, with helpers like $in, $like, $iLike and many more!</small></h5>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">UserModel</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span>
+  <span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">$gt</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>                <span class="c1">// id &gt; 6</span>
+      <span class="nx">$gte</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>               <span class="c1">// id &gt;= 6</span>
+      <span class="nx">$lt</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>               <span class="c1">// id &lt; 10</span>
+      <span class="nx">$lte</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>              <span class="c1">// id</span>
+      <span class="nx">$ne</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>               <span class="c1">// id != 20</span>
+      <span class="nx">$not</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>               <span class="c1">// id NOT 3</span>
+      <span class="nx">$between</span><span class="o">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>     <span class="c1">// BETWEEN 6 AND 10</span>
+      <span class="nx">$notBetween</span><span class="o">:</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="c1">// NOT BETWEEN 11 AND 15</span>
+      <span class="nx">$in</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>           <span class="c1">// IN [1, 2]</span>
+      <span class="nx">$like</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span><span class="p">,</span>         <span class="c1">// LIKE &#39;%hat&#39;</span>
+      <span class="nx">$notLike</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span>       <span class="c1">// NOT LIKE &#39;%hat&#39;</span>
+      <span class="nx">$iLike</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span>         <span class="c1">// ILIKE &#39;%hat&#39; (case insensitive)</span>
+      <span class="nx">$notILike</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span>      <span class="c1">// NOT ILIKE &#39;%hat&#39;</span>
+      <span class="nx">$overlap</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>       <span class="c1">// &amp;&amp; [1, 2] (PG array overlap operator)</span>
+      <span class="nx">$contains</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>      <span class="c1">// @&gt; [1, 2] (PG array contains operator)</span>
+      <span class="nx">$contained</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>     <span class="c1">// &lt;@ [1, 2] (PG array contained by operator)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+
+
+  <h5 class="page-header" id="finders-where-criteria-complex-or-and" style="color: #2980b9; font-size: 125%; font-weight: 500;">Complex filtering / OR queries<br/>
+  <small>It's possible to do complex where queries with multiple levels of nested AND and OR conditions. In order to do that you can use $or and $and</small></h5>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Project</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span>
+  <span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;a project&#39;</span><span class="p">,</span>
+    <span class="nx">$or</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="p">{</span> <span class="nx">$gt</span><span class="o">:</span> <span class="mi">10</span> <span class="p">}</span> <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+</div>
+
 
 <!-- find
 ================================================== -->
+<div class="section-page">
 <h3 class="page-header" id="finders-find" style="color: #2980b9; font-size: 125%; font-weight: 500;">find - Search for one specific element in the database<br/></h3>
-<h5>Basic example with AND</h5>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span>
-  <span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">attr1</span><span class="o">:</span> <span class="s1">&#39;Richard&#39;</span><span class="p">,</span>
-    <span class="nx">attr2</span><span class="o">:</span> <span class="mi">28</span>
-  <span class="p">}</span>
-<span class="p">});</span></code></pre></div>
-<h6>SQL Generated</h6>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">WHERE</span> <span class="n">attr1</span> <span class="o">=</span> <span class="s1">&#39;Richard&#39;</span> <span class="k">AND</span> <span class="n">attr2</span> <span class="o">=</span> <span class="mi">28</span></code></pre></div>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// search for known ids</span>
+<span class="nx">UserModel</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="mi">123</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// user will be an instance of UserModel and stores the content of the table entry</span>
+  <span class="c1">// with id 123. if such an entry is not defined you will get null</span>
+<span class="p">})</span>
 
+<span class="c1">// search for attributes</span>
+<span class="nx">UserModel</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="nx">where</span><span class="o">:</span> <span class="p">{</span><span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;aUserModel&#39;</span><span class="p">}</span> <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// user will be the first entry of the UserModels table with the title &#39;aUserModel&#39; || null</span>
+<span class="p">})</span>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span>
-  <span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">attr1</span><span class="o">:</span> <span class="p">{</span>
-      <span class="nx">gt</span><span class="o">:</span> <span class="mi">50</span>
-    <span class="p">},</span>
-    <span class="nx">attr2</span><span class="o">:</span> <span class="p">{</span>
-      <span class="nx">lte</span><span class="o">:</span> <span class="mi">45</span>
-    <span class="p">},</span>
-    <span class="nx">attr3</span><span class="o">:</span> <span class="p">{</span>
-      <span class="k">in</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-    <span class="p">},</span>
-    <span class="nx">attr4</span><span class="o">:</span> <span class="p">{</span>
-      <span class="nx">ne</span><span class="o">:</span> <span class="mi">5</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="nx">UserModel</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span>
+  <span class="nx">where</span><span class="o">:</span> <span class="p">{</span><span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;aUserModel&#39;</span><span class="p">},</span>
+  <span class="nx">attributes</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">]]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// user will be the first entry of the UserModels table with the title &#39;aUserModel&#39; || null</span>
+  <span class="c1">// user.title will contain the name of the user</span>
 <span class="p">})</span></code></pre></div>
-
+</div>
 
 <!-- findAll
 ================================================== -->
+<div class="section-page">
 <h4 class="page-header" id="finders-findAll" style="color: #2980b9; font-size: 125%; font-weight: 500;">findAll - Search for multiple elements in the database<br/></h4>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// find multiple entries</span>
+<span class="nx">Project</span><span class="p">.</span><span class="nx">findAll</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">projects</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// projects will be an array of all Project instances</span>
+<span class="p">})</span>
 
+<span class="c1">// also possible:</span>
+<span class="nx">Project</span><span class="p">.</span><span class="nx">all</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">projects</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// projects will be an array of all Project instances</span>
+<span class="p">})</span>
+
+<span class="c1">// search for specific attributes - hash usage</span>
+<span class="nx">Project</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span> <span class="nx">where</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;A Project&#39;</span> <span class="p">}</span> <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">projects</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// projects will be an array of Project instances with the specified name</span>
+<span class="p">})</span>
+
+<span class="c1">// Complex filtering of fields</span>
+<span class="nx">UserModel</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span>
+  <span class="nx">where</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">$gt</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>                <span class="c1">// id &gt; 6</span>
+      <span class="nx">$gte</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>               <span class="c1">// id &gt;= 6</span>
+      <span class="nx">$lt</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>               <span class="c1">// id &lt; 10</span>
+      <span class="nx">$lte</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>              <span class="c1">// id</span>
+      <span class="nx">$ne</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>               <span class="c1">// id != 20</span>
+      <span class="nx">$not</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>               <span class="c1">// id NOT 3</span>
+      <span class="nx">$between</span><span class="o">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>     <span class="c1">// BETWEEN 6 AND 10</span>
+      <span class="nx">$notBetween</span><span class="o">:</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="c1">// NOT BETWEEN 11 AND 15</span>
+      <span class="nx">$in</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>           <span class="c1">// IN [1, 2]</span>
+      <span class="nx">$like</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span><span class="p">,</span>         <span class="c1">// LIKE &#39;%hat&#39;</span>
+      <span class="nx">$notLike</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span>       <span class="c1">// NOT LIKE &#39;%hat&#39;</span>
+      <span class="nx">$iLike</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span>         <span class="c1">// ILIKE &#39;%hat&#39; (case insensitive)</span>
+      <span class="nx">$notILike</span><span class="o">:</span> <span class="s1">&#39;%hat&#39;</span>      <span class="c1">// NOT ILIKE &#39;%hat&#39;</span>
+      <span class="nx">$overlap</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>       <span class="c1">// &amp;&amp; [1, 2] (PG array overlap operator)</span>
+      <span class="nx">$contains</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>      <span class="c1">// @&gt; [1, 2] (PG array contains operator)</span>
+      <span class="nx">$contained</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>     <span class="c1">// &lt;@ [1, 2] (PG array contained by operator)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+</div>
+
+<!-- findOrCreate
+================================================== -->
+<div class="section-page">
+<h4 class="page-header" id="methods-find-or-create" style="color: #2980b9; font-size: 125%; font-weight: 500;">findOrCreate - Search for a specific element or create it if not available<br/></h4>
+<p class="sub">The method findOrCreate can be used to check if a certain element already exists in the database before creating an instance, if the model already exists in the database the result will be that instance. If the instance does not yet exist, it will be created.</p>
+<p class="sub">Let's assume we have an empty database with a User model which has a username and a location.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">UserModel</span>
+  <span class="p">.</span><span class="nx">findOrCreate</span><span class="p">({</span><span class="nx">where</span><span class="o">:</span> <span class="p">{</span><span class="nx">username</span><span class="o">:</span> <span class="s1">&#39;pilsy&#39;</span><span class="p">},</span> <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span><span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;Brisbane, Australia&#39;</span><span class="p">}})</span>
+  <span class="p">.</span><span class="nx">spread</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">created</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">values</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">created</span><span class="p">)</span>
+
+    <span class="cm">/*</span>
+<span class="cm">      {</span>
+<span class="cm">        username: &#39;pilsy&#39;,</span>
+<span class="cm">        location: &#39;Brisbane, Australia&#39;,</span>
+<span class="cm">        id: 1,</span>
+<span class="cm">        createdAt: Tue Feb 24 2013 01: 36: 21 GMT + 01000(AEST),</span>
+<span class="cm">        updatedAt: Tue Feb 24 2013 01: 36: 21 GMT + 01000(AEST)</span>
+<span class="cm">      }</span>
+<span class="cm">      created: true</span>
+<span class="cm">    */</span>
+  <span class="p">});</span></code></pre></div>
+
+<p class="sub">The code created a new instance. So when we already have an instance ...</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">UserModel</span>
+  <span class="p">.</span><span class="nx">findOrCreate</span><span class="p">({</span><span class="nx">where</span><span class="o">:</span> <span class="p">{</span><span class="nx">username</span><span class="o">:</span> <span class="s1">&#39;pilsy&#39;</span><span class="p">},</span> <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span><span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;Brisbane, Australia&#39;</span><span class="p">}})</span>
+  <span class="p">.</span><span class="nx">spread</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">created</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">values</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">created</span><span class="p">)</span>
+
+    <span class="cm">/*</span>
+<span class="cm">      {</span>
+<span class="cm">        username: &#39;pilsy&#39;,</span>
+<span class="cm">        location: &#39;Brisbane, Australia&#39;,</span>
+<span class="cm">        id: 1,</span>
+<span class="cm">        createdAt: Tue Feb 24 2013 01: 36: 21 GMT + 01000(AEST),</span>
+<span class="cm">        updatedAt: Tue Feb 24 2013 01: 36: 21 GMT + 01000(AEST)</span>
+<span class="cm">      }</span>
+<span class="cm">      created: false</span>
+<span class="cm">    */</span>
+  <span class="p">})</span></code></pre></div>
+</div>
 
 <!-- create
 ================================================== -->
 <h4 class="page-header" id="methods-create" style="color: #2980b9; font-size: 125%; font-weight: 500;">create( modelData, queryOptions )<br/>
 <small>Create a new Model Instance using the provided <code>modelData</code></small></h4>
-
-
-<!-- findOrCreate
-================================================== -->
-<h4 class="page-header" id="methods-find-or-create" style="color: #2980b9; font-size: 125%; font-weight: 500;">findOrCreate - Search for a specific element or create it if not available<br/></h4>
-
-<!-- rawQuery
-================================================== -->
-<h4 class="page-header" id="methods-raw-query" style="color: #2980b9; font-size: 125%; font-weight: 500;">rawQuery( sql, queryOptions )<br/>
-<small>Run a RAW Query using native methods for the database of the model</small></h4>
 
 
 <!-- Dynamic Finders
@@ -923,6 +1182,31 @@
 <span class="nx">findAllByUsername</span><span class="p">(</span><span class="s1">&#39;richard&#39;</span><span class="p">)</span>
 <span class="nx">countAllByUsername</span><span class="p">(</span><span class="s1">&#39;richard&#39;</span><span class="p">)</span></code></pre></div>
 </div>
+
+
+<!-- QueryOptions
+================================================== -->
+<h4 id="finders-query-options">queryOptions Definition and usage</h4>
+<p class="sub">Used for every query that is executed on the database, this is where transaction information is held.</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+      <th style="width: 100px;">Name</th>
+      <th style="width: 70px;">Type/s</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <td>transaction<br>
+        <span class="label label-warning">Optional</span>
+      </td>
+      <td>Object</td>
+      <td>Any current transaction to be used with the database query</td>
+  </tr>
+  </tbody>
+</table>
 
 <!-- FindOptions
 ================================================== -->
@@ -1018,29 +1302,12 @@
   </tbody>
 </table>
 
-<!-- QueryOptions
-================================================== -->
-<h4 id="finders-query-options">queryOptions Definition and usage</h4>
-<p class="sub">Used for every query that is executed on the database, this is where transaction information is held.</p>
 
-<table class="table table-bordered table-striped">
-  <thead>
-  <tr>
-      <th style="width: 100px;">Name</th>
-      <th style="width: 70px;">Type/s</th>
-      <th>Description</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-      <td>transaction<br>
-        <span class="label label-warning">Optional</span>
-      </td>
-      <td>Object</td>
-      <td>Any current transaction to be used with the database query</td>
-  </tr>
-  </tbody>
-</table></div>
+<!-- rawQuery
+================================================== -->
+<h4 class="page-header" id="methods-raw-query" style="color: #2980b9; font-size: 125%; font-weight: 500;">rawQuery( sql, queryOptions )<br/>
+<small>Run a RAW Query using native methods for the database of the model</small></h4>
+</div>
   <div class="section-page"><h3 id="events" class="page-header">
   Events <a class="permalink" href="#events" title="Permalink"><small>¶</small></a>
 </h3>
