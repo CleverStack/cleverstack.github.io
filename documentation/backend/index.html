@@ -187,19 +187,14 @@
   <li class="active">Backend</li>
 </ol>
 
-<!-- Goals
-================================================== -->
-<p class="lead">Developers all over the world for years have been striving to be able to create smarter, smaller, easier to manage, faster to develop, re-usable chunks of code that are as modular as possible without sacrificing code quality or developer sanity.</p>
+<div class="section-page"><p class="lead">Developers all over the world for years have been striving to be able to create smarter, smaller, easier to manage, faster to develop, re-usable chunks of code that are as modular as possible without sacrificing code quality or developer sanity.</p>
 
 <p>CleverStack set out to accomplish this and create the worlds first Modular Full Stack JS Framework, with the Architecture designed by <a href="https://github.com/pilsy">Richard Gustin</a> and his role as Lead working with a <a href="/about/#team">group of highly skilled developers</a> we believe that we accomplished this task.</p>
 
 <p>What this mean's for you is, you are able to create smaller, more specific modules that are extremely powerful, completely self contained and can be used between many projects. If you believe your module is useful you can publish your module to the CleverStack EcoSystem through NPM (Backend) or Bower (Frontend).</p>
 
-<p>In an attempt to keep our code as DRY as possible, whenever it is possible to use an already built NPM Package we will use that module instead of writing our own code to handle a problem that already has a viable solution. Examples of this is our use of SequelizeJS (ORM) and MongooseJS (ODM), our use of Grunt, and our use of frameworks such as express.</p><br/><br/>
-
-<!-- Introduction
-================================================== -->
-<h3 id="backend-introduction" class="page-header">
+<p>In an attempt to keep our code as DRY as possible, whenever it is possible to use an already built NPM Package we will use that module instead of writing our own code to handle a problem that already has a viable solution. Examples of this is our use of SequelizeJS (ORM) and MongooseJS (ODM), our use of Grunt, and our use of frameworks such as express.</p></div>
+<div class="section-page"><h3 id="backend-introduction" class="page-header">
   Introduction <a class="permalink" href="/documentation/backend/#backend-introduction" title="Permalink"><small>¶</small></a>
 </h3>
 <ol class="breadcrumb">
@@ -225,11 +220,8 @@
   <li>Unit &amp; E2E (Integration) Testing with <a href="https://www.npmjs.org/package/mocha">Mocha</a> and <a href="https://www.npmjs.org/package/request">Request</a>.</li>
   <li>Code Coverage reports for E2E and Unit test/s.</li>
   <li>Powerful database rebase and seed tools for Rapid Application Development</li>
-</ul><br/><br/>
-
-<!-- Installation
-================================================== -->
-<h3 id="backend-installation" class="page-header">
+</ul></div>
+<div class="section-page"><h3 id="backend-installation" class="page-header">
   Installation <a class="permalink" href="/documentation/backend/#backend-installation" title="Permalink"><small>¶</small></a>
 </h3>
 <ol class="breadcrumb">
@@ -239,11 +231,8 @@
 </ol>
 
 <p>Controllers are the thing that directly responds to each HTTP Request that comes into your application, as such each web request will result in (if routed) a new instance of a Controller (Class).</p>
-<p>Avoid callback soup/hell and promise slowdown by using this.proxy() or this.callback() in the Static section of the Controller, this keeps code nesting to a minimum and brings code re-use up. Instead of passing around req and res as arguments like other less organized solutions, in CleverStack they are exposed as this.req and this.res</p><br/><br/>
-
-<!-- Configuration
-================================================== -->
-<h3 class="page-header" id="backend-configuration">
+<p>Avoid callback soup/hell and promise slowdown by using this.proxy() or this.callback() in the Static section of the Controller, this keeps code nesting to a minimum and brings code re-use up. Instead of passing around req and res as arguments like other less organized solutions, in CleverStack they are exposed as this.req and this.res</p></div>
+<div class="section-page"><h3 class="page-header" id="backend-configuration">
   Configuration <a class="permalink" href="#backend-configuration" title="Permalink"><small>¶</small></a><br/>
   <small>Sophisticated deep-merged configuration allows ultimate flexibility between environments</small>
 </h3>
@@ -313,11 +302,8 @@
       </li>
     </ul>
   </li>
-</ol><br/><br/>
-
-<!-- Structure
-================================================== -->
-<h3 id="backend-project-structure" class="page-header">
+</ol></div>
+<div class="section-page"><h3 id="backend-project-structure" class="page-header">
   Structure <a class="permalink" href="#backend-structure" title="Permalink"><small>¶</small></a><br/>
   <small>Cleverstacks's Architecture has been designed to be simple and intiutive to use and extend.</small><br/>
 </h3>
@@ -426,11 +412,8 @@
       <span class="label label-info">Note</span> The order in which you place modules inside your <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array will be the loading order of the modules.
     </div>
   </dd>
-</dl><br/><br/>
-
-<!-- Core Components
-================================================== -->
-<h3 class="page-header" id="backend-core-components">
+</dl></div>
+<div class="section-page"><h3 class="page-header" id="backend-core-components">
 	Core Components <a class="permalink" href="#backend-core-components" title="Permalink"><small>¶</small></a><br/>
 	<small>Backend Classes, Modules, Controllers, Services and Models</small>
 </h3>
@@ -446,18 +429,25 @@
   <li><a href="/documentation/backend/controllers">Controllers</a>
   <li><a href="/documentation/backend/services">Services</a>
   <li><a href="/documentation/backend/models">Models</a>
-</ul><br/><br/>
+</ul></div>
+<div class="section-page"><h3 class="page-header" id="backend-magic-modules">
+  Magic Modules <a class="permalink" href="#backend-magic-modules" title="Permalink"><small>¶</small></a><br/>
+  <small>The Magic that enables CleverStack to do things like require('injector'), require('config') etc</small>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="#overview">Documentation</a></li>
+  <li><a href="#backend">Backend</a></li>
+  <li class="active">Magic Modules</li>
+</ol>
+<p class="lead sub">Our NodeJS Backend takes advantage of an NPM feature called the <i>Node Path</i>, by using the environment variable <code>NODE_PATH</code> we are able to take advantage of require's hidden power.</p>
 
-<!-- Magic Modules
-================================================== -->
-<h3 class="page-header" id="backend-magic-modules">Magic Modules</h3>
-<p>Our NodeJS Backend takes advantage of an NPM feature called the Node Path, by using the environment variable NODE_PATH.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">export </span><span class="nv">NODE_PATH</span><span class="o">=</span>./lib/:./modules/</code></pre></div>
+<p></p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">NODE_PATH</span><span class="o">=</span>./lib/:./modules/</code></pre></div>
 
-<p><span class="label label-danger">Important</span> You only need to set your NODE_PATH when you are running index.js, not the main servers or commands.</p><br/>
+<p><span class="label label-danger">Important</span> You will not need to set your <code>NODE_PATH</code> if you are using  only need to set your NODE_PATH when you are running <code>node/nodemon app.js</code>, not the main servers or commands (like <code>clever serve</code>.</p><br/>
 
 <p>Using the Node Path and our magic module utility it gives you the ability to load things, like this</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;controllers&#39;</span> <span class="p">).</span><span class="nx">ExampleController</span></code></pre></div>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;controllers&#39;</span> <span class="p">).</span><span class="nx">ExampleController</span></code></pre></div>
 
 <h5>Here is the complete list of Magic Modules, you can require() any of these anywhere in your application.</h5>
 <ul>
@@ -472,10 +462,8 @@
 <li>tasks</li>
 <li>utils</li>
 </ul><br/>
-
-<!-- Dependency Injection
-================================================== -->
-<h3 class="page-header" id="backend-di">
+</div>
+<div class="section-page"><h3 class="page-header" id="backend-di">
 	Dependency Injection <a class="permalink" href="#backend-di" title="Permalink"><small>¶</small></a><br/>
 	<small>Asynchronous and fully Non-blocking dependency injection for Node (based on AngularJS)</small>
 </h3>
@@ -508,14 +496,7 @@
 
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">SomeDependency</span> <span class="p">)</span> <span class="p">{</span>
   <span class="c1">// SomeDependency is loaded and injected into this function for you</span>
-<span class="p">}</span></code></pre></div><br/><br/>
-
-<h3 class="page-header" id="backend-modules">Classes</h3><br/><br/>
-<h3 class="page-header" id="backend-modules">Modules</h3><br/><br/>
-<h3 class="page-header" id="backend-modules">Controllers</h3><br/><br/>
-<h3 class="page-header" id="backend-modules">Services</h3><br/><br/>
-<h3 class="page-header" id="backend-modules">Models</h3><br/><br/>
-
+<span class="p">}</span></code></pre></div></div>
 
 <!-- Troubleshooting
 ================================================== -->
@@ -581,6 +562,7 @@ Starting server on port <span class="m">8080</span> in LOCAL mode</code></pre></
 ================================================== -->
 <h3 class="page-header" id="backend-contributing">Contributing</h3>
 <p>Firstly please read our <a href="https://github.com/CleverStack/Node-Seed/blob/master/CONTRIBUTING.md">guidelines for contributing</a>, Then fork the <a href="https://github.com/CleverStack/Node-Seed">CleverStack Node Seed</a> github repo, once you are ready please submit a "Pull Request" for review.</p>
+
   </div>
 
   <!-- Testing
