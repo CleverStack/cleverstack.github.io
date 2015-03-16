@@ -283,7 +283,7 @@ clever init my-app backend</code></pre></div>
   <li>/modules/&lt;module&gt;/config/default.json
     <ul>
       <li>
-        Every modules /config/default.json file will be loaded in the order specified in the <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array in your package.json
+        Every modules /config/default.json file will be loaded
         <div class="bs-callout bs-callout-info">
           <h4>Module's default.json</h4>
           <p>See <a href="#backend-modules-config-default">&lt;module&gt;/config/default.json</a> for more information</p>
@@ -294,7 +294,7 @@ clever init my-app backend</code></pre></div>
   <li>/modules/&lt;module&gt;/config/global.json
     <ul>
       <li>
-        Every modules /config/global.json file will be loaded in the order specified in the <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array in your package.json
+        Every modules /config/global.json file will be loaded
         <div class="bs-callout bs-callout-info">
           <h4>Module's global.json</h4>
           <p>See <a href="#backend-modules-config-global">&lt;module&gt;/config/global.json</a> for more information</p>
@@ -401,8 +401,8 @@ clever init my-app backend</code></pre></div>
   <dd>
     <p>This provides you with two easy to use folders, one for grunt tasks and the other for gulp tasks.</p>
     <div class="bs-callout bs-callout-info">
-      <h4>Grunt/Gulp Tasks</h4>
-      <p>See <a href="/documentation/backend/#build-tasks">Build Tasks</a> for more information on how to use Grunt and/or Gulp in your application.</p>
+      <h4>Development/Build Tasks</h4>
+      <p>See <a href="/documentation/backend/#grunt-tasks">Grunt Tasks</a> and <a href="/documentation/backend/#gulp-tasks">Gulp Tasks</a> for more information.</p>
     </div>
   </dd>
 
@@ -444,31 +444,62 @@ clever init my-app backend</code></pre></div>
   <dt><a href="https://github.com/CleverStack/Node-Seed/tree/master/package.json">package.json</a></dt>
   <dd>
     <p>This file defines the Application and it's information, scripts and NPM dependencies just like every other NPM Module.</p>
-
-    <div class="bs-callout bs-callout-info">
-      <h4>Enabling Modules ( bundledDependencies[] )</h4>
-      <p>This is where you define which CleverStack Modules are Enabled, and what order they are loaded in by the Module Loader.</p>
-      <p>By adding modules into the <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array in the projects package.json file, you are also letting NPM know that these dependencies are local and not on the NPM Registry, meaning NPM will never search or download those modules from the internet.</p>
-      <span class="label label-info">Note</span> The order in which you place modules inside your <a href="https://www.npmjs.org/doc/json.html">bundledDependencies[]</a> array will be the loading order of the modules.
-    </div>
   </dd>
 </dl>
 </div>
 <div class="section-page"><h3 id="grunt-tasks" class="page-header">
   Grunt Tasks <a class="permalink" href="/documentation/backend/#grunt-tasks" title="Permalink"><small>¶</small></a><br/>
-  <small>Flexible grunt tasks for your build pipeline, that work alongside Gulp.</small>
+  <small>Modular configuration and registration of grunt task's with ease.</small>
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
   <li><a href="/documentation/backend">Backend</a></li>
   <li class="active">Grunt Tasks</li>
 </ol>
+<p class="lead">Simply by placing a javascript file in the <code>backend/tasks/grunt</code> folder.</p>
 
+<p>Task files should export an Object Literal containing the <code>config</code> and <code>register</code> keys, unless the task does not need to register, in that case you can just export the config on the root level of the object.</p>
 
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+<div class="bs-callout bs-callout-warning">
+  <h4>Important information about naming grunt task files</h4>
+  <p>The name of the file will be used as the key inside the gruntConfig, as an example, for the grunt task concurrent.js, the gruntConfig would be gruntConfig[concurrent] </p>
 </div>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="c1">// Config with register</span>
+<span class="lineno"> 2</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+<span class="lineno"> 3</span>   <span class="nx">config</span><span class="o">:</span> <span class="p">{</span>
+<span class="lineno"> 4</span>     <span class="nx">dist</span><span class="o">:</span> <span class="p">{</span>
+<span class="lineno"> 5</span>       <span class="c1">// ...</span>
+<span class="lineno"> 6</span>     <span class="p">}</span>
+<span class="lineno"> 7</span>   <span class="p">},</span>
+<span class="lineno"> 8</span>   <span class="nx">register</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 9</span>     <span class="c1">// grunt.registerTask(&#39;build&#39;, [&#39;build:dist&#39;]);</span>
+<span class="lineno">10</span>   <span class="p">}</span>
+<span class="lineno">11</span> <span class="p">};</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="c1">// Config on the root level</span>
+<span class="lineno">14</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+<span class="lineno">15</span>   <span class="nx">dist</span><span class="o">:</span> <span class="p">{</span>
+<span class="lineno">16</span>     <span class="c1">// ...</span>
+<span class="lineno">17</span>   <span class="p">}</span>
+<span class="lineno">18</span> <span class="p">}</span></code></pre></div>
+
+
+<h5 id="grunt-tasks-included" class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
+  Available Grunt Tasks<br/>
+  <small>In the node-seed 1.2.x</small>
+</h5>
+<ul>
+  <li><a href="https://github.com/CleverStack/node-seed/blob/master/tasks/grunt/exec.js">exec</a></li>
+  <li><a href="https://github.com/CleverStack/node-seed/blob/master/tasks/grunt/watch.js">watch</a></li>
+  <li><a href="https://github.com/CleverStack/node-seed/blob/master/tasks/grunt/nodemon.js">nodemon</a></li>
+  <li><a href="https://github.com/CleverStack/node-seed/blob/master/tasks/grunt/mochaTest.js">mochaTest</a></li>
+  <li><a href="https://github.com/CleverStack/node-seed/blob/master/tasks/grunt/concurrent.js">concurrent</a></li>
+  <li><a href="https://github.com/CleverStack/node-seed/blob/master/tasks/grunt/jshint.js">jshint</a></li>
+  <li><a href="https://github.com/CleverStack/node-seed/blob/master/tasks/grunt/jsonlint.js">jsonlint</a></li>
+  <li><a href="https://github.com/CleverStack/node-seed/blob/master/tasks/grunt/jsdoc2md.js">jsdoc2md</a></li>
+  <li><a href="https://github.com/CleverStack/node-seed/blob/master/tasks/grunt/node-inspector.js">node-inspector</a></li>
+</ul>
 </div>
 <div class="section-page"><h3 id="gulp-tasks" class="page-header">
   Gulp Tasks <a class="permalink" href="/documentation/backend/#gulp-tasks" title="Permalink"><small>¶</small></a><br/>
