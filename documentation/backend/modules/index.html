@@ -164,7 +164,13 @@
     <li><a href="#class-options">Options</a></li>
   </ul>
 </li>
-<li><a href="#testing-modules">Testing Modules</a></li>
+<li><a href="#testing">Testing</a>
+  <ul class="nav">
+    <li><a href="#testing-unit">Running Unit Tests</a></li>
+    <li><a href="#testing-e2e">Running E2E Tests</a></li>
+    <li><a href="#testing-coverage">Code Coverage Reports</a></li>
+  </ul>
+</li>
 <li><a href="#troubleshooting">Troubleshooting</a></li>
 
               
@@ -740,8 +746,9 @@
   </div>
 </div>
 </div>
-  <div class="section-page"><h3 id="testing-modules" class="page-header">
-  Testing Modules<a class="permalink" href="#testing-modules" title="Permalink"><small>¶</small></a>
+  <div class="section-page"><h3 id="testing" class="page-header">
+  Testing Modules<a class="permalink" href="#testing" title="Permalink"><small>¶</small></a><br/>
+  <small>Modules contain their testing resources, there are two test types you can use, unit or e2e.</small>
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
@@ -749,11 +756,27 @@
   <li><a href="/documentation/backend/modules">Modules</a></li>
   <li class="active">Testing Modules</li>
 </ol>
+<p class="lead">We believe in testing our code as we develop, then if something breaks we know exactly where to start looking. Spending more time on developing the features we love.</p>
+<br/>
 
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
-</div>
+<h4 id="testing-unit">Running Unit Tests</h4>
+<p>To run the unit tests for your app and modules, from the backend root directory run:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">clever <span class="nb">test </span>unit</code></pre></div>
+<p>Or simply use the alias:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">clever <span class="nb">test</span></code></pre></div>
+<br/>
+
+<h4 id="testing-e2e">Running E2E Tests</h4>
+<p>To setup your environment for e2e testing with Protractor run the following command. This will install Selenium Server (WebDriver), ChromeDriver & PhantomJS based on your OS. If you wish to run selenium server in a separate terminal then use Webdriver Manager (see below).</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">clever <span class="nb">test </span>e2e</code></pre></div>
+<br/>
+
+<h4 id="testing-coverage">Code Coverage Reports</h4>
+<p>To generate a code coverage report for your tests, from the backend directory run:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever <span class="nb">test </span>coverage</code></pre></div>
+<p>Your browser should open the following URL:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>http://localhost:5555</code></pre></div>
+<p>Then select your report from the list.</p>
 </div>
   <div class="section-page"><h3 id="troubleshooting" class="page-header">
   Troubleshooting<a class="permalink" href="#troubleshooting" title="Permalink"><small>¶</small></a>
@@ -764,11 +787,13 @@
   <li><a href="/documentation/backend/modules">Modules</a></li>
   <li class="active">Troubleshooting</li>
 </ol>
-
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
-</div>
+<p class="lead">If you have any problems (including errors, exceptions and even general usage) with the CleverStack Node-Seed.</p>
+<ul>
+  <li>Check the Github <a href="https://github.com/cleverstack/node-seed/issues">issues page</a>.</li>
+  <li>Log into the public access <a href="https://gitter.im/CleverStack?utm_source=share-link&utm_medium=link&utm_campaign=share-link">Giiter Room</a> and ask for help.</li>
+  <li>Get some help from the Cleverstack <a href="https://groups.google.com/forum/#!forum/clever-stack">Google Group</a></li>
+  <li>If your still having problems, please <a href="https://github.com/CleverStack/cleverstack-cli/issues/new">raise an issue</a>.</li>
+</ul>
 </div>
 </div>
 
