@@ -145,10 +145,10 @@
 <li><a href="#installation">Installation</a></li>
 <li><a href="#configuration">Configuration</a></li>
 <li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#di">Dependency Injection</a></li>
 <li><a href="#grunt-tasks">Grunt Tasks</a></li>
 <li><a href="#gulp-tasks">Gulp Tasks</a></li>
 <li><a href="#magic-modules">Magic Modules</a></li>
-<li><a href="#di">Dependency Injection</a></li>
 <li><a href="#classes">Classes</a></li>
 <li><a href="#modules">Modules</a>
 <li><a href="#controllers">Controllers</a>
@@ -447,6 +447,41 @@ clever init my-app backend</code></pre></div>
   </dd>
 </dl>
 </div>
+<div class="section-page"><h3 class="page-header" id="di">
+	Dependency Injection <a class="permalink" href="#backend-di" title="Permalink"><small>¶</small></a><br/>
+	<small>Asynchronous and fully Non-blocking dependency injection for Node (based on AngularJS)</small>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="#overview">Documentation</a></li>
+  <li><a href="#backend">Backend</a></li>
+  <li class="active">Dependency Injection</li>
+</ol>
+
+<blockquote>
+	<h6>The unavoidable price of reliability is simplicity.</h6>
+	<footer style="font-size: 12px;">C.A.R. Hoare</footer>
+</blockquote>
+
+<h5 class="page-header">Features</h5>
+<ul>
+  <li>Non-blocking and fully async</li>
+  <li>Load's resources based upon name for you and injects dependencies</li>
+  <li>Will never load the same resource more than once, it uses the one singular instance for all dependencies</li>
+</ul>
+<br>
+
+<p>CleverStack Controllers, Services, Routes, Models and Tests are loaded and all of their dependencies are loaded and injected automatically using the <a href="https://github.com/cleverstack/clever-injector">CleverStack Dependency Injection</a> module.</p>
+
+<p>When resources/files are loaded using the injector it will automatically load and inject any of it's dependencies in a recursive manner.</p>
+
+<h5 class="page-header">Example Usage</h5>
+
+<p>Simply put the name of the dependency you need in the function exported by the file and it will be loaded and injected for you automatically.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">SomeDependency</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// SomeDependency is loaded and injected into this function for you</span>
+<span class="p">}</span></code></pre></div>
+</div>
 <div class="section-page"><h3 id="grunt-tasks" class="page-header">
   Grunt Tasks <a class="permalink" href="/documentation/backend/#grunt-tasks" title="Permalink"><small>¶</small></a><br/>
   <small>Modular configuration and registration of grunt task's with ease.</small>
@@ -549,41 +584,6 @@ clever init my-app backend</code></pre></div>
   <li>tasks</li>
   <li>utils</li>
 </ul>
-</div>
-<div class="section-page"><h3 class="page-header" id="di">
-	Dependency Injection <a class="permalink" href="#backend-di" title="Permalink"><small>¶</small></a><br/>
-	<small>Asynchronous and fully Non-blocking dependency injection for Node (based on AngularJS)</small>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="#overview">Documentation</a></li>
-  <li><a href="#backend">Backend</a></li>
-  <li class="active">Dependency Injection</li>
-</ol>
-
-<blockquote>
-	<h6>The unavoidable price of reliability is simplicity.</h6>
-	<footer style="font-size: 12px;">C.A.R. Hoare</footer>
-</blockquote>
-
-<h5 class="page-header">Features</h5>
-<ul>
-  <li>Non-blocking and fully async</li>
-  <li>Load's resources based upon name for you and injects dependencies</li>
-  <li>Will never load the same resource more than once, it uses the one singular instance for all dependencies</li>
-</ul>
-<br>
-
-<p>CleverStack Controllers, Services, Routes, Models and Tests are loaded and all of their dependencies are loaded and injected automatically using the <a href="https://github.com/cleverstack/clever-injector">CleverStack Dependency Injection</a> module.</p>
-
-<p>When resources/files are loaded using the injector it will automatically load and inject any of it's dependencies in a recursive manner.</p>
-
-<h5 class="page-header">Example Usage</h5>
-
-<p>Simply put the name of the dependency you need in the function exported by the file and it will be loaded and injected for you automatically.</p>
-
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">SomeDependency</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// SomeDependency is loaded and injected into this function for you</span>
-<span class="p">}</span></code></pre></div>
 </div>
 <div class="section-page"><h3 id="classes" class="page-header">
   Classes <a class="permalink" href="/documentation/backend/classes" title="Permalink"><small>¶</small></a><br/>
