@@ -140,35 +140,62 @@
           <div class="bs-sidebar hidden-print" role="complementary">
             <ul class="nav bs-sidenav">
               
-                <li><a href="/documentation" style="padding-left: 10px !important;color: #563d7c;"><strong>Documentation</strong> <br/><small>(viewing Backend)</small></a></li>
+                <li><a href="/documentation#backend" style="padding-left: 10px !important;color: #563d7c;"><strong>Documentation</strong> <br/><small>(viewing Backend)</small></a></li>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#configuration">Configuration</a></li>
-<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#magic-modules">Magic Modules</a>
+  <ul class="nav nav-nest">
+    <li><a href="#magic-modules-usage">Usage</a></li>
+    <li><a href="#magic-modules-list">Magic Module List</a></li>
+    <li><a href="#setting-your-node-path">Setting your NODE_PATH</a></li>
+  </ul>
+</li>
 <li><a href="#di">Dependency Injection</a></li>
+<li><a href="#project-structure">Project Structure</a>
+  <ul class="nav nav-nest">
+    <li><a href="#directory-structure">Directory Structure</a></li>
+    <li><a href="#important-folders">Important Folders</a></li>
+    <li><a href="#important-files">Important Files</a></li>
+  </ul>
+</li>
+<li><a href="#configuration">Configuration</a>
+  <ul class="nav nav-nest">
+    <li><a href="#configuration-files">Configuration Files</a></li>
+    <li><a href="#loading-configuration">Loading Configuration</a></li>
+    <li><a href="#cli-configuration-prompts">CLI Configuration Prompts</a></li>
+  </ul>
+</li>
 <li><a href="#grunt-tasks">Grunt Tasks</a></li>
-<!-- <li><a href="#gulp-tasks">Gulp Tasks</a></li> -->
-<li><a href="#magic-modules">Magic Modules</a></li>
-<li><a href="#classes">Classes</a></li>
+<li><a href="#using-the-cli">Using the CLI</a>
+  <ul class="nav nav-nest">
+    <li><a href="#creating-projects">Creating Projects</a></li>
+    <li><a href="#starting-the-server">Starting the Server</a></li>
+    <li><a href="#repl-console">REPL Console</a></li>
+    <li><a href="#code-generators">Code Generators</a></li>
+    <li><a href="#running-unit-tests">Running Unit Tests</a></li>
+    <li><a href="#running-e2e-tests">Running E2E Tests</a></li>
+  </ul>
+</li>
+<li><a href="#classes">Class</a></li>
 <li><a href="#modules">Modules</a>
 <li><a href="#controllers">Controllers</a>
 <li><a href="#services">Services</a>
 <li><a href="#models">Models</a>
-<li><a href="#testing">Testing</a>
+<!-- <li><a href="#testing">Testing</a>
   <ul class="nav">
     <li><a href="#testing-unit">Running Unit Tests</a></li>
     <li><a href="#testing-e2e">Running E2E Tests</a></li>
     <li><a href="#testing-coverage">Code Coverage Reports</a></li>
   </ul>
-</li>
-<li>
+</li> -->
+<!-- <li>
   <a href="#deployment">Build &amp; Deployment</a>
   <ul class="nav">
     <li><a href="#deployment-build">Production Builds</a></li>
     <li><a href="#deployment-strategies">Deployment Strategies</a></li>
   </ul>
-</li>
-<li><a href="#troubleshooting">Troubleshooting</a></li>
+</li> -->
+<li><a href="#debugging">Debugging</a></li>
+<li><a href="#getting-help">Getting Help</a></li>
 <li><a href="#contributing">Contributing</a></li>
 
               
@@ -180,7 +207,8 @@
   ================================================== -->
   <div class="bs-docs-section">
     <div class="section-page"><h3 id="introduction" class="page-header">
-  Introduction <a class="permalink" href="/documentation/backend/#backend-introduction" title="Permalink"><small>¶</small></a>
+  Introduction <a class="permalink" href="/documentation/backend/#backend-introduction" title="Permalink"><small>¶</small></a><br/>
+  <small>To the CleverStack NodeJS based backend</small>
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
@@ -188,9 +216,12 @@
   <li class="active">Introduction</li>
 </ol>
 
-<p class="lead sub">CleverStack's Backend (Node Seed) has been designed to provide you with a super fast test driven back-end development lifecycle. Everything you need should be just one command away, if it's not please open an issue or fork the repo on github and submit a pull request.</p>
+<p class="lead">CleverStack has been designed to provide you with a <strong><i>super fast test driven back-end development lifecycle</i></strong> that will make writing even the most (seemingly) complex applications trivial.</p>
 
-<h5 class="page-header">Highlights</h5>
+<br/>
+<p class="lead sub">Everything you need should be just one command away, if it's not please open an issue or fork the repo on github and submit a pull request.</p>
+
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">Highlights <small>(of the CleverStack <a href="http://git.com/CleverStack/node-seed">node-seed</a>)</small></h4>
 <ul>
   <li><a href="http://nodejs.org/api/cluster.html">Clustered,</a> enterprise application with high <a href="http://en.wikipedia.org/wiki/Concurrency_(computer_science)">Concurrency</a> out of the box.</li>
   <li>Asynchronous, <a href="http://nodejs.org/">NodeJS</a> Powered Non-Blocking Core.</li>
@@ -206,135 +237,146 @@
   <li>Code Coverage reports for E2E and Unit test/s.</li>
   <li>Powerful database rebase and seed tools for Rapid Application Development</li>
 </ul>
-</div>
-<div class="section-page"><h3 id="installation" class="page-header">
-  Installation <a class="permalink" href="/documentation/backend/#backend-installation" title="Permalink"><small>¶</small></a><br/>
-  <small>By using the CleverStack CLI's install command, installation is easy and straight forward.</small>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="/documentation">Documentation</a></li>
-  <li><a href="/documentation/backend">Backend</a></li>
-  <li class="active">Installation</li>
-</ol>
-<p class="lead">To create a new project using the CleverStack CLI.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># for frontend &amp; backend</span>
-clever init my-app
 
-<span class="c"># backend only</span>
-clever init my-app backend</code></pre></div>
-
-<img src="/assets/img/screenshots/clever-init-backend.png" width="100%">
 <br/>
-<br/>
-<p><span class="label label-info">Note</span> After running this command you may be prompted to configure the module/s your installing, see <a href="#configuration">Configuration</a> for more information. Additionally you may be prompted to setup the seed data for the module/s your installing, see <a href="/documentation/backend/models/#seed-data">Seed Data</a> for more information.</p>
-<br/>
-
-<div class="bs-callout bs-callout-danger">
-  <h4>Database creation</h4>
-  <p>If you are using SQL/ORM (aka MySQL, Postgre etc) then you will need to manually run the <code>CREATE DATABASE</code> command to create your database, the underlying library we use does not support this functionality.
-  </p>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">Badges</h4>
+<p>
+  <a href="http://badge.fury.io/gh/cleverstack%2Fnode-seed">
+    <img src="https://camo.githubusercontent.com/780f3b180163f7f4e2bf45b25d6de2978ccb12a2/68747470733a2f2f62616467652e667572792e696f2f67682f636c65766572737461636b2532466e6f64652d736565642e706e67" alt="GitHub version" data-canonical-src="https://badge.fury.io/gh/cleverstack%2Fnode-seed.png" style="max-width:100%;">
+  </a>
+  <a href="https://david-dm.org/CleverStack/node-seed">
+    <img src="https://camo.githubusercontent.com/924f7b6dd7756dd48478c6913f57511d654d2a00/68747470733a2f2f64617669642d646d2e6f72672f436c65766572537461636b2f6e6f64652d736565642e706e67" alt="Dependency Status" data-canonical-src="https://david-dm.org/CleverStack/node-seed.png" style="max-width:100%;">
+  </a>
+  <a href="https://david-dm.org/CleverStack/node-seed#info=devDependencies">
+    <img src="https://camo.githubusercontent.com/57e9e6440897091e5850a44e4817036f08d7bc36/68747470733a2f2f64617669642d646d2e6f72672f436c65766572537461636b2f6e6f64652d736565642f6465762d7374617475732e706e67" alt="devDependency Status" data-canonical-src="https://david-dm.org/CleverStack/node-seed/dev-status.png" style="max-width:100%;">
+  </a>
+  <a href="https://codeclimate.com/github/CleverStack/node-seed">
+    <img src="https://camo.githubusercontent.com/08640ac5b5f31f848b32494cf28a92bd16e4313e/68747470733a2f2f636f6465636c696d6174652e636f6d2f6769746875622f436c65766572537461636b2f6e6f64652d736565642e706e67" alt="Code Climate" data-canonical-src="https://codeclimate.com/github/CleverStack/node-seed.png" style="max-width:100%;">
+  </a>
+  <a href="https://travis-ci.org/CleverStack/node-seed">
+    <img src="https://camo.githubusercontent.com/8b01956ca6a99f6a413d05139e11f58e04bb770f/68747470733a2f2f7365637572652e7472617669732d63692e6f72672f436c65766572537461636b2f6e6f64652d736565642e706e673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://secure.travis-ci.org/CleverStack/node-seed.png?branch=master" style="max-width:100%;">
+  </a>
+  <a href="http://gruntjs.com/">
+    <img src="https://camo.githubusercontent.com/02d9825a669fb5b9f53bfe2e5a3fa4a1081cdb6a/68747470733a2f2f63646e2e6772756e746a732e636f6d2f6275696c74776974682e706e67" alt="Built with Grunt" data-canonical-src="https://cdn.gruntjs.com/builtwith.png" style="max-width:100%;">
+  </a>
+</p>
 </div>
-
-<div class="bs-callout bs-callout-warning">
-  <h4>Init running time</h4>
-  <p>This command may take awhile depending on your internet connection and computer specifications.</p>
-</div>
-
-<div class="bs-callout bs-callout-warning">
-  <h4>Command Failed Errors</h4>
-  <p>If you see a command failed error in your terminal/console after installing a module and seeing a message that states it's about to rebase or seed your database, it is highly likely that something is wrong with your configuration that you need to fix.<br/>
-  See <a href="#configuration">Configuration</a> and <a href="#seed-data">Seed Data</a> for information.</p>
-</div>
-</div>
-<div class="section-page"><h3 class="page-header" id="configuration">
-  Configuration <a class="permalink" href="#backend-configuration" title="Permalink"><small>¶</small></a><br/>
-  <small>Sophisticated deep-merged configuration allows ultimate flexibility between environments</small>
+<div class="section-page"><h3 class="page-header" id="magic-modules">
+  Magic Modules <a class="permalink" href="#backend-magic-modules" title="Permalink"><small>¶</small></a><br/>
+  <small>The Magic that enables CleverStack to do things like require('injector'), require('config') etc</small>
 </h3>
 <ol class="breadcrumb">
   <li><a href="#overview">Documentation</a></li>
   <li><a href="#backend">Backend</a></li>
-  <li class="active">Configuration</li>
+  <li class="active">Magic Modules</li>
 </ol>
-<p class="lead sub">To make configuration as easy and comprehensive as possible, you are not only able to define a global.json configuration file, you can also define configuration files for each environment regardless of what you call them.</p>
+<p class="lead">Our NodeJS Backend takes advantage of an NPM feature called the <i>Node Path</i>, by using the environment variable <code>NODE_PATH</code> we are able to take advantage of require's hidden power - to load folders as if they were an NPM Module.</p>
 
-<blockquote>
-  <h6>If you’re willing to restrict the flexibility of your approach, you can almost always do something better.</h6>
-  <footer style="font-size: 12px;">John Carmack</footer>
-</blockquote>
+
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="magic-modules-usage">Usage</h4>
+<p class="lead sub">Using our Magic Module utility, gives you the ability to load things, like this: <small>(in any module/file)</small></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;utils&#39;</span><span class="p">).</span><span class="nx">bootstrapEnv</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;models&#39;</span><span class="p">).</span><span class="nx">ExampleModel</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;services&#39;</span><span class="p">).</span><span class="nx">ExampleService</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;controllers&#39;</span><span class="p">).</span><span class="nx">ExampleController</span></code></pre></div>
+
+<p>You can use this loading syntax in any file inside your project (including files inside of modules), And you can use this utility yourself to create custom folders/modules, by simply doing <code>require('utils').magicModule('folderName')</code>.</p>
 <br/>
 
-<p>Consider the following code, which uses a "Magic Module" to load the json configuration files and deeep merge them</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">);</span></code></pre></div>
+<div class="bs-callout bs-callout-danger">
+  <h4>
+    Common Issue, running commands without the CLI <small>(ie <code>grunt server</code> or <code>node app</code>)</small>
+  </h4>
+  <p>
+    If you want to run, or are trying to run commands without the CLI (<code>clever</code> command) - Remember to set your <code>NODE_PATH</code>, see <a href="#setting-your-node-path">setting your node path</a> below.
 
-<h5 class="page-header">Loading Order</h5>
-<p>Each of the following files are loaded and then deep merged into one application config object, in the exact order listed here.</p>
-<ol>
-  <li><a href="https://github.com/CleverStack/Node-Seed/tree/master/config/global.json">/config/global.json</a>
-    <ul>
-      <li>
-        Define the global configuration for your application here.
-        <div class="bs-callout bs-callout-danger">
-          <h4>Required for configuration</h4>
-          <p>This file is required and must exist, as this is the place for any default (or GLOBAL) configuration. Don't Delete!</p>
-        </div>
-      </li>
-    </ul>
-  </li>
-  <li>/modules/&lt;module&gt;/config/default.json
-    <ul>
-      <li>
-        Every modules /config/default.json file will be loaded
-        <div class="bs-callout bs-callout-info">
-          <h4>Module's default.json</h4>
-          <p>See <a href="#backend-modules-config-default">&lt;module&gt;/config/default.json</a> for more information</p>
-        </div>
-      </li>
-    </ul>
-  </li>
-  <li>/modules/&lt;module&gt;/config/global.json
-    <ul>
-      <li>
-        Every modules /config/global.json file will be loaded
-        <div class="bs-callout bs-callout-info">
-          <h4>Module's global.json</h4>
-          <p>See <a href="#backend-modules-config-global">&lt;module&gt;/config/global.json</a> for more information</p>
-        </div>
-      </li>
-    </ul>
-  </li>
-  <li>/config/&lt;NODE_ENV&gt;.json <strong>(environment specific configuration)</strong>
-    <ul>
-      <li>This allows you to modify or extend the configuration for each environment, regardless of what name you give an environment.</li>
-        <div class="bs-callout bs-callout-info">
-          <h4>Default Environment Names</h4>
-          <p>The default environment names are, LOCAL, DEV, STAG and PROD.</p>
-        </div>
-        <div class="bs-callout bs-callout-danger">
-          <h4>Environment Specific Configuration</h4>
-          <p>To take advantage of an environment based configuration file, you need to set an Environment Variable called <code>NODE_ENV</code> to the name you called your environment. (We use <code>NODE_ENV=LOCAL</code> for local development).</p>
-        </div>
-      </li>
-    </ul>
-  </li>
+    <br/><br/>
+    <img src="/assets/img/screenshots/node-path-not-set-error.png" width="100%">
+  </p>
+</div>
+
+<br/>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="magic-modules-list">Magic Module List <small>(you can <code>require</code> any of these anywhere in your application).</small></h4>
+
+<ul>
+  <li>injector</li>
+  <li>classes</li>
+  <li>config</li>
+  <li>controllers</li>
+  <li>exceptions</li>
+  <li>models</li>
+  <li>seedData</li>
+  <li>services</li>
+  <li>tasks</li>
+  <li>utils</li>
+</ul>
+
+
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="setting-your-node-path">Setting your <code>NODE_PATH</code></h4>
+<p class="lead sub">In most cases you will not need to set your <code>NODE_PATH</code>, however if you are running commands without <code>clever</code>, (like <code>node cluster</code>, or <code>nodemon app</code> for example), or see an error like the following image, then you will need to set your <code>NODE_PATH</code>.</p>
+
+<br/>
+<img src="/assets/img/screenshots/node-path-not-set-error.png" width="100%">
+<br/>
+<br/>
+
+<h5>On Mac/Linux:</h5>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">NODE_PATH</span><span class="o">=</span>./lib/:./modules/</code></pre></div>
+<h5>On Windows:</h5>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">set </span><span class="nv">NODE_PATH</span><span class="o">=</span>./lib/<span class="p">;</span>./modules/</code></pre></div>
+</div>
+<div class="section-page"><h3 class="page-header" id="di">
+  Dependency Injection <a class="permalink" href="#backend-di" title="Permalink"><small>¶</small></a><br/>
+  <small>Asynchronous and fully Non-blocking dependency injection for Node (based on AngularJS)</small>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="#overview">Documentation</a></li>
+  <li><a href="#backend">Backend</a></li>
+  <li class="active">Dependency Injection</li>
 </ol>
+
+<p class="lead">Dependency Injection in CleverStack is provided by our <a href="https://www.npmjs.com/package/clever-injector">clever-injector</a> NPM Package, (that is based on the popular AngularJS), the code is open source and available on <a href="http://git.com/CleverStack/clever-injector">Github</a>.</p>
+
+<p class="lead sub">All Modules, Controllers, Services, Models, Tasks, Routes, Tests (and more) are loaded (including all of their dependencies in a recursive manner), and injected automatically using the <a href="https://github.com/cleverstack/clever-injector">clever-injector</a> NPM Package.</p>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">Features</h4>
+<ul>
+  <li>Simple, declarative dependency injection.</li>
+  <li>Lightning-fast and fully asynchronous. (non-blocking).</li>
+  <li>Will never load the same resource more than once.</li>
+  <li>Load's resources (from multiple directories) based upon filename for you, then resolves & injects dependencies automatically. (even if your depedencies have dependencies of their own).</li>
+  <li>Ability to create Child Containers. (Container Hierarchy, child/sub injectors).</li>
+  <li>Optional Dependencies. (with the $ suffix).</li>
+  <li>Supports Factories for automatic Service creation. (with the Factory suffix)</li>
+</ul>
+
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">Example Usage</h4>
+<p>Simply put the name of the dependency you need in the function exported by the file and it will be loaded and injected for you automatically.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// config is loaded and injected into this function for you</span>
+<span class="p">}</span></code></pre></div>
+<br/>
+<br/>
+
+<p class="lead"><i>Please see the <a href="https://github.com/cleverstack/clever-injector">README on Github</a> for more documentation &amp; information about clever-injector.</i></p>
 </div>
 <div class="section-page"><h3 id="project-structure" class="page-header">
-  Structure <a class="permalink" href="#backend-structure" title="Permalink"><small>¶</small></a><br/>
+  Project Structure <a class="permalink" href="#project-structure" title="Permalink"><small>¶</small></a><br/>
   <small>Cleverstacks's Architecture has been designed to be simple and intiutive to use and extend.</small><br/>
 </h3>
 <ol class="breadcrumb">
   <li><a href="#overview">Documentation</a></li>
   <li><a href="#backend">Backend</a></li>
-  <li class="active">Structure</li>
+  <li class="active">Project Structure</li>
 </ol>
-<!-- <p class="lead sub">Cleverstack provides a clear and simple structure that will make writing even the most (seemingly) complex applications trivial.</p> -->
+<p class="lead sub">Cleverstack provides a clear and simple structure that will make writing even the most (seemingly) complex applications trivial.</p>
 
 <blockquote>
   <h6>Complexity kills. It sucks the life out of developers, it makes products difficult to plan, build and test, it introduces security challenges and it causes end-user and administrator frustration.</h6>
   <footer style="font-size: 12px;">Ray Ozzie</footer>
 </blockquote>
 
-<h5 class="page-header">Folder Structure</h5>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="directory-structure">Directory Structure</h4>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">node-seed/
 ├── config/           <span class="c"># configuration files</span>
 ├── lib/              <span class="c"># cleverstack core</span>
@@ -352,7 +394,7 @@ clever init my-app backend</code></pre></div>
 ├── app.js            <span class="c"># runs a single node http server</span>
 └── package.json      <span class="c"># npm dependencies and package information</span></code></pre></div>
 
-<h5 class="page-header">Important files and folders</h5>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="important-folders">Important Folders</h4>
 <dl class="dl-horizontal">
   <dt><a href="https://github.com/CleverStack/Node-Seed/tree/master/config">config/</a></dt>
   <dd>This is where you define all of your configuration files like your global.json and for each of your environments (default is local, dev, stag, prod), see <a href="#backend-configuration">Configuration</a> for more information.</dd><br>
@@ -363,7 +405,7 @@ clever init my-app backend</code></pre></div>
 
     <div class="bs-callout bs-callout-info">
       <h4>Magic Modules</h4>
-      <p>Certain folders are magic modules and can be required in like <code>require( 'models' )</code>, this is made possible by the use of the NODE_PATH variable.</p>
+      <p>Certain folders are magic modules and can be required in like <code>require('models')</code>, this is made possible by the use of the NODE_PATH variable.</p>
     </div>
 
     <div class="bs-callout bs-callout-danger">
@@ -405,7 +447,10 @@ clever init my-app backend</code></pre></div>
       <p>See <a href="/documentation/backend/#grunt-tasks">Grunt Tasks</a> and <a href="/documentation/backend/#gulp-tasks">Gulp Tasks</a> for more information.</p>
     </div>
   </dd>
+</dl>
 
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="important-files">Important Files</h4>
+<dl class="dl-horizontal">
   <dt><a href="https://github.com/CleverStack/Node-Seed/tree/master/cluster.js">cluster.js</a></dt>
   <dd>
     <p>This is the main entry point of a normal CleverStack "Clustered" Application, in most cases you will not need to modify this file.</p>
@@ -437,7 +482,7 @@ clever init my-app backend</code></pre></div>
     <div class="bs-callout bs-callout-danger">
       <h4>Debugging</h4>
       <p>You can use this script to spawn a single processed Application, useful for debugging with node-inspector so it will attach to the process by using --debug-brk.</p>
-      <p><span class="label label-danger">Important</span> To run this file on its own you will need to manually set your NODE_PATH to <code>./lib/:./modules/</code> for linux and <code>./lib/;./modules/</code> for windows.</p>
+      <p><span class="label label-danger">Important</span> To run this file on its own you will need to manually <a href="#setting-your-node-path">set your NODE_PATH</a>.</p>
     </div>
   </dd>
 
@@ -447,40 +492,86 @@ clever init my-app backend</code></pre></div>
   </dd>
 </dl>
 </div>
-<div class="section-page"><h3 class="page-header" id="di">
-	Dependency Injection <a class="permalink" href="#backend-di" title="Permalink"><small>¶</small></a><br/>
-	<small>Asynchronous and fully Non-blocking dependency injection for Node (based on AngularJS)</small>
+<div class="section-page"><h3 class="page-header" id="configuration">
+  Project Configuration <a class="permalink" href="#configuration" title="Permalink"><small>¶</small></a><br/>
+  <small>Sophisticated deep-merged configuration allows ultimate flexibility between environments</small>
 </h3>
 <ol class="breadcrumb">
   <li><a href="#overview">Documentation</a></li>
   <li><a href="#backend">Backend</a></li>
-  <li class="active">Dependency Injection</li>
+  <li class="active">Project Configuration</li>
 </ol>
+<p class="lead">To make configuration as easy and comprehensive as possible, you are not only able to define a global.json configuration file, you can also define configuration files for each environment regardless of what you call them.</p>
 
 <blockquote>
-	<h6>The unavoidable price of reliability is simplicity.</h6>
-	<footer style="font-size: 12px;">C.A.R. Hoare</footer>
+  <h6>If you’re willing to restrict the flexibility of your approach, you can almost always do something better.</h6>
+  <footer style="font-size: 12px;">John Carmack</footer>
 </blockquote>
 
-<h5 class="page-header">Features</h5>
-<ul>
-  <li>Non-blocking and fully async</li>
-  <li>Load's resources based upon name for you and injects dependencies</li>
-  <li>Will never load the same resource more than once, it uses the one singular instance for all dependencies</li>
-</ul>
-<br>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="configuration-files">Configuration Files: <small>(loaded in the order they are listed)</small></h4>
+<p>Each of the following files are loaded and then deep merged into one application config object, in the exact order listed here.</p>
+<ol>
+  <li><a href="https://github.com/CleverStack/Node-Seed/tree/master/config/global.json">/config/global.json</a>
+    <ul>
+      <li>
+        Define the global configuration for your application here.
+        <div class="bs-callout bs-callout-danger">
+          <h4>Required for configuration</h4>
+          <p>This file is required and must exist, as this is the place for any default (or GLOBAL) configuration. Don't Delete!</p>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>/modules/&lt;module&gt;/config/default.json
+    <ul>
+      <li>
+        Every modules /config/default.json file will be loaded
+        <div class="bs-callout bs-callout-info">
+          <h4>Module's default.json</h4>
+          <p>See <a href="/documentation/backend/modules/#configuration">Module Configuration</a> Documentation for more information</p>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>/modules/&lt;module&gt;/config/global.json
+    <ul>
+      <li>
+        Every modules /config/global.json file will be loaded
+        <div class="bs-callout bs-callout-info">
+          <h4>Module's global.json</h4>
+          <p>See <a href="/documentation/backend/modules/#configuration">Module Configuration</a> Documentation for more information</p>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>/config/&lt;NODE_ENV&gt;.json <strong>(environment specific configuration)</strong>
+    <ul>
+      <li>This allows you to modify or extend the configuration for each environment, regardless of what name you give an environment.</li>
+        <div class="bs-callout bs-callout-info">
+          <h4>Default Environment Names</h4>
+          <p>The default environment names are, LOCAL, DEV, STAG and PROD.</p>
+        </div>
+        <div class="bs-callout bs-callout-danger">
+          <h4>Environment Specific Configuration</h4>
+          <p>To take advantage of an environment based configuration file, you need to set an Environment Variable called <code>NODE_ENV</code> to the name you called your environment. (We use <code>NODE_ENV=LOCAL</code> for local development).</p>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+<br/>
 
-<p>CleverStack Controllers, Services, Routes, Models and Tests are loaded and all of their dependencies are loaded and injected automatically using the <a href="https://github.com/cleverstack/clever-injector">CleverStack Dependency Injection</a> module.</p>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="loading-configuration">Loading the Config <small>(anywhere inside your application)</small></h4>
+<p>Consider the following code, which uses a "Magic Module" to load the json configuration files and deeep merge them</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">);</span></code></pre></div>
+<br/>
 
-<p>When resources/files are loaded using the injector it will automatically load and inject any of it's dependencies in a recursive manner.</p>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="cli-configuration-prompts">CLI Configuration Prompts</h4>
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div>
 
-<h5 class="page-header">Example Usage</h5>
-
-<p>Simply put the name of the dependency you need in the function exported by the file and it will be loaded and injected for you automatically.</p>
-
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">SomeDependency</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// SomeDependency is loaded and injected into this function for you</span>
-<span class="p">}</span></code></pre></div>
 </div>
 <div class="section-page"><h3 id="grunt-tasks" class="page-header">
   Grunt Tasks <a class="permalink" href="/documentation/backend/#grunt-tasks" title="Permalink"><small>¶</small></a><br/>
@@ -491,14 +582,7 @@ clever init my-app backend</code></pre></div>
   <li><a href="/documentation/backend">Backend</a></li>
   <li class="active">Grunt Tasks</li>
 </ol>
-<p class="lead">Simply by placing a javascript file in the <code>backend/tasks/grunt</code> folder.</p>
-
-<p>Task files should export an Object Literal containing the <code>config</code> and <code>register</code> keys, unless the task does not need to register, in that case you can just export the config on the root level of the object.</p>
-
-<div class="bs-callout bs-callout-warning">
-  <h4>Important information about naming grunt task files</h4>
-  <p>The name of the file will be used as the key inside the gruntConfig, as an example, for the grunt task concurrent.js, the gruntConfig would be gruntConfig[concurrent] </p>
-</div>
+<p class="lead">Simply by placing a javascript file in the <code>backend/tasks/grunt</code> folder and exporting an Object Literal containing the <code>config</code> and <code>register</code> keys, unless the task does not need to register, in that case you can just export the config on the root level of the object.</p>
 
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="c1">// Config with register</span>
 <span class="lineno"> 2</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
@@ -519,6 +603,10 @@ clever init my-app backend</code></pre></div>
 <span class="lineno">17</span>   <span class="p">}</span>
 <span class="lineno">18</span> <span class="p">}</span></code></pre></div>
 
+<div class="bs-callout bs-callout-warning">
+  <h4>Important information about naming grunt task files</h4>
+  <p>The name of the file will be used as the key inside the gruntConfig, as an example, for the grunt task concurrent.js, the gruntConfig would be gruntConfig[concurrent] </p>
+</div>
 
 <h5 id="grunt-tasks-included" class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
   Available Grunt Tasks<br/>
@@ -536,54 +624,89 @@ clever init my-app backend</code></pre></div>
   <li><a href="https://github.com/CleverStack/node-seed/blob/master/tasks/grunt/node-inspector.js">node-inspector</a></li>
 </ul>
 </div>
-<!-- <div class="section-page"><h3 id="gulp-tasks" class="page-header">
-  Gulp Tasks <a class="permalink" href="/documentation/backend/#gulp-tasks" title="Permalink"><small>¶</small></a><br/>
-  <small>Flexible Gulp tasks for your build pipeline, that work alongside Grunt.</small>
+<div class="section-page"><h3 id="using-the-cli" class="page-header">
+  Using the CLI <a class="permalink" href="#using-the-cli" title="Permalink"><small>¶</small></a><br/>
+  <small>Using the CleverStack Command Line Interface</small>
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
   <li><a href="/documentation/backend">Backend</a></li>
-  <li class="active">Gulp Tasks</li>
+  <li><a href="/documentation/backend/models">Models</a></li>
+  <li class="active">Using the CLI</li>
 </ol>
+<p class="lead">Our Command Line Interface (CLI) was designed to be as modular as possible, so that applications could take advantage of modules that are created and published to our Open Source EcoSystem by anyone, as well as our Official Modules.</p>
 
+<p class="lead sub">See the <a href="/documentation/cli">CLI Documentation</a> for more information on our Command Line Interface.</p>
+
+<br/>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="creating-projects">Creating Projects <small>(using the CLI)</small></h4>
+<p class="lead">By using the CleverStack CLI's <code>clever init</code> command, creating new projects is easy and straight forward.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># for frontend &amp; backend</span>
+clever init my-app
+
+<span class="c"># backend only</span>
+clever init my-app backend</code></pre></div>
+
+<img src="/assets/img/screenshots/clever-init-backend.png" width="100%">
+<br/>
+<br/>
+<p><span class="label label-info">Note</span> After running this command you may be prompted to configure the module/s your installing, see <a href="#configuration">Configuration</a> for more information. Additionally you may be prompted to setup the seed data for the module/s your installing, see <a href="/documentation/backend/models/#seed-data">Seed Data</a> for more information.</p>
+<br/>
 
 <div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+  <h4>Database creation</h4>
+  <p>If you are using SQL/ORM (aka MySQL, Postgre etc) then you will need to manually run the <code>CREATE DATABASE</code> command to create your database, the underlying library we use does not support this functionality.
+  </p>
 </div>
-</div> -->
-<div class="section-page"><h3 class="page-header" id="magic-modules">
-  Magic Modules <a class="permalink" href="#backend-magic-modules" title="Permalink"><small>¶</small></a><br/>
-  <small>The Magic that enables CleverStack to do things like require('injector'), require('config') etc</small>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="#overview">Documentation</a></li>
-  <li><a href="#backend">Backend</a></li>
-  <li class="active">Magic Modules</li>
-</ol>
-<p class="lead sub">Our NodeJS Backend takes advantage of an NPM feature called the <i>Node Path</i>, by using the environment variable <code>NODE_PATH</code> we are able to take advantage of require's hidden power.</p>
 
-<p></p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">NODE_PATH</span><span class="o">=</span>./lib/:./modules/</code></pre></div>
+<div class="bs-callout bs-callout-warning">
+  <h4>Init running time</h4>
+  <p>This command may take awhile depending on your internet connection and computer specifications.</p>
+</div>
 
-<p><span class="label label-danger">Important</span> You will not need to set your <code>NODE_PATH</code> if you are using  only need to set your NODE_PATH when you are running <code>node/nodemon app.js</code>, not the main servers or commands (like <code>clever serve</code>.</p><br/>
+<div class="bs-callout bs-callout-warning">
+  <h4>Command Failed Errors</h4>
+  <p>If you see a command failed error in your terminal/console after installing a module and seeing a message that states it's about to rebase or seed your database, it is highly likely that something is wrong with your configuration that you need to fix.<br/>
+  See <a href="#configuration">Configuration</a> and <a href="#seed-data">Seed Data</a> for information.</p>
+</div>
+<br/>
 
-<p>Using the Node Path and our magic module utility it gives you the ability to load things, like this</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;controllers&#39;</span><span class="p">).</span><span class="nx">ExampleController</span></code></pre></div>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="starting-the-server">Starting the Server <small>(using the CLI)</small></h4>
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div>
+<br/>
 
-<h5>Here is the complete list of Magic Modules, you can require() any of these anywhere in your application.</h5>
-<ul>
-  <li>injector</li>
-  <li>classes</li>
-  <li>config</li>
-  <li>controllers</li>
-  <li>exceptions</li>
-  <li>models</li>
-  <li>seedData</li>
-  <li>services</li>
-  <li>tasks</li>
-  <li>utils</li>
-</ul>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="repl-console">REPL Console</h4>
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div>
+<br/>
+
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="code-generators">Code Generators <small>(using the CLI)</small></h4>
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div>
+<br/>
+
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="running-unit-tests">Running Unit Tests <small>(using the CLI)</small></h4>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">clever <span class="nb">test </span>unit</code></pre></div>
+<p>Or simply use the alias</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">clever <span class="nb">test</span></code></pre></div>
+<span class="label label-info">Note</span> This will run unit &amp; e2e tests.
+<br/>
+<br/>
+
+
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="running-e2e-tests">Running E2E/Integration Tests <small>(using the CLI)</small></h4>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">clever <span class="nb">test </span>e2e</code></pre></div>
+<p>Or simply use the alias</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">clever <span class="nb">test</span></code></pre></div>
+<span class="label label-info">Note</span> This will run unit &amp; e2e tests.
+<br/>
 </div>
 <div class="section-page"><h3 id="classes" class="page-header">
   Classes <a class="permalink" href="/documentation/backend/classes" title="Permalink"><small>¶</small></a><br/>
@@ -645,7 +768,23 @@ clever init my-app backend</code></pre></div>
 <p class="lead sub">In an effort to make reading, writing and maintaining the documentation as easy as possible, we have put the documentation for Models on it's own page.</p>
 <p><a href="/documentation/backend/models">View Documentation for <strong><i>Models</i></strong></a></p>
 </div>
-<div class="section-page"><h3 id="testing" class="page-header">
+<!-- <div class="section-page"><h3 id="gulp-tasks" class="page-header">
+  Gulp Tasks <a class="permalink" href="/documentation/backend/#gulp-tasks" title="Permalink"><small>¶</small></a><br/>
+  <small>Flexible Gulp tasks for your build pipeline, that work alongside Grunt.</small>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li class="active">Gulp Tasks</li>
+</ol>
+
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div>
+</div> -->
+<!-- <div class="section-page"><h3 id="testing" class="page-header">
   Testing <a class="permalink" href="/documentation/backend/#testing" title="Permalink"><small>¶</small></a><br/>
   <small>Modules contain their testing resources, there are two test types you can use, unit or e2e.</small>
 </h3>
@@ -707,8 +846,8 @@ npm run-script setup-protractor</code></pre></div>
   <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>http://localhost:5555</code></pre></div>
   <p>Then select your report from the list.</p>
 </div>
-</div>
-<div class="section-page"><h3 id="deployment" class="page-header">
+</div> -->
+<!-- <div class="section-page"><h3 id="deployment" class="page-header">
   Deployment <a class="permalink" href="/documentation/backend/#deployment" title="Permalink"><small>¶</small></a><br/>
   <small>Using the Amazon AWS Cloud</small>
 </h3>
@@ -736,23 +875,53 @@ npm run-script setup-protractor</code></pre></div>
     <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
   </div>
 </div>
-</div>
-<div class="section-page"><h3 id="troubleshooting" class="page-header">
-  Troubleshooting <a class="permalink" href="/documentation/backend/#troubleshooting" title="Permalink"><small>¶</small></a><br/>
+</div> -->
+<div class="section-page"><h3 id="debugging" class="page-header">
+  Debugging <a class="permalink" href="/documentation/backend/#debugging" title="Permalink"><small>¶</small></a><br/>
   <small>What to do when your stuck on some issue</small>
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
   <li><a href="/documentation/backend">Backend</a></li>
-  <li class="active">Troubleshooting</li>
+  <li class="active">Debugging</li>
 </ol>
-<p class="lead">There are currently a few resources available to reach out to us</p>
+<p class="lead">Debugging a CleverStack Application is made easy by using the <a href="">debug</a> NPM Module, and by setting the <code>DEBUG</code> environment variable with the names of the debuggers you want enabled.</p>
 
-<h6><a href="https://github.com/CleverStack/node-seed/issues">Search GitHub issues, if you found a bug but don't see a ticket for it, please <a href="https://github.com/CleverStack/node-seed/issues">open an issue</a>. </a></h6>
-<h6><a href="https://groups.google.com/forum/#!forum/clever-stack">Get some help from the Google Group</a></h6>
-<h6><a href="http://stackoverflow.com/questions/tagged/cleverstack">Get some help from Stack Overflow</a></h6>
-<h6><a href="http://webchat.freenode.net/?randomnick=1&channels=%23cleverstack&uio=d4">Get some help from IRC</a></h6><br>
+<p class="lead sub">All debuggers in CleverStack have the <code>cleverstack:</code> suffix, to enable logging for all CleverStack features &amp; modules simply set your <code>DEBUG</code> environment to <code>cleverstack:*</code>.</p>
+<img src="/assets/img/screenshots/debugging-node-seed.png" width="100%">
+<br/><br/><br/>
 
+<p class="lead sub">To enable all CleverStack debuggers, simply run <code>export DEBUG=cleverstack:*</code> on your Terminal if you're running Mac or Linux, or if you're on Windows simply run <code>set DEBUG=cleverstack*</code> in your command line. (CMD).</p>
+
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">List of Debugger Names <small>(there are many more, please check the code to find more)</small></h4>
+<ul>
+  <li>Each module automatically get's a debugger based on it's name, ie cleverstack:clever-orm</li>
+  <li>cleverstack:app</li>
+  <li>cleverstack:cluster</li>
+  <li>cleverstack:models</li>
+  <li>cleverstack:modules</li>
+  <li>cleverstack:ModuleLoader</li>
+  <li>cleverstack:config</li>
+  <li>cleverstack:utils</li>
+</ul>
+</div>
+<div class="section-page"><h3 id="getting-help" class="page-header">
+  Getting Help <a class="permalink" href="/documentation/backend/#getting-help" title="Permalink"><small>¶</small></a><br/>
+  <small>What to do when your stuck on some issue</small>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li class="active">Getting Help</li>
+</ol>
+<ul>
+  <li>Check the Github <a href="https://github.com/cleverstack/node-seed/issues">issues page</a>, if you found a bug but don't see a ticket for it, please <a href="https://github.com/CleverStack/node-seed/issues/new">open an issue</a>.</li>
+  <li>Get some help from the Cleverstack <a href="https://groups.google.com/forum/#!forum/clever-stack">Google Group</a></li>
+  <li>Get some help from <a href="http://stackoverflow.com/questions/tagged/cleverstack">Stack Overflow</a></li>
+  <li>Log into the public access <a href="https://gitter.im/CleverStack?utm_source=share-link&utm_medium=link&utm_campaign=share-link">Giiter Room</a> and ask for help.</li>
+  <li>If your still having problems, please <a href="https://github.com/CleverStack/node-seed/issues/new">raise an issue</a>.</li>
+</ul>
+<br/>
 <p class="sub lead">We will document any "gotchas" here along with any important open GitHub issues. Please <a href="https://github.com/CleverStack/node-seed/issues">open an issue</a> if you see a bug.</p></p>
 <ul>
   <li>Frontend: EMFILE error on Mac: By default some macs have a ulimit of 256 which limits the number of open files each process can have, when using "clever init my-app" you will need to raise your ulimit by running "ulimit -n 1024" in your console. You will need to run that in your console before running the init command unless you define that setting globally in your mac.</li>
