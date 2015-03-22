@@ -146,6 +146,7 @@
 <li><a href="#what-about-npm">What about NPM</a></li>
 <li><a href="#what-powers-modules">What powers Modules</a></li>
 <li><a href="#example-module">The Example Module</a></li>
+<li><a href="#module-loader">The Module Loader</a>
 <li><a href="#working-with-modules">Working With Modules</a>
   <ul class="nav nav-nest">
     <li><a href="#installing-modules">Installing Modules</a></li>
@@ -160,8 +161,9 @@
 <li><a href="#hooks-and-events">Module Hooks &amp; Events</a></li>
 <li><a href="#creating-modules">Creating Modules</a>
   <ul class="nav nav-nest">
+    <li><a href="#generating-modules">Using the CLI</a></li>
     <li><a href="#class-definition">Class Definition</a></li>
-    <li><a href="#class-options">Options</a></li>
+    <li><a href="#class-options">Class Options</a></li>
   </ul>
 </li>
 <li><a href="#testing">Testing</a>
@@ -180,8 +182,7 @@
         <div class="col-md-9" role="main">
           	<div class="bs-docs-section">
   <div class="section-page"><h3 class="page-header" id="introduction">
-  Modules<br/>
-  <small>Robust &amp; Flexible Modules that are completely independent of other modules in the application.</small>
+  Modules
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
@@ -190,13 +191,17 @@
 </ol>
 
 <p class="lead">
-  CleverStack introduces a <strong><i>new and powerful</i></strong> approach to <strong><i>modules</i></strong>, that was designed with three goals in mind; <strong><i>flexibility</i></strong>, <strong><i>simplicity</i></strong>, and <strong><i>re-usability</i></strong> - as best practice, all functionality except what is in the CleverStack Core should be defined inside of modules.
+  CleverStack introduces a <strong><i>new and powerful</i></strong> approach to <strong><i>modules</i></strong>, that was designed with three goals in mind; <strong><i>flexibility</i></strong>, <strong><i>simplicity</i></strong>, and <strong><i>re-usability</i></strong> - as best practice, all functionality including what is in the CleverStack Core should be defined inside of modules.
 </p>
 
 <p class="lead sub">
-  CleverStack removes the complexity of installing &amp; configuring modules and makes developing modules easier (vertical scale), and allows you to be able to re-use modules with little or no code change between projects. (horizontal scale, using the CLI).
+  <i>CleverStack <strong>removes the complexity</strong> from installing &amp; configuring modules, makes <strong>developing modules easier</strong> (vertical scale), and allows you to easily <strong>re-use modules</strong> with little or no code change <strong>between projects</strong>. (horizontal scale).</i>
 </p>
 
+<p class="lead sub">
+  CleverStack encourages developers to shift their thinking and minset towards not only viewing the modularization principles <strong><i>on a vertical scale</i></strong>, (e.g. reducing developing time), but also <strong><i>on a horizontal scale</i></strong>. (e.g. not needing to focus on every single detail, being able to take a step back and look at your environment across the horizon).
+</p>
+<br/><br/>
 <blockquote>
   <h6>Complexity kills. It sucks the life out of developers, it makes products difficult to plan, build and test, it introduces security challenges and it causes end-user and administrator frustration.</h6>
   <footer style="font-size: 12px;">Ray Ozzie</footer>
@@ -204,7 +209,7 @@
 </div>
   <div class="section-page"><h3 id="what-are-modules" class="page-header">
   What Are Modules? <a class="permalink" href="#what-are-modules" title="Permalink"><small>¶</small></a><br/>
-  <small>Developers all over the world for years have been striving to be able to create smarter, smaller, easier to manage, faster to develop, re-usable chunks of code that are as modular as possible without sacrificing code quality or developer sanity.</small>
+  <small>Robust &amp; Flexible Modules that are completely independent of other modules in the application.</small>
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
@@ -213,35 +218,26 @@
   <li class="active">What Are Modules?</li>
 </ol>
 <p class="lead">
-  A Module is similar to a plugin in other software, or an npm package, but even better. The key difference is that Modules are first-class citizens, and everything is a Module in CleverStack, including both the core framework functionality and the code written for your application. <br/>
-  <br/>
-  <small><i>Which makes it easy to pick and choose which features to enable in your application and the freedom optimize them the way you want.</i></small>
+  A Module is similar to a plugin in other software, or an npm package, but even better. The key difference is that Modules are first-class citizens, and everything is a Module in CleverStack, including both the core framework functionality and the code written for your application.
 </p>
 
-<p class="sub">
-  A Module is simply a structured set of files within a directory that implement a single feature. You might create a blog-module, a forum-module or a users-module for user management. (many of these exist already as open source modules). Each directory contains everything related to that feature, including all utils, classes, controllers, services, tasks, models, configuration, seed data (etc), as well as the it's dependencies and testing. Every aspect of a feature exists in a module and every feature lives in a module.
+<p class="sub lead">
+  A Module is simply a structured set of files within a directory that implement a single feature. You might create a blog-module, a forum-module or a users-module for user management. (many of these exist already as <a href="http://cleverstack.io/modules/">open source modules</a>).
 </p>
 
-<p class="sub">
-  Each CleverStack Module is completely independent of all other modules, they contain everything they need to function including its tests (amoung other things), and their own package.json so that they define all of their own dependencies.
+<p class="sub lead">
+  Each directory contains everything related to that feature, including all utils, classes, controllers, services, tasks, models, configuration, seed data (etc), as well as the it's dependencies (in their own package.json) and testing. Every aspect of a feature exists in a module and every feature lives in a module.
 </p>
 
-<br/>
-<p class="sub">
-  <i>
-    CleverStack removes the complexity of installing &amp; configuring modules, and makes developing modules easier (vertical scale), and allows you to be able to re-use modules with little or no code change between projects. (horizontal scale).
-  </i>
+<p class="sub lead">
+  CleverStack makes it easy to pick and choose which features to enable in your application and gives you the freedom to optimize them the way you want.
 </p>
+
 <br/>
 <blockquote>
   <h6>There are two ways of constructing a software design. One way is to make it so simple that there are obviously no deficiencies. And the other way is to make it so complicated that there are no obvious deficiencies.</h6>
   <footer style="font-size: 12px;">C.A.R. Hoare</footer>
 </blockquote>
-<br/>
-
-<p class="sub">
-  CleverStack encourages developers to shift their thinking and minset towards not only viewing the modularization principles <strong><i>on a vertical scale</i></strong>, (e.g. reducing developing time), but also <strong><i>on a horizontal scale</i></strong>. (e.g. not needing to focus on every single detail, but still being able to take a step back and look at your environment across the horizon).
-</p>
 </div>
   <div class="section-page"><h3 id="what-about-npm" class="page-header">
   What about NPM? <a class="permalink" href="#what-about-npm" title="Permalink"><small>¶</small></a><br/>
@@ -257,31 +253,31 @@
 <p class="lead">
   NPM is the package manager for Node.js. It was created in 2009 as an open source project to help JavaScript developers easily share packaged modules of code and is dedicated to the long term success of the JavaScript community.
 </p>
-<br/>
 
+<br/>
 <p class="lead sub">
   But packages on node are often libraries/api's, are hard to install, or require complex setup and <i>configuration of the package</i> and it's dependencies <strong>after npm has</strong> finished installing the package <i><strong>before they are ready for use.</strong></i>
 </p>
-
 <p class="lead sub">
   But that is not a bad thing, this is exactly how NPM should work, and why it's so good at what it does, it's designed to be used to manage all dependencies <i>written in <strong>JavaScript</strong></i> and does not complicate things by trying to do too much or out of scope custom implementations for any given platform/browser and because of that it is extremely reliable.
 </p>
-
 <p class="lead sub">
   NPM was designed to be flexible enough to provide an abstraction layer that developers can use to build upon - for example it could greatly reduce the codebase of <a href="http://bower.io/">Bower</a>, improve its dependency management, increase collaboration, and allow bower to focus on new features instead of duplicating already solved software problems. This is only one example use case of using NPM like we have, the possibilities of other projects using NPM are endless when you look on github.
 </p>
 <br/>
 
-<p class="sub">
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">What is CleverStack's approach to NPM?</h4>
+<p class="lead">
+  CleverStack uses NPM to enhance the development lifecycle for developers, but doesn't change or interfere with it, using industry best practices, so that when CleverStack is used to develop NodeJS powered Applications, they are <strong><i>flexible</i></strong>, <strong><i>simple</i></strong>, <strong><i>modular</i></strong>, and meet our vertical and horizontal goals.
+</p>
+<p class="sub lead">
+  Before CleverStack implements custom code we always carefully consider the options available at the time and the need for the feature <strong><i>before writing custom solutions</i></strong>.
+</p>
+<p class="sub lead">
+  Additionally, if one of CleverStack's custom implemented features or solutions is implemented and becomes available in a new version of NPM, that is a viable replacement for ours, we will always change over to use the NPM implementation - it reduces our code base (DRY) and ensures CleverStack is as collaborative as possible.
+</p>
+<p class="sub lead">
   We take advantage of NPM as much as possible, and without NPM CleverStack would be impossible, because we would have to write a large and complex dependency management system. <small>(Which would be a terrible idea considering npm is available now)</small>.
-</p>
-
-<p class="sub">
-  <p>CleverStack's approach extends NPM <small>(but doesn't change or interfere with NPM)</small>, so that when CleverStack is used to develop NodeJS powered Applications and Modules, that those Applications/Modules are <strong><i>flexible</i></strong>, <strong><i>simple</i></strong>, <strong><i>modular</i></strong>, and meets our vertical and horizontal goals.</p>
-</p>
-
-<p class="sub">
-  Before CleverStack implements custom code/features we always carefully always consider the options available. <strong><i>before writing something custom code/solutions</i></strong>. Additionally, if a feature implemented in CleverStack becomes available in a new version of NPM that is a viable replacement for CleverStacks Solution, we will always change over to use NPM implementation - it reduces our code base (DRY) and makes ensures CleverStack is collaborative as possible.
 </p>
 </div>
   <div class="section-page"><h3 id="what-powers-modules" class="page-header">
@@ -316,25 +312,11 @@
     </p>
   </dd>
 </dl>
-<br/>
-<div class="bs-callout bs-callout-info">
-  <h4>Module Loading Order</h4>
-  <p>Because CleverStack points your <code>NODE_PATH</code> to the <code>backend/lib</code> and <code>backend/modules</code> folders, this means the loading order of the modules does not matter, as each module can be loaded using <code>require('module-name')</code> in any js file from any module in the application.<br/>
-  </p>
-</div>
-<div class="bs-callout bs-callout-danger">
-  <h4>Module Naming Convensions</h4>
-  <p>Inline with NPM standards, the names of modules should be lowercase and seperated by dashes (dasherized) - and the names should not conflict with published npm packages unless you don't want to use the published npm package in your application.</p><br/>
-
-  <p>For example imagine you wanted to build a cleverstack module that integrates stripe that you wanted to publish or re-use, you wouldn't name your cleverstack module <code>stripe</code>, if you did name your cleverstack module stripe, and tried to use the <a href="https://www.npmjs.com/package/stripe">stripe</a> api library from npm, because <code>require('stripe')</code> would include your module not the npm package you expected, in this case the best practice for naming the cleverstack module would be <code>clever-stripe</code>.</p>
-</div>
-<br/>
 
 <!-- Leveraged Components
 ================================================== -->
 <h5 id="leveraged-components" class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
-  Leveraged Components <a class="permalink" href="#leveraged-components" title="Permalink"><small>¶</small></a><br/>
-  <small>A list of Components we leverage for Modules in the CleverStack Module System.</small>
+  Leveraged Components <a class="permalink" href="#leveraged-components" title="Permalink"><small>¶</small></a>
 </h5>
 <dl class="dl-horizontal">
   <dt>
@@ -369,7 +351,7 @@
 </div>
   <div class="section-page"><h3 id="example-module" class="page-header">
   The Example Module <a class="permalink" href="#example-module" title="Permalink"><small>¶</small></a><br/>
-  <small>Is an example of how CleverStack Modules should be built.</small>
+  <small>An example of how CleverStack Modules should be built.</small>
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
@@ -383,6 +365,21 @@
 <p>To install this module in your application use the CleverStack CLI's <code>install</code> command.<br/>(ie. <code>clever install backend-example-module</code>)</p>
 <img src="/assets/img/screenshots/clever-install.png" width="100%">
 </div>
+  <!-- <div class="section-page"><h3 id="module-loader" class="page-header">
+  Module Loader <a class="permalink" href="#module-loader" title="Permalink"><small>¶</small></a>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/modules">Modules</a></li>
+  <li class="active">Module Loader</li>
+</ol>
+
+<div class="bs-callout bs-callout-danger">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div>
+</div> -->
   <div class="section-page"><h3 id="working-with-modules" class="page-header">
   Working With Modules <a class="permalink" href="#working-with-modules" title="Permalink"><small>¶</small></a><br/>
   <small>By using the CleverStack CLI, installing, upgrading, downgrading and removing modules is easy and straight forward.</small>
@@ -390,25 +387,15 @@
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
   <li><a href="/documentation/backend">Backend</a></li>
-  <li><a href="/documentation/backend/models">Models</a></li>
+  <li><a href="/documentation/backend/modules">Modules</a></li>
   <li class="active">Working With Modules</li>
 </ol>
 <p class="lead">
   Installing, Removing, Upgrading or Downgrading modules is as simple as running <code>clever</code> with the name of the command you want to run, like <code>clever install</code> with the name of the module you want to install. <small>(for example, <code>clever install backend-example-module</code>)</small>
 </p>
 
-<div class="bs-callout bs-callout-info">
-  <h4>Install, Remove, Upgrade or Downgrade multiple modules at a time</h4>
-  <p>You can specify multiple modules in each install, remove, upgrade or downgrade command separated by spaces.</p>
-</div>
-
-<div class="bs-callout bs-callout-warning">
-  <h4>Command Failed Errors</h4>
-  <p>If you see a command failed error in your terminal/console after installing a module and seeing a message that states it's about to rebase or seed your database, it is highly likely that something is wrong with your configuration that you need to fix.<br/>
-  See <a href="#configuration">Configuration</a> and <a href="#seed-data">Seed Data</a> for information.</p>
-</div>
-
-<div class="bs-callout bs-callout-warning">
+<br/>
+<div class="bs-callout bs-callout-danger">
   <h4>
     Common Issue, running commands without the CLI <small>(ie <code>grunt server</code> or <code>node app</code>)</small>
   </h4>
@@ -420,6 +407,27 @@
     <img src="/assets/img/screenshots/node-path-not-set-error.png" width="100%">
   </p>
 </div>
+<div class="bs-callout bs-callout-danger">
+  <h4>Module Name Clashes with NPM</h4>
+  <p>Module names should not conflict with published npm packages, unless you don't want to use the published npm package in your application.</p><br/>
+
+  <p>For example imagine you wanted to build a cleverstack module that integrates stripe, you wouldn't name your cleverstack module <code>stripe</code>, because if you and tried to use the <a href="https://www.npmjs.com/package/stripe">stripe</a> api library from npm, and tried to <code>require('stripe')</code> it would include your module not the npm package you expected, in this case the best practice for naming the cleverstack module would be <code>clever-stripe</code>.</p>
+</div>
+<div class="bs-callout bs-callout-warning">
+  <h4>Command Failed Errors</h4>
+  <p>If you see a command failed error in your terminal/console after installing a module and seeing a message that states it's about to rebase or seed your database, it is highly likely that something is wrong with your configuration that you need to fix.<br/>
+  See <a href="#configuration">Configuration</a> and <a href="#seed-data">Seed Data</a> for information.</p>
+</div>
+<div class="bs-callout bs-callout-info">
+  <h4>Module Loading Order</h4>
+  <p>Because CleverStack points your <code>NODE_PATH</code> to the <code>backend/lib</code> and <code>backend/modules</code> folders, this means the <strong>loading order of modules does not matter</strong>, as each module can be loaded using <code>require('module-name')</code> in any js file from any module in the application - That mean's your application's will always resolve and load modules in the best possible way automatically.<br/>
+  </p>
+</div>
+<div class="bs-callout bs-callout-info">
+  <h4>Install, Remove, Upgrade or Downgrade multiple modules at a time</h4>
+  <p>You can specify multiple modules in each install, remove, upgrade or downgrade command separated by spaces.</p>
+</div>
+<br/>
 
 <!-- Installing Modules
 ================================================== -->
@@ -438,16 +446,17 @@
   <div class="bs-callout bs-callout-info">
     <h4>Installation Prompts</h4>
     <p>
-      After running this command you may be prompted to configure the module/s your installing, see <a href="#configuration">Configuration</a> for more information. Additionally you may be prompted to setup the seed data for the module/s your installing, see <a href="#seed-data">Seed Data</a> for more information.<br/>
+      After running this command you may be prompted to configure the module/s your installing, see <a href="#configuration">Configuration</a> for more information. Additionally you may be prompted to setup the seed data for the module/s your installing, see <a href="/documentation/backend/models/#seed-data">Seed Data</a> for more information.<br/>
     </p>
   </div>
 
   <div class="bs-callout bs-callout-warning">
     <h4>Command Failed Errors</h4>
     <p>If you see a command failed error in your terminal/console after installing a module and seeing a message that states it's about to rebase or seed your database, it is highly likely that something is wrong with your configuration that you need to fix.<br/>
-    See <a href="#configuration">Configuration</a> and <a href="#seed-data">Seed Data</a> for information.</p>
+    See <a href="#configuration">Configuration</a> and <a href="/documentation/backend/models/#seed-data">Seed Data</a> for information.</p>
   </div>
 </div>
+<br/>
 
 <!-- Removing Modules
 ================================================== -->
@@ -462,6 +471,7 @@
   <h5>If the module is already the same version, or older - then you will see something like this</h5>
   <img src="/assets/img/screenshots/clever-remove-invalid-module.png" width="100%">
 </div>
+<br/>
 
 <!-- Upgrading Modules
 ================================================== -->
@@ -473,6 +483,7 @@
   <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever upgrade backend-example-module</code></pre></div>
   <img src="/assets/img/screenshots/clever-upgrade.png" width="100%">
 </div>
+<br/>
 
 <!-- Downgrading Modules
 ================================================== -->
@@ -484,50 +495,60 @@
   <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever downgrade backend-example-module@1.0.3</code></pre></div>
   <img src="/assets/img/screenshots/clever-downgrade.png" width="100%"><br/><br/>
 
-  <h5>If the module is not installed you will see something like this</h5>
+  <h5>If the module is not installed you will see something like this in your terminal/console.</h5>
   <img src="/assets/img/screenshots/clever-downgrade-same-version-error.png" width="100%">
 </div>
 </div>
   <div class="section-page"><h3 id="configuration" class="page-header">
-  Configuration <a class="permalink" href="#configuration" title="Permalink"><small>¶</small></a>
+  Module Configuration <a class="permalink" href="#configuration" title="Permalink"><small>¶</small></a><br/>
+  <small>Sophisticated deep-merged configuration allows ultimate flexibility between environments</small>
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
   <li><a href="/documentation/backend">Backend</a></li>
   <li><a href="/documentation/backend/modules">Modules</a></li>
-  <li class="active">Configuration</li>
+  <li class="active">Module Configuration</li>
 </ol>
 
-<p>You can easily define the modules configuration with these files</p>
-<h5 id="modules-config-default">config/default.json</h5>
-<ul>
-<li><span class="label label-info">Note</span> This file is used mainly to define the basic structure of configuration for each module, primarily used to "prevent cannot access variable of undefined" errors where code relies on the structure of the configuration object.</li>
-<li><strong>This file is not required.</strong></li>
-</ul>
+<p class="lead">To make configuration as easy and comprehensive as possible, you are able to define two configuration files, default.json and global.json, these files are automatically deep merged with your projects other configuration files. See <a href="/documentation/backend/#configuration">Backend Configuration</a> Documentation for more information.</p>
 
-<h5 id="modules-config-global">config/global.json</h5>
-<ul>
-<li>This file is used to define the GLOBAL settings for this module</li><br>
-<li><span class="label label-info">Note</span> this configuration file is used to provide the default GLOBAL config for each module.</li>
-<li><strong>This file is not required.</strong></li>
-</ul><br>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">Configuration files: <small>(loaded in the order they are listed)</small></h4>
+<ol>
+  <li>&lt;module&gt;/config/default.json
+    <ul>
+      <li>
+        This file is used mainly to define the basic structure of configuration for each module, primarily used to provide sane configuration defaults.
+      </li>
+    </ul>
+  </li>
+  <li>&lt;module&gt;/config/global.json
+    <ul>
+      <li>
+        This file is used to define the GLOBAL settings for this module, primarily used to "prevent cannot access variable of undefined" errors where code relies on the structure of the configuration object.
+      </li>
+    </ul>
+  </li>
+</ol>
 
-<p><span class="label label-danger">Important</span> Each of these JSON config files must contain (if they exist on disk) an object that has all configuration objects nested in an object under one key which needs to be named the same as your &lt;module&gt;.</p>
+<br/>
+<h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">What is the structure of these JSON configuration files?</h4>
+<p>Each of these JSON config files must contain (if they exist on disk) an object that has all configuration objects nested in an object under one key which needs to be named the same as your &lt;module&gt;.</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&quot;module-name&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;config&quot;</span><span class="p">:</span> <span class="s2">&quot;here&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;another&quot;</span><span class="p">:</span> <span class="s2">&quot;as well&quot;</span>
+    <span class="nt">&quot;config&quot;</span>  <span class="p">:</span> <span class="s2">&quot;here&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;another&quot;</span> <span class="p">:</span> <span class="s2">&quot;as well&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre></div>
 </div>
   <div class="section-page"><h3 id="structure" class="page-header">
-  Structure <a class="permalink" href="#structure" title="Permalink"><small>¶</small></a>
+  Module Structure <a class="permalink" href="#structure" title="Permalink"><small>¶</small></a><br/>
+  <small>Cleverstacks's Architecture has been designed to be simple and intiutive to use and extend.</small>
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
   <li><a href="/documentation/backend">Backend</a></li>
   <li><a href="/documentation/backend/modules">Modules</a></li>
-  <li class="active">Structure</li>
+  <li class="active">Module Structure</li>
 </ol>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">example-module/
@@ -702,38 +723,53 @@
 </ul>
 </div>
   <div class="section-page"><h3 id="creating-modules" class="page-header">
-  Module Class <a class="permalink" href="#class" title="Permalink"><small>¶</small></a>
+  Creating Modules <a class="permalink" href="#class" title="Permalink"><small>¶</small></a>
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
   <li><a href="/documentation/backend">Backend</a></li>
   <li><a href="/documentation/backend/modules">Modules</a></li>
-  <li class="active">Class</li>
+  <li class="active">Creating Modules</li>
 </ol>
 
 <p class="lead sub">Every Module in CleverStack is extended from the <code>Module</code> Class, which was extended from the base CleverStack <code>Class</code> and inherits from <code>EventEmitter</code>, every <code>Module</code> will automatically listen to events coming from the <code>ModuleLoader</code> as well as emitting events that the <code>ModuleLoader</code> and other <code>Module</code>'s can listen to.</p>
 
 <div class="section-page">
-  <h4 class="page-header" id="class-definition" style="color: #2980b9; font-size: 125%; font-weight: 500;">Class Definition<br/></h4>
+  <h4 class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;" id="generating-modules">Using the CLI<br/>
+    <small>How to generate a new module using the CLI</small></h4>
+  <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>clever new example-module</code></pre></div>
+  <img src="/assets/img/screenshots/clever-new-example-module.png" width="100%">
+
+  <h5>This will generate the following structure:</h5>
+  <img src="/assets/img/screenshots/clever-new-example-module-generated-files.png" height="450px;">
+  <br/>
+
+  <h4 class="page-header" id="class-definition" style="color: #2980b9; font-size: 125%; font-weight: 500;">Class Definition</h4>
   <p>Imagine you had a module called <code>example-module</code>, then <code>backend/modules/example-module/module.js</code> should at the very least contain the following basic extended <code>Module</code> Class.</p>
-  <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="kd">var</span> <span class="nx">Classes</span>      <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;classes&#39;</span><span class="p">)</span>
-<span class="lineno">2</span>     <span class="p">,</span> <span class="nx">Module</span>       <span class="o">=</span> <span class="nx">Classes</span><span class="p">.</span><span class="nx">Module</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="kd">var</span> <span class="nx">Classes</span>      <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;classes&#39;</span><span class="p">)</span>
+<span class="lineno">2</span>   <span class="p">,</span> <span class="nx">Module</span>       <span class="o">=</span> <span class="nx">Classes</span><span class="p">.</span><span class="nx">Module</span><span class="p">;</span>
 <span class="lineno">3</span> 
-<span class="lineno">4</span>   <span class="kd">var</span> <span class="nx">CleverModule</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-<span class="lineno">5</span>     <span class="c1">// Methods, Module Hooks and Templated Event Handlers go here.</span>
-<span class="lineno">6</span>   <span class="p">});</span>
+<span class="lineno">4</span> <span class="kd">var</span> <span class="nx">CleverModule</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<span class="lineno">5</span>   <span class="c1">// Methods, Module Hooks and Templated Event Handlers go here.</span>
+<span class="lineno">6</span> <span class="p">});</span>
 <span class="lineno">7</span> 
-<span class="lineno">8</span>   <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span>   <span class="o">=</span> <span class="nx">CleverModule</span><span class="p">;</span></code></pre></div>
+<span class="lineno">8</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span>   <span class="o">=</span> <span class="nx">CleverModule</span><span class="p">;</span></code></pre></div>
   <p><span class="label label-danger">IMPORTANT</span> This example assumes that you had added <code>"main": "module"</code> to <code>example-module/package.json</code> file.</p>
 
-  <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&quot;name&quot;</span>        <span class="p">:</span> <span class="s2">&quot;example-module&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;description&quot;</span> <span class="p">:</span> <span class="s2">&quot;Example CleverStack Module&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;version&quot;</span>     <span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;main&quot;</span>        <span class="p">:</span> <span class="s2">&quot;module&quot;</span>
-  <span class="p">}</span></code></pre></div>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span>        <span class="p">:</span> <span class="s2">&quot;example-module&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;description&quot;</span> <span class="p">:</span> <span class="s2">&quot;Example CleverStack Module&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span>     <span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;main&quot;</span>        <span class="p">:</span> <span class="s2">&quot;module&quot;</span>
+<span class="p">}</span></code></pre></div>
   <p>Otherwise it would expect to find the above code in the <code>backend/modules/example-module/index.js</code> file.</p>
+
+  <div class="bs-callout bs-callout-info">
+    <h4>Module Naming Convensions</h4>
+    <p>Inline with NPM standards, the names of modules should be lowercase and seperated by dashes (dasherized) - and the names should not conflict with published npm packages unless you don't want to use the published npm package in your application.</p>
+  </div>
 </div>
+
 
 <!-- Class Options
 ================================================== -->
@@ -792,7 +828,7 @@
   <li>Check the Github <a href="https://github.com/cleverstack/node-seed/issues">issues page</a>.</li>
   <li>Log into the public access <a href="https://gitter.im/CleverStack?utm_source=share-link&utm_medium=link&utm_campaign=share-link">Giiter Room</a> and ask for help.</li>
   <li>Get some help from the Cleverstack <a href="https://groups.google.com/forum/#!forum/clever-stack">Google Group</a></li>
-  <li>If your still having problems, please <a href="https://github.com/CleverStack/cleverstack-cli/issues/new">raise an issue</a>.</li>
+  <li>If your still having problems, please <a href="https://github.com/CleverStack/node-seed/issues/new">raise an issue</a>.</li>
 </ul>
 </div>
 </div>
