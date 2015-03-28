@@ -146,7 +146,6 @@
 <li><a href="#what-about-npm">What about NPM</a></li>
 <li><a href="#what-powers-modules">What powers Modules</a></li>
 <li><a href="#example-module">The Example Module</a></li>
-<li><a href="#module-loader">The Module Loader</a>
 <li><a href="#working-with-modules">Working With Modules</a>
   <ul class="nav nav-nest">
     <li><a href="#installing-modules">Installing Modules</a></li>
@@ -155,7 +154,13 @@
     <li><a href="#downgrading-modules">Downgrading Modules</a></li>
   </ul>
 </li>
-<!-- <li><a href="#keeping-modules-indepenent">Keeping Modules Independent</a></li> -->
+<li><a href="#module-loader">The Module Loader
+  <ul class="nav nav-nest">
+    <li><a href="#module-loader-overview">Overview</a></li>
+    <li><a href="#module-loader-hooks">Module Hooks</a></li>
+    <li><a href="#module-loader-events">Loader Events</a></li>
+  </ul>
+</a>
 <li><a href="#configuration">Module Configuration</a></li>
 <li><a href="#structure">Module Structure</a></li>
 <li><a href="#hooks-and-events">Module Hooks &amp; Events</a></li>
@@ -166,14 +171,14 @@
     <li><a href="#class-options">Class Options</a></li>
   </ul>
 </li>
-<li><a href="#testing">Testing</a>
+<li><a href="#testing-modules">Testing Modules</a>
   <ul class="nav">
     <li><a href="#testing-unit">Running Unit Tests</a></li>
     <li><a href="#testing-e2e">Running E2E Tests</a></li>
     <li><a href="#testing-coverage">Code Coverage Reports</a></li>
   </ul>
 </li>
-<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#getting-help">Getting Help</a></li>
 
               
             </ul>
@@ -365,21 +370,6 @@
 <p>To install this module in your application use the CleverStack CLI's <code>install</code> command.<br/>(ie. <code>clever install backend-example-module</code>)</p>
 <img src="/assets/img/screenshots/clever-install.png" width="100%">
 </div>
-  <!-- <div class="section-page"><h3 id="module-loader" class="page-header">
-  Module Loader <a class="permalink" href="#module-loader" title="Permalink"><small>¶</small></a>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="/documentation">Documentation</a></li>
-  <li><a href="/documentation/backend">Backend</a></li>
-  <li><a href="/documentation/backend/modules">Modules</a></li>
-  <li class="active">Module Loader</li>
-</ol>
-
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
-</div>
-</div> -->
   <div class="section-page"><h3 id="working-with-modules" class="page-header">
   Working With Modules <a class="permalink" href="#working-with-modules" title="Permalink"><small>¶</small></a><br/>
   <small>By using the CleverStack CLI, installing, upgrading, downgrading and removing modules is easy and straight forward.</small>
@@ -498,6 +488,83 @@
   <h5>If the module is not installed you will see something like this in your terminal/console.</h5>
   <img src="/assets/img/screenshots/clever-downgrade-same-version-error.png" width="100%">
 </div>
+</div>
+  <div class="section-page"><h3 id="module-loader" class="page-header">
+  The Module Loader <a class="permalink" href="#module-loader" title="Permalink"><small>¶</small></a><br/>
+  <small>Is an extended <code>Class</code> that inherits from <code>EventEmitter</code></small>
+</h3>
+<ol class="breadcrumb">
+  <li><a href="/documentation">Documentation</a></li>
+  <li><a href="/documentation/backend">Backend</a></li>
+  <li><a href="/documentation/backend/modules">Modules</a></li>
+  <li class="active">The Module Loader</li>
+</ol>
+
+<p class="lead" id="module-loader-overview">
+  The Module Loader is responsible for iterating over the modules inside the modules folder to load and trigger a sequence of events for each of the modules in an asynchronous fashion.
+</p>
+
+<p class="lead">
+  For an in-depth example of how the Module Loader is used in Cleverstack please see <a href="https://github.com/CleverStack/node-seed/blob/master/app.js">node-seed/app.js</a>.
+</p>
+
+<br/>
+<div class="bs-callout bs-callout-warning">
+  <h4>Needs more information</h4>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+</div>
+<br/>
+
+<!-- Hooks
+================================================== -->
+<h5  class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
+  Module Hooks</a>
+</h5>
+<dl class="dl-horizontal" id="module-loader-hooks">
+  <dt>preResources</dt>
+  <dd><p>Is triggered directly before resources (files) are loaded for all modules using the ModuleLoader.</p></dd>
+
+  <dt>configureApp</dt>
+  <dd><p>Is triggered after all resources (files) have loaded but before any routes have been attached.</p></dd>
+
+  <dt>preRoute</dt>
+  <dd><p>Is triggered directly before routes are initialized for all modules being loaded.</p></dd>
+</dl>
+
+<!-- Events
+================================================== -->
+<h5  class="page-header" style="color: #2980b9; font-size: 125%; font-weight: 500;">
+  Module Events</a>
+</h5>
+<dl class="dl-horizontal" id="module-loader-events">
+  <dt>beforeLoad</dt>
+  <dd>
+    <p>
+      Is triggered before loading modules.
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">moduleLoader</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;beforeLoad&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno">2</span>   <span class="c1">// ...</span>
+<span class="lineno">3</span> <span class="p">});</span></code></pre></div>
+    </p>
+  </dd>
+
+  <dt>modulesLoaded</dt>
+  <dd>
+    <p>
+      Is triggered after all modules have been loaded, please see <a href="https://github.com/CleverStack/node-seed/blob/master/app.js#L10">backend/app.js</a> for example usage.
+    </p>
+  </dd>
+
+
+  <dt>routesInitialized</dt>
+  <dd>
+    <p>
+      Is triggered after all modules have had their routes initialized.
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">moduleLoader</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;routesInitialized&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno">2</span>   <span class="c1">// ...</span>
+<span class="lineno">3</span> <span class="p">});</span></code></pre></div>
+    </p>
+  </dd>
+</dl>
 </div>
   <div class="section-page"><h3 id="configuration" class="page-header">
   Module Configuration <a class="permalink" href="#configuration" title="Permalink"><small>¶</small></a><br/>
@@ -782,8 +849,8 @@
   </div>
 </div>
 </div>
-  <div class="section-page"><h3 id="testing" class="page-header">
-  Testing Modules<a class="permalink" href="#testing" title="Permalink"><small>¶</small></a><br/>
+  <div class="section-page"><h3 id="testing-modules" class="page-header">
+  Testing Modules<a class="permalink" href="#testing-modules" title="Permalink"><small>¶</small></a><br/>
   <small>Modules contain their testing resources, there are two test types you can use, unit or e2e.</small>
 </h3>
 <ol class="breadcrumb">
@@ -814,20 +881,21 @@
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>http://localhost:5555</code></pre></div>
 <p>Then select your report from the list.</p>
 </div>
-  <div class="section-page"><h3 id="troubleshooting" class="page-header">
-  Troubleshooting<a class="permalink" href="#troubleshooting" title="Permalink"><small>¶</small></a>
+  <div class="section-page"><h3 id="getting-help" class="page-header">
+  Getting Help<a class="permalink" href="#getting-help" title="Permalink"><small>¶</small></a>
 </h3>
 <ol class="breadcrumb">
   <li><a href="/documentation">Documentation</a></li>
   <li><a href="/documentation/backend">Backend</a></li>
   <li><a href="/documentation/backend/modules">Modules</a></li>
-  <li class="active">Troubleshooting</li>
+  <li class="active">Getting Help</li>
 </ol>
 <p class="lead">If you have any problems (including errors, exceptions and even general usage) with the CleverStack Node-Seed.</p>
 <ul>
-  <li>Check the Github <a href="https://github.com/cleverstack/node-seed/issues">issues page</a>.</li>
-  <li>Log into the public access <a href="https://gitter.im/CleverStack?utm_source=share-link&utm_medium=link&utm_campaign=share-link">Giiter Room</a> and ask for help.</li>
+  <li>Check the Github <a href="https://github.com/cleverstack/node-seed/issues">issues page</a>, if you found a bug but don't see a ticket for it, please <a href="https://github.com/CleverStack/node-seed/issues/new">open an issue</a>.</li>
   <li>Get some help from the Cleverstack <a href="https://groups.google.com/forum/#!forum/clever-stack">Google Group</a></li>
+  <li>Get some help from <a href="http://stackoverflow.com/questions/tagged/cleverstack">Stack Overflow</a></li>
+  <li>Log into the public access <a href="https://gitter.im/CleverStack?utm_source=share-link&utm_medium=link&utm_campaign=share-link">Giiter Room</a> and ask for help.</li>
   <li>If your still having problems, please <a href="https://github.com/CleverStack/node-seed/issues/new">raise an issue</a>.</li>
 </ul>
 </div>
