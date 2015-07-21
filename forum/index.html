@@ -11,7 +11,7 @@
 
 <title>
   
-    Backend Services &middot; CleverStack.io
+    CleverStack Forum &middot; CleverStack.io
   
 </title>
 
@@ -58,7 +58,7 @@
   </script>
 
   </head>
-  <body>
+  <body class="bs-docs-home">
     <a class="sr-only" href="#content">Skip to main content</a>
 
     <div class="github-ribbon">
@@ -91,7 +91,7 @@
         <li>
           <a href="/documentation">Documentation</a>
         </li>
-        <li>
+        <li class="active">
           <a href="/forum">Forum</a>
         </li>
 
@@ -118,163 +118,29 @@
 </header>
 
 
-    <!-- Docs page layout -->
-    <div class="bs-header" id="content">
-      <div class="container">
-        <h1>Backend Services</h1>
-        <p>An Indepth guides of the CleverStack NodeJS Backend, covering installation, configuration, usage, extending, testing and much more.</p>
-      </div>
-    </div>
+    <!-- Page content of course! -->
+      <!-- Why CleverStack
+  ================================================== -->
+  <div id="module-page-wrapper" class="container">
+    <h1>CleverStack Forum</h1>
+    <p>Search or ask our google group below for help using CleverStack.</p>
 
-    <!-- Callout for the old docs link -->
-    <!-- <div class="bs-old-docs">
-  <div class="container">
-    <strong>
-      <a href="/2.3.2/">Looking for Bootstrap 2.3.2 docs?</a>
-    </strong>
-    We've moved it to a new home while we push forward with Bootstrap 3. <a href="http://blog.getbootstrap.com/">Read the blog</a> for details.
-  </div>
-</div>
- -->
+    <iframe id="forum_embed"
+     src="javascript:void(0)"
+     scrolling="no"
+     frameborder="0"
+     width="100%"
+     height="700">
+    </iframe>
 
-    <div class="container bs-docs-container">
-
-      <div class="row">
-        <div class="col-md-3">
-          <div class="bs-sidebar hidden-print" role="complementary">
-            <ul class="nav bs-sidenav">
-              
-                <li><a href="/documentation/backend#services" style="padding-left: 10px !important;color: #563d7c;"><strong>Backend</strong> <br/><small>(viewing Services)</small></a></li>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#options">Options</a></li>
-<li><a href="#definition">Definition</a></li>
-<li><a href="#events">Events</a></li>
-<li><a href="#class-methods">Class Methods</a></li>
-<li><a href="#testing">Testing</a></li>
-
-              
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-9" role="main">
-          	<div class="bs-docs-section">
-  <div class="section-page"><h1 id="overview" class="page-header">
-  Services<br/>
-  <small>Robust service layer for ultimate flexibility.</small>
-</h1>
-<ol class="breadcrumb">
-  <li><a href="/documentation">Documentation</a></li>
-  <li><a href="/documentation/backend">Backend</a></li>
-  <li class="active">Services</li>
-</ol>
-
-<p class="lead sub">CleverStack's Service Layer makes a clear distiction between web (controller) activity that is best handled in the controller and general business related logic that is not web related - this separation also gives us the ability to do testing on the business logic of the Service either on it's own (unit test) or with the web related logic from the Controller/s (e2e test)</p>
-
-<blockquote>
-  <h6>Good code is short, simple, and symmetrical – the challenge is figuring out how to get there.</h6>
-  <footer>Sean Parent</footer>
-</blockquote>
-<br/>
-
-<p>A Service should take advantage of our Dependency Injection and load whatever Model is used to actually store the data, by defining the Model in the Class of the Service you are able to enable the Controller to automatically give you CRUD routing and actions.</p>
-
-<div class="bs-callout bs-callout-danger">
-  <h4>Service nesting</h4>
-  <p>When defining methods in services that require other models the correct way of working with those other models is to use their Service, this mean's that services business logic can still be run (transactions, their own transactions, etc)</p>
+    <script type="text/javascript">
+     document.getElementById("forum_embed").src =
+      "https://groups.google.com/forum/embed/?place=forum/clever-stack" +
+      "&showsearch=true&showpopout=true&hideforumtitle=true&parenturl=" +
+      encodeURIComponent(window.location.href);
+    </script>
 </div>
 
-<div class="bs-callout bs-callout-info">
-  <h4>Flexible persistence</h4>
-  <p>Using a Service Layer also mean's that you can store data in whatever you want not just the ORM or ODM models that CleverStack provides, and you can even easily change the underlying storage of an existing Service because of this Pattern.</p>
-</div></div>
-  <div class="section-page"><h3 id="options" class="page-header">
-  Options <a class="permalink" href="#options" title="Permalink"><small>¶</small></a>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="/documentation">Documentation</a></li>
-  <li><a href="/documentation/backend">Backend</a></li>
-  <li><a href="/documentation/backend/services">Services</a></li>
-  <li class="active">Options</li>
-</ol>
-
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
-</div>
-</div>
-  <div class="section-page"><h3 id="definition" class="page-header">
-  Definition <a class="permalink" href="#definition" title="Permalink"><small>¶</small></a>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="/documentation">Documentation</a></li>
-  <li><a href="/documentation/backend">Backend</a></li>
-  <li><a href="/documentation/backend/services">Services</a></li>
-  <li class="active">Definition</li>
-</ol>
-
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">Service</span><span class="p">,</span> <span class="nx">ExampleModel</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">Service</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-        <span class="nx">model</span><span class="o">:</span> <span class="nx">ExampleModel</span>
-    <span class="p">});</span>
-<span class="p">};</span></code></pre></div>
-
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or gitter if you need more information.</p>
-</div>
-</div>
-  <div class="section-page"><h3 id="events" class="page-header">
-  Events <a class="permalink" href="#events" title="Permalink"><small>¶</small></a>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="/documentation">Documentation</a></li>
-  <li><a href="/documentation/backend">Backend</a></li>
-  <li><a href="/documentation/backend/services">Services</a></li>
-  <li class="active">Events</li>
-</ol>
-
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or gitter if you need more information.</p>
-</div>
-</div>
-  <div class="section-page"><h3 id="class-methods" class="page-header">
-  Class Methods <a class="permalink" href="#class-methods" title="Permalink"><small>¶</small></a>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="/documentation">Documentation</a></li>
-  <li><a href="/documentation/backend">Backend</a></li>
-  <li><a href="/documentation/backend/services">Services</a></li>
-  <li class="active">Class Methods</li>
-</ol>
-
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or gitter if you need more information.</p>
-</div>
-</div>
-  <div class="section-page"><h3 id="testing" class="page-header">
-  Testing <a class="permalink" href="#testing" title="Permalink"><small>¶</small></a>
-</h3>
-<ol class="breadcrumb">
-  <li><a href="/documentation">Documentation</a></li>
-  <li><a href="/documentation/backend">Backend</a></li>
-  <li><a href="/documentation/backend/services">Services</a></li>
-  <li class="active">Testing</li>
-</ol>
-
-<div class="bs-callout bs-callout-danger">
-  <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or gitter if you need more information.</p>
-</div>
-</div>
-</div>
-
-
-        </div>
-      </div>
-
-    </div>
 
     <footer class="container text-center padtop" role="contentinfo">
       <p class="legal">Cleverstack.io is developed and maintained by <a href="http://au.linkedin.com/in/richardgustin" target="_blank">Richard Gustin</a> (<a href="https://github.com/pilsy" target="_blank">@pilsy</a>),<br/>our core developers, our open source community and <a href="http://www.clevertech.biz/" target="_blank">Clevertech</a>.<br/>2015 Cleverstack.io All Rights Reserved.</p>

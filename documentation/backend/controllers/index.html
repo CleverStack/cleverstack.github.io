@@ -80,10 +80,10 @@
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
         <li>
-          <a href="/getting-started">Getting started</a>
+          <a href="/why-cleverstack">Why cleverstack?</a>
         </li>
         <li>
-          <a href="/why-cleverstack">Why cleverstack?</a>
+          <a href="/getting-started">Getting started</a>
         </li>
         <li>
           <a href="/modules">Modules</a>
@@ -91,6 +91,10 @@
         <li>
           <a href="/documentation">Documentation</a>
         </li>
+        <li>
+          <a href="/forum">Forum</a>
+        </li>
+
 <!--         <li>
           <a href="/css">CSS</a>
         </li>
@@ -198,7 +202,7 @@
 
 <div class="bs-callout bs-callout-danger">
   <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or gitter if you need more information.</p>
 </div>
 
 <p>You define any options along with the Class/Static section of your Controller.extend() call</p>
@@ -254,7 +258,8 @@
       <td>If set to a CleverStack Model it will provide automatic CRUD routing using restfulActions and/or actionRouting</td>
   </tr>
   </tbody>
-</table></div>
+</table>
+</div>
   <div class="section-page"><h3 id="definition" class="page-header">
   Definition <a class="permalink" href="#definition" title="Permalink"><small>¶</small></a>
 </h3>
@@ -267,7 +272,7 @@
 
 <div class="bs-callout bs-callout-danger">
   <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or gitter if you need more information.</p>
 </div>
 
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">ExampleController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -280,7 +285,8 @@
             <span class="p">})</span>
         <span class="p">}</span>
     <span class="p">});</span>
-<span class="p">};</span></code></pre></div></div>
+<span class="p">};</span></code></pre></div>
+</div>
   <div class="section-page"><h3 id="actions" class="page-header">
   Actions <a class="permalink" href="#actions" title="Permalink"><small>¶</small></a>
 </h3>
@@ -293,7 +299,7 @@
 
 <div class="bs-callout bs-callout-danger">
   <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or gitter if you need more information.</p>
 </div>
 
 <p>
@@ -304,7 +310,8 @@
 <div class="bs-callout bs-callout-info">
   <h4>Standard for defining actions</h4>
   <p>This is the default way to setup a controller to use actions. By default you can also visit /example/12 and it will route to the getAction function in your controller (if it's defined) with this.req.params.id set for you to use (the same applies for all HTTP methods, eg PUT/DELETE/POST/et cetera)</p>
-</div></div>
+</div>
+</div>
   <div class="section-page"><h3 id="middleware" class="page-header">
   Middleware <a class="permalink" href="#middleware" title="Permalink"><small>¶</small></a>
 </h3>
@@ -317,7 +324,7 @@
 
 <div class="bs-callout bs-callout-danger">
   <h4>Needs more information</h4>
-  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or hipchat if you need more information.</p>
+  <p>This section of the documentation is either out-dated or incomplete, please ask for help in github or gitter if you need more information.</p>
 </div>
 
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">ExampleController</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -337,7 +344,8 @@
             <span class="p">})</span>
         <span class="p">}</span>
     <span class="p">});</span>
-<span class="p">};</span></code></pre></div></div>
+<span class="p">};</span></code></pre></div>
+</div>
   <div class="section-page"><h3 id="routing" class="page-header">
   Routing <a class="permalink" href="#routing" title="Permalink"><small>¶</small></a>
 </h3>
