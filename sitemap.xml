@@ -1,57 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://cleverstack.io/about/</loc>
+    <loc>http://localhost:9001/about/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/blog/</loc>
+    <loc>http://localhost:9001/blog/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/business/</loc>
+    <loc>http://localhost:9001/business/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/developer/</loc>
+    <loc>http://localhost:9001/developer/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/documentation/</loc>
+    <loc>http://localhost:9001/documentation/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/getting-started/</loc>
+    <loc>http://localhost:9001/blog/guides/getting-started-with-cleverstack/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/documentation/backend/</loc>
+    <loc>http://localhost:9001/getting-started/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/documentation/backend/models/</loc>
+    <loc>http://localhost:9001/documentation/backend/classes/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/documentation/backend/modules/</loc>
+    <loc>http://localhost:9001/documentation/backend/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/</loc>
+    <loc>http://localhost:9001/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/documentation/cli/</loc>
+    <loc>http://localhost:9001/documentation/backend/services/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/documentation/frontend/</loc>
+    <loc>http://localhost:9001/documentation/cli/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/documentation/backend/controllers/</loc>
+    <loc>http://localhost:9001/documentation/frontend/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/forum/</loc>
+    <loc>http://localhost:9001/documentation/backend/controllers/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/documentation/backend/classes/</loc>
+    <loc>http://localhost:9001/forum/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/documentation/backend/services/</loc>
+    <loc>http://localhost:9001/documentation/backend/models/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/modules/</loc>
+    <loc>http://localhost:9001/documentation/backend/modules/</loc>
   </url>
   <url>
-    <loc>http://cleverstack.io/why-cleverstack/</loc>
+    <loc>http://localhost:9001/modules/</loc>
+  </url>
+  <url>
+    <loc>http://localhost:9001/why-cleverstack/</loc>
+  </url>
+  <url>
+    <loc>http://localhost:9001/google456128fdaa6cc12d.html</loc>
+    <lastmod>2015-08-06T23:41:13+10:00</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:9001/organisation-forks.html</loc>
+    <lastmod>2015-08-12T13:16:45+10:00</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:9001/organisation-stars.html</loc>
+    <lastmod>2015-08-12T13:16:42+10:00</lastmod>
   </url>
 </urlset>
