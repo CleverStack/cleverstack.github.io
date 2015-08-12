@@ -11,7 +11,7 @@
 
 <title>
   
-    CleverStack Blog &middot; CleverStack.io
+    Getting started with CleverStack &middot; CleverStack.io
   
 </title>
 
@@ -96,7 +96,7 @@
         <li>
           <a href="/forum">Forum</a>
         </li>
-        <li class="active">
+        <li>
           <a href="/blog">Blog</a>
         </li>
 
@@ -126,8 +126,8 @@
     <!-- Docs page layout -->
     <div class="bs-header" id="content">
       <div class="container">
-        <h1>CleverStack Blog</h1>
-        <p>The Official CleverStack Blog</p>
+        <h1>Getting started with CleverStack</h1>
+        <p>CleverStack Blog</p>
       </div>
     </div>
 
@@ -145,7 +145,7 @@
     <div class="container bs-docs-container">
 
       
-        <div class="col-md-12" role="main">
+        <div class="col-md-9" role="main">
           <div class="container" style="padding-top: 50px;">
 
   <div class="row">
@@ -153,10 +153,11 @@
     <div class="col-sm-8 blog-main">
 
       <div class="blog-post">
-        <h2 class="blog-post-title"><a href="/blog/guides/getting-started-with-cleverstack">Getting started with CleverStack</a></h2>
-        <p class="blog-post-meta">August 12, 2015 by <a href="http://twitter.com/pilsy">@pilsy</a> (Richard Gustin)</p>
+        <p class="blog-post-meta">August 12, 2015 by <a href="http://twitter.com/pilsy">@pilsy</a></p>
         <hr>
 
+        <p>This blog and video post shows you how to use the cleverstack CLI to create (init) a new project in under 10 minutes!</p>
+        <br/>
         <div class="video">
           <div id="player"></div>
           <script>
@@ -176,15 +177,48 @@
           </script>
         </div>
         <br/>
+        <br/>
 
-        <p>This blog and video post shows you how to use the cleverstack CLI to create (init) a new project in under 10 minutes! <a href="/blog/guides/getting-started-with-cleverstack">Read more...</a></p>
+        <h2>Prerequisite — Install the CLI, grunt-cli and bower:</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">npm</span> <span class="nx">i</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">cleverstack</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">grunt</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">bower</span></code></pre></div>
+        <br/>
 
+        <h2>Step 1— Use the CLI's init command:</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">clever</span> <span class="nx">init</span> <span class="nx">my</span><span class="o">-</span><span class="nx">first</span><span class="o">-</span><span class="nx">app</span></code></pre></div>
+        <br/>
+
+        <h2>Step 2— Install backend modules for ORM, Auth, Accounts, Users &amp; Roles:</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">cd</span> <span class="nx">my</span><span class="o">-</span><span class="nx">first</span><span class="o">-</span><span class="nx">app</span>
+<span class="lineno">2</span> <span class="nx">clever</span> <span class="nx">install</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">orm</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">auth</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">accounts</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">users</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">roles</span></code></pre></div>
+<blockquote>Note: In this demo i chose to install our SQL Based, Object Relational Mapper or ORM module, `clever-orm` — alternatively you could install our NoSQL Based, Object Document Mapper or ODM, `clever-odm` without any other code changes (only config) and have your app running off MongoDB!</blockquote>
+        <br/>
+
+        <h2>Step 3— Start serving our app and go checkout it out in your browser!:</h2>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">clever</span> <span class="nx">serve</span></code></pre></div>
+        <br/>
+
+        <p>Now you have a fully functioning Full Stack JavaScript Application using AngularJS &amp; NodeJS built with the CleverStack framework.</p>
+        <br/>
+        <br/>
       </div><!-- /.blog-post -->
 
      <!--  <ul class="pager">
         <li><a href="#">Previous</a></li>
         <li><a href="#">Next</a></li>
       </ul> -->
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = 'cleverstack';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
     </div><!-- /.blog-main -->
 
@@ -192,12 +226,6 @@
       <div class="sidebar-module sidebar-module-inset">
         <h4>About</h4>
         <p>This is the official blog of <em>CleverStack</em>, the lean mean full stack javascript machine.</p>
-      </div>
-      <div class="sidebar-module">
-        <h4>Archives</h4>
-        <ol class="list-unstyled">
-          <li><a href="/blog/guides/getting-started-with-cleverstack">Guide: Getting started with CleverStack</a></li>
-        </ol>
       </div>
       <div class="sidebar-module">
         <h4>Elsewhere</h4>
