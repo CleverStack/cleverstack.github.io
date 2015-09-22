@@ -10,7 +10,7 @@
 <meta name="author" content="Richard Gustin and contributors to the CleverStack Repositories">
 
 
-  <title>Getting Started with CleverStack &middot; CleverStack.io</title>
+  <title>Introduction to CleverStack &middot; CleverStack.io</title>
 
 
 <!-- Bootstrap core CSS -->
@@ -125,8 +125,8 @@ var tag = document.createElement('script');  tag.src = "http://www.youtube.com/p
     <!-- Docs page layout -->
     <div class="bs-header" id="content">
       <div class="container">
-        <h1>Getting Started with CleverStack</h1>
-        <p>the NodeJS &amp; AngularJS fullstack framework</p>
+        <h1>Introduction to CleverStack</h1>
+        <p>the modular Node &amp; Angular fullstack framework</p>
       </div>
     </div>
 
@@ -166,11 +166,11 @@ var tag = document.createElement('script');  tag.src = "http://www.youtube.com/p
 </div>
 
 
-  <p>This blog and video post shows you how to use the cleverstack CLI to create (init) a new project in under 10 minutes!</p>
+  <p>After receiving feedback from the community telling us that our introduction screencast video wasn't in HD, i decided to create this new video to replace it. You can see it on the <a href="/developer/">Developer Page</a> or below.</p>
   <div class="video" style="text-align: center">
     <div id="player"></div>
     <script>
-    var player;  function onYouTubePlayerAPIReady() {  player = new YT.Player('player', {  height: '420',  width: '640',  videoId: '-4ArURHExhQ',  events: {  'onReady': onPlayerReady,  'onStateChange': onPlayerStateChange  }  });  }
+    var player;  function onYouTubePlayerAPIReady() {  player = new YT.Player('player', {  height: '420',  width: '640',  videoId: 'M1cUtt7aYRg',  events: {  'onReady': onPlayerReady,  'onStateChange': onPlayerStateChange  }  });  }
     function onPlayerReady(event) {
       setTimeout(function() {
         event.target.playVideo();
@@ -178,18 +178,18 @@ var tag = document.createElement('script');  tag.src = "http://www.youtube.com/p
     }
     function onPlayerStateChange(event) {
       if (event.data == YT.PlayerState.PLAYING)  {
-        ga('send', 'event', 'Getting started Video', 'click', 'Play');
+        ga('send', 'event', 'Introduction Video', 'click', 'Play');
       }
 
       if (event.data == YT.PlayerState.ENDED)  {
-        ga('send', 'event', 'Getting started Video', 'click', 'Watch to End');
+        ga('send', 'event', 'Introduction Video', 'click', 'Watch to End');
       }
     }
     </script>
   </div>
-
-  <h2>Prerequisite — Install the CLI, grunt-cli and bower:</h2>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">npm</span> <span class="nx">i</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">cleverstack</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">grunt</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">bower</span></code></pre></div>
+  <br/>
+  <p>Take a look at our <a href="/blog/guides/getting-started-with-cleverstack/">Getting Started with CleverStack</a> Blog post next!</p>
+  <br/>
 
   <div class="google-ads" style="margin-bottom: 25px;">
     <ins class="adsbygoogle"
@@ -201,22 +201,6 @@ var tag = document.createElement('script');  tag.src = "http://www.youtube.com/p
   </div>
   <br/>
 
-  <h2>Step 1— Use the CLI's init command:</h2>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">clever</span> <span class="nx">init</span> <span class="nx">my</span><span class="o">-</span><span class="nx">first</span><span class="o">-</span><span class="nx">app</span></code></pre></div>
-
-  <div class="google-ads" style="margin-bottom: 25px;">
-    <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-5940583402028078"
-       data-ad-slot="7626559544"
-       data-ad-format="auto"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-  <br/>
-
-  <h2>Step 2— Install backend modules for ORM, Auth, Accounts, Users &amp; Roles:</h2>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">cd</span> <span class="nx">my</span><span class="o">-</span><span class="nx">first</span><span class="o">-</span><span class="nx">app</span>
-<span class="lineno">2</span> <span class="nx">clever</span> <span class="nx">install</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">orm</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">auth</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">accounts</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">users</span> <span class="nx">clever</span><span class="o">-</span><span class="nx">roles</span></code></pre></div>
   <div class="google-ads" style="margin-bottom: 25px;">
     <ins class="adsbygoogle"
        style="display:block"
@@ -225,11 +209,8 @@ var tag = document.createElement('script');  tag.src = "http://www.youtube.com/p
        data-ad-format="auto"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
-  <blockquote>Note: In this demo i chose to install our SQL Based, Object Relational Mapper or ORM module, `clever-orm` — alternatively you could install our NoSQL Based, Object Document Mapper or ODM, `clever-odm` without any other code changes (only config) and have your app running off MongoDB!</blockquote>
   <br/>
 
-  <h2>Step 3— Start serving our app and go checkout it out in your browser!:</h2>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">clever</span> <span class="nx">serve</span></code></pre></div>
   <div class="google-ads" style="margin-bottom: 25px;">
     <ins class="adsbygoogle"
        style="display:block"
@@ -238,9 +219,6 @@ var tag = document.createElement('script');  tag.src = "http://www.youtube.com/p
        data-ad-format="auto"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
-  <br/>
-
-  <p>Now you have a fully functioning Full Stack JavaScript Application using AngularJS &amp; NodeJS built with the CleverStack framework.</p>
 </div><!-- /.blog-post -->
 
       <div id="spot-im-frame-inpage"></div>
@@ -260,6 +238,14 @@ var tag = document.createElement('script');  tag.src = "http://www.youtube.com/p
              data-ad-client="ca-pub-5940583402028078"
              data-ad-slot="7602659146"
              data-ad-format="auto"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+      <div class="sidebar-module">
+        <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5940583402028078"
+           data-ad-slot="7626559544"
+           data-ad-format="auto"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
       <div class="sidebar-module sidebar-module-inset">
