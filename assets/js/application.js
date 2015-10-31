@@ -93,6 +93,8 @@
 
     var $window = $(window)
     var $body   = $(document.body)
+    
+    setTimeout("ga('send', 'event', { eventCategory: '30 seconds on page', eventAction: 'Read' })", 30000);
 
     var navHeight = $('.navbar').outerHeight(true) + 10
 
