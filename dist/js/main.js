@@ -18,6 +18,14 @@ jQuery(document).ready(function() {
  window.isDesktop = isDesktop;
 
  jQuery(document).ready(function() {
+  setInterval(function() {
+  ga('send', 'event', {eventCategory: 'Log', eventAction: 'Read'});
+  $('#atrackalexa').remove();
+  $('body').append('<img id="atrackalexa" src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=zIjVl1aQibl06C&cb=' + Date.now() + '" style="display:none" height="1" width="1" alt="" />');
+}, 10000);
+
+_atrk_opts = { atrk_acct:"zIjVl1aQibl06C", domain:"cleverstack.io",dynamic: true};
+(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
 if ($('#player').length > 0) {
 var player;  function onYouTubePlayerAPIReady() {  player = new YT.Player('player', {  height: '420',  width: '640',  videoId: 'h2-kSRrHHGo',  events: {  'onReady': onPlayerReady,  'onStateChange': onPlayerStateChange  }  });  }
 function onPlayerReady(event) {
@@ -104,16 +112,9 @@ function onPlayerStateChange(event) {
          jQuery('html,body').animate({scrollTop:dest}, 1000,'swing');
        });
 
-
-
-
    jQuery( ".navbar-toggle" ).click(function() {
     jQuery(".navbar-collapse").toggleClass( "nav-highlight" );
   });
 
  }
 });
-
-
-
-
