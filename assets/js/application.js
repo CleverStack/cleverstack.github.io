@@ -95,15 +95,26 @@
     var $body   = $(document.body)
     
     setInterval(function() {
-      ga('send', 'event', {eventCategory: 'Log', eventAction: 'Read'});
+      ga('send', 'event', {
+        eventCategory: 'Log',
+        eventAction: 'Read'
+      });
       window._atrk_fired = false;
       atrk();
     }, 15000);
-    
-    _atrk_opts = { atrk_acct:"zIjVl1aQibl06C", domain:"cleverstack.io",dynamic: true};
-    (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
-    
-    //setInterval("ga('send', 'event', { eventCategory: timeOnPage+ ' seconds on page', eventAction: 'Read' })", 30000);
+    _atrk_opts = {
+      atrk_acct: "zIjVl1aQibl06C",
+      domain: "cleverstack.io",
+      dynamic: true
+    };
+    (function() {
+      var as = document.createElement('script');
+      as.type = 'text/javascript';
+      as.async = true;
+      as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js";
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(as, s);
+    })();
     
     var navHeight = $('.navbar').outerHeight(true) + 10
 

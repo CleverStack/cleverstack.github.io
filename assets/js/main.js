@@ -36,7 +36,7 @@ jQuery(document).ready(function() {
         player = new YT.Player('player', {
           height: '420',
           width: '640',
-          videoId: 'h2-kSRrHHGo',
+          videoId: 'M1cUtt7aYRg',
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
