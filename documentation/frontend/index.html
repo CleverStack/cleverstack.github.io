@@ -191,14 +191,21 @@ var tag = document.createElement('script');  tag.src = "http://www.youtube.com/p
 ================================================== -->
 <h1 id="frontend" class="page-header">CleverStack Frontend</h1>
 
-<div class="google-ads" style="margin-bottom: 25px;">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-5940583402028078"
-       data-ad-slot="6265526742"
-       data-ad-format="auto"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
+<script type="text/javascript">
+var ad_idzone = "1755160",
+    ad_width = "728",
+    ad_height = "90",
+    v_pos = "top",
+    h_pos = "center",
+    eventMethod = window.addEventListener ? "addEventListener" : "attachEvent",
+    eventer = window[eventMethod],
+    messageEvent = (eventMethod == "attachEvent") ? "onmessage" : "message";
+
+    eventer(messageEvent, (function(ad_idzone){
+        return function(e) { if (e.data == "show-iframe-" + ad_idzone) document.getElementById("sticky-banner-" + ad_idzone).style.display = ""; };
+    })(ad_idzone), false);
+</script>
+<script type="text/javascript" src="https://ads.exoclick.com/js.php?t=17"></script>
 
 <!-- Introduction
 ================================================== -->
@@ -463,7 +470,7 @@ var tag = document.createElement('script');  tag.src = "http://www.youtube.com/p
   }(document, "script", "twitter-wjs"));
 </script>
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 
 
   </body>

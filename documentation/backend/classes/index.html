@@ -57,9 +57,23 @@ var tag = document.createElement('script');  tag.src = "http://www.youtube.com/p
 
 <script src="//load.sumome.com/" data-sumo-site-id="69cd5a7e9e5b6cbd0a351c910c5784d01a31896daa73f8a0b69e4725dac88a6d" async="async"></script>
 
-
   </head>
   <body>
+    <script type="text/javascript">
+    var ad_idzone = "1755160",
+        ad_width = "728",
+        ad_height = "90",
+        v_pos = "top",
+        h_pos = "center",
+        eventMethod = window.addEventListener ? "addEventListener" : "attachEvent",
+        eventer = window[eventMethod],
+        messageEvent = (eventMethod == "attachEvent") ? "onmessage" : "message";
+
+        eventer(messageEvent, (function(ad_idzone){
+            return function(e) { if (e.data == "show-iframe-" + ad_idzone) document.getElementById("sticky-banner-" + ad_idzone).style.display = ""; };
+        })(ad_idzone), false);
+    </script>
+    <script type="text/javascript" src="https://ads.exoclick.com/js.php?t=17"></script>
     <a class="sr-only" href="#content">Skip to main content</a>
 
     <div class="github-ribbon">
@@ -164,13 +178,7 @@ var tag = document.createElement('script');  tag.src = "http://www.youtube.com/p
         </div>
         
         <div class="col-md-9" role="main">
-          	<div class="bs-docs-section"><div class="google-ads" style="margin-bottom: 25px;">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-5940583402028078"
-             data-ad-slot="6265526742"
-             data-ad-format="auto"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          	<div class="bs-docs-section">
       </div>
   <div class="section-page"><h1 id="overview" class="page-header">
   Classes<br/>
@@ -459,7 +467,7 @@ Clean, Efficient and Optimized code</li>
   }(document, "script", "twitter-wjs"));
 </script>
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 
 
   </body>
